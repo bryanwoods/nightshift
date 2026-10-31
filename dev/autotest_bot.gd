@@ -5,6 +5,8 @@ extends Node
 ## Screenshots need a window (no --headless). Prints AUTOTEST PASS or AUTOTEST FAIL and quits.
 
 var route: String = "help"
+var second_night: bool = false
+var route_done_once: bool = false
 var shots: String = ""
 var failures: PackedStringArray = []
 var log_lines: PackedStringArray = []
@@ -19,11 +21,16 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	DialogueRunner.autoplay = true
 	DialogueRunner.autoplay_fight = "hustle" if route == "hustle" else "help"
+	if route == "night2":
+		route = "help"
+		second_night = true
 	Engine.time_scale = 2.0
 	_run.call_deferred()
 
 
 func _run() -> void:
+	await _wait(0.5)
+	_note("window %s, screen scale %s, usable %s" % [get_window().size, DisplayServer.screen_get_scale(), DisplayServer.screen_get_usable_rect().size])
 	Game.start_night(true)
 	await _room("bedroom")
 	await _shot("01_bedroom")
@@ -127,10 +134,51 @@ func _morning() -> void:
 	await _shot("11_night_end")
 	await _tap("confirm")
 	await _until(func() -> bool: return get_tree().current_scene != null and get_tree().current_scene.scene_file_path == Game.TITLE, 10.0)
-	_expect(SaveManager.has_save() and Game.night == 2, "night 2 saved, night is %d" % Game.night)
+	var want := 3 if route_done_once else 2
+	route_done_once = true
+	_expect(SaveManager.has_save() and Game.night == want, "night %d saved, night is %d" % [want, Game.night])
 	await _wait(0.5)
 	await _shot("12_title")
+	if second_night and Game.night == 2:
+		await _night_two()
+		return
 	_finish()
+
+
+func _night_two() -> void:
+	_note("--- night 2 (Continue) ---")
+	Game.start_night(false)
+	await _room("bedroom")
+	_expect(Game.night == 2 and Game.has_flag("wick_joined") and not Game.has_flag("tonight_lamp_lit"), "night 2 keeps flags and resets tonight_ flags")
+	await _walk(5, 8)
+	await _room("hallway")
+	await _walk(12, 3)
+	await _room("kitchen")
+	await _walk(2, 7)
+	await _idle()
+	await _walk(2, 8)
+	await _room("backyard")
+	await _walk(13, 4)
+	await _room("street_maple")
+	_expect(NightClock.minute == 0, "night 2 starts at 2:00 at the gate")
+	_expect(_cur_room().follower != null, "wick follows from the start of night 2")
+	await _walk(17, 4)
+	await _idle()
+	await _walk(23, 4)
+	await _room("street_main")
+	await _walk(27, 4)
+	await _room("depot_exterior")
+	await _talk_at(11, 1)
+	await _walk(11, 1)
+	await _room("depot_interior")
+	await _idle()
+	_expect(Game.has_flag("tonight_foreman_ok"), "night 2 foreman scene plays again")
+	await _walk(21, 3)
+	await _room("square")
+	await _walk(3, 6)
+	await _battle_shots("n2_curfew")
+	second_night = false
+	await _morning()
 
 
 # ------------------------------------------------------------------ helpers

@@ -49,6 +49,7 @@
     "hint_wick_light": "Wick lights the arena. You can see everything this round. Free.",
     "hint_wick_hold": "Wick blocks the first hit this round. +{cost_wick_hold} min.",
     "wick_blocked": "Wick blocks it!",
+    "dark_warning": "The lights are about to go out...",
     "rewind_prompt": "Press {rewind} to wind the watch back!",
 
     "card_title": "NIGHTSHIFT  -  TRAINEE  -  TADZIO",

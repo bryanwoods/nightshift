@@ -16,10 +16,9 @@ func _ready() -> void:
 	sb.set_border_width_all(1)
 	sb.set_corner_radius_all(3)
 	card.add_theme_stylebox_override("panel", sb)
-	card.position = Vector2(40, 18)
-	card.size = Vector2(240, 136)
+	card.position = Vector2(40, 30)
 	add_child(card)
-	var y := 24.0
+	var y := 36.0
 	y = _line(Game.text("card_title"), y, "bark") + 4
 	var friends: Array[String] = []
 	for f in Game.friends():
@@ -33,8 +32,9 @@ func _ready() -> void:
 	var reason := Game.text("reason_" + (Game.last_night_reason if Game.last_night_reason != "" else "time"))
 	y = _line(Game.text("minutes_used").replace("{minutes}", str(Game.last_night_minutes)), y, "bark")
 	y = _line(reason, y, "bark") + 8
-	_line(Game.text("night_complete").replace("{night}", str(Game.night)), y, "bark")
-	var hint := _line(Game.text("press_confirm"), 160, "bark")
+	y = _line(Game.text("night_complete").replace("{night}", str(Game.night)), y, "bark")
+	card.size = Vector2(240, y - 30 + 6)
+	_line(Game.text("press_confirm"), y + 14, "bark")
 	_ready_at = Time.get_ticks_msec() + 800
 	AudioBus.play_music("none")
 	Game.fade_from(0.6)

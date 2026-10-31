@@ -4,6 +4,7 @@ extends Node2D
 var room: Room
 var battle: Battle
 var hud: ClockHUD
+var _music_before_battle: String = ""
 
 
 func _ready() -> void:
@@ -42,6 +43,7 @@ func _load_room() -> void:
 
 func _on_battle_requested(worker_id: String) -> void:
 	room.process_mode = Node.PROCESS_MODE_DISABLED
+	_music_before_battle = AudioBus.current()
 	battle = Battle.new()
 	add_child(battle)
 	battle.finished.connect(_on_battle_finished)
@@ -53,7 +55,7 @@ func _on_battle_finished(result: String) -> void:
 	battle = null
 	room.process_mode = Node.PROCESS_MODE_INHERIT
 	room.visible = true
-	AudioBus.play_music(str(room.data.get("music", "")))
+	AudioBus.play_music(_music_before_battle)
 	Game.battle_finished.emit(result)
 	if result == "asleep":
 		Game.end_night("asleep")

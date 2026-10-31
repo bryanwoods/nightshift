@@ -20,7 +20,7 @@
   "spawns": { "default": [1, 3, "right"], "gate": [1, 3, "right"], "east": [22, 4, "left"] },
   "entities": [
     { "type": "door", "x": 0, "y": 3, "to": "backyard", "spawn": "gate" },
-    { "type": "door", "x": 23, "y": 3, "h": 4, "to": "street_main", "spawn": "west", "minutes": 3 },
+    { "type": "door", "x": 23, "y": 2, "h": 6, "to": "street_main", "spawn": "west", "minutes": 3 },
 
     { "type": "trigger", "x": 2, "y": 2, "h": 6, "once": true, "flag": "met_wick", "dialogue": "wick_intro" },
     { "type": "npc", "id": "wick", "sprite": "wick", "x": 4, "y": 3, "facing": "up", "dialogue": "wick_again", "unless_flag": "wick_joined" },

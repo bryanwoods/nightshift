@@ -82,8 +82,12 @@ func apply_settings() -> void:
 	else:
 		if w.mode == Window.MODE_FULLSCREEN:
 			w.mode = Window.MODE_WINDOWED
+		var dpi := DisplayServer.screen_get_scale()
+		var usable := Vector2(DisplayServer.screen_get_usable_rect().size)
 		var s := clampi(int(settings.get("scale", 4)), 1, 8)
-		var target := Vector2i(320 * s, 180 * s)
+		while s > 1 and (Vector2(320 * s, 180 * s) * dpi).x > usable.x:
+			s -= 1
+		var target := Vector2i(Vector2(320 * s, 180 * s) * dpi)
 		if w.size != target and not OS.has_feature("headless"):
 			w.size = target
 			w.move_to_center()

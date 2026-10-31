@@ -34,6 +34,10 @@ func _ready() -> void:
 	NightClock.minute_passed.connect(_on_minute)
 
 
+func current() -> String:
+	return _current
+
+
 func play_music(track: String, fade: float = 1.0) -> void:
 	if track == _current:
 		return

@@ -51,6 +51,7 @@ var _arena: Arena
 var _worker_sprite: Sprite2D
 var _worker_base: Vector2
 var _shake: float = 0.0
+var _arena_shake: float = 0.0
 var _anim_t: float = 0.0
 var _idle_frames: int = 1
 var _task_label: Label
@@ -312,7 +313,7 @@ func _take_hit(dmg: int) -> void:
 	_since_hit = 0.0
 	AudioBus.sfx("hit")
 	_arena.hit_flash = 1.0
-	_shake = 0.15
+	_arena_shake = 0.2
 	_refresh_meters()
 	if _tutorial_on:
 		_end_tutorial()
@@ -385,6 +386,9 @@ func _process(delta: float) -> void:
 		_worker_sprite.frame = int(_anim_t) % _idle_frames if _idle_frames > 1 else 0
 		_shake = maxf(0.0, _shake - delta)
 		_worker_sprite.position = _worker_base + (Vector2(randf_range(-2, 2), 0).round() if _shake > 0.0 else Vector2.ZERO)
+	if _arena:
+		_arena_shake = maxf(0.0, _arena_shake - delta)
+		_arena.position = ARENA_CENTER + (Vector2(randf_range(-2, 2), randf_range(-2, 2)).round() if _arena_shake > 0.0 else Vector2.ZERO)
 	if _prompt_t > 0.0:
 		_prompt_t -= delta
 		if _prompt_t <= 0.0:
@@ -561,6 +565,9 @@ func _refresh_menu() -> void:
 		if key == "wick" and not joined:
 			key = "wick_locked"
 		_hint.text = Game.text("hint_" + key)
+		var pats: Array = worker.get("patterns", [])
+		if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
+			_hint.text = Game.text("dark_warning") + "\n" + _hint.text
 
 
 func _wipe_in() -> void:

@@ -235,7 +235,10 @@ func go_to_room(id: String, spawn_name: String, minutes: int, dialogue: String =
 
 
 func reload_room() -> void:
+	errors.clear()
+	_error_label.visible = false
 	DialogueRunner.load_all()
+	Validator.validate_all()
 	room_requested.emit()
 
 
@@ -362,11 +365,13 @@ func _register_inputs() -> void:
 				"pad":
 					var b := InputEventJoypadButton.new()
 					b.button_index = e[1]
+					b.device = -1
 					ev = b
 				_:
 					var m := InputEventJoypadMotion.new()
 					m.axis = e[1]
 					m.axis_value = e[2]
+					m.device = -1
 					ev = m
 			InputMap.action_add_event(action, ev)
 
