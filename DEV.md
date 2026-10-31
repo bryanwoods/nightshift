@@ -239,7 +239,7 @@ After you add a new image, open the project in Godot once so it imports it.
 Choices the spec left open, and choices that bend it. Each is one line so it is easy to undo.
 
 - Input actions are registered in code (`Game._register_inputs`), not in `project.godot`. Easier to read and diff.
-- Font: Micro 5 (SIL OFL), not m5x7. I found no download of m5x7 with a license I could verify. `assets/fonts/OFL-micro5.txt`.
+- Font: m6x11 by Daniel Linssen at size 16, the spec's second pick. Its itch.io page says "free to use with attribution" (`assets/fonts/m6x11-LICENSE.txt`). It has no em dash or curly quotes, so dialogue uses `-` and straight quotes, and the validator reports any character the font cannot draw.
 - One `Entity` script covers npc, inspect, door, trigger and hold, and `room.gd` is also the room loader. Fewer files than the spec's list; same behavior.
 - Dialogue files can bundle many dialogues (`dialogues: {}`), so one file per room instead of one per line.
 - Choice goto comes back (a call). `goto` and `if_flag` commands jump. Matches the spec example, where `set_flag met_wick` comes after the choice.

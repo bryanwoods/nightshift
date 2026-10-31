@@ -39,10 +39,10 @@
     },
     "square_ending": {
       "lines": [
-        { "speaker": "wick", "text": "Tadzio. The clock. Something's wrong with it. I think the hour is getting—" },
+        { "speaker": "wick", "text": "Tadzio. The clock. Something's wrong with it. I think the hour is getting-" },
         { "cmd": "clock_set", "minute": 59 },
         { "cmd": "wait", "seconds": 1.0 },
-        { "speaker": "wick", "portrait": "wick_panic", "text": "—no, wait, listen, the minutes, somebody's been—", "auto": 0.4 },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "-no, wait, listen, the minutes, somebody's been-", "auto": 0.4 },
         { "cmd": "clock_set", "minute": 60 }
       ]
     },

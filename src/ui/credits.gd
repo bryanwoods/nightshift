@@ -15,11 +15,11 @@ func _ready() -> void:
 		var l := Label.new()
 		l.text = str(entry.get("text", ""))
 		l.position = Vector2(0, y)
-		l.size = Vector2(320, 10)
+		l.size = Vector2(320, 14)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		l.add_theme_color_override("font_color", Game.color(str(entry.get("color", "moon"))))
 		add_child(l)
-		y += 11.0 if l.text != "" else 6.0
+		y += 12.0 if l.text != "" else 6.0
 	_ready_at = Time.get_ticks_msec() + 200
 
 

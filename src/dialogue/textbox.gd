@@ -96,6 +96,7 @@ func show_line(speaker_name: String, portrait: Texture2D, text: String, pitch: f
 		l.visible = false
 		_choice_labels.append(l)
 	_layout()
+	_layout.call_deferred()
 	visible = true
 	_waiting = true
 	if not _typing:
@@ -118,9 +119,9 @@ func _layout() -> void:
 	_text.position.y = top + PAD - 2
 	for i in _choice_labels.size():
 		_choice_labels[i].position = Vector2(text_x + 8, top + PAD - 2 + lines * lh + 3 + i * lh)
-	_name.position = Vector2(BOX_X + 8, top - 11)
-	_name_panel.position = Vector2(BOX_X + 4, top - 10)
-	_name_panel.size = Vector2(_name.get_minimum_size().x + 8, 11)
+	_name.position = Vector2(BOX_X + 8, top - 14)
+	_name_panel.position = Vector2(BOX_X + 4, top - 13)
+	_name_panel.size = Vector2(_name.get_minimum_size().x + 8, 14)
 	_more.position = Vector2(BOX_X + BOX_W - 10, BOX_BOTTOM - 8)
 
 
@@ -187,6 +188,7 @@ func _reveal(n: int) -> void:
 func _finish_typing() -> void:
 	_typing = false
 	_text.visible_characters = -1
+	_layout()
 	_blink = 0.0
 	for l in _choice_labels:
 		l.visible = true

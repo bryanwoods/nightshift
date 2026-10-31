@@ -4,7 +4,7 @@
     "wick_intro": {
       "lines": [
         { "cmd": "face", "entity": "wick", "dir": "left" },
-        { "speaker": "wick", "portrait": "wick_panic", "text": "A dayside kid. Awake. At— no. No no. What time is it?" },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "A dayside kid. Awake. At- no. No no. What time is it?" },
         { "speaker": "tadzio", "text": "Two." },
         { "speaker": "wick", "portrait": "wick_sad", "text": "Fourteen lamps dark, the ladder's busted, and the Foreman counts every one.",
           "choices": [
@@ -16,7 +16,7 @@
     },
     "wick_help": {
       "lines": [
-        { "speaker": "wick", "portrait": "wick_panic", "text": "You— you'd do that? For a lamp? For me?" },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "You- you'd do that? For a lamp? For me?" },
         { "speaker": "wick", "text": "Okay. Okay okay. Stand by the lamp, face it, and hold {confirm}. I'll do the flame part." },
         { "speaker": "wick", "text": "It takes a couple of minutes. Everything takes minutes." },
         { "cmd": "set_flag", "flag": "tonight_lamp_task" }
@@ -25,7 +25,7 @@
     "wick_foreman": {
       "lines": [
         { "speaker": "wick", "text": "The Foreman runs the Nightshift. Every lamp, every loaf, every minute." },
-        { "speaker": "wick", "portrait": "wick_panic", "text": "He has a clipboard. He has two pencils. If he finds out a dayside kid saw me, I'm— I don't know what I am. In trouble.",
+        { "speaker": "wick", "portrait": "wick_panic", "text": "He has a clipboard. He has two pencils. If he finds out a dayside kid saw me, I'm- I don't know what I am. In trouble.",
           "choices": [
             { "text": "I can hold the light.", "goto": "wick_help" },
             { "text": "I'm going to look around.", "goto": "wick_later" }
@@ -63,7 +63,7 @@
         { "speaker": "tadzio", "text": "Took two minutes." },
         { "speaker": "wick", "text": "Everything does. That's the job: you trade minutes for light." },
         { "speaker": "wick", "text": "I'm Wick. Apprentice lamplighter. Second class. Fourth class. Some class." },
-        { "speaker": "wick", "portrait": "wick_happy", "text": "I'm coming with you. Somebody has to explain things. Just— keep that flashlight off my face." },
+        { "speaker": "wick", "portrait": "wick_happy", "text": "I'm coming with you. Somebody has to explain things. Just- keep that flashlight off my face." },
         { "cmd": "set_flag", "flag": "wick_joined" },
         { "cmd": "set_flag", "flag": "friend_wick" },
         { "text": "Wick joined you. Talk to him any time with {confirm}." }

@@ -8,7 +8,7 @@ Each one is easy to undo. The full list of small decisions is in DEV.md, Decisio
 1. **The 2:40 target.** The spec's own costs reach Curfew at about 2:22. To get closer, street-to-street doors cost 3 minutes, and after Wick joins, five dark lamps are optional hold spots (+2 min each). The bot lights 2 of them and reaches the square at 2:32. Lighting all 5 gives about 2:38. Knobs: `minutes` on the street doors, the `hold` entities in the street rooms, `data/tuning.json`.
 2. **Night 2 is a replay with flags kept.** Wick already follows you, the Un-Baker is not fought again (his flag carries over), the Foreman's form and the Curfew fight play again. Flags that start with `tonight_` reset every night. Is that the carry-over you want?
 3. **Wick's last line.** At 3:00 he is cut off on "the minutes, somebody's been—". It hints at the minute-eater without naming it. Too much, or right?
-4. **Font.** Micro 5 (SIL OFL) instead of m5x7. I could not find an m5x7 download with a license I could check. Swap the file in `assets/fonts/` and `assets/theme.tres` if you have it.
+4. **Font.** m6x11 by Daniel Linssen (the spec's pick), "free to use with attribution" per its itch.io page. It is in the credits.
 5. **Curfew's lights-out pattern** comes 4th, so a clean Help route never sees it (3 dodge phases). The Hustle route does. Move it earlier in `data/workers/curfew.json` if every player should meet it.
 
 ## Things for Tadzio (search `TODO(Tadzio)`)

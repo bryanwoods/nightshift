@@ -131,6 +131,7 @@ static func _worker(file: String, v: Variant) -> void:
 			var c: Dictionary = s["choice"]
 			if int(c.get("correct", -1)) < 0 or int(c.get("correct", -1)) >= (c.get("options", []) as Array).size():
 				Game.report(file, "task.steps[%d].choice.correct" % i, "must point at one of the options (counting from 0)")
+			_drawable(file, "task.steps[%d].choice" % i, str(c.get("prompt", "")) + "".join(c.get("options", [])))
 			if c.has("wrong_line") and not DialogueRunner.has(str(c["wrong_line"])):
 				Game.report(file, "task.steps[%d].choice.wrong_line" % i, "no dialogue \"%s\"" % c["wrong_line"])
 
@@ -159,7 +160,18 @@ static func _dialogue() -> void:
 					Game.report(file, where + ".worker", "no worker file \"%s\"" % line.get("worker", ""))
 			elif not line.has("text"):
 				Game.report(file, where, "needs \"text\" or \"cmd\"")
+			_drawable(file, where + ".text", str(line.get("text", "")))
 			for c: Dictionary in line.get("choices", []):
+				_drawable(file, where + ".choices", str(c.get("text", "")))
 				var target := str(c.get("goto", ""))
 				if target != "" and not runner.has(target):
 					Game.report(file, where + ".choices", "no dialogue \"%s\"" % target)
+
+
+## A character the font has no glyph for shows as a box. Report it so the writer can swap it.
+static func _drawable(file: String, field: String, text: String) -> void:
+	var font := ThemeDB.get_project_theme().default_font
+	for ch in text:
+		if not font.has_char(ch.unicode_at(0)):
+			Game.report(file, field, "the font cannot draw \"%s\", use a plain character" % ch)
+			return

@@ -10,7 +10,7 @@
     { "text": "Built from the spec by", "color": "fog" },
     { "text": "Claude Code" },
     { "text": "" },
-    { "text": "Font: Micro 5 by the Soft Type Project (SIL Open Font License)", "color": "fog" },
+    { "text": "Font: m6x11 by Daniel Linssen", "color": "fog" },
     { "text": "Made with Godot Engine", "color": "fog" },
     { "text": "" },
     { "text": "TODO(Tadzio): who else goes on this list?", "color": "dusk" }

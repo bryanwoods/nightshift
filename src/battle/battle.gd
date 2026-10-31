@@ -464,37 +464,37 @@ func _build() -> void:
 		_worker_sprite.position = _worker_base
 		_root.add_child(_worker_sprite)
 	_label(Vector2(6, 2), str(worker.get("name", worker_id)), "moon")
-	_label(Vector2(6, 11), str(worker.get("job", "")), "fog")
-	_task_label = _label(Vector2(6, 20), "", "wake")
+	_label(Vector2(6, 15), str(worker.get("job", "")), "fog", 126)
+	_task_label = _label(Vector2(190, 21), "", "wake", 124)
+	_task_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_arena = Arena.new()
 	_arena.position = ARENA_CENTER
 	_root.add_child(_arena)
 	_arena.set_size(base_arena)
-	_hint = _label(Vector2(ARENA_CENTER.x - 54, ARENA_CENTER.y - 18), "", "fog")
-	_hint.size = Vector2(108, 36)
-	_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_hint = _label(Vector2(ARENA_CENTER.x - 56, ARENA_CENTER.y - 36), "", "fog", 112)
+	_hint.size.y = 72
 	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_prompt = _label(Vector2(0, 30), "", "wake")
-	_prompt.size = Vector2(320, 10)
+	_prompt.size = Vector2(320, 14)
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.add_theme_color_override("font_outline_color", Game.color("ink"))
 	_prompt.add_theme_constant_override("outline_size", 2)
 	_prompt.visible = false
-	_awake_label = _label(Vector2(6, 151), "", "moon")
-	_awake_fill = _bar(Vector2(6, 162), "moon")
-	_patience_label = _label(Vector2(254, 151), "", "moon")
-	_patience_label.size = Vector2(60, 10)
+	_awake_label = _label(Vector2(6, 150), "", "moon")
+	_awake_fill = _bar(Vector2(6, 165), "moon")
+	_patience_label = _label(Vector2(214, 150), "", "moon")
+	_patience_label.size = Vector2(100, 14)
 	_patience_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_patience_fill = _bar(Vector2(254, 162), "ember")
+	_patience_fill = _bar(Vector2(254, 165), "ember")
 	for i in OPTIONS.size():
 		var box := Panel.new()
-		box.position = Vector2(74 + i * 44, 164)
-		box.size = Vector2(40, 13)
+		box.position = Vector2(74 + i * 44, 163)
+		box.size = Vector2(40, 15)
 		_root.add_child(box)
 		_boxes.append(box)
-		var l := _label(box.position + Vector2(0, 0), "", "moon")
-		l.size = Vector2(40, 12)
+		var l := _label(box.position, "", "moon")
+		l.size = Vector2(40, 14)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_buttons.append(l)
 	_wipe = ColorRect.new()
@@ -505,9 +505,13 @@ func _build() -> void:
 	_refresh_menu()
 
 
-func _label(pos: Vector2, t: String, c: String) -> Label:
+## width > 0 wraps the text. Wrapping must be on before the label enters the tree.
+func _label(pos: Vector2, t: String, c: String, width: float = 0.0) -> Label:
 	var l := Label.new()
 	l.position = pos
+	if width > 0.0:
+		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		l.size = Vector2(width, 0)
 	l.text = t
 	l.add_theme_color_override("font_color", Game.color(c))
 	_root.add_child(l)
@@ -534,7 +538,7 @@ func _refresh_meters() -> void:
 	_patience_fill.size.x = 60.0 * patience / patience_max
 	var task: Dictionary = worker.get("task", {})
 	var total := (task.get("steps", []) as Array).size()
-	_task_label.text = "%s: %s  %d/%d" % [Game.text("task"), str(task.get("title", "")), step_index, total] if total > 0 else ""
+	_task_label.text = "%s: %s %d/%d" % [Game.text("task"), str(task.get("title", "")), step_index, total] if total > 0 else ""
 
 
 func _refresh_menu() -> void:

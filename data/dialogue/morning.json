@@ -13,7 +13,7 @@
     "morning_card": {
       "lines": [
         { "text": "A punch card. It says:" },
-        { "text": "NIGHTSHIFT  ·  TRAINEE  ·  TADZIO" },
+        { "text": "NIGHTSHIFT  -  TRAINEE  -  TADZIO" },
         { "cmd": "give_item", "item": "punch_card" },
         { "cmd": "end_night" }
       ]

@@ -16,7 +16,7 @@ func _ready() -> void:
 	sb.set_border_width_all(1)
 	sb.set_corner_radius_all(3)
 	card.add_theme_stylebox_override("panel", sb)
-	card.position = Vector2(40, 30)
+	card.position = Vector2(20, 30)
 	add_child(card)
 	var y := 36.0
 	y = _line(Game.text("card_title"), y, "bark") + 4
@@ -33,7 +33,7 @@ func _ready() -> void:
 	y = _line(Game.text("minutes_used").replace("{minutes}", str(Game.last_night_minutes)), y, "bark")
 	y = _line(reason, y, "bark") + 8
 	y = _line(Game.text("night_complete").replace("{night}", str(Game.night)), y, "bark")
-	card.size = Vector2(240, y - 30 + 6)
+	card.size = Vector2(280, y - 30 + 6)
 	_line(Game.text("press_confirm"), y + 14, "bark")
 	_ready_at = Time.get_ticks_msec() + 800
 	AudioBus.play_music("none")
@@ -48,13 +48,13 @@ func _name_of(id: String) -> String:
 func _line(t: String, y: float, c: String) -> float:
 	var l := Label.new()
 	l.text = t
-	l.position = Vector2(48, y)
-	l.size = Vector2(224, 10)
+	l.position = Vector2(28, y)
 	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	l.size = Vector2(264, 14)
 	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l.add_theme_color_override("font_color", Game.color(c))
 	add_child(l)
-	return y + 11.0 * maxi(1, l.get_line_count())
+	return y + 12.0 * maxi(1, l.get_line_count())
 
 
 func _process(_delta: float) -> void:

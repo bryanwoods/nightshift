@@ -6,7 +6,7 @@ signal chosen(index: int)
 signal cancelled
 signal changed(index: int, direction: int)
 
-const LINE_H := 11
+const LINE_H := 12
 
 var items: Array[String] = []
 var disabled: Array[bool] = []

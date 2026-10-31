@@ -135,7 +135,7 @@
         { "cmd": "wait", "seconds": 0.5 },
         { "cmd": "light", "id": "gate_glow", "on": false },
         { "text": "A small light bobs past the gate." },
-        { "speaker": "tadzio", "text": "Hey—" },
+        { "speaker": "tadzio", "text": "Hey-" },
         { "text": "It's gone. It went toward the street." }
       ]
     },

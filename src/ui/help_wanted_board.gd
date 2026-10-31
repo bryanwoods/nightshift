@@ -19,7 +19,7 @@ func _ready() -> void:
 	cork.color = Game.color("dusk")
 	cork.size = Vector2(320, 180)
 	add_child(cork)
-	var head := _label(Vector2(0, 8), Vector2(320, 10), "lamp")
+	var head := _label(Vector2(0, 6), Vector2(320, 14), "lamp")
 	head.text = Game.text("board_title")
 	head.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var card := Panel.new()
@@ -36,15 +36,16 @@ func _ready() -> void:
 	pin.position = Vector2(158, 24)
 	pin.size = Vector2(4, 4)
 	add_child(pin)
-	_title = _label(Vector2(58, 32), Vector2(204, 10), "ember")
-	_by = _label(Vector2(58, 43), Vector2(204, 10), "slate")
-	_body = _label(Vector2(58, 58), Vector2(204, 70), "ink")
+	_title = _label(Vector2(58, 30), Vector2(204, 14), "ember")
+	_by = _label(Vector2(58, 43), Vector2(204, 14), "slate")
+	_body = _label(Vector2(58, 60), Vector2(204, 68), "ink")
 	_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_status = _label(Vector2(58, 132), Vector2(204, 10), "wake")
+	_body.size = Vector2(204, 68)
+	_status = _label(Vector2(58, 130), Vector2(204, 14), "wake")
 	_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_pager = _label(Vector2(0, 152), Vector2(320, 10), "fog")
+	_pager = _label(Vector2(0, 149), Vector2(320, 14), "fog")
 	_pager.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var keys := _label(Vector2(0, 164), Vector2(320, 10), "fog")
+	var keys := _label(Vector2(0, 163), Vector2(320, 14), "fog")
 	keys.text = Game.text("board_keys")
 	keys.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_render()
