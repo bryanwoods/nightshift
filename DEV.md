@@ -51,7 +51,13 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 | `test_room.tscn` | One room, clock running | `room=street_maple` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
-| `autotest.tscn` | A bot plays all of Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep`, `shots=/some/dir` |
+| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind`, `shots=/some/dir` |
+
+Routes: `help` and `hustle` play the whole night each way. `clock` runs out the time on
+Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
+Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
+hold-to-light, the battle menu, Hustle timing, and 3:00 in the middle of a fight. `rewind`
+presses the watch in the Curfew fight.
 
 The bot prints `AUTOTEST PASS` or `AUTOTEST FAIL` and quits. It runs headless:
 

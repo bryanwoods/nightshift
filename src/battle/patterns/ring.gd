@@ -4,7 +4,7 @@ extends Pattern
 
 
 func token_start() -> Vector2:
-	return Vector2(0, half.y * 0.6)
+	return Vector2(0, half.y * 0.8)
 
 
 func _spawn() -> void:

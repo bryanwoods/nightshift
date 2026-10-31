@@ -43,6 +43,15 @@
         {
           "speaker": "wick",
           "text": "Side door. Come on. I've got this."
+        },
+        {
+          "cmd": "if_flag",
+          "flag": "tonight_side_door_open",
+          "goto": ""
+        },
+        {
+          "cmd": "goto",
+          "goto": "depot_side_door"
         }
       ]
     },
@@ -62,6 +71,11 @@
     },
     "depot_side_door": {
       "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "tonight_side_door_open",
+          "goto": ""
+        },
         {
           "speaker": "wick",
           "text": "Hold on."

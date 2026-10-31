@@ -33,6 +33,12 @@ func _run() -> void:
 	_note("window %s, screen scale %s, usable %s" % [get_window().size, DisplayServer.screen_get_scale(), DisplayServer.screen_get_usable_rect().size])
 	Game.start_night(true)
 	await _room("bedroom")
+	if route == "input":
+		await _input_route()
+		return
+	if route == "rewind":
+		await _rewind_route()
+		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
 	await _inspect_all()
@@ -99,7 +105,8 @@ func _run() -> void:
 	await _walk(27, 4)
 	await _room("depot_exterior")
 	await _talk_at(9, 1)
-	await _talk_at(11, 1)
+	if not Game.has_flag("tonight_side_door_open"):
+		await _talk_at(11, 1)
 	_expect(Game.has_flag("tonight_side_door_open"), "wick opened the side door")
 	await _walk(11, 1)
 	await _room("depot_interior")
@@ -179,6 +186,124 @@ func _night_two() -> void:
 	await _battle_shots("n2_curfew")
 	second_night = false
 	await _morning()
+
+
+## Real key presses, no teleports: walls, facing, interact, doors and hold-to-light.
+func _input_route() -> void:
+	DialogueRunner.autoplay = false
+	var r := _cur_room()
+	await _press_for("move_up", 0.15)
+	_expect(r.player.target != null and r.player.target.dialogue == "bedroom_nightstand", "facing up from the spawn targets the nightstand")
+	await _tap("confirm")
+	await _wait(0.2)
+	_expect(DialogueRunner.is_active(), "confirm opens the nightstand line")
+	for i in 6:
+		if not DialogueRunner.is_active():
+			break
+		await _tap("confirm")
+		await _wait(0.15)
+	await _wait(0.4)
+	_expect(not DialogueRunner.is_active(), "the line closes and does not open again")
+	await _press_for("move_down", 1.5)
+	_expect(int(r.player.position.y / 16) == 7, "the bottom wall stops Tadzio on row 7, he is on row %d" % int(r.player.position.y / 16))
+	Input.action_press("move_right")
+	await _until(func() -> bool: return r.player.position.x >= 5 * 16 + 7, 5.0)
+	Input.action_release("move_right")
+	await _press_for("move_down", 0.6)
+	await _room("hallway")
+	_expect(true, "walked through the bedroom door")
+	DialogueRunner.autoplay = true
+	Game.set_flag("met_wick")
+	Game.set_flag("tonight_lamp_task")
+	NightClock.set_minute(0)
+	Game.go_to_room("street_maple", "gate", 0)
+	await _room("street_maple")
+	r = _cur_room()
+	await _walk(3, 3)
+	await _press_for("move_up", 0.1)
+	_expect(r.player.target != null and r.player.target.kind == "hold", "under the lamp, the target is the hold spot")
+	Input.action_press("confirm")
+	await _until(func() -> bool: return Game.has_flag("tonight_lamp_lit"), 8.0)
+	Input.action_release("confirm")
+	await _idle()
+	_expect(Game.has_flag("wick_joined") and NightClock.minute == 2, "holding confirm lit the lamp for 2 minutes, clock " + NightClock.text())
+	_expect(r.follower != null, "wick follows")
+	await _press_for("move_right", 1.0)
+	_expect(r.follower.position.distance_to(r.player.position) < 30.0, "wick stays close behind")
+	await _input_battle()
+	_finish()
+
+
+func _input_battle() -> void:
+	Engine.time_scale = 1.0
+	DialogueRunner.autoplay = false
+	Game.start_battle("unbaker")
+	var w := _world()
+	await _until(func() -> bool: return w.battle != null, 10.0)
+	if w.battle == null:
+		return
+	var b: Battle = w.battle
+	while not b._menu_on or DialogueRunner.showing():
+		await _tap("confirm")
+		await _wait(0.2)
+	await _wait(0.3)
+	await _tap("move_right")
+	_expect(b._cursor == 1, "right arrow moves the battle menu to Hustle")
+	await _tap("confirm")
+	await _until(func() -> bool: return b._hustle_on, 3.0)
+	await _until(func() -> bool: return b._hustle_t >= 0.47, 3.0)
+	await _tap("confirm")
+	await _wait(0.3)
+	_expect(b.patience == 10, "a centered Hustle press does 5, patience is %d" % b.patience)
+	while not b._dodging:
+		if DialogueRunner.showing():
+			await _tap("confirm")
+		await _wait(0.2)
+	await _press_for("move_left", 0.4)
+	_expect(b._arena.token.x < -10.0, "arrow keys move the flashlight token in the arena")
+	await _until(func() -> bool: return b._menu_on and not DialogueRunner.showing(), 15.0)
+	while b._cursor != 3:
+		await _tap("move_right")
+	await _tap("confirm")
+	_expect(b._sub, "Wick opens the Light / Hold sub-menu")
+	await _tap("confirm")
+	await _until(func() -> bool: return DialogueRunner.showing(), 3.0)
+	_expect(b._lit, "Light was chosen")
+	DialogueRunner.autoplay = true
+	NightClock.add(60)
+	await _room("bedroom_morning", 15.0)
+	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("enemy_unbaker"), "3:00 mid-fight abandons it with no flag")
+
+
+func _rewind_route() -> void:
+	Engine.time_scale = 1.0
+	Game.set_flag("has_watch")
+	Game.set_flag("wick_joined")
+	NightClock.set_minute(0)
+	Game.start_battle("curfew")
+	var w := _world()
+	await _until(func() -> bool: return w.battle != null and w.battle._dodging, 20.0)
+	var b: Battle = w.battle
+	await _wait(1.5)
+	var t_before: float = b._pattern.t
+	var minute := NightClock.minute
+	await _tap("rewind")
+	await get_tree().physics_frame
+	_expect(Game.rewind_charges == 2, "rewind spends a charge, %d left" % Game.rewind_charges)
+	_expect(NightClock.minute == minute + 1, "rewind costs a minute")
+	_expect(b._pattern.t < t_before - 0.5, "rewind rolls the pattern back (%.2f -> %.2f)" % [t_before, b._pattern.t])
+	await _tap("rewind")
+	await _tap("rewind")
+	await _tap("rewind")
+	_expect(Game.rewind_charges == 0, "three charges per fight")
+	_finish()
+
+
+func _press_for(action: String, seconds: float) -> void:
+	Input.action_press(action)
+	await _wait(seconds)
+	Input.action_release(action)
+	await get_tree().physics_frame
 
 
 # ------------------------------------------------------------------ helpers
