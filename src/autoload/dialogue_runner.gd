@@ -104,7 +104,7 @@ func run(id: String) -> void:
 			break
 		id = variant
 		d = dialogues[id]
-	Game.mark_seen(id)
+	Game.seen[id] = true
 	depth += 1
 	dialogue_started.emit(id)
 	await _run_lines(d["lines"], gen)
@@ -223,8 +223,3 @@ func ask(speaker: String, text: String, options: Array[String]) -> int:
 	textbox.hide_box()
 	last_end_msec = Time.get_ticks_msec()
 	return pick
-
-
-## One line of UI text (battle notices) shown in the textbox.
-func say(speaker: String, text: String) -> void:
-	await ask(speaker, text, [])

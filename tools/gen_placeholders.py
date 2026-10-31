@@ -1083,10 +1083,6 @@ def render_song(bpm, beats, voices, tick=True, tick_vol=0.12):
     return buf
 
 
-def rep(seq, n):
-    return seq * n
-
-
 def music():
     out = ROOT / "assets/music"
     songs = {}
@@ -1094,8 +1090,8 @@ def music():
     motif = [("A4", 1), ("C5", 1), ("B4", 1), ("E4", 2), (None, 3)]
     motif2 = [("A4", 1), ("C5", 1), ("B4", 1), ("G4", 2), (None, 3)]
     songs["house_hum"] = render_song(66, 48, [
-        {"kind": "sine", "vol": 0.18, "notes": rep([("A1+A2", 8)], 6), "gate": 1.0, "attack": 0.5, "release": 0.5},
-        {"kind": "tri", "vol": 0.22, "notes": rep(motif + [(None, 8)] + motif2 + [(None, 8)], 1) + [(None, 16)], "release": 0.3},
+        {"kind": "sine", "vol": 0.18, "notes": [("A1+A2", 8)] * 6, "gate": 1.0, "attack": 0.5, "release": 0.5},
+        {"kind": "tri", "vol": 0.22, "notes": motif + [(None, 8)] + motif2 + [(None, 8)] + [(None, 16)], "release": 0.3},
     ], tick_vol=0.05)
     # street_loop: a slow walk under the lamps.
     bass = [("D2", 1), ("A2", 1), ("F2", 1), ("A2", 1), ("C2", 1), ("G2", 1), ("E2", 1), ("G2", 1),
@@ -1104,16 +1100,16 @@ def music():
             ("D4", 3), (None, 1), ("F4", 1), ("A4", 1), ("C5", 2), ("Bb4", 1), ("A4", 1), ("G4", 2),
             ("E4", 2), ("C#4", 2), ("A3", 2), (None, 2)]
     songs["street_loop"] = render_song(84, 64, [
-        {"kind": "tri", "vol": 0.35, "notes": rep(bass, 4), "gate": 0.8},
-        {"kind": "square", "vol": 0.12, "duty": 0.25, "notes": rep(lead, 2), "release": 0.15},
+        {"kind": "tri", "vol": 0.35, "notes": bass * 4, "gate": 0.8},
+        {"kind": "square", "vol": 0.12, "duty": 0.25, "notes": lead * 2, "release": 0.15},
     ])
     # depot_loop: everything on the schedule.
-    dbass = rep([("E2", 0.5), ("E2", 0.5), ("B2", 0.5), ("E2", 0.5)], 4) + rep([("C2", 0.5), ("C2", 0.5), ("G2", 0.5), ("C2", 0.5)], 2) + rep([("D2", 0.5), ("D2", 0.5), ("A2", 0.5), ("D2", 0.5)], 2)
+    dbass = [("E2", 0.5), ("E2", 0.5), ("B2", 0.5), ("E2", 0.5)] * 4 + [("C2", 0.5), ("C2", 0.5), ("G2", 0.5), ("C2", 0.5)] * 2 + [("D2", 0.5), ("D2", 0.5), ("A2", 0.5), ("D2", 0.5)] * 2
     dlead = [("B4", 1), ("E5", 1), ("D5", 0.5), ("B4", 0.5), ("A4", 1), (None, 4), ("G4", 1), ("A4", 1), ("B4", 1), ("D5", 1),
              ("E5", 2), (None, 2), ("C5", 1), ("B4", 1), ("A4", 1), ("G4", 1), ("F#4", 2), (None, 2)]
     songs["depot_loop"] = render_song(96, 64, [
-        {"kind": "square", "vol": 0.22, "duty": 0.5, "notes": rep(dbass, 4), "gate": 0.5},
-        {"kind": "square", "vol": 0.1, "duty": 0.125, "notes": rep(dlead, 2), "release": 0.1},
+        {"kind": "square", "vol": 0.22, "duty": 0.5, "notes": dbass * 4, "gate": 0.5},
+        {"kind": "square", "vol": 0.1, "duty": 0.125, "notes": dlead * 2, "release": 0.1},
     ], tick_vol=0.16)
     # curfew_theme: a lullaby in 3/4.
     wbass = [("F2", 1), ("A3+C4", 1), ("A3+C4", 1), ("C2", 1), ("G3+Bb3", 1), ("G3+Bb3", 1),
@@ -1121,8 +1117,8 @@ def music():
     melody = [("C5", 2), ("A4", 1), ("Bb4", 2), ("G4", 1), ("A4", 2), ("F4", 1), ("G4", 3),
               ("C5", 2), ("D5", 1), ("C5", 2), ("Bb4", 1), ("A4", 1), ("G4", 1), ("A4", 1), ("F4", 3)]
     songs["curfew_theme"] = render_song(72, 48, [
-        {"kind": "tri", "vol": 0.25, "notes": rep(wbass, 4), "gate": 0.85, "release": 0.2},
-        {"kind": "sine", "vol": 0.3, "notes": rep(melody, 2), "vibrato": 0.006, "release": 0.3, "attack": 0.03},
+        {"kind": "tri", "vol": 0.25, "notes": wbass * 4, "gate": 0.85, "release": 0.2},
+        {"kind": "sine", "vol": 0.3, "notes": melody * 2, "vibrato": 0.006, "release": 0.3, "attack": 0.03},
     ])
     ffmpeg = shutil.which("ffmpeg")
     for name, buf in songs.items():

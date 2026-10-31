@@ -134,7 +134,7 @@ func _add_light(l: Dictionary) -> void:
 	pl.energy = float(l.get("energy", 1.0))
 	pl.position = Vector2(float(l.get("x", 0)) * TILE + 8, float(l.get("y", 0)) * TILE + 4)
 	var lid := str(l.get("id", "light_%d" % lights.size()))
-	pl.enabled = Game.light_on(lid, bool(l.get("on", true)))
+	pl.enabled = bool(Game.lights.get(lid, bool(l.get("on", true))))
 	add_child(pl)
 	lights[lid] = pl
 	_light_base[lid] = pl.energy

@@ -9,7 +9,6 @@ signal battle_requested(worker_id: String)
 signal battle_finished(result: String)
 signal light_changed(id: String, on: bool)
 signal charges_changed
-signal overlay_closed
 
 const WORLD := "res://src/overworld/world.tscn"
 const TITLE := "res://src/ui/title_screen.tscn"
@@ -154,17 +153,9 @@ func give_item(item: String) -> void:
 		items.append(item)
 
 
-func mark_seen(id: String) -> void:
-	seen[id] = true
-
-
 func set_light(id: String, on: bool) -> void:
 	lights[id] = on
 	light_changed.emit(id, on)
-
-
-func light_on(id: String, default_on: bool) -> bool:
-	return bool(lights.get(id, default_on))
 
 
 func friends() -> Array[String]:

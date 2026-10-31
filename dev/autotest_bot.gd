@@ -9,7 +9,6 @@ var second_night: bool = false
 var route_done_once: bool = false
 var shots: String = ""
 var failures: PackedStringArray = []
-var log_lines: PackedStringArray = []
 
 
 func _ready() -> void:
@@ -481,7 +480,6 @@ func _fail(what: String) -> void:
 
 
 func _note(s: String) -> void:
-	log_lines.append(s)
 	print("[bot] ", s)
 
 
