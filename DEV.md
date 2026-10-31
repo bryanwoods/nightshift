@@ -256,6 +256,8 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Tiles change by flag through `overrides` (the Depot side door opens).
 - The punch card is always on the nightstand in the morning, also after falling asleep.
 - `end_night` in the morning opens the Night End card; at night it rings 3:00.
+- The palette has two extra night colors, `straw` and `honey`, for Tadzio's dirty-blonde hair. With only the spec's ten colors, the hair read as ginger.
+- Tadzio's sprite and portraits are drawn from a photo: long straight hair parted in the middle, light eyes, a small closed smile. The pajamas copy his white-and-teal colorblock shirt. The pajama pattern is still `TODO(Tadzio)`.
 - Wick counts as a friend (`friend_wick`) once he joins, so the Night End card lists him.
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 

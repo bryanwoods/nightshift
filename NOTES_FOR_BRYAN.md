@@ -11,12 +11,14 @@ Each one is easy to undo. The full list of small decisions is in DEV.md, Decisio
 4. **Font.** m6x11 by Daniel Linssen (the spec's pick), "free to use with attribution" per its itch.io page. It is in the credits.
 5. **Curfew's lights-out pattern** comes 4th, so a clean Help route never sees it (3 dodge phases). The Hustle route does. Move it earlier in `data/workers/curfew.json` if every player should meet it.
 
+6. **Tadzio's look and two new colors.** Tadzio is drawn from your photo. Matching his hair took two colors outside the spec's palette (`straw`, `honey` in `data/palette.json`).
+
 ## Things for Tadzio (search `TODO(Tadzio)`)
 
 - The drawing on the bedroom wall (`data/dialogue/home.json`, `bedroom_drawing`).
 - Who lives next door (`inspect_neighbor_door`).
 - The credits list (`data/credits.json`).
-- The pajama pattern (art; the placeholder is stripes).
+- The pajama pattern (art; the placeholder copies the white-and-teal shirt from the photo).
 - His own Help Wanted card (`data/help_wanted.json`, the blank card).
 
 ## Not done

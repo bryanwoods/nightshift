@@ -279,6 +279,17 @@ func _input_battle() -> void:
 
 ## Screenshots of every room and every Curfew pattern. Needs a window and shots=DIR.
 func _tour() -> void:
+	await _shot("room_bedroom")
+	DialogueRunner.autoplay = false
+	DialogueRunner.run("unbaker_after_friend")
+	for i in 3:
+		await _wait(0.9)
+		await _tap("confirm")
+		await _tap("confirm")
+	await _wait(1.0)
+	await _shot("tadzio_talks")
+	DialogueRunner.abort()
+	DialogueRunner.autoplay = true
 	Game.set_flag("wick_joined")
 	Game.set_flag("met_wick")
 	NightClock.set_minute(0)

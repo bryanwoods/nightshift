@@ -759,9 +759,133 @@ def blob(d, facing, f, c, s):
         glyph_text(d, 22, 38, "C", N["moon"])
 
 
+# ---------------------------------------------------------------- Tadzio
+
+def P(d, pts, c):
+    for p in pts:
+        d.point(p, fill=c)
+
+
+def tadzio(d, facing, f, c, s):
+    """16x32 Tadzio: long straight dirty-blonde hair with a middle part, two-tone pajamas."""
+    hair, hi, shade = N["straw"], N["moon"], N["honey"]
+    skin, top, band, pants = N["moon"], N["fog"], N["wake"], N["night"]
+    bob = 1 if f in (1, 3) else 0
+    if facing in ("down", "up"):
+        ll = 29 if f == 1 else 30
+        rl = 29 if f == 3 else 30
+        R(d, 5, 24, 7, ll, pants)
+        R(d, 8, 24, 10, rl, pants)
+        R(d, 5, ll, 7, ll, N["slate"])
+        R(d, 8, rl, 10, rl, N["slate"])
+    elif f in (1, 3):
+        R(d, 4, 24, 6, 30, pants)
+        R(d, 8, 24, 10, 30, pants)
+        R(d, 3, 30, 6, 30, N["slate"])
+        R(d, 7, 30, 10, 30, N["slate"])
+    else:
+        R(d, 6, 24, 9, 30, pants)
+        R(d, 5, 30, 9, 30, N["slate"])
+    y = bob
+    # pajama top: light shoulders, teal band, like the shirt in the photo
+    R(d, 4, 13 + y, 11, 24, top)
+    R(d, 4, 18 + y, 11, 23, band)
+    if facing in ("down", "up"):
+        R(d, 3, 15 + y, 3, 17 + y, top)
+        R(d, 12, 15 + y, 12, 17 + y, top)
+        R(d, 3, 18 + y, 3, 21 + y, skin)
+        R(d, 12, 18 + y, 12, 21 + y, skin)
+    else:
+        sw = {1: -1, 3: 1}.get(f, 0)
+        R(d, 6 + sw, 15 + y, 8 + sw, 17 + y, top)
+        R(d, 6 + sw, 18 + y, 7 + sw, 21 + y, skin)
+    if facing == "up":
+        R(d, 5, 3 + y, 10, 5 + y, hair)
+        R(d, 4, 5 + y, 11, 20 + y, hair)
+        R(d, 3, 13 + y, 12, 20 + y, hair)
+        R(d, 7, 4 + y, 8, 6 + y, shade)
+        R(d, 5, 9 + y, 5, 12 + y, hi)
+        R(d, 10, 10 + y, 10, 13 + y, hi)
+        R(d, 7, 12 + y, 7, 17 + y, shade)
+        return
+    if facing == "down":
+        R(d, 5, 7 + y, 10, 12 + y, skin)
+        R(d, 7, 13 + y, 8, 13 + y, skin)
+        R(d, 6, 3 + y, 9, 3 + y, hair)
+        R(d, 5, 4 + y, 10, 6 + y, hair)
+        R(d, 4, 5 + y, 4, 19 + y, hair)
+        R(d, 11, 5 + y, 11, 19 + y, hair)
+        R(d, 3, 13 + y, 4, 19 + y, hair)
+        R(d, 11, 13 + y, 12, 19 + y, hair)
+        R(d, 5, 7 + y, 5, 8 + y, hair)
+        R(d, 10, 7 + y, 10, 8 + y, hair)
+        R(d, 7, 4 + y, 8, 5 + y, shade)
+        P(d, [(6, 4 + y), (9, 4 + y)], hi)
+        R(d, 3, 15 + y, 3, 17 + y, hi)
+        R(d, 12, 14 + y, 12, 16 + y, hi)
+        P(d, [(6, 9 + y), (9, 9 + y)], N["slate"])
+        P(d, [(7, 11 + y), (8, 11 + y)], N["dusk"])
+        return
+    # left profile (right is the mirror)
+    R(d, 4, 7 + y, 8, 12 + y, skin)
+    R(d, 6, 13 + y, 7, 13 + y, skin)
+    R(d, 5, 3 + y, 9, 3 + y, hair)
+    R(d, 4, 4 + y, 11, 6 + y, hair)
+    R(d, 9, 6 + y, 11, 20 + y, hair)
+    R(d, 8, 7 + y, 8, 9 + y, hair)
+    P(d, [(6, 4 + y), (7, 4 + y)], hi)
+    R(d, 10, 9 + y, 10, 12 + y, hi)
+    R(d, 9, 15 + y, 9, 18 + y, shade)
+    d.point((5, 9 + y), fill=N["slate"])
+    d.point((4, 11 + y), fill=N["dusk"])
+
+
+def tadzio_portrait(d, mood, c):
+    """32x32 portrait from the photo: long hair parted in the middle, light eyes, small closed smile."""
+    hair, hi, shade, skin = N["straw"], N["moon"], N["honey"], N["moon"]
+    d.rectangle([0, 0, 31, 31], fill=N["night"], outline=N["dusk"])
+    d.ellipse([6, 2, 25, 22], fill=hair)
+    R(d, 6, 12, 25, 31, hair)
+    R(d, 7, 27, 24, 31, N["fog"])
+    R(d, 9, 30, 22, 31, N["wake"])
+    R(d, 13, 23, 18, 27, skin)
+    d.ellipse([9, 6, 22, 26], fill=skin)
+    d.chord([7, 2, 24, 16], 180, 360, fill=hair)
+    R(d, 8, 8, 10, 22, hair)
+    R(d, 21, 8, 23, 22, hair)
+    R(d, 6, 22, 9, 31, hair)
+    R(d, 22, 22, 25, 31, hair)
+    P(d, [(15, 3), (16, 3), (15, 4), (16, 4), (15, 5), (16, 5)], shade)
+    P(d, [(12, 4), (13, 4), (18, 4), (19, 4)], hi)
+    R(d, 9, 11, 9, 15, hi)
+    R(d, 22, 12, 22, 16, hi)
+    R(d, 7, 23, 7, 27, hi)
+    R(d, 24, 24, 24, 28, hi)
+    R(d, 10, 17, 10, 21, shade)
+    R(d, 21, 18, 21, 22, shade)
+    if mood == "sad":
+        P(d, [(11, 12), (12, 11), (13, 11), (18, 11), (19, 11), (20, 12)], shade)
+    else:
+        P(d, [(11, 12), (12, 12), (13, 12), (18, 12), (19, 12), (20, 12)], shade)
+    if mood == "happy":
+        P(d, [(11, 15), (12, 14), (13, 15), (18, 15), (19, 14), (20, 15)], N["ink"])
+        P(d, [(11, 19), (20, 19)], N["hush"])
+    else:
+        for x in (11, 18):
+            R(d, x, 14, x + 2, 14, N["ink"])
+            P(d, [(x, 15), (x + 1, 15)], N["slate"])
+            d.point((x + 2, 15), fill=N["fog"])
+            d.point((x + 1, 16), fill=N["fog"])
+    P(d, [(16, 19)], N["fog"])
+    mouth = {
+        "happy": [(13, 21), (14, 22), (15, 22), (16, 22), (17, 22), (18, 21)],
+        "sad": [(13, 23), (14, 22), (15, 22), (16, 22), (17, 22), (18, 23)],
+    }.get(mood, [(13, 22), (14, 22), (15, 22), (16, 22), (17, 22), (18, 21)])
+    P(d, mouth, N["dusk"])
+
+
 CHARACTERS = {
-    "tadzio": (16, 32, humanoid, dict(head=N["moon"], hair=N["ink"], body=N["slate"], stripes=N["fog"],
-                                       legs=N["slate"], feet=N["fog"], arms=N["slate"], letter="T")),
+    "tadzio": (16, 32, tadzio, {}),
     "wick": (16, 32, humanoid, dict(head=N["fog"], head_w=10, top=6, body=N["dusk"], body_bottom=29,
                                      legs=N["ink"], arms=N["dusk"], antennae=N["fog"], big_eyes=True,
                                      pole=True, letter="W", letter_color=N["lamp"])),
@@ -855,7 +979,7 @@ def face(d, mood, c):
 
 
 PORTRAITS = {
-    "tadzio": (["neutral", "happy", "sad"], dict(head=N["moon"], hair=N["ink"], body=N["slate"])),
+    "tadzio": (["neutral", "happy", "sad"], {"draw": tadzio_portrait}),
     "wick": (["neutral", "panic", "sad", "happy"], dict(head=N["fog"], body=N["dusk"], antennae=True,
                                                          big_eyes=True, head_x=(5, 26))),
     "unbaker": (["neutral", "grump", "happy"], dict(head=N["moon"], body=N["moon"], hat=N["moon"])),
@@ -870,7 +994,7 @@ def gen_portraits():
     for name, (moods, c) in PORTRAITS.items():
         for mood in moods:
             img = Image.new("RGBA", (32, 32), CLEAR)
-            face(ImageDraw.Draw(img), mood, c)
+            c.get("draw", face)(ImageDraw.Draw(img), mood, c)
             img.save(ROOT / f"assets/portraits/{name}_{mood}.png")
 
 
