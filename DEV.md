@@ -209,6 +209,17 @@ A new pattern type is one new script in `src/battle/patterns/`, named after the 
 Add `{ "title", "posted_by", "text", "status" }` to `data/help_wanted.json`.
 `status` is `open`, `taken` or `done`.
 
+## Export
+
+Export templates for the Godot version must be installed (Editor, Manage Export Templates).
+
+```sh
+Godot --headless --path . --export-release "macOS" build/macos/Nightshift.app
+Godot --headless --path . --export-release "Windows Desktop" build/windows/Nightshift.exe
+```
+
+Release builds have no debug keys and no on-screen data errors. `dev/` is left out.
+
 ## Tuning
 
 `data/tuning.json` holds the minute costs, Awake, token speed, rewind frames and

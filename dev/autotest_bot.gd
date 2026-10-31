@@ -39,6 +39,9 @@ func _run() -> void:
 	if route == "rewind":
 		await _rewind_route()
 		return
+	if route == "tour":
+		await _tour()
+		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
 	await _inspect_all()
@@ -273,6 +276,34 @@ func _input_battle() -> void:
 	NightClock.add(60)
 	await _room("bedroom_morning", 15.0)
 	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("enemy_unbaker"), "3:00 mid-fight abandons it with no flag")
+
+
+## Screenshots of every room and every Curfew pattern. Needs a window and shots=DIR.
+func _tour() -> void:
+	Game.set_flag("wick_joined")
+	Game.set_flag("met_wick")
+	NightClock.set_minute(0)
+	for room in ["hallway", "backyard", "street_maple", "depot_exterior", "depot_interior", "square"]:
+		Game.busy = false
+		Game.go_to_room(room, "default", 0)
+		await _room(room)
+		await _wait(0.4)
+		await _shot("room_" + room)
+	Engine.time_scale = 1.0
+	Game.set_flag("has_watch")
+	Game.start_battle("curfew")
+	var w := _world()
+	await _until(func() -> bool: return w.battle != null, 10.0)
+	var b: Battle = w.battle
+	for i in 4:
+		if not Game.in_battle:
+			break
+		b._lit = i == 3
+		await _until(func() -> bool: return b._dodging, 30.0)
+		await _wait(2.5)
+		await _shot("curfew_pattern_%d" % (i + 1))
+		await _until(func() -> bool: return not b._dodging, 30.0)
+	_finish()
 
 
 func _rewind_route() -> void:

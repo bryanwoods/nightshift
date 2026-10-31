@@ -66,7 +66,7 @@ func build(room_id: String, spawn_name: String) -> bool:
 	add_child(camera)
 	camera.make_current()
 	_build_overlay()
-	_refresh()
+	_refresh(true)
 	for e in entities:
 		e.armed = not e.rect.has_point(player.position)
 	_update_camera()
@@ -285,7 +285,8 @@ func _update_overlay() -> void:
 		_hint.position = (player.position + Vector2(-_hint.get_minimum_size().x / 2.0, -46)).round()
 
 
-func _refresh() -> void:
+## at_build: Wick starts behind Tadzio. Later (he joins mid-room): he starts where his NPC stood.
+func _refresh(at_build: bool = false) -> void:
 	var legend: Dictionary = data.get("legend", {})
 	for o: Dictionary in data.get("overrides", []):
 		var c := Vector2i(int(o.get("x", 0)), int(o.get("y", 0)))
@@ -303,7 +304,7 @@ func _refresh() -> void:
 	if wants_follower and follower == null:
 		var start := player.position - player.facing * float(Game.tuning.get("follow_distance", 24))
 		var npc := entity_by_id("wick")
-		if npc:
+		if npc and not at_build:
 			start = npc.position
 		follower = Follower.new()
 		follower.setup_follower("wick", str(data.get("companion_dialogue", "wick_chat")), start, player.position)

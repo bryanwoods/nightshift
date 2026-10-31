@@ -21,7 +21,7 @@ Each one is easy to undo. The full list of small decisions is in DEV.md, Decisio
 
 ## Not done
 
-- **Exported builds.** `export_presets.cfg` has macOS and Windows presets, but no export templates are installed on this Mac (about 1 GB from Godot's site). Then: `Godot --headless --path . --export-release macOS build/macos/Nightshift.zip`.
+- **Exported builds are local only.** `build/macos/Nightshift.app` and `build/windows/Nightshift.exe` exist on this Mac (export templates for 4.7.2 are now installed). `build/` is not in git. The Windows exe is not tested on a Windows machine. The Mac app is ad-hoc signed, so on another Mac it needs right-click, Open.
 - **Commits per milestone.** I built the slice in one pass and tested it with a bot, so the history has a few large commits, not seven milestone commits.
 - **Un-Baker's cart.** There is no cart sprite yet.
 - **Real playtest.** The bot proves the routes work and the clock adds up. It cannot tell if it is fun or if a kid can finish it without help. That is your 15 minutes.
