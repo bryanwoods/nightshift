@@ -118,6 +118,10 @@ static func _worker(file: String, v: Variant) -> void:
 			Game.report(file, "patterns[%d].type" % i, "no pattern \"%s\"" % type)
 		if type == "dark" and not Pattern.exists(str(p.get("inner", {}).get("type", ""))):
 			Game.report(file, "patterns[%d].inner.type" % i, "dark needs an inner pattern")
+	for list_key in ["turn_lines", "flavor"]:
+		for ref: Variant in d.get(list_key, []):
+			if not DialogueRunner.has(str(ref)):
+				Game.report(file, list_key, "no dialogue \"%s\"" % ref)
 	var dlg: Dictionary = d.get("dialogue", {})
 	for k: String in dlg:
 		if not DialogueRunner.has(str(dlg[k])):
@@ -125,6 +129,8 @@ static func _worker(file: String, v: Variant) -> void:
 	var steps: Array = d.get("task", {}).get("steps", [])
 	for i in steps.size():
 		var s: Dictionary = steps[i]
+		if s.has("bubble") and not DialogueRunner.has(str(s["bubble"])):
+			Game.report(file, "task.steps[%d].bubble" % i, "no dialogue \"%s\"" % s["bubble"])
 		if not DialogueRunner.has(str(s.get("line", ""))):
 			Game.report(file, "task.steps[%d].line" % i, "no dialogue \"%s\"" % s.get("line", ""))
 		if s.has("choice"):

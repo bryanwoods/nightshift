@@ -2,96 +2,346 @@
   "id": "workers",
   "dialogues": {
     "unbaker_battle_intro": {
-      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "You're in my way. I have a route. The route has no kids in it." } ]
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "portrait": "unbaker_grump",
+          "text": "You're in my way. I have a route. The route has no kids in it."
+        }
+      ]
     },
     "unbaker_help_1": {
       "lines": [
-        { "speaker": "tadzio", "text": "What's the bread for?" },
-        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "For? It isn't FOR anything. It's yesterday's. Yesterday's bread goes back before morning, or morning gets confused." },
-        { "speaker": "unbaker", "text": "Two loaves in the cart already. One more on this street." },
-        { "speaker": "unbaker", "text": "...Nobody ever asks." }
+        {
+          "speaker": "tadzio",
+          "text": "What's the bread for?"
+        },
+        {
+          "speaker": "unbaker",
+          "text": "It's yesterday's. It goes back before morning. Two in the cart, one to go.",
+          "portrait": "unbaker_grump"
+        }
       ]
     },
     "unbaker_help_2": {
       "lines": [
-        { "text": "You pick up the last loaf from a doorstep and carry it to the cart. It is heavier than bread should be." },
-        { "speaker": "unbaker", "text": "Careful. That one was a birthday." }
+        {
+          "text": "You carry the last loaf to the cart. It's heavier than bread should be."
+        }
       ]
     },
     "unbaker_help_3": {
-      "lines": [ { "speaker": "unbaker", "text": "Now the list. I count, you check. One... two... I always lose count here." } ]
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Now the list. I count, you check."
+        }
+      ]
     },
     "unbaker_help_3_wrong": {
-      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "No. Count again. Two were in the cart. You carried one." } ]
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "No. Two were in the cart. You carried one. Count again.",
+          "portrait": "unbaker_grump"
+        }
+      ]
     },
     "unbaker_hustle": {
-      "seen_variant": "unbaker_hustle_2",
-      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Hey! I'm counting! Now I have to start over. One... two..." } ]
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Hey! I'm counting!",
+          "portrait": "unbaker_grump"
+        }
+      ],
+      "seen_variant": "unbaker_hustle_2"
     },
     "unbaker_hustle_2": {
-      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Stop that! I'll lose my place! I ALWAYS lose my place!" } ]
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Stop that! I'll lose my place!",
+          "portrait": "unbaker_grump"
+        }
+      ]
     },
     "unbaker_satisfied": {
       "lines": [
-        { "speaker": "unbaker", "portrait": "unbaker_happy", "text": "Three. Three loaves. All accounted for." },
-        { "speaker": "unbaker", "text": "You count good, for a kid off the list." },
-        { "text": "He tears the heel off a loaf and hands it to you." },
-        { "text": "You got a heel of bread." }
+        {
+          "speaker": "unbaker",
+          "portrait": "unbaker_happy",
+          "text": "Three. Three loaves. All accounted for."
+        },
+        {
+          "speaker": "unbaker",
+          "text": "You count good, for a kid off the list."
+        },
+        {
+          "text": "He tears the heel off a loaf and hands it to you."
+        },
+        {
+          "text": "You got a heel of bread."
+        }
       ]
     },
     "unbaker_defeated": {
       "lines": [
-        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Forget it! I'll do the whole route backward!" },
-        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Tell the Foreman I'm owed a loaf." },
-        { "text": "The Un-Baker storms off, cart rattling." }
+        {
+          "speaker": "unbaker",
+          "portrait": "unbaker_grump",
+          "text": "Forget it! I'll do the whole route backward!"
+        },
+        {
+          "speaker": "unbaker",
+          "portrait": "unbaker_grump",
+          "text": "Tell the Foreman I'm owed a loaf."
+        },
+        {
+          "text": "The Un-Baker storms off, cart rattling."
+        }
       ]
     },
-
     "curfew_battle_intro": {
-      "lines": [ { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Hush now... hush now... let's get you back to bed... high, low, and in between..." } ]
+      "lines": [
+        {
+          "speaker": "curfew",
+          "portrait": "curfew_sleepy",
+          "text": "Hush now... hush now... let's get you back to bed... high, low, and in between..."
+        }
+      ]
     },
     "curfew_help_1": {
       "lines": [
-        { "speaker": "tadzio", "text": "When did you last sleep?" },
-        { "speaker": "curfew", "text": "Sleep? Oh... I put everyone else to sleep. Every night. I'm always on shift." },
-        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "I don't think I ever have." }
+        {
+          "speaker": "tadzio",
+          "text": "When did you last sleep?"
+        },
+        {
+          "speaker": "curfew",
+          "text": "Sleep? I put everyone else to sleep... I don't think I ever have.",
+          "portrait": "curfew_sleepy"
+        }
       ]
     },
     "curfew_help_2": {
       "lines": [
-        { "text": "You fluff the biggest pillow. It sighs." },
-        { "speaker": "curfew", "portrait": "curfew_happy", "text": "Oh. Oh, that's nice. Nobody fluffs for me." }
+        {
+          "text": "You fluff the biggest pillow. It sighs."
+        }
       ]
     },
     "curfew_help_3": {
       "lines": [
-        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "There's a song... I hum it to everyone... but I can't hum it to myself." },
-        { "speaker": "curfew", "text": "High notes fall on the right... low ones on the left... do you remember how it went?" }
+        {
+          "speaker": "curfew",
+          "text": "Hum my song back to me... high notes fall on the right, low on the left...",
+          "portrait": "curfew_sleepy"
+        }
       ]
     },
     "curfew_help_3_wrong": {
-      "lines": [ { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Mmm... no... that's a different song. That one is for owls." } ]
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Mmm... no... that one is for owls.",
+          "portrait": "curfew_sleepy"
+        }
+      ]
     },
     "curfew_help_4": {
-      "lines": [ { "text": "You pull the quilt up to Curfew's eyes and tuck in the edges. All the way around. It takes a while. It's a big quilt." } ]
+      "lines": [
+        {
+          "text": "You tuck the quilt in, all the way around. It's a big quilt."
+        }
+      ]
     },
     "curfew_hustle": {
-      "seen_variant": "curfew_hustle_2",
-      "lines": [ { "speaker": "curfew", "text": "Now, now... that's not very sleepy of you." } ]
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Now, now... not very sleepy of you."
+        }
+      ],
+      "seen_variant": "curfew_hustle_2"
     },
     "curfew_hustle_2": {
-      "lines": [ { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Shhh... shhh... you'll wake the whole town." } ]
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Shhh... you'll wake the whole town.",
+          "portrait": "curfew_sleepy"
+        }
+      ]
     },
     "curfew_satisfied": {
       "lines": [
-        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Mmm... so this is what it's like..." },
-        { "text": "Curfew yawns. It is an enormous yawn. The whole square yawns with it." }
+        {
+          "speaker": "curfew",
+          "portrait": "curfew_sleepy",
+          "text": "Mmm... so this is what it's like..."
+        },
+        {
+          "text": "Curfew yawns. It is an enormous yawn. The whole square yawns with it."
+        }
       ]
     },
     "curfew_defeated": {
       "lines": [
-        { "speaker": "curfew", "text": "Fine... fine... I'm clocking out early." },
-        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Somebody else can tuck you in tonight." }
+        {
+          "speaker": "curfew",
+          "text": "Fine... fine... I'm clocking out early."
+        },
+        {
+          "speaker": "curfew",
+          "portrait": "curfew_sleepy",
+          "text": "Somebody else can tuck you in tonight."
+        }
+      ]
+    },
+    "unbaker_step_1": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "...Nobody ever asks."
+        }
+      ]
+    },
+    "unbaker_step_2": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Careful. That one was a birthday."
+        }
+      ]
+    },
+    "unbaker_turn_1": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "One. Two. Don't make me lose count."
+        }
+      ]
+    },
+    "unbaker_turn_2": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Crumbs! Who leaves crumbs?"
+        }
+      ]
+    },
+    "unbaker_turn_3": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Yesterday's bread waits for no one."
+        }
+      ]
+    },
+    "unbaker_turn_4": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Fourteen. Thirteen. Hold STILL."
+        }
+      ]
+    },
+    "unbaker_flavor_1": {
+      "lines": [
+        {
+          "text": "The Un-Baker counts the cart. Again."
+        }
+      ]
+    },
+    "unbaker_flavor_2": {
+      "lines": [
+        {
+          "text": "The street smells like yesterday's bread."
+        }
+      ]
+    },
+    "unbaker_flavor_3": {
+      "lines": [
+        {
+          "text": "The Un-Baker taps his list with a floury finger."
+        }
+      ]
+    },
+    "unbaker_flavor_4": {
+      "lines": [
+        {
+          "text": "The cart squeaks. The Un-Baker glares at it."
+        }
+      ]
+    },
+    "curfew_step_2": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Oh... nobody fluffs for me.",
+          "portrait": "curfew_happy"
+        }
+      ]
+    },
+    "curfew_turn_1": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Hush now... high, low, and in between..."
+        }
+      ]
+    },
+    "curfew_turn_2": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Yaaawn... the room is getting bigger..."
+        }
+      ]
+    },
+    "curfew_turn_3": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Tuck in the corners... tuck in the edges..."
+        }
+      ]
+    },
+    "curfew_turn_4": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Lights out, little one."
+        }
+      ]
+    },
+    "curfew_flavor_1": {
+      "lines": [
+        {
+          "text": "Curfew hums. The cobbles get sleepy."
+        }
+      ]
+    },
+    "curfew_flavor_2": {
+      "lines": [
+        {
+          "text": "Curfew's eyes close... then open again."
+        }
+      ]
+    },
+    "curfew_flavor_3": {
+      "lines": [
+        {
+          "text": "Somewhere, a pillow sighs."
+        }
+      ]
+    },
+    "curfew_flavor_4": {
+      "lines": [
+        {
+          "text": "The square smells like warm laundry."
+        }
       ]
     }
   }

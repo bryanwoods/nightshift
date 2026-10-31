@@ -97,13 +97,8 @@ func run(id: String) -> void:
 	if not dialogues.has(id):
 		Game.report("dialogue", id, "no dialogue has this id")
 		return
+	id = _resolve(id)
 	var d: Dictionary = dialogues[id]
-	for _i in 8:
-		var variant := str(d.get("seen_variant", ""))
-		if not Game.seen.has(id) or not dialogues.has(variant):
-			break
-		id = variant
-		d = dialogues[id]
 	Game.seen[id] = true
 	depth += 1
 	dialogue_started.emit(id)
@@ -223,3 +218,25 @@ func ask(speaker: String, text: String, options: Array[String]) -> int:
 	textbox.hide_box()
 	last_end_msec = Time.get_ticks_msec()
 	return pick
+
+
+## Follows seen_variant links: a dialogue already seen plays its variant instead.
+func _resolve(id: String) -> String:
+	for _i in 8:
+		var variant := str(dialogues[id].get("seen_variant", ""))
+		if not Game.seen.has(id) or not dialogues.has(variant):
+			break
+		id = variant
+	return id
+
+
+## The first text line of a dialogue, for speech bubbles and flavor text. Marks it seen.
+func first_line(id: String) -> Dictionary:
+	if not dialogues.has(id):
+		return {}
+	id = _resolve(id)
+	Game.seen[id] = true
+	for line: Dictionary in dialogues[id]["lines"]:
+		if line.has("text") and Game.cond_ok(line):
+			return {"speaker": line.get("speaker", ""), "text": Game.fmt(str(line["text"]))}
+	return {}

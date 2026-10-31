@@ -45,6 +45,12 @@ var _input_at: int = 0
 var _hustle_on: bool = false
 var _hustle_t: float = 0.0
 var _prompt_t: float = 0.0
+var _turn: int = 0
+var _pending_bubble: String = ""
+var _bubble_t: float = -1.0
+var _bubble_pitch: float = 1.0
+var _bubble_seen: int = 0
+var _menu_panel: Vector2 = Vector2(216, 76)
 
 var _root: Control
 var _arena: Arena
@@ -62,6 +68,11 @@ var _patience_fill: ColorRect
 var _boxes: Array[Panel] = []
 var _buttons: Array[Label] = []
 var _hint: Label
+var _flavor: Label
+var _bubble: Panel
+var _bubble_text: Label
+var _bubble_tail: Polygon2D
+var _header: Array[Label] = []
 var _prompt: Label
 var _wipe: ColorRect
 
@@ -80,6 +91,8 @@ func start(id: String) -> void:
 	var dflt: Array = Game.tuning.get("arena_default", [120, 80])
 	base_arena = Pattern.arena_for(worker, Vector2(float(dflt[0]), float(dflt[1])))
 	_idle_frames = int(worker.get("idle_frames", 1))
+	var mp: Array = Game.tuning.get("menu_panel", [216, 76])
+	_menu_panel = Vector2(float(mp[0]), float(mp[1]))
 	Game.rewind_charges = int(Game.tuning.get("rewind_charges", 3))
 	Game.charges_changed.emit()
 	_build()
@@ -125,6 +138,10 @@ func _line(key: String) -> void:
 # ------------------------------------------------------------------ menu phase
 
 func _menu_phase() -> String:
+	_flavor.text = _turn_text("flavor")
+	var pats: Array = worker.get("patterns", [])
+	if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
+		_flavor.text = Game.text("dark_warning")
 	_menu_on = true
 	_sub = false
 	_input_at = Time.get_ticks_msec() + 150
@@ -187,6 +204,7 @@ func _help() -> bool:
 			await DialogueRunner.run(str(ch.get("wrong_line", "")))
 			return false
 	step_index += 1
+	_pending_bubble = str(step.get("bubble", ""))
 	AudioBus.sfx("step_ok")
 	_refresh_meters()
 	if step_index >= steps.size():
@@ -224,7 +242,7 @@ func _hustle() -> bool:
 		_reward("defeated")
 		result = "defeated"
 		return true
-	await _line("hustle_hit")
+	_pending_bubble = str(worker.get("dialogue", {}).get("hustle_hit", ""))
 	return false
 
 
@@ -245,6 +263,9 @@ func _dodge_phase() -> void:
 	pattern_index += 1
 	var size := Pattern.arena_for(p, base_arena)
 	_hint.visible = false
+	_flavor.visible = false
+	_show_bubble(_pending_bubble if _pending_bubble != "" else _turn_id("turn_lines"))
+	_pending_bubble = ""
 	await _arena.tween_size(size)
 	_pattern = Pattern.create(p, size, int(worker.get("hit_damage", 2)))
 	if _pattern == null or over:
@@ -266,8 +287,13 @@ func _dodge_phase() -> void:
 	_time_scale = 1.0
 	_arena.pattern = null
 	_arena.token_visible = false
+	_bubble.visible = false
+	for l in _header:
+		l.visible = true
+	_bubble_t = -1.0
+	_turn += 1
 	if not over:
-		await _arena.tween_size(base_arena)
+		await _arena.tween_size(_menu_panel)
 
 
 func _physics_process(delta: float) -> void:
@@ -389,6 +415,8 @@ func _process(delta: float) -> void:
 	if _arena:
 		_arena_shake = maxf(0.0, _arena_shake - delta)
 		_arena.position = ARENA_CENTER + (Vector2(randf_range(-2, 2), randf_range(-2, 2)).round() if _arena_shake > 0.0 else Vector2.ZERO)
+	if _bubble_t >= 0.0:
+		_type_bubble(delta)
 	if _prompt_t > 0.0:
 		_prompt_t -= delta
 		if _prompt_t <= 0.0:
@@ -463,18 +491,18 @@ func _build() -> void:
 		_worker_base = Vector2(160, ARENA_CENTER.y - base_arena.y / 2.0 - 6)
 		_worker_sprite.position = _worker_base
 		_root.add_child(_worker_sprite)
-	_label(Vector2(6, 2), str(worker.get("name", worker_id)), "moon")
-	_label(Vector2(6, 15), str(worker.get("job", "")), "fog", 126)
+	_header.append(_label(Vector2(6, 2), str(worker.get("name", worker_id)), "moon"))
+	_header.append(_label(Vector2(6, 15), str(worker.get("job", "")), "fog", 126))
 	_task_label = _label(Vector2(190, 21), "", "wake", 124)
 	_task_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_arena = Arena.new()
 	_arena.position = ARENA_CENTER
 	_root.add_child(_arena)
-	_arena.set_size(base_arena)
-	_hint = _label(Vector2(ARENA_CENTER.x - 56, ARENA_CENTER.y - 36), "", "fog", 112)
-	_hint.size.y = 72
-	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_arena.set_size(_menu_panel)
+	var text_w := _menu_panel.x - 12.0
+	_flavor = _label(ARENA_CENTER + Vector2(-text_w / 2.0, -_menu_panel.y / 2.0 + 3), "", "moon", text_w)
+	_hint = _label(ARENA_CENTER + Vector2(-text_w / 2.0, 0), "", "fog", text_w)
+	_build_bubble()
 	_prompt = _label(Vector2(0, 30), "", "wake")
 	_prompt.size = Vector2(320, 14)
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -564,14 +592,82 @@ func _refresh_menu() -> void:
 			c = "fog" if not disabled else "dusk"
 		_buttons[i].add_theme_color_override("font_color", Game.color(c))
 	_hint.visible = _menu_on
+	_flavor.visible = _menu_on
 	if _menu_on:
 		var key := WICK_OPTIONS[_cursor] if _sub else OPTIONS[_cursor]
 		if key == "wick" and not joined:
 			key = "wick_locked"
 		_hint.text = Game.text("hint_" + key)
-		var pats: Array = worker.get("patterns", [])
-		if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
-			_hint.text = Game.text("dark_warning") + "\n" + _hint.text
+
+
+# ------------------------------------------------------------------ speech bubble
+
+## The dialogue id for this turn from a list in the worker file ("turn_lines" or "flavor").
+func _turn_id(list_key: String) -> String:
+	var ids: Array = worker.get(list_key, [])
+	return str(ids[_turn % ids.size()]) if not ids.is_empty() else ""
+
+
+func _turn_text(list_key: String) -> String:
+	return str(DialogueRunner.first_line(_turn_id(list_key)).get("text", ""))
+
+
+func _build_bubble() -> void:
+	_bubble = Panel.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Game.color("moon")
+	sb.border_color = Game.color("ink")
+	sb.set_border_width_all(1)
+	sb.set_corner_radius_all(4)
+	_bubble.add_theme_stylebox_override("panel", sb)
+	_bubble.visible = false
+	_root.add_child(_bubble)
+	_bubble_text = Label.new()
+	_bubble_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_bubble_text.position = Vector2(5, 1)
+	_bubble_text.add_theme_color_override("font_color", Game.color("ink"))
+	_bubble.add_child(_bubble_text)
+	_bubble_tail = Polygon2D.new()
+	_bubble_tail.color = Game.color("moon")
+	_bubble.add_child(_bubble_tail)
+
+
+## A worker line beside the worker. It types out while the dodge phase starts and never waits for a key.
+func _show_bubble(id: String) -> void:
+	var line := DialogueRunner.first_line(id)
+	var text := str(line.get("text", ""))
+	if text == "":
+		return
+	_bubble_pitch = float(DialogueRunner.speakers.get(str(line.get("speaker", "")), {}).get("pitch", 1.0))
+	var font := _bubble_text.get_theme_font("font")
+	var max_w := 110.0
+	var size := font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, max_w, _bubble_text.get_theme_font_size("font_size"))
+	_bubble_text.size = Vector2(max_w, size.y)
+	_bubble_text.text = text
+	_bubble_text.visible_characters = 0
+	var w := minf(size.x, max_w) + 11.0
+	var h := size.y + 4.0
+	var right := 160.0 - (_worker_sprite.texture.get_width() / 8.0 if _worker_sprite else 8.0) - 8.0
+	_bubble.position = Vector2(maxf(4.0, right - w), 6).round()
+	_bubble.size = Vector2(w, h)
+	_bubble_tail.polygon = PackedVector2Array([Vector2(w - 1, 5), Vector2(w + 6, 9), Vector2(w - 1, 12)])
+	_bubble.visible = true
+	for l in _header:
+		l.visible = false
+	_bubble_t = 0.0
+	_bubble_seen = 0
+
+
+func _type_bubble(delta: float) -> void:
+	_bubble_t += delta
+	var cps := float(Game.tuning.get("text_cps", 30)) * SaveManager.text_speed()
+	var n := mini(int(_bubble_t * cps), _bubble_text.get_total_character_count())
+	if n == _bubble_text.visible_characters:
+		return
+	_bubble_text.visible_characters = n
+	if n - _bubble_seen >= int(Game.tuning.get("blip_every", 2)):
+		_bubble_seen = n
+		AudioBus.blip(_bubble_pitch)
 
 
 func _wipe_in() -> void:

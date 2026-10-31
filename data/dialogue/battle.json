@@ -2,27 +2,45 @@
   "id": "battle",
   "dialogues": {
     "battle_stall": {
-      "lines": [ { "text": "You stall. You try to look like you are supposed to be here. Hits this round do half." } ]
+      "lines": [
+        {
+          "text": "You stall. Hits do half this round."
+        }
+      ]
     },
     "battle_wick_light": {
       "lines": [
-        { "speaker": "wick", "portrait": "wick_happy", "text": "Lights up!" },
-        { "text": "Wick raises his flame. This round, you can see everything." }
+        {
+          "speaker": "wick",
+          "text": "Lights up!",
+          "portrait": "wick_happy"
+        }
       ]
     },
     "battle_wick_hold": {
       "lines": [
-        { "speaker": "wick", "portrait": "wick_panic", "text": "I'll take the first one! Probably! Probably ow!" },
-        { "text": "Wick will block the first hit this round." }
+        {
+          "speaker": "wick",
+          "text": "I'll take the first one! Probably!",
+          "portrait": "wick_panic"
+        }
       ]
     },
     "battle_hustle_miss": {
-      "lines": [ { "text": "You fumble the timing. They barely notice." } ]
+      "lines": [
+        {
+          "text": "You fumble it. They barely notice."
+        }
+      ]
     },
     "battle_asleep": {
       "lines": [
-        { "text": "Your eyes are so heavy..." },
-        { "text": "Tadzio falls asleep on the spot." }
+        {
+          "text": "Your eyes are so heavy..."
+        },
+        {
+          "text": "Tadzio falls asleep on the spot."
+        }
       ]
     }
   }

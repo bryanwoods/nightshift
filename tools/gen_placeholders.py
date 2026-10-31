@@ -1244,6 +1244,23 @@ def music():
         {"kind": "tri", "vol": 0.25, "notes": wbass * 4, "gate": 0.85, "release": 0.2},
         {"kind": "sine", "vol": 0.3, "notes": melody * 2, "vibrato": 0.006, "release": 0.3, "attack": 0.03},
     ])
+    # battle_loop: the worker fights. Quick, bouncy, a little cheeky.
+    bbass = ([("A2", 0.5), ("A2", 0.5), ("A3", 0.5), ("A2", 0.5)] * 2 + [("F2", 0.5), ("F2", 0.5), ("F3", 0.5), ("F2", 0.5)] * 2
+             + [("G2", 0.5), ("G2", 0.5), ("G3", 0.5), ("G2", 0.5)] * 2 + [("E2", 0.5), ("E2", 0.5), ("E3", 0.5), ("G#2", 0.5)] * 2)
+    blead = [("E5", 0.5), ("A4", 0.5), ("C5", 0.5), ("E5", 0.5), ("D5", 1), ("C5", 0.5), ("B4", 0.5),
+             ("A4", 1), (None, 0.5), ("E4", 0.5), ("A4", 1), ("C5", 1),
+             ("D5", 0.5), ("G4", 0.5), ("B4", 0.5), ("D5", 0.5), ("C5", 1), ("B4", 0.5), ("G4", 0.5),
+             ("G#4", 1.5), ("B4", 0.5), ("E5", 2)]
+    battle = render_song(138, 64, [
+        {"kind": "tri", "vol": 0.4, "notes": bbass * 4, "gate": 0.6},
+        {"kind": "square", "vol": 0.13, "duty": 0.25, "notes": blead * 4, "release": 0.06},
+    ], tick=False)
+    spb = 60.0 / 138
+    for beat in range(64):
+        tone(battle, beat * spb, 0.12, 110, "sine", 0.5, glide=45, release=0.05)
+        if beat % 2 == 1:
+            noise(battle, beat * spb, 0.09, 0.25, decay=40, seed=beat)
+    songs["battle_loop"] = battle
     ffmpeg = shutil.which("ffmpeg")
     for name, buf in songs.items():
         wav = out / f"{name}.wav"
