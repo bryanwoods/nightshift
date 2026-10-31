@@ -1,0 +1,34 @@
+{
+  "id": "morning",
+  "dialogues": {
+    "morning_wake": {
+      "lines": [
+        { "cmd": "wait", "seconds": 1.0 },
+        { "text": "Morning." },
+        { "text": "Sun on the floor. Birds, being loud about it." },
+        { "speaker": "tadzio", "text": "...Was that a dream?" },
+        { "text": "Something is sitting on the nightstand that was not there last night." }
+      ]
+    },
+    "morning_card": {
+      "lines": [
+        { "text": "A punch card. It says:" },
+        { "text": "NIGHTSHIFT  ·  TRAINEE  ·  TADZIO" },
+        { "cmd": "give_item", "item": "punch_card" },
+        { "cmd": "end_night" }
+      ]
+    },
+    "morning_clock": {
+      "lines": [ { "text": "7:02. The little dots blink like nothing happened." } ]
+    },
+    "morning_window": {
+      "lines": [ { "text": "The street in daylight. Every lamp is off, the way lamps should be in the morning." } ]
+    },
+    "morning_bed": {
+      "lines": [ { "text": "The bed is a mess. A good mess." } ]
+    },
+    "morning_door": {
+      "lines": [ { "text": "Breakfast smells. But first: the thing on the nightstand." } ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "help_wanted",
+  "postings": [
+    {
+      "title": "Bakery: night counter help",
+      "posted_by": "The Bakery",
+      "text": "Night counter help. Must know what a croissant dreams about.",
+      "status": "open"
+    },
+    {
+      "title": "Clock tower",
+      "posted_by": "The Foreman",
+      "text": "Someone to find out why it stopped.",
+      "status": "open"
+    },
+    {
+      "title": "Lost & Found",
+      "posted_by": "Lost & Found",
+      "text": "Too many lost things, not enough finding.",
+      "status": "open"
+    },
+    {
+      "title": "YOUR POSTING HERE",
+      "posted_by": "you",
+      "text": "YOUR POSTING HERE. Ask the Foreman.",
+      "status": "open"
+    }
+  ]
+}

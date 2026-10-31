@@ -1,0 +1,45 @@
+; Engine configuration file.
+; Input actions are registered in code by src/autoload/game.gd (see DEV.md, Decisions).
+
+config_version=5
+
+[application]
+
+config/name="Nightshift"
+run/main_scene="res://src/ui/title_screen.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+Game="*res://src/autoload/game.gd"
+NightClock="*res://src/autoload/night_clock.gd"
+SaveManager="*res://src/autoload/save_manager.gd"
+AudioBus="*res://src/autoload/audio_bus.gd"
+DialogueRunner="*res://src/autoload/dialogue_runner.gd"
+
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+window/stretch/scale_mode="integer"
+
+[gui]
+
+theme/custom="res://assets/theme.tres"
+
+[physics]
+
+common/physics_ticks_per_second=60
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.043, 0.055, 0.122, 1)
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

@@ -1,0 +1,60 @@
+{
+  "id": "street_main",
+  "tileset": "town_night",
+  "legend": {
+    "R": "roof", "S": "shop_wall", "o": "shop_window", "O": "shop_window_lit", "N": "bakery_sign",
+    "B": "bakery_door", ".": "sidewalk", ",": "road", "-": "road_line", "L": "lamp_post", "b": "bench",
+    "m": "mailbox", "h": "hedge", "T": "tree"
+  },
+  "layout": [
+    "RRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+    "SoSSoSSoSSONBOSSoSSoSSSoSSoS",
+    "..L.....L....b....L.....L...",
+    "............................",
+    ",,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+    "-,-,-,-,-,-,-,-,-,-,-,-,-,-,",
+    ",,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+    ".....L......m.......L.......",
+    "hhhhThhhhhhhhhThhhhhhhhhThhh"
+  ],
+  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "east": [26, 4, "left"] },
+  "entities": [
+    { "type": "door", "x": 0, "y": 3, "h": 4, "to": "street_maple", "spawn": "east", "minutes": 3 },
+    { "type": "door", "x": 27, "y": 3, "h": 4, "to": "depot_exterior", "spawn": "west", "minutes": 3 },
+
+    { "type": "inspect", "x": 12, "y": 1, "dialogue": "inspect_bakery_door" },
+    { "type": "inspect", "x": 11, "y": 1, "dialogue": "inspect_bakery_door" },
+    { "type": "inspect", "x": 10, "y": 1, "dialogue": "inspect_bakery_window" },
+    { "type": "inspect", "x": 13, "y": 1, "dialogue": "inspect_bakery_window" },
+    { "type": "inspect", "x": 4, "y": 1, "dialogue": "inspect_dark_shop" },
+    { "type": "inspect", "x": 19, "y": 1, "dialogue": "inspect_dark_shop" },
+    { "type": "inspect", "x": 13, "y": 2, "dialogue": "inspect_bench" },
+
+    { "type": "npc", "id": "postman", "sprite": "postman", "x": 13, "y": 7, "facing": "left", "dialogue": "postman_talk" },
+    { "type": "inspect", "x": 12, "y": 7, "dialogue": "inspect_postbox" },
+
+    { "type": "hold", "x": 2, "y": 2, "seconds": 2.0, "minutes": 2, "light": "main_1", "flag": "tonight_main_1", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_main_1" },
+    { "type": "inspect", "x": 2, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_main_1" },
+    { "type": "hold", "x": 8, "y": 2, "seconds": 2.0, "minutes": 2, "light": "main_2", "flag": "tonight_main_2", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_main_2" },
+    { "type": "inspect", "x": 8, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_main_2" },
+    { "type": "inspect", "x": 18, "y": 2, "dialogue": "inspect_lit_lamp" },
+    { "type": "inspect", "x": 24, "y": 2, "dialogue": "inspect_dark_lamp_far" },
+    { "type": "inspect", "x": 5, "y": 7, "dialogue": "inspect_lit_lamp" },
+    { "type": "inspect", "x": 20, "y": 7, "dialogue": "inspect_dark_lamp_far" }
+  ],
+  "lights": [
+    { "id": "bakery_1", "x": 10, "y": 1, "radius": 32, "on": true },
+    { "id": "bakery_2", "x": 13, "y": 1, "radius": 32, "on": true },
+    { "id": "main_1", "x": 2, "y": 2, "radius": 40, "on": false },
+    { "id": "main_2", "x": 8, "y": 2, "radius": 40, "on": false },
+    { "id": "main_3", "x": 18, "y": 2, "radius": 40, "on": true },
+    { "id": "main_4", "x": 24, "y": 2, "radius": 40, "on": false },
+    { "id": "main_5", "x": 5, "y": 7, "radius": 40, "on": true },
+    { "id": "main_6", "x": 20, "y": 7, "radius": 40, "on": false },
+    { "id": "postman_bag", "x": 13, "y": 7, "radius": 16, "energy": 0.6, "on": true }
+  ],
+  "ambient": 0.3,
+  "music": "street_loop",
+  "companion": true,
+  "on_enter": "street_main_enter"
+}

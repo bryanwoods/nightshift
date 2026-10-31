@@ -1,0 +1,36 @@
+{
+  "id": "bedroom_morning",
+  "tileset": "home_morning",
+  "legend": {
+    "#": "wall", "=": "wall_face", "K": "closet", "P": "drawing", "W": "window", "s": "shelf",
+    ".": "floor", "r": "rug", "B": "bed_head", "b": "bed_foot", "n": "nightstand_card", "d": "desk",
+    "c": "clock_radio", "p": "plant", "D": "door"
+  },
+  "layout": [
+    "############",
+    "#=KK=P==W=s#",
+    "#Bn......dc#",
+    "#b..rrr....#",
+    "#...rrr....#",
+    "#..........#",
+    "#..........#",
+    "#.........p#",
+    "#####D######"
+  ],
+  "spawns": { "default": [2, 3, "up"] },
+  "entities": [
+    { "type": "inspect", "x": 2, "y": 2, "dialogue": "morning_card" },
+    { "type": "inspect", "x": 10, "y": 2, "dialogue": "morning_clock" },
+    { "type": "inspect", "x": 8, "y": 1, "dialogue": "morning_window" },
+    { "type": "inspect", "x": 1, "y": 2, "h": 2, "dialogue": "morning_bed" },
+    { "type": "inspect", "x": 5, "y": 1, "dialogue": "bedroom_drawing" },
+    { "type": "inspect", "x": 5, "y": 8, "dialogue": "morning_door" }
+  ],
+  "lights": [],
+  "ambient": 1.0,
+  "music": "none",
+  "hud": false,
+  "background": "bark",
+  "flashlight": false,
+  "on_enter": "morning_wake"
+}

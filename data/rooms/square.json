@@ -1,0 +1,45 @@
+{
+  "id": "square",
+  "tileset": "town_night",
+  "legend": {
+    "R": "roof", "H": "house_wall", "S": "shop_wall", "w": "house_window", "o": "shop_window",
+    "t": "tower", "f": "tower_face", ".": "cobble", "F": "fountain", "b": "bench", "L": "lamp_post",
+    "h": "hedge", "T": "tree", "p": "flowerbed", "e": "sidewalk"
+  },
+  "layout": [
+    "RRRRRRRRtttRRRRRRRRR",
+    "HwHHoSSStttSSSoHHwHH",
+    "eeeeeeeetfteeeeeeeee",
+    "eL................Le",
+    "e..................e",
+    "e....b.......b.....e",
+    "e........F.........e",
+    "e..................e",
+    "e....p.........p...e",
+    "eL................Le",
+    "eeeeeeeeeeeeeeeeeeee",
+    "hhhTThhhhhhhhhhTThhh"
+  ],
+  "spawns": { "default": [1, 6, "right"], "west": [1, 6, "right"] },
+  "entities": [
+    { "type": "door", "x": 0, "y": 4, "h": 5, "to": "depot_interior", "spawn": "east", "minutes": 3 },
+    { "type": "trigger", "x": 3, "y": 3, "h": 8, "once": true, "flag": "tonight_curfew_seen", "dialogue": "square_curfew" },
+    { "type": "npc", "id": "curfew", "sprite": "curfew", "x": 17, "y": 6, "facing": "left", "idle_frames": 2, "dialogue": "curfew_after", "if_flag": "tonight_curfew_seen", "unless_flag": "enemy_curfew" },
+    { "type": "inspect", "x": 9, "y": 2, "dialogue": "square_clock" },
+    { "type": "inspect", "x": 8, "y": 2, "dialogue": "square_clock" },
+    { "type": "inspect", "x": 10, "y": 2, "dialogue": "square_clock" },
+    { "type": "inspect", "x": 9, "y": 6, "dialogue": "square_fountain" },
+    { "type": "inspect", "x": 5, "y": 5, "dialogue": "square_bench" },
+    { "type": "inspect", "x": 13, "y": 5, "dialogue": "square_bench" }
+  ],
+  "lights": [
+    { "id": "square_1", "x": 1, "y": 3, "radius": 44, "on": true },
+    { "id": "square_2", "x": 18, "y": 3, "radius": 44, "on": false },
+    { "id": "square_3", "x": 1, "y": 9, "radius": 44, "on": false },
+    { "id": "square_4", "x": 18, "y": 9, "radius": 44, "on": true },
+    { "id": "tower_glow", "x": 9, "y": 2, "radius": 30, "color": "moon", "energy": 0.6, "on": true }
+  ],
+  "ambient": 0.3,
+  "music": "street_loop",
+  "companion": true
+}

@@ -1,0 +1,66 @@
+{
+  "id": "square",
+  "dialogues": {
+    "square_curfew": {
+      "lines": [
+        { "text": "The town square. Above it, the clock tower." },
+        { "cmd": "face", "entity": "player", "dir": "up" },
+        { "text": "The big clock says 2:00." },
+        { "speaker": "wick", "text": "That's... not right. That clock is never wrong. It's THE clock." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "..." },
+        { "cmd": "music", "track": "curfew_theme" },
+        { "text": "Something rolls across the cobbles like a slow wave. Quilts. Pillows. Two sleepy eyes." },
+        { "cmd": "move", "entity": "curfew", "dx": -4, "dy": 0, "speed": 16 },
+        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Up past bedtime." },
+        { "speaker": "curfew", "text": "That's my department." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "It's Curfew! It puts awake kids back to bed! It's very nice about it! That's the hard part!" },
+        { "cmd": "battle", "worker": "curfew" },
+        { "cmd": "if_flag", "flag": "friend_curfew", "goto": "square_end_help", "else": "square_end_hustle" }
+      ]
+    },
+    "square_end_help": {
+      "lines": [
+        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "I put everyone to bed. Every night. Nobody ever... tucked me in." },
+        { "speaker": "curfew", "portrait": "curfew_happy", "text": "Thank you, little night worker. Mmmh..." },
+        { "text": "Curfew goes down like a dropped quilt." },
+        { "cmd": "wait", "seconds": 0.8 },
+        { "cmd": "sfx", "name": "tick" },
+        { "text": "Up on the tower, the big clock ticks. Once." },
+        { "cmd": "goto", "goto": "square_ending" }
+      ]
+    },
+    "square_end_hustle": {
+      "lines": [
+        { "text": "Curfew rolls away into the dark, grumbling softly." },
+        { "cmd": "wait", "seconds": 0.8 },
+        { "text": "Up on the tower, the big clock does not move." },
+        { "cmd": "goto", "goto": "square_ending" }
+      ]
+    },
+    "square_ending": {
+      "lines": [
+        { "speaker": "wick", "text": "Tadzio. The clock. Something's wrong with it. I think the hour is getting—" },
+        { "cmd": "clock_set", "minute": 59 },
+        { "cmd": "wait", "seconds": 1.0 },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "—no, wait, listen, the minutes, somebody's been—", "auto": 0.4 },
+        { "cmd": "clock_set", "minute": 60 }
+      ]
+    },
+    "curfew_after": {
+      "lines": [ { "text": "Curfew is fast asleep. It snores in three-four time." } ]
+    },
+    "square_clock": {
+      "seen_variant": "square_clock_2",
+      "lines": [ { "text": "The clock tower. Its hands point at 2:00. They have pointed at 2:00 all night." } ]
+    },
+    "square_clock_2": {
+      "lines": [ { "text": "Still 2:00. Up there, it is always two." } ]
+    },
+    "square_fountain": {
+      "lines": [ { "text": "The fountain is off. The water is perfectly still, like it's listening." } ]
+    },
+    "square_bench": {
+      "lines": [ { "text": "A bench. A good spot to watch a clock that doesn't move." } ]
+    }
+  }
+}

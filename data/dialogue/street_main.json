@@ -1,0 +1,57 @@
+{
+  "id": "street_main",
+  "dialogues": {
+    "unbaker_busy": {
+      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "One. Two. Don't talk to me, I'm counting." } ]
+    },
+    "street_main_enter": {
+      "lines": [
+        { "cmd": "if_flag", "flag": "tonight_main_seen", "goto": "" },
+        { "cmd": "set_flag", "flag": "tonight_main_seen" },
+        { "speaker": "wick", "text": "Main Street. The bakery's the only thing open. It's always the only thing open." },
+        { "speaker": "wick", "text": "Don't ask what they bake at night. I asked once. They said \"tomorrow.\"" }
+      ]
+    },
+    "inspect_bakery_door": {
+      "lines": [
+        { "text": "Locked. A sign hangs in the window." },
+        { "text": "\"Night only. You don't have a card.\"" }
+      ]
+    },
+    "inspect_bakery_window": {
+      "lines": [ { "text": "Warm light. Rows and rows of bread that does not exist yet." } ]
+    },
+    "inspect_dark_shop": {
+      "lines": [ { "text": "Closed. Everything in there is asleep, even the price tags." } ]
+    },
+    "inspect_bench": {
+      "lines": [ { "text": "A bench. Cold. Benches are always cold at night. It's their whole thing." } ]
+    },
+    "inspect_postbox": {
+      "lines": [ { "text": "The corner mailbox. Something inside it is breathing very softly. Probably letters." } ]
+    },
+    "postman_talk": {
+      "lines": [
+        { "cmd": "if_flag", "flag": "postman_met", "goto": "postman_again" },
+        { "speaker": "postman", "text": "...shh." },
+        { "speaker": "postman", "text": "You can see me. That's new." },
+        { "speaker": "postman", "text": "I deliver dreams. One envelope a house, under the pillow, before three." },
+        { "text": "In his bag, one envelope glows a little brighter than the rest. It has your name on it.",
+          "choices": [
+            { "text": "Is that one mine?", "goto": "postman_letter" },
+            { "text": "What's in it?", "goto": "postman_letter" }
+          ] },
+        { "cmd": "set_flag", "flag": "postman_met" }
+      ]
+    },
+    "postman_letter": {
+      "lines": [
+        { "speaker": "postman", "text": "You get it when you're asleep. That's the rule." },
+        { "speaker": "postman", "text": "And you are very much not asleep." }
+      ]
+    },
+    "postman_again": {
+      "lines": [ { "speaker": "postman", "text": "...still not asleep, I see. The letter can wait. Letters are good at waiting." } ]
+    }
+  }
+}

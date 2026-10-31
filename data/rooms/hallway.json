@@ -1,0 +1,31 @@
+{
+  "id": "hallway",
+  "tileset": "home_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", "D": "door", "F": "door_closed", "H": "door_closed", "W": "window",
+    ".": "floor", "r": "rug", "S": "stairs"
+  },
+  "layout": [
+    "##############",
+    "#=D=F==H=W===#",
+    "#...........S#",
+    "#...rrrrr...S#",
+    "#...........S#",
+    "##############"
+  ],
+  "spawns": { "default": [2, 2, "down"], "bedroom": [2, 2, "down"], "stairs": [11, 3, "left"] },
+  "entities": [
+    { "type": "door", "x": 2, "y": 1, "to": "bedroom", "spawn": "hall" },
+    { "type": "inspect", "x": 4, "y": 1, "dialogue": "hallway_dad_door" },
+    { "type": "inspect", "x": 7, "y": 1, "dialogue": "hallway_bathroom" },
+    { "type": "inspect", "x": 9, "y": 1, "dialogue": "hallway_window" },
+    { "type": "trigger", "x": 7, "y": 2, "h": 3, "once": true, "flag": "tonight_bath_flicker", "dialogue": "hallway_flicker" },
+    { "type": "door", "x": 12, "y": 2, "h": 3, "to": "kitchen", "spawn": "stairs" }
+  ],
+  "lights": [
+    { "id": "bath_light", "x": 7, "y": 2, "radius": 30, "color": "moon", "on": false },
+    { "id": "hall_moon", "x": 9, "y": 2, "radius": 36, "color": "fog", "energy": 0.6, "on": true }
+  ],
+  "ambient": 0.35,
+  "music": "house_hum"
+}

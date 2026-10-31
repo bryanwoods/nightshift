@@ -1,0 +1,163 @@
+{
+  "id": "home",
+  "dialogues": {
+    "bedroom_wake": {
+      "seen_variant": "bedroom_wake_again",
+      "lines": [
+        { "cmd": "if_flag", "flag": "tonight_woke", "goto": "" },
+        { "cmd": "set_flag", "flag": "tonight_woke" },
+        { "cmd": "wait", "seconds": 0.8 },
+        { "text": "You sit up in bed. You are not sure why." },
+        { "text": "The clock radio says 1:59. It has said 1:59 for a while now." },
+        { "speaker": "tadzio", "text": "Huh." }
+      ]
+    },
+    "bedroom_wake_again": {
+      "lines": [
+        { "cmd": "if_flag", "flag": "tonight_woke", "goto": "" },
+        { "cmd": "set_flag", "flag": "tonight_woke" },
+        { "cmd": "wait", "seconds": 0.8 },
+        { "text": "You sit up in bed. 1:59 again." },
+        { "speaker": "tadzio", "text": "Same time tomorrow. Right." }
+      ]
+    },
+    "bedroom_clock": {
+      "seen_variant": "bedroom_clock_2",
+      "lines": [ { "text": "1:59. The little dots between the numbers are not even blinking." } ]
+    },
+    "bedroom_clock_2": {
+      "lines": [ { "text": "Still 1:59. You could have a staring contest with it. It would win." } ]
+    },
+    "bedroom_desk": {
+      "lines": [ { "text": "Your desk. Homework you finished. Homework you said you finished." } ]
+    },
+    "bedroom_drawing": {
+      "lines": [
+        { "text": "A drawing you made and taped to the wall." },
+        { "text": "TODO(Tadzio): what is in the drawing?" }
+      ]
+    },
+    "bedroom_window": {
+      "lines": [
+        { "text": "The street is dark. One lamp is on, far away." },
+        { "text": "Under it, something small and bright moves around. Then it stops. Like it's thinking." }
+      ]
+    },
+    "bedroom_closet": {
+      "lines": [ { "text": "Clothes. Shoes. No monsters. You checked at bedtime." } ]
+    },
+    "bedroom_bed": {
+      "lines": [ { "text": "Not yet." } ]
+    },
+    "bedroom_shelf": {
+      "lines": [ { "text": "Books, a good rock, a cup with three pencils. Nothing is out of place. That is the weird part." } ]
+    },
+    "bedroom_nightstand": {
+      "lines": [ { "text": "A glass of water. Half full, if anybody asks." } ]
+    },
+    "bedroom_plant": {
+      "lines": [ { "text": "The plant is asleep. Plants are good at that." } ]
+    },
+
+    "hallway_dad_door": {
+      "lines": [
+        { "text": "Dad's door is closed." },
+        { "text": "He sleeps like a log. A log would be louder." }
+      ]
+    },
+    "hallway_bathroom": {
+      "lines": [ { "text": "The bathroom. The light is off. It is staying off. Probably." } ]
+    },
+    "hallway_window": {
+      "lines": [ { "text": "Across the street, every window is dark. Every single one." } ]
+    },
+    "hallway_flicker": {
+      "lines": [
+        { "cmd": "light", "id": "bath_light", "on": true },
+        { "cmd": "sfx", "name": "flicker" },
+        { "cmd": "wait", "seconds": 0.12 },
+        { "cmd": "light", "id": "bath_light", "on": false },
+        { "cmd": "wait", "seconds": 0.15 },
+        { "cmd": "light", "id": "bath_light", "on": true },
+        { "cmd": "wait", "seconds": 0.08 },
+        { "cmd": "light", "id": "bath_light", "on": false },
+        { "text": "The bathroom light flickers. Once." },
+        { "speaker": "tadzio", "text": "...Okay." }
+      ]
+    },
+
+    "kitchen_fridge": {
+      "lines": [
+        { "text": "The fridge is humming." },
+        { "text": "It knows a song. You have never heard the fridge know a song.",
+          "choices": [
+            { "text": "Hum along.", "goto": "kitchen_fridge_hum" },
+            { "text": "Leave it alone." }
+          ] }
+      ]
+    },
+    "kitchen_fridge_hum": {
+      "lines": [
+        { "text": "You hum along. The fridge stops." },
+        { "text": "Then it starts again. A little louder. A little proud." }
+      ]
+    },
+    "kitchen_stove": {
+      "lines": [ { "text": "The stove is off. You check twice anyway." } ]
+    },
+    "kitchen_sink": {
+      "lines": [ { "text": "Drip. ... ... Drip. Slower than usual." } ]
+    },
+    "kitchen_window": {
+      "lines": [ { "text": "The backyard. Out past the gate, something bright bobs by and is gone." } ]
+    },
+    "kitchen_table": {
+      "lines": [ { "text": "Your cereal bowl is already out for the morning. Somebody plans ahead." } ]
+    },
+    "kitchen_backdoor": {
+      "lines": [
+        { "text": "The back door is unlocked." },
+        { "text": "It is never unlocked." }
+      ]
+    },
+
+    "backyard_enter": {
+      "lines": [
+        { "cmd": "if_flag", "flag": "tonight_yard_cold", "goto": "" },
+        { "cmd": "set_flag", "flag": "tonight_yard_cold" },
+        { "text": "Cold." },
+        { "text": "The grass is wet. Your slippers were not built for this." }
+      ]
+    },
+    "backyard_light": {
+      "lines": [
+        { "cmd": "light", "id": "gate_glow", "on": true },
+        { "cmd": "wait", "seconds": 0.5 },
+        { "cmd": "light", "id": "gate_glow", "on": false },
+        { "text": "A small light bobs past the gate." },
+        { "speaker": "tadzio", "text": "Hey—" },
+        { "text": "It's gone. It went toward the street." }
+      ]
+    },
+    "backyard_tree": {
+      "lines": [ { "text": "A tree you are not allowed to climb. It looks easier at night." } ]
+    },
+    "backyard_crate": {
+      "lines": [ { "text": "Garden stuff. A trowel, a glove, the other glove." } ]
+    },
+    "backyard_flowers": {
+      "lines": [ { "text": "The flowers are closed up for the night. They had the right idea." } ]
+    },
+    "backyard_window": {
+      "lines": [ { "text": "The kitchen window. From out here, your house looks like someone else's." } ]
+    },
+    "gate_chime": {
+      "lines": [
+        { "cmd": "set_flag", "flag": "tonight_gate" },
+        { "cmd": "clock_set", "minute": 0 },
+        { "cmd": "sfx", "name": "chime" },
+        { "text": "Somewhere in town, a clock chimes. Two." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "kitchen",
+  "tileset": "home_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", "K": "counter", "s": "sink", "O": "stove", "F": "fridge", "W": "window",
+    "S": "stairs", ".": "tile_floor", "T": "table", "h": "chair", "D": "door"
+  },
+  "layout": [
+    "##############",
+    "#=KsOK=F==W=S#",
+    "#...........S#",
+    "#............#",
+    "#....TT......#",
+    "#...hTTh.....#",
+    "#............#",
+    "#............#",
+    "##D###########"
+  ],
+  "spawns": { "default": [11, 2, "left"], "stairs": [11, 2, "left"], "backyard": [2, 7, "up"] },
+  "entities": [
+    { "type": "door", "x": 12, "y": 1, "h": 2, "to": "hallway", "spawn": "stairs" },
+    { "type": "inspect", "x": 7, "y": 1, "dialogue": "kitchen_fridge" },
+    { "type": "inspect", "x": 4, "y": 1, "dialogue": "kitchen_stove" },
+    { "type": "inspect", "x": 3, "y": 1, "dialogue": "kitchen_sink" },
+    { "type": "inspect", "x": 10, "y": 1, "dialogue": "kitchen_window" },
+    { "type": "inspect", "x": 5, "y": 4, "w": 2, "h": 2, "dialogue": "kitchen_table" },
+    { "type": "trigger", "x": 1, "y": 7, "w": 3, "once": true, "flag": "tonight_backdoor_seen", "dialogue": "kitchen_backdoor" },
+    { "type": "door", "x": 2, "y": 8, "to": "backyard", "spawn": "house" }
+  ],
+  "lights": [
+    { "id": "fridge_glow", "x": 7, "y": 2, "radius": 26, "color": "moon", "energy": 0.6, "on": true },
+    { "id": "kitchen_moon", "x": 10, "y": 2, "radius": 34, "color": "fog", "energy": 0.6, "on": true }
+  ],
+  "ambient": 0.35,
+  "music": "house_hum"
+}

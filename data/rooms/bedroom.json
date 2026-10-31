@@ -1,0 +1,40 @@
+{
+  "id": "bedroom",
+  "tileset": "home_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", "K": "closet", "P": "drawing", "W": "window", "s": "shelf",
+    ".": "floor", "r": "rug", "B": "bed_head", "b": "bed_foot", "n": "nightstand", "d": "desk",
+    "c": "clock_radio", "p": "plant", "D": "door"
+  },
+  "layout": [
+    "############",
+    "#=KK=P==W=s#",
+    "#Bn......dc#",
+    "#b..rrr....#",
+    "#...rrr....#",
+    "#..........#",
+    "#..........#",
+    "#.........p#",
+    "#####D######"
+  ],
+  "spawns": { "default": [2, 3, "down"], "hall": [5, 7, "up"] },
+  "entities": [
+    { "type": "inspect", "x": 10, "y": 2, "dialogue": "bedroom_clock" },
+    { "type": "inspect", "x": 9, "y": 2, "dialogue": "bedroom_desk" },
+    { "type": "inspect", "x": 5, "y": 1, "dialogue": "bedroom_drawing" },
+    { "type": "inspect", "x": 8, "y": 1, "dialogue": "bedroom_window" },
+    { "type": "inspect", "x": 2, "y": 1, "w": 2, "dialogue": "bedroom_closet" },
+    { "type": "inspect", "x": 1, "y": 2, "h": 2, "dialogue": "bedroom_bed" },
+    { "type": "inspect", "x": 10, "y": 1, "dialogue": "bedroom_shelf" },
+    { "type": "inspect", "x": 2, "y": 2, "dialogue": "bedroom_nightstand" },
+    { "type": "inspect", "x": 10, "y": 7, "dialogue": "bedroom_plant" },
+    { "type": "door", "x": 5, "y": 8, "to": "hallway", "spawn": "bedroom" }
+  ],
+  "lights": [
+    { "id": "bedroom_moon", "x": 8, "y": 2, "radius": 44, "color": "fog", "energy": 0.7, "on": true },
+    { "id": "bedroom_radio", "x": 10, "y": 2, "radius": 18, "color": "ember", "energy": 0.6, "on": true }
+  ],
+  "ambient": 0.4,
+  "music": "house_hum",
+  "on_enter": "bedroom_wake"
+}

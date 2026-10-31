@@ -1,0 +1,39 @@
+{
+  "id": "curfew",
+  "name": "Curfew",
+  "job": "Puts awake kids back to bed",
+  "sprite": "curfew",
+  "portrait": "curfew",
+  "size": "large",
+  "idle_frames": 2,
+  "music": "curfew_theme",
+  "patience": 30,
+  "hit_damage": 3,
+  "arena": [140, 90],
+  "rewind_tutorial": true,
+  "patterns": [
+    { "type": "rain", "duration": 7, "count": 12, "speed": 45, "sprite": "note", "lanes": 3, "sequence": [2, 0, 1] },
+    { "type": "ring", "duration": 7, "rings": 2, "speed": 35, "gap_angle": 50, "arena": [160, 100] },
+    { "type": "sweep", "duration": 6, "bars": 2, "gap_px": 28, "speed": 55, "from": "both" },
+    { "type": "dark", "duration": 7, "inner": { "type": "drift", "count": 6, "speed": 30, "turn_rate": 1.2 } }
+  ],
+  "task": {
+    "title": "Put Curfew to bed",
+    "steps": [
+      { "label": "Ask when it last slept", "line": "curfew_help_1" },
+      { "label": "Fluff the pillow", "line": "curfew_help_2" },
+      { "label": "Hum its lullaby back", "line": "curfew_help_3",
+        "choice": { "prompt": "Hum it back. The falling notes went...",
+                    "options": ["Low, high, middle.", "High, low, middle.", "Middle, middle, low."], "correct": 1,
+                    "wrong_line": "curfew_help_3_wrong" } },
+      { "label": "Tuck it in", "line": "curfew_help_4" }
+    ]
+  },
+  "dialogue": {
+    "intro": "curfew_battle_intro",
+    "hustle_hit": "curfew_hustle",
+    "satisfied": "curfew_satisfied",
+    "defeated": "curfew_defeated"
+  },
+  "rewards": { "satisfied": { "flag": "friend_curfew" }, "defeated": { "flag": "enemy_curfew" } }
+}

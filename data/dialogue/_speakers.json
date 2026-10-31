@@ -1,0 +1,13 @@
+{
+  "id": "_speakers",
+  "speakers": {
+    "narrator": { "name": "", "pitch": 1.0 },
+    "tadzio": { "name": "Tadzio", "pitch": 1.0 },
+    "wick": { "name": "Wick", "pitch": 1.6 },
+    "unbaker": { "name": "The Un-Baker", "pitch": 0.75 },
+    "postman": { "name": "Night Postman", "pitch": 1.25 },
+    "foreman": { "name": "The Foreman", "pitch": 0.55 },
+    "curfew": { "name": "Curfew", "pitch": 0.4 },
+    "fridge": { "name": "", "pitch": 0.5 }
+  }
+}

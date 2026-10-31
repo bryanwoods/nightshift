@@ -1,0 +1,98 @@
+{
+  "id": "workers",
+  "dialogues": {
+    "unbaker_battle_intro": {
+      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "You're in my way. I have a route. The route has no kids in it." } ]
+    },
+    "unbaker_help_1": {
+      "lines": [
+        { "speaker": "tadzio", "text": "What's the bread for?" },
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "For? It isn't FOR anything. It's yesterday's. Yesterday's bread goes back before morning, or morning gets confused." },
+        { "speaker": "unbaker", "text": "Two loaves in the cart already. One more on this street." },
+        { "speaker": "unbaker", "text": "...Nobody ever asks." }
+      ]
+    },
+    "unbaker_help_2": {
+      "lines": [
+        { "text": "You pick up the last loaf from a doorstep and carry it to the cart. It is heavier than bread should be." },
+        { "speaker": "unbaker", "text": "Careful. That one was a birthday." }
+      ]
+    },
+    "unbaker_help_3": {
+      "lines": [ { "speaker": "unbaker", "text": "Now the list. I count, you check. One... two... I always lose count here." } ]
+    },
+    "unbaker_help_3_wrong": {
+      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "No. Count again. Two were in the cart. You carried one." } ]
+    },
+    "unbaker_hustle": {
+      "seen_variant": "unbaker_hustle_2",
+      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Hey! I'm counting! Now I have to start over. One... two..." } ]
+    },
+    "unbaker_hustle_2": {
+      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Stop that! I'll lose my place! I ALWAYS lose my place!" } ]
+    },
+    "unbaker_satisfied": {
+      "lines": [
+        { "speaker": "unbaker", "portrait": "unbaker_happy", "text": "Three. Three loaves. All accounted for." },
+        { "speaker": "unbaker", "text": "You count good, for a kid off the list." },
+        { "text": "He tears the heel off a loaf and hands it to you." },
+        { "text": "You got a heel of bread." }
+      ]
+    },
+    "unbaker_defeated": {
+      "lines": [
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Forget it! I'll do the whole route backward!" },
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Tell the Foreman I'm owed a loaf." },
+        { "text": "The Un-Baker storms off, cart rattling." }
+      ]
+    },
+
+    "curfew_battle_intro": {
+      "lines": [ { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Hush now... hush now... let's get you back to bed... high, low, and in between..." } ]
+    },
+    "curfew_help_1": {
+      "lines": [
+        { "speaker": "tadzio", "text": "When did you last sleep?" },
+        { "speaker": "curfew", "text": "Sleep? Oh... I put everyone else to sleep. Every night. I'm always on shift." },
+        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "I don't think I ever have." }
+      ]
+    },
+    "curfew_help_2": {
+      "lines": [
+        { "text": "You fluff the biggest pillow. It sighs." },
+        { "speaker": "curfew", "portrait": "curfew_happy", "text": "Oh. Oh, that's nice. Nobody fluffs for me." }
+      ]
+    },
+    "curfew_help_3": {
+      "lines": [
+        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "There's a song... I hum it to everyone... but I can't hum it to myself." },
+        { "speaker": "curfew", "text": "High notes fall on the right... low ones on the left... do you remember how it went?" }
+      ]
+    },
+    "curfew_help_3_wrong": {
+      "lines": [ { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Mmm... no... that's a different song. That one is for owls." } ]
+    },
+    "curfew_help_4": {
+      "lines": [ { "text": "You pull the quilt up to Curfew's eyes and tuck in the edges. All the way around. It takes a while. It's a big quilt." } ]
+    },
+    "curfew_hustle": {
+      "seen_variant": "curfew_hustle_2",
+      "lines": [ { "speaker": "curfew", "text": "Now, now... that's not very sleepy of you." } ]
+    },
+    "curfew_hustle_2": {
+      "lines": [ { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Shhh... shhh... you'll wake the whole town." } ]
+    },
+    "curfew_satisfied": {
+      "lines": [
+        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Mmm... so this is what it's like..." },
+        { "text": "Curfew yawns. It is an enormous yawn. The whole square yawns with it." }
+      ]
+    },
+    "curfew_defeated": {
+      "lines": [
+        { "speaker": "curfew", "text": "Fine... fine... I'm clocking out early." },
+        { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Somebody else can tuck you in tonight." }
+      ]
+    }
+  }
+}

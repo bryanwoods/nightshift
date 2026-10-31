@@ -1,0 +1,353 @@
+{
+  "id": "depot",
+  "dialogues": {
+    "depot_ext_enter": {
+      "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "tonight_depot_ext_seen",
+          "goto": ""
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "tonight_depot_ext_seen"
+        },
+        {
+          "speaker": "wick",
+          "text": "The Depot. Nightshift headquarters. You clock in, you clock out, the Foreman counts the rest."
+        }
+      ]
+    },
+    "depot_punch_clock": {
+      "lines": [
+        {
+          "text": "A punch clock. You slide your hand into the slot where a card should go."
+        },
+        {
+          "cmd": "sfx",
+          "name": "buzz"
+        },
+        {
+          "cmd": "shake",
+          "strength": 2,
+          "seconds": 0.4
+        },
+        {
+          "text": "NO CARD."
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_panic",
+          "text": "Shh! Shh shh shh. It's very loud. It's built to be loud."
+        },
+        {
+          "speaker": "wick",
+          "text": "Side door. Come on. I've got this."
+        }
+      ]
+    },
+    "depot_rolling_door": {
+      "lines": [
+        {
+          "text": "A huge rolling door. Locked from the inside. You would need about forty of you."
+        }
+      ]
+    },
+    "depot_crate": {
+      "lines": [
+        {
+          "text": "A crate stamped FRAGILE: MORNINGS. It is very light."
+        }
+      ]
+    },
+    "depot_side_door": {
+      "lines": [
+        {
+          "speaker": "wick",
+          "text": "Hold on."
+        },
+        {
+          "text": "Wick hooks the latch with the tip of his pole and lifts."
+        },
+        {
+          "cmd": "sfx",
+          "name": "door"
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "tonight_side_door_open"
+        },
+        {
+          "text": "Click."
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_happy",
+          "text": "Apprentice trick. Don't tell the Foreman. Don't tell anyone. Don't tell me."
+        }
+      ]
+    },
+    "depot_enter": {
+      "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "tonight_depot_entered",
+          "goto": ""
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "tonight_depot_entered"
+        },
+        {
+          "text": "Inside, everything has a label. Even the labels have labels."
+        },
+        {
+          "speaker": "foreman",
+          "text": "Wick. You are seven lamps behind."
+        },
+        {
+          "speaker": "foreman",
+          "text": "And who is this?"
+        },
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "Not on the schedule."
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_panic",
+          "text": "He's okay! He held the light on Maple! He's a natural! Kind of!"
+        },
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "The Un-Baker says he's owed a loaf. By a kid. In pajamas.",
+          "if_flag": "enemy_unbaker"
+        },
+        {
+          "speaker": "foreman",
+          "text": "Hm."
+        },
+        {
+          "speaker": "foreman",
+          "text": "Fine. Curfew's on the square. Curfew will sort it out."
+        },
+        {
+          "speaker": "foreman",
+          "text": "But nobody walks through my depot without paperwork."
+        },
+        {
+          "text": "He slides a form across the desk. It is four pages long."
+        },
+        {
+          "text": "You fill it out. It takes a while."
+        },
+        {
+          "cmd": "clock_add",
+          "minutes": 8
+        },
+        {
+          "text": "The last box says BEDTIME. You write 8:30."
+        },
+        {
+          "speaker": "foreman",
+          "text": "Eight-thirty. Huh. That explains a lot."
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "tonight_foreman_ok"
+        },
+        {
+          "speaker": "foreman",
+          "text": "Square's through the big door on the right. Lost-and-found's by the side door. Kids lose things."
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_sad",
+          "text": "Thank you, sir. Sorry, sir. Seven lamps, sir."
+        }
+      ]
+    },
+    "foreman_talk": {
+      "lines": [
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "Paperwork first.",
+          "unless_flag": "tonight_foreman_ok"
+        },
+        {
+          "speaker": "foreman",
+          "text": "Curfew. The square. Through the big door. Go.",
+          "if_flag": "tonight_foreman_ok"
+        },
+        {
+          "speaker": "foreman",
+          "text": "Help Wanted board is on the wall. We are always hiring. We are never hiring kids.",
+          "if_flag": "tonight_foreman_ok",
+          "unless_flag": "tonight_board_seen"
+        },
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "And I still want my loaf.",
+          "if_flag": [
+            "tonight_foreman_ok",
+            "enemy_unbaker"
+          ]
+        }
+      ]
+    },
+    "depot_exit_blocked": {
+      "lines": [
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "Hey. Paperwork first."
+        },
+        {
+          "cmd": "move",
+          "entity": "player",
+          "dx": -1,
+          "dy": 0,
+          "speed": 60
+        }
+      ]
+    },
+    "depot_board": {
+      "lines": [
+        {
+          "cmd": "set_flag",
+          "flag": "tonight_board_seen"
+        },
+        {
+          "text": "The Help Wanted board. Cards pinned in neat rows."
+        },
+        {
+          "cmd": "help_wanted"
+        }
+      ]
+    },
+    "depot_timecards": {
+      "lines": [
+        {
+          "text": "Time cards. One slot for every worker. WICK. UN-BAKER. POSTMAN. CURFEW. A lot of names you don't know yet."
+        },
+        {
+          "text": "One slot at the end has no name on it."
+        }
+      ]
+    },
+    "depot_lockers": {
+      "lines": [
+        {
+          "text": "Lockers. One is labeled SPARE PENCILS. It is completely full."
+        }
+      ]
+    },
+    "depot_window": {
+      "lines": [
+        {
+          "text": "Through the window: the square, and the clock tower above it."
+        }
+      ]
+    },
+    "depot_shelf": {
+      "lines": [
+        {
+          "text": "Boxes of lightbulbs, sorted by how sleepy they look."
+        }
+      ]
+    },
+    "depot_bin": {
+      "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "has_watch",
+          "goto": "depot_bin_empty"
+        },
+        {
+          "text": "LOST & FOUND. A mitten. A key. A yo-yo with no string."
+        },
+        {
+          "text": "And a pocket watch. Its hands are stopped at 2:00."
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_panic",
+          "text": "Don't wind it. Seriously. You don't wind things you find at the Depot.",
+          "choices": [
+            {
+              "text": "Wind it.",
+              "goto": "depot_watch_take"
+            },
+            {
+              "text": "Leave it."
+            }
+          ]
+        }
+      ]
+    },
+    "depot_watch_take": {
+      "lines": [
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "That's Lost-and-Found property. And you owe the Un-Baker a loaf. One more form.",
+          "if_flag": "enemy_unbaker"
+        },
+        {
+          "cmd": "clock_add",
+          "minutes": 4,
+          "if_flag": "enemy_unbaker"
+        },
+        {
+          "text": "You fill out one more form. It asks for your bedtime again.",
+          "if_flag": "enemy_unbaker"
+        },
+        {
+          "cmd": "sfx",
+          "name": "tick"
+        },
+        {
+          "text": "You wind it. Click. Click. Click."
+        },
+        {
+          "cmd": "sfx",
+          "name": "rewind"
+        },
+        {
+          "text": "The second hand jumps forward... then runs backward for a moment, and stops."
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_sad",
+          "text": "...I said don't wind it."
+        },
+        {
+          "speaker": "wick",
+          "text": "Okay. Okay. If it does anything weird, that's on the watch. Not on me."
+        },
+        {
+          "cmd": "give_item",
+          "item": "pocket_watch"
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "has_watch"
+        },
+        {
+          "text": "You got the pocket watch. In a fight, press {rewind} to wind the last two seconds back. Three times a fight."
+        }
+      ]
+    },
+    "depot_bin_empty": {
+      "lines": [
+        {
+          "text": "The mitten, the key, the yo-yo. In your pocket, the watch ticks. Sometimes backward."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "depot_interior",
+  "tileset": "depot_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", ".": "concrete", "_": "floor_line", "B": "board", "b": "bin",
+    "T": "timecards", "K": "desk_big", "s": "shelf", "c": "crate", "l": "locker", "D": "door",
+    "r": "rug", "w": "window"
+  },
+  "layout": [
+    "######################",
+    "#==TTT==BB===w===ll==#",
+    "#....................#",
+    "#....................D",
+    "#.....KKKK...........D",
+    "#....................#",
+    "#..________________..#",
+    "#....................#",
+    "#.b........rrrr.....s#",
+    "#..c................c#",
+    "#....................#",
+    "#D####################"
+  ],
+  "spawns": { "default": [1, 10, "up"], "side": [1, 10, "up"], "east": [20, 3, "left"] },
+  "entities": [
+    { "type": "door", "x": 1, "y": 11, "to": "depot_exterior", "spawn": "side" },
+    { "type": "door", "x": 21, "y": 3, "h": 2, "to": "square", "spawn": "west", "minutes": 3, "if_flag": "tonight_foreman_ok" },
+    { "type": "trigger", "x": 20, "y": 3, "h": 2, "dialogue": "depot_exit_blocked", "unless_flag": "tonight_foreman_ok" },
+    { "type": "npc", "id": "foreman", "sprite": "foreman", "x": 8, "y": 3, "facing": "down", "dialogue": "foreman_talk" },
+    { "type": "inspect", "x": 6, "y": 4, "w": 4, "dialogue": "foreman_talk" },
+    { "type": "inspect", "x": 8, "y": 1, "w": 2, "dialogue": "depot_board" },
+    { "type": "inspect", "x": 3, "y": 1, "w": 3, "dialogue": "depot_timecards" },
+    { "type": "inspect", "x": 2, "y": 8, "dialogue": "depot_bin" },
+    { "type": "inspect", "x": 17, "y": 1, "w": 2, "dialogue": "depot_lockers" },
+    { "type": "inspect", "x": 13, "y": 1, "dialogue": "depot_window" },
+    { "type": "inspect", "x": 20, "y": 8, "dialogue": "depot_shelf" },
+    { "type": "inspect", "x": 3, "y": 9, "dialogue": "depot_crate" },
+    { "type": "inspect", "x": 20, "y": 9, "dialogue": "depot_crate" }
+  ],
+  "lights": [
+    { "id": "depot_in_1", "x": 4, "y": 2, "radius": 56, "energy": 0.8, "on": true },
+    { "id": "depot_in_2", "x": 15, "y": 2, "radius": 56, "energy": 0.8, "on": true },
+    { "id": "depot_in_3", "x": 10, "y": 8, "radius": 60, "energy": 0.7, "on": true },
+    { "id": "depot_bin_glow", "x": 2, "y": 8, "radius": 14, "color": "wake", "energy": 0.5, "on": true }
+  ],
+  "ambient": 0.4,
+  "music": "depot_loop",
+  "companion": true,
+  "on_enter": "depot_enter"
+}

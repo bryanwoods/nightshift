@@ -1,0 +1,31 @@
+{
+  "id": "unbaker",
+  "name": "The Un-Baker",
+  "job": "Takes yesterday's bread back before morning",
+  "sprite": "unbaker",
+  "portrait": "unbaker",
+  "size": "normal",
+  "patience": 15,
+  "hit_damage": 2,
+  "patterns": [
+    { "type": "rain", "duration": 6, "count": 10, "speed": 50, "sprite": "crumb" },
+    { "type": "sweep", "duration": 6, "bars": 3, "gap_px": 24, "speed": 60, "from": "both" }
+  ],
+  "task": {
+    "title": "Collect the loaves",
+    "steps": [
+      { "label": "Ask what the bread is for", "line": "unbaker_help_1" },
+      { "label": "Carry a loaf", "line": "unbaker_help_2" },
+      { "label": "Check the list", "line": "unbaker_help_3",
+        "choice": { "prompt": "The list says 3 loaves. The cart has...", "options": ["2", "3", "4"], "correct": 1,
+                    "wrong_line": "unbaker_help_3_wrong" } }
+    ]
+  },
+  "dialogue": {
+    "intro": "unbaker_battle_intro",
+    "hustle_hit": "unbaker_hustle",
+    "satisfied": "unbaker_satisfied",
+    "defeated": "unbaker_defeated"
+  },
+  "rewards": { "satisfied": { "flag": "friend_unbaker", "item": "heel_of_bread" }, "defeated": { "flag": "enemy_unbaker" } }
+}

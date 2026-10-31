@@ -1,0 +1,18 @@
+{
+  "id": "credits",
+  "lines": [
+    { "text": "NIGHTSHIFT", "color": "lamp" },
+    { "text": "" },
+    { "text": "Designed by", "color": "fog" },
+    { "text": "Tadzio" },
+    { "text": "Bryan" },
+    { "text": "" },
+    { "text": "Built from the spec by", "color": "fog" },
+    { "text": "Claude Code" },
+    { "text": "" },
+    { "text": "Font: Micro 5 by the Soft Type Project (SIL Open Font License)", "color": "fog" },
+    { "text": "Made with Godot Engine", "color": "fog" },
+    { "text": "" },
+    { "text": "TODO(Tadzio): who else goes on this list?", "color": "dusk" }
+  ]
+}

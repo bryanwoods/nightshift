@@ -1,0 +1,66 @@
+{
+  "id": "street_maple",
+  "tileset": "town_night",
+  "legend": {
+    "R": "roof", "H": "house_wall", "w": "house_window", "d": "house_door", ".": "sidewalk", ",": "road",
+    "-": "road_line", "L": "lamp_post", "h": "hedge", "T": "tree", "F": "fence", "G": "gate",
+    "x": "ladder_broken", "m": "mailbox"
+  },
+  "layout": [
+    "RRRRRRRRRRRRRRRRRRRRRRRR",
+    "HwHdHHwHHHwHdHHwHHHwHdHH",
+    "F..Lx....L.....L.....L..",
+    "G.......................",
+    "F,,,,,,,,,,,,,,,,,,,,,,,",
+    "F-,-,-,-,-,-,-,-,-,-,-,-",
+    "F,,,,,,,,,,,,,,,,,,,,,,,",
+    "F.....L.....m.....L.....",
+    "hhhhhhThhhhhhhhhThhhhhhh"
+  ],
+  "spawns": { "default": [1, 3, "right"], "gate": [1, 3, "right"], "east": [22, 4, "left"] },
+  "entities": [
+    { "type": "door", "x": 0, "y": 3, "to": "backyard", "spawn": "gate" },
+    { "type": "door", "x": 23, "y": 3, "h": 4, "to": "street_main", "spawn": "west", "minutes": 3 },
+
+    { "type": "trigger", "x": 2, "y": 2, "h": 6, "once": true, "flag": "met_wick", "dialogue": "wick_intro" },
+    { "type": "npc", "id": "wick", "sprite": "wick", "x": 4, "y": 3, "facing": "up", "dialogue": "wick_again", "unless_flag": "wick_joined" },
+    { "type": "trigger", "x": 16, "y": 2, "h": 6, "dialogue": "wick_wait_up", "if_flag": "met_wick", "unless_flag": "wick_joined" },
+
+    { "type": "hold", "x": 3, "y": 2, "seconds": 2.5, "minutes": 2, "dialogue": "lamp_maple_lit", "if_flag": "tonight_lamp_task", "unless_flag": "tonight_lamp_lit" },
+    { "type": "inspect", "x": 3, "y": 2, "dialogue": "inspect_dark_lamp", "unless_flag": ["tonight_lamp_task", "tonight_lamp_lit"] },
+    { "type": "inspect", "x": 3, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_lamp_lit" },
+    { "type": "inspect", "x": 4, "y": 2, "dialogue": "inspect_ladder" },
+
+    { "type": "hold", "x": 9, "y": 2, "seconds": 2.0, "minutes": 2, "light": "maple_2", "flag": "tonight_maple_2", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_maple_2" },
+    { "type": "inspect", "x": 9, "y": 2, "dialogue": "inspect_dark_lamp", "unless_flag": ["wick_joined", "tonight_maple_2"] },
+    { "type": "inspect", "x": 9, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_maple_2" },
+    { "type": "hold", "x": 15, "y": 2, "seconds": 2.0, "minutes": 2, "light": "maple_3", "flag": "tonight_maple_3", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_maple_3" },
+    { "type": "inspect", "x": 15, "y": 2, "dialogue": "inspect_dark_lamp", "unless_flag": ["wick_joined", "tonight_maple_3"] },
+    { "type": "inspect", "x": 15, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_maple_3" },
+    { "type": "inspect", "x": 21, "y": 2, "dialogue": "inspect_far_lamp" },
+    { "type": "inspect", "x": 6, "y": 7, "dialogue": "inspect_dark_lamp_far" },
+    { "type": "inspect", "x": 18, "y": 7, "dialogue": "inspect_dark_lamp_far" },
+
+    { "type": "trigger", "x": 17, "y": 2, "h": 6, "once": true, "flag": "unbaker_seen", "dialogue": "unbaker_approach", "if_flag": "wick_joined" },
+    { "type": "npc", "id": "unbaker", "sprite": "unbaker", "x": 23, "y": 4, "facing": "left", "dialogue": "unbaker_busy", "if_flag": "unbaker_seen", "unless_flag": ["friend_unbaker", "enemy_unbaker"] },
+    { "type": "npc", "id": "unbaker_friend", "sprite": "unbaker", "x": 19, "y": 4, "facing": "left", "dialogue": "unbaker_friend_chat", "if_flag": "friend_unbaker" },
+
+    { "type": "inspect", "x": 3, "y": 1, "dialogue": "inspect_own_door" },
+    { "type": "inspect", "x": 12, "y": 1, "dialogue": "inspect_neighbor_door" },
+    { "type": "inspect", "x": 21, "y": 1, "dialogue": "inspect_neighbor_door" },
+    { "type": "inspect", "x": 6, "y": 1, "dialogue": "inspect_house_window" },
+    { "type": "inspect", "x": 15, "y": 1, "dialogue": "inspect_house_window" },
+    { "type": "inspect", "x": 12, "y": 7, "dialogue": "inspect_mailbox_maple" }
+  ],
+  "lights": [
+    { "id": "maple_1", "x": 3, "y": 2, "radius": 44, "on": false },
+    { "id": "maple_2", "x": 9, "y": 2, "radius": 40, "on": false },
+    { "id": "maple_3", "x": 15, "y": 2, "radius": 40, "on": false },
+    { "id": "maple_4", "x": 21, "y": 2, "radius": 40, "on": true },
+    { "id": "maple_5", "x": 6, "y": 7, "radius": 40, "on": false },
+    { "id": "maple_6", "x": 18, "y": 7, "radius": 40, "on": false }
+  ],
+  "ambient": 0.3,
+  "music": "street_loop",
+  "companion": true
+}

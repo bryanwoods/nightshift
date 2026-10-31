@@ -1,0 +1,34 @@
+{
+  "id": "wick",
+  "dialogues": {
+    "wick_chat": {
+      "lines": [
+        { "cmd": "if_flag", "flag": "tonight_foreman_ok", "goto": "wick_chat_depot_done" },
+        { "cmd": "if_flag", "flag": "tonight_depot_ext_seen", "goto": "wick_chat_depot" },
+        { "cmd": "if_flag", "flag": "unbaker_seen", "goto": "wick_chat_east" },
+        { "speaker": "wick", "text": "We should keep moving. East. The Depot's that way. Everything's east of something." },
+        { "speaker": "wick", "text": "And every dark lamp you light is one less for the Foreman to count. Costs minutes, though." }
+      ]
+    },
+    "wick_chat_east": {
+      "lines": [
+        { "speaker": "wick", "text": "The Depot's past Main Street. Keep going east." },
+        { "speaker": "wick", "text": "In a fight, Help is slow but you make a friend. Hustle is fast but... you don't.", "unless_flag": "friend_unbaker" },
+        { "speaker": "wick", "portrait": "wick_happy", "text": "You helped the Un-Baker count. Nobody helps the Un-Baker count.", "if_flag": "friend_unbaker" }
+      ]
+    },
+    "wick_chat_depot": {
+      "lines": [
+        { "speaker": "wick", "text": "The front door's for workers with cards. We use the side door. I know a trick." }
+      ]
+    },
+    "wick_chat_depot_done": {
+      "lines": [
+        { "speaker": "wick", "text": "Curfew's on the square. Through the big door on the right." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "And don't wind anything you find in the lost-and-found! I mean it!", "unless_flag": "has_watch" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "That watch. In a fight, if something's about to hit you, press {rewind}. Don't ask me how I know.", "if_flag": "has_watch" },
+        { "speaker": "wick", "text": "Curfew's slow. Watch the notes when it sings. They fall in an order.", "if_flag": "has_watch" }
+      ]
+    }
+  }
+}

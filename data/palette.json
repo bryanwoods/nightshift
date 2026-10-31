@@ -1,0 +1,23 @@
+{
+  "id": "palette",
+  "night": {
+    "ink": "#0b0e1f",
+    "night": "#1b1f3b",
+    "dusk": "#2e3561",
+    "slate": "#4b568c",
+    "fog": "#8a90b8",
+    "moon": "#f4ead6",
+    "lamp": "#ffb347",
+    "ember": "#ff7a1a",
+    "hush": "#e05a6d",
+    "wake": "#6cd4a8"
+  },
+  "morning": {
+    "cream": "#fff4dc",
+    "butter": "#ffd96a",
+    "sky": "#9cc8f0",
+    "leaf": "#b8e0a8",
+    "bark": "#8a5a3c",
+    "white": "#ffffff"
+  }
+}

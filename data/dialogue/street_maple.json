@@ -1,0 +1,152 @@
+{
+  "id": "street_maple",
+  "dialogues": {
+    "wick_intro": {
+      "lines": [
+        { "cmd": "face", "entity": "wick", "dir": "left" },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "A dayside kid. Awake. At— no. No no. What time is it?" },
+        { "speaker": "tadzio", "text": "Two." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "Fourteen lamps dark, the ladder's busted, and the Foreman counts every one.",
+          "choices": [
+            { "text": "I can hold the light.", "goto": "wick_help" },
+            { "text": "Who's the Foreman?", "goto": "wick_foreman" }
+          ] },
+        { "cmd": "set_flag", "flag": "met_wick" }
+      ]
+    },
+    "wick_help": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_panic", "text": "You— you'd do that? For a lamp? For me?" },
+        { "speaker": "wick", "text": "Okay. Okay okay. Stand by the lamp, face it, and hold {confirm}. I'll do the flame part." },
+        { "speaker": "wick", "text": "It takes a couple of minutes. Everything takes minutes." },
+        { "cmd": "set_flag", "flag": "tonight_lamp_task" }
+      ]
+    },
+    "wick_foreman": {
+      "lines": [
+        { "speaker": "wick", "text": "The Foreman runs the Nightshift. Every lamp, every loaf, every minute." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "He has a clipboard. He has two pencils. If he finds out a dayside kid saw me, I'm— I don't know what I am. In trouble.",
+          "choices": [
+            { "text": "I can hold the light.", "goto": "wick_help" },
+            { "text": "I'm going to look around.", "goto": "wick_later" }
+          ] }
+      ]
+    },
+    "wick_later": {
+      "lines": [ { "speaker": "wick", "portrait": "wick_sad", "text": "Sure. Fine. I'll be here. Under the busted ladder. Being fine." } ]
+    },
+    "wick_again": {
+      "lines": [
+        { "cmd": "if_flag", "flag": "tonight_lamp_task", "goto": "wick_again_task" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "Still awake? Still seeing me?",
+          "choices": [
+            { "text": "I can hold the light.", "goto": "wick_help" },
+            { "text": "Who's the Foreman?", "goto": "wick_foreman" }
+          ] }
+      ]
+    },
+    "wick_again_task": {
+      "lines": [ { "speaker": "wick", "text": "The lamp. Face it and hold {confirm}. You've got this. I think. I hope." } ]
+    },
+    "wick_wait_up": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_panic", "text": "Wait! Not that way. Not alone. Not before the lamp!" },
+        { "cmd": "move", "entity": "player", "dx": -1, "dy": 0, "speed": 60 }
+      ]
+    },
+    "lamp_maple_lit": {
+      "lines": [
+        { "cmd": "light", "id": "maple_1", "on": true },
+        { "cmd": "set_flag", "flag": "tonight_lamp_lit" },
+        { "text": "The lamp catches. Warm light spills down the sidewalk." },
+        { "speaker": "wick", "portrait": "wick_happy", "text": "You did it. You actually held it!" },
+        { "speaker": "tadzio", "text": "Took two minutes." },
+        { "speaker": "wick", "text": "Everything does. That's the job: you trade minutes for light." },
+        { "speaker": "wick", "text": "I'm Wick. Apprentice lamplighter. Second class. Fourth class. Some class." },
+        { "speaker": "wick", "portrait": "wick_happy", "text": "I'm coming with you. Somebody has to explain things. Just— keep that flashlight off my face." },
+        { "cmd": "set_flag", "flag": "wick_joined" },
+        { "cmd": "set_flag", "flag": "friend_wick" },
+        { "text": "Wick joined you. Talk to him any time with {confirm}." }
+      ]
+    },
+    "lamp_extra_lit": {
+      "seen_variant": "lamp_extra_lit_2",
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_happy", "text": "One less for the Foreman to count!" },
+        { "speaker": "wick", "text": "Each lamp costs a couple of minutes. But look at the street. Worth it? Your call." }
+      ]
+    },
+    "lamp_extra_lit_2": {
+      "seen_variant": "lamp_extra_lit_3",
+      "lines": [ { "speaker": "wick", "portrait": "wick_happy", "text": "Look at that. Look at it glow." } ]
+    },
+    "lamp_extra_lit_3": {
+      "lines": [ { "speaker": "wick", "portrait": "wick_happy", "text": "You're good at this. Don't tell anyone I said so." } ]
+    },
+    "inspect_dark_lamp": {
+      "lines": [ { "text": "A streetlamp. Dark." } ]
+    },
+    "inspect_lit_lamp": {
+      "lines": [ { "text": "The lamp hums. It's a happy hum." } ]
+    },
+    "inspect_far_lamp": {
+      "lines": [ { "text": "The only lamp that was already lit. Something has been circling it." } ]
+    },
+    "inspect_dark_lamp_far": {
+      "lines": [ { "text": "Dark. That one's on tomorrow's list, probably." } ]
+    },
+    "inspect_ladder": {
+      "lines": [ { "text": "A ladder, snapped clean in two. It looks embarrassed about it." } ]
+    },
+    "inspect_own_door": {
+      "lines": [ { "text": "Your own front door. Locked. You left through the back, like a burglar of your own house." } ]
+    },
+    "inspect_neighbor_door": {
+      "lines": [
+        { "text": "A neighbor's door." },
+        { "text": "TODO(Tadzio): who lives here?" }
+      ]
+    },
+    "inspect_house_window": {
+      "lines": [ { "text": "A dark window. Somebody in there is asleep, and doing a great job of it." } ]
+    },
+    "inspect_mailbox_maple": {
+      "lines": [ { "text": "A mailbox. Empty. Even the mail is asleep." } ]
+    },
+    "unbaker_approach": {
+      "lines": [
+        { "cmd": "move", "entity": "unbaker", "dx": -4, "dy": 0, "speed": 32 },
+        { "text": "A tall figure pushes a cart up the street. At every doorstep, it stops and takes the bread back." },
+        { "speaker": "unbaker", "text": "Twelve. Thirteen. Fourteen loaves. Yesterday's. All accounted for." },
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "You're not on my list. Nobody awake is on my list." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "That's the Un-Baker! He takes yesterday's bread back before morning. He's very, very particular." },
+        { "speaker": "unbaker", "text": "A kid off the list is a problem. I don't like problems. I like lists." },
+        { "cmd": "battle", "worker": "unbaker" },
+        { "cmd": "if_flag", "flag": "friend_unbaker", "goto": "unbaker_after_friend", "else": "unbaker_after_enemy" }
+      ]
+    },
+    "unbaker_after_friend": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_happy", "text": "He gave you bread. He never gives anybody bread. He COUNTS it!" },
+        { "speaker": "tadzio", "text": "It's just the heel." },
+        { "speaker": "wick", "text": "The heel is the best part. Everybody knows that." },
+        { "speaker": "wick", "text": "Come on. The Depot's past Main Street. East." }
+      ]
+    },
+    "unbaker_after_enemy": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "Oh. He's going to tell the Foreman. He tells the Foreman everything." },
+        { "speaker": "tadzio", "text": "He was in the way." },
+        { "speaker": "wick", "text": "He was doing his job. At two in the morning that's kind of the same thing." },
+        { "speaker": "wick", "text": "Come on. The Depot's past Main Street. East." }
+      ]
+    },
+    "unbaker_friend_chat": {
+      "seen_variant": "unbaker_friend_chat_2",
+      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_happy", "text": "Fourteen loaves. All yesterday's. All accounted for. Thanks to you." } ]
+    },
+    "unbaker_friend_chat_2": {
+      "lines": [ { "speaker": "unbaker", "text": "Don't eat the heel all at once. Make it last." } ]
+    }
+  }
+}

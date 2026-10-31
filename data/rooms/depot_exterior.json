@@ -1,0 +1,45 @@
+{
+  "id": "depot_exterior",
+  "tileset": "town_night",
+  "legend": {
+    "R": "roof", "D": "depot_wall", "U": "rolling_door", "P": "punch_clock", "S": "side_door_closed",
+    ".": "sidewalk", ",": "road", "-": "road_line", "L": "lamp_post", "c": "crate", "h": "hedge"
+  },
+  "layout": [
+    "RRRRRRRRRRRRRRRR",
+    "DDDUUUUDDPDSDDDD",
+    "..L..........cL.",
+    "................",
+    ",,,,,,,,,,,,,,,,",
+    "-,-,-,-,-,-,-,-,",
+    ",,,,,,,,,,,,,,,,",
+    ".......L........",
+    "hhhhhhhhhhhhhhhh"
+  ],
+  "overrides": [
+    { "x": 11, "y": 1, "tile": "side_door", "if_flag": "tonight_side_door_open" }
+  ],
+  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "side": [11, 2, "down"] },
+  "entities": [
+    { "type": "door", "x": 0, "y": 3, "h": 4, "to": "street_main", "spawn": "east", "minutes": 3 },
+    { "type": "door", "x": 11, "y": 1, "to": "depot_interior", "spawn": "side", "if_flag": "tonight_side_door_open" },
+    { "type": "inspect", "x": 11, "y": 1, "dialogue": "depot_side_door", "unless_flag": "tonight_side_door_open" },
+    { "type": "inspect", "x": 9, "y": 1, "dialogue": "depot_punch_clock" },
+    { "type": "inspect", "x": 3, "y": 1, "w": 4, "dialogue": "depot_rolling_door" },
+    { "type": "inspect", "x": 13, "y": 2, "dialogue": "depot_crate" },
+    { "type": "hold", "x": 2, "y": 2, "seconds": 2.0, "minutes": 2, "light": "depot_lamp_1", "flag": "tonight_depot_lamp", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_depot_lamp" },
+    { "type": "inspect", "x": 2, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_depot_lamp" },
+    { "type": "inspect", "x": 14, "y": 2, "dialogue": "inspect_lit_lamp" },
+    { "type": "inspect", "x": 7, "y": 7, "dialogue": "inspect_dark_lamp_far" }
+  ],
+  "lights": [
+    { "id": "depot_lamp_1", "x": 2, "y": 2, "radius": 40, "on": false },
+    { "id": "depot_lamp_2", "x": 14, "y": 2, "radius": 40, "on": true },
+    { "id": "depot_lamp_3", "x": 7, "y": 7, "radius": 40, "on": false },
+    { "id": "punch_glow", "x": 9, "y": 1, "radius": 16, "color": "ember", "energy": 0.5, "on": true }
+  ],
+  "ambient": 0.3,
+  "music": "street_loop",
+  "companion": true,
+  "on_enter": "depot_ext_enter"
+}

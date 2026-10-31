@@ -1,0 +1,12 @@
+# F4 toggles every flag listed here (debug builds only).
+met_wick
+wick_joined
+friend_wick
+tonight_lamp_task
+tonight_lamp_lit
+unbaker_seen
+friend_unbaker
+postman_met
+tonight_side_door_open
+tonight_foreman_ok
+has_watch

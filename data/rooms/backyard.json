@@ -1,0 +1,38 @@
+{
+  "id": "backyard",
+  "tileset": "town_night",
+  "legend": {
+    "R": "roof", "H": "house_wall", "w": "house_window", "b": "back_door", "~": "grass", ":": "path",
+    "F": "fence", "G": "gate", "T": "tree", "h": "hedge", "f": "flowerbed", "c": "crate"
+  },
+  "layout": [
+    "RRRRRRRRRRRRRR",
+    "HHbHHwHHHwHHHH",
+    "~~:~~~~~~~f~~F",
+    "~~:~~~T~~~~~~F",
+    "~~:::::::::::G",
+    "~~~~~~~~~~~~~F",
+    "~c~~~~~~~~T~~F",
+    "~~~~~~~~~~~~~F",
+    "hhhhhhhhhhhhhh"
+  ],
+  "spawns": { "default": [2, 2, "down"], "house": [2, 2, "down"], "gate": [12, 4, "left"] },
+  "entities": [
+    { "type": "door", "x": 2, "y": 1, "to": "kitchen", "spawn": "backyard" },
+    { "type": "inspect", "x": 6, "y": 3, "dialogue": "backyard_tree" },
+    { "type": "inspect", "x": 10, "y": 6, "dialogue": "backyard_tree" },
+    { "type": "inspect", "x": 1, "y": 6, "dialogue": "backyard_crate" },
+    { "type": "inspect", "x": 10, "y": 2, "dialogue": "backyard_flowers" },
+    { "type": "inspect", "x": 5, "y": 1, "dialogue": "backyard_window" },
+    { "type": "trigger", "x": 8, "y": 2, "h": 6, "once": true, "flag": "tonight_gate_light", "dialogue": "backyard_light" },
+    { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "dialogue": "gate_chime", "unless_flag": "tonight_gate" },
+    { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "if_flag": "tonight_gate" }
+  ],
+  "lights": [
+    { "id": "gate_glow", "x": 13, "y": 3, "radius": 26, "color": "lamp", "on": false },
+    { "id": "yard_moon", "x": 7, "y": 5, "radius": 60, "color": "fog", "energy": 0.4, "on": true }
+  ],
+  "ambient": 0.3,
+  "music": "house_hum",
+  "on_enter": "backyard_enter"
+}
