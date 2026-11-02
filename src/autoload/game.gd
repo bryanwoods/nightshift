@@ -38,6 +38,10 @@ var last_night_minutes: int = 0
 var last_night_reason: String = ""
 var rewind_charges: int = 0
 var errors: PackedStringArray = []
+var playtest_path: String = ""
+
+var _log: FileAccess
+var _log_start: int = 0
 
 var _fade_layer: CanvasLayer
 var _fade: ColorRect
@@ -88,6 +92,20 @@ func report(file: String, field: String, problem: String) -> void:
 	if _error_label and OS.is_debug_build():
 		_error_label.text = "DATA ERRORS (fix the file, then F5)\n" + "\n".join(errors.slice(-8))
 		_error_label.visible = true
+
+
+## One line per event, flushed at once, so a quit or a crash keeps the session.
+## Read it with tools/playtest_report.py. Lines: real seconds, clock, room, event, JSON fields.
+func playtest(event: String, fields: Dictionary = {}) -> void:
+	if _log == null:
+		DirAccess.make_dir_recursive_absolute("user://playtest")
+		playtest_path = "user://playtest/%s.log" % Time.get_datetime_string_from_system().replace(":", "-")
+		_log = FileAccess.open(playtest_path, FileAccess.WRITE)
+		_log_start = Time.get_ticks_msec()
+		if _log == null:
+			return
+	_log.store_line("%.1f\t%s\t%s\t%s\t%s" % [(Time.get_ticks_msec() - _log_start) / 1000.0, NightClock.text(), room_id, event, JSON.stringify(fields)])
+	_log.flush()
 
 
 func color(name: String) -> Color:
@@ -188,6 +206,7 @@ func start_night(new_game: bool) -> void:
 	for f in flags.keys():
 		if str(f).begins_with(TONIGHT):
 			flags.erase(f)
+	playtest("night_start", {"night": night, "new_game": new_game})
 	lights.clear()
 	flashlight = true
 	night_over = false
@@ -247,6 +266,7 @@ func end_night(reason: String) -> void:
 	night_over = true
 	last_night_reason = reason
 	last_night_minutes = clampi(NightClock.minute, 0, NightClock.HOUR)
+	playtest("night_end", {"reason": reason, "minutes": last_night_minutes})
 	NightClock.paused = true
 	DialogueRunner.abort()
 	get_tree().paused = true

@@ -214,6 +214,23 @@ A new pattern type is one new script in `src/battle/patterns/`, named after the 
 Add `{ "title", "posted_by", "text", "status" }` to `data/help_wanted.json`.
 `status` is `open`, `taken` or `done`.
 
+## Playtest log
+
+Every session writes one log, `playtest/<date-time>.log`, in the game's user folder
+(macOS: `~/Library/Application Support/Godot/app_userdata/Nightshift/`). It records rooms,
+dialogues, choices, lamps, fights, hits, rewinds and the end of the night, each with
+real seconds and the in-game clock. It is flushed line by line, so quitting keeps it.
+The autotest bot deletes its own logs.
+
+```sh
+python3 tools/playtest_report.py            # the newest log
+python3 tools/playtest_report.py some.log   # one log
+```
+
+The report gives real time per room, the clock when Curfew starts (target 2:36 to 2:44),
+each fight's turns, hits by pattern, Hustle presses, the choices made, and quiet stretches
+over 45 seconds, which can mean the player was stuck.
+
 ## Export
 
 Export templates for the Godot version must be installed (Editor, Manage Export Templates).

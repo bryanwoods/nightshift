@@ -436,7 +436,7 @@ func _hold_at(x: int, y: int) -> void:
 		_fail("no hold spot at %d,%d in %s" % [x, y, Game.room_id])
 		return
 	var r := _cur_room()
-	while not DialogueRunner.is_active():
+	while not DialogueRunner.is_active() and e.active:
 		r.advance_hold(e, 0.05)
 		await get_tree().physics_frame
 	await _idle()
@@ -503,6 +503,11 @@ func _inspect_all() -> void:
 
 
 func _finish() -> void:
+	if route in ["help", "hustle"]:
+		var text := FileAccess.get_file_as_string(Game.playtest_path)
+		_expect("\tbattle_end\t" in text and "\tnight_end\t" in text, "the playtest log has the fights and the night end")
+	if Game.playtest_path != "":
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(Game.playtest_path))
 	for e in Game.errors:
 		failures.append("data error: " + e)
 	print("[bot] errors from data: %d" % Game.errors.size())

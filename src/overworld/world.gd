@@ -36,6 +36,7 @@ func _load_room() -> void:
 	if not room.build(Game.room_id, Game.spawn):
 		Game.report("rooms", Game.room_id, "the room could not be built")
 		return
+	Game.playtest("room", {"spawn": Game.spawn})
 	hud.visible = bool(room.data.get("hud", true))
 	RenderingServer.set_default_clear_color(Game.color(str(room.data.get("background", "ink"))))
 	AudioBus.play_music(str(room.data.get("music", "")))

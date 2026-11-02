@@ -73,6 +73,9 @@ var _bubble: Panel
 var _bubble_text: Label
 var _bubble_tail: Polygon2D
 var _header: Array[Label] = []
+var _stats: Dictionary = {"turns": 0, "hits": 0, "damage": 0, "rewinds": 0, "blocked": 0, "actions": [], "hustle": []}
+var _start_msec: int = 0
+var _start_minute: int = 0
 var _prompt: Label
 var _wipe: ColorRect
 
@@ -96,6 +99,9 @@ func start(id: String) -> void:
 	Game.rewind_charges = int(Game.tuning.get("rewind_charges", 3))
 	Game.charges_changed.emit()
 	_build()
+	_start_msec = Time.get_ticks_msec()
+	_start_minute = NightClock.minute
+	Game.playtest("battle_start", {"worker": worker_id})
 	NightClock.hour_ended.connect(_on_hour_ended)
 	if worker.has("music"):
 		AudioBus.play_music(str(worker["music"]))
@@ -124,6 +130,12 @@ func _loop() -> void:
 		AudioBus.sfx("tick")
 	if result == "":
 		result = "abandoned"
+	_stats["result"] = result
+	_stats["worker"] = worker_id
+	_stats["minutes"] = NightClock.minute - _start_minute
+	_stats["seconds"] = snappedf((Time.get_ticks_msec() - _start_msec) / 1000.0, 0.1)
+	_stats["awake_left"] = awake
+	Game.playtest("battle_end", _stats)
 	if not Game.night_over:
 		await _wipe_out()
 	finished.emit(result)
@@ -153,6 +165,8 @@ func _menu_phase() -> String:
 
 
 func _act(action: String) -> bool:
+	_stats["turns"] += 1
+	(_stats["actions"] as Array).append(action)
 	_stall = false
 	_hold = false
 	_lit = false
@@ -225,6 +239,7 @@ func _hustle() -> bool:
 	_arena.hustle_t = 0.0
 	_input_at = Time.get_ticks_msec() + 120
 	var dmg: int = await _hustle_done
+	(_stats["hustle"] as Array).append(dmg)
 	_hustle_on = false
 	_arena.hustle_t = -1.0
 	if over:
@@ -330,11 +345,15 @@ func _take_hit(dmg: int) -> void:
 		_hold = false
 		_invuln = invuln
 		AudioBus.sfx("block")
+		_stats["blocked"] += 1
 		_show_prompt(Game.text("wick_blocked"), 1.0)
 		return
 	if _stall:
 		dmg = ceili(dmg / 2.0)
 	awake = maxi(0, awake - dmg)
+	_stats["hits"] += 1
+	_stats["damage"] += dmg
+	Game.playtest("battle_hit", {"worker": worker_id, "pattern": str(_pattern.params.get("type", "")), "damage": dmg, "awake": awake})
 	_invuln = invuln
 	_since_hit = 0.0
 	AudioBus.sfx("hit")
@@ -356,6 +375,7 @@ func _try_rewind() -> void:
 	_arena.token = s["token"]
 	_pattern.restore(s["p"])
 	Game.rewind_charges -= 1
+	_stats["rewinds"] += 1
 	Game.charges_changed.emit()
 	AudioBus.sfx("rewind")
 	_arena.rewind_flash = 1.0
@@ -380,6 +400,7 @@ func _check_tutorial() -> void:
 		_tutorial_clear = 0.0
 		_time_scale = float(Game.tuning.get("rewind_tutorial_slowmo", 0.2))
 		_show_prompt(Game.text("rewind_prompt"), -1.0)
+		Game.playtest("rewind_tutorial", {"worker": worker_id})
 
 
 func _end_tutorial() -> void:

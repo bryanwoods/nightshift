@@ -100,6 +100,7 @@ func run(id: String) -> void:
 	id = _resolve(id)
 	var d: Dictionary = dialogues[id]
 	Game.seen[id] = true
+	Game.playtest("dialogue", {"id": id})
 	depth += 1
 	dialogue_started.emit(id)
 	await _run_lines(d["lines"], gen)
@@ -129,6 +130,8 @@ func _run_lines(lines: Array, gen: int) -> void:
 		var pick: int = await _show(line, labels)
 		if gen != _gen:
 			return
+		if pick >= 0 and pick < labels.size():
+			Game.playtest("choice", {"text": labels[pick]})
 		if pick >= 0 and pick < choices.size():
 			await run(str(choices[pick].get("goto", "")))
 
@@ -214,6 +217,8 @@ func ask(speaker: String, text: String, options: Array[String]) -> int:
 	var pick: int = await _show({"speaker": speaker, "text": text}, options)
 	if gen != _gen:
 		return -1
+	if pick >= 0 and pick < options.size():
+		Game.playtest("choice", {"text": options[pick], "prompt": text})
 	depth -= 1
 	textbox.hide_box()
 	last_end_msec = Time.get_ticks_msec()

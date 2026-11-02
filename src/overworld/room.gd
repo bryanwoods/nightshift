@@ -198,6 +198,8 @@ func find_target(p: Vector2, facing: Vector2) -> Entity:
 
 
 func advance_hold(e: Entity, delta: float) -> void:
+	if not e.active:
+		return
 	var minutes := int(e.data.get("minutes", 2))
 	e.progress = minf(1.0, e.progress + delta / float(e.data.get("seconds", 2.0)))
 	while e.spent < minutes and e.progress >= float(e.spent + 1) / float(minutes + 1):
@@ -211,6 +213,7 @@ func advance_hold(e: Entity, delta: float) -> void:
 		e.progress = 0.0
 		e.spent = 0
 		AudioBus.sfx("whoosh")
+		Game.playtest("hold_done", {"x": e.data.get("x"), "y": e.data.get("y"), "minutes": minutes})
 		if e.data.has("light"):
 			Game.set_light(str(e.data["light"]), true)
 		if e.data.has("flag"):
