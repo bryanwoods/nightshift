@@ -26,6 +26,6 @@
     { "id": "bath_light", "x": 7, "y": 2, "radius": 30, "color": "moon", "on": false },
     { "id": "hall_moon", "x": 9, "y": 2, "radius": 36, "color": "fog", "energy": 0.6, "on": true }
   ],
-  "ambient": 0.35,
+  "ambient": 0.45,
   "music": "house_hum"
 }

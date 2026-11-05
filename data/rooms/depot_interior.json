@@ -44,7 +44,7 @@
     { "id": "depot_lantern", "x": 11, "y": 1, "radius": 30, "on": false },
     { "id": "depot_bin_glow", "x": 2, "y": 8, "radius": 14, "color": "wake", "energy": 0.5, "on": true }
   ],
-  "ambient": 0.4,
+  "ambient": 0.45,
   "music": "depot_loop",
   "companion": true,
   "on_enter": "depot_enter"

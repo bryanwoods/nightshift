@@ -5,6 +5,8 @@ extends RefCounted
 
 const ROOMS := "res://data/rooms/"
 const WORKERS := "res://data/workers/"
+## SPEC.md, Art: a night room is never darker than this, so the room reads without the flashlight.
+const AMBIENT_FLOOR := 0.45
 
 
 static func validate_all() -> void:
@@ -98,6 +100,8 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 	for l: Dictionary in d.get("lights", []):
 		if not l.has("id"):
 			Game.report(file, "lights", "every light needs an id")
+	if float(d.get("ambient", 1.0)) < AMBIENT_FLOOR:
+		Game.report(file, "ambient", "is below %s, the floor for a readable room (SPEC.md, Art)" % AMBIENT_FLOOR)
 	if d.has("on_enter") and not DialogueRunner.has(str(d["on_enter"])):
 		Game.report(file, "on_enter", "no dialogue \"%s\"" % d["on_enter"])
 

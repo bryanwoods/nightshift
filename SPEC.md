@@ -617,3 +617,52 @@ and each step is a question it asks; any answer counts. Every outcome leaves beh
 same item, a key to nothing. It has `"respawn": "never"`: once the fight is over, any way,
 the alley is quiet, and the lamp still works. The alley lamp lights without Wick
 (`"wick": false`). The game never explains any of it.
+
+---
+
+# Round 3: graphics and readability (2026-11-04)
+
+The playtester could not tell what things were. Told to go to the door or the clock, he
+could not find either. This round replaces the placeholder art with drawn pixel art, and
+sets rules so that everything reads the same way.
+
+## Art
+
+All art is text in `assets/px/`, one letter per pixel, and `tools/compile_px.py` builds the
+PNGs. DEV.md, "Art and sound", has the file format. No PNG is edited by hand.
+
+Each art file names, in its header, the list entry of this round it belongs to and the
+rules it follows, so a reviewer can check it:
+
+    # clock_radio 16x16
+    # item: bedroom set
+    # rules: viewpoint, outline, warm, hero, motion
+
+The rules, with the short name a file header uses:
+
+1. **viewpoint.** Front-facing three-quarter view, the same for every object. Nothing is
+   drawn from directly above.
+2. **outline.** Every character and every thing you can interact with has a one-pixel
+   `ink` outline. Scenery tiles do not. That difference alone separates things from
+   background.
+3. **warm.** Warm means touchable. Every interactable has at least one cluster of `lamp`
+   or `moon` pixels: a knob, a dial, a glow. Scenery stays in the cool colors.
+4. **walls.** A wall has a visible top edge in `fog` and a darker face in `dusk`. A floor is
+   `slate` with low-contrast texture. With the game paused, a player can tell walkable
+   from blocked at a glance.
+5. **doors.** A door always sits in a wall, with a frame, a knob in `lamp`, and a dark
+   inside. A room exit at the edge of the screen has a visible gap in the wall, never an
+   invisible trigger.
+6. **hero.** Props the story names are drawn bigger than life. The clock radio is 16x10
+   with a readable 1:59. The fridge is two tiles tall.
+7. **motion.** Anything the story names moves: the colon of the clock radio blinks, the
+   fridge wobbles on the beat of its hum, lamps flicker, the light of the punch clock
+   pulses. Two frames are enough. Motion means "this matters".
+8. **characters.** Characters are 16x32, with silhouettes you could tell apart as black
+   shapes: Tadzio narrow with a flashlight, Wick round with antennae and a pole, the
+   Un-Baker tall with a hat and a cart, the Foreman wide, Curfew a heap. Three to four
+   colors each, plus the outline.
+9. **lighting.** The ambient light of a night room is never below 0.45. The flashlight is
+   for finding secrets, not for seeing the room. The validator reports a darker room.
+10. **portraits.** Portraits are 32x32, with the same outline rule and one clear
+    expression each.

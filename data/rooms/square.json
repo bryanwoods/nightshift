@@ -40,7 +40,7 @@
     { "id": "square_4", "x": 18, "y": 9, "radius": 44, "on": true },
     { "id": "tower_glow", "x": 9, "y": 2, "radius": 30, "color": "moon", "energy": 0.6, "on": true }
   ],
-  "ambient": 0.3,
+  "ambient": 0.45,
   "music": "street_loop",
   "companion": true
 }

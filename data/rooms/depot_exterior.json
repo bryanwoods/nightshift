@@ -47,7 +47,7 @@
     { "id": "puddle_lantern", "x": 6, "y": 3, "radius": 22, "energy": 0.7, "on": true },
     { "id": "punch_glow", "x": 9, "y": 1, "radius": 16, "color": "ember", "energy": 0.5, "on": true }
   ],
-  "ambient": 0.3,
+  "ambient": 0.45,
   "music": "street_loop",
   "companion": true,
   "on_enter": "depot_ext_enter"

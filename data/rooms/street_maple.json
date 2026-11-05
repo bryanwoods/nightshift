@@ -72,7 +72,7 @@
     { "id": "maple_6", "x": 18, "y": 7, "radius": 40, "on": false },
     { "id": "unbaker_lantern", "x": 19, "y": 4, "radius": 22, "energy": 0.7, "on": true }
   ],
-  "ambient": 0.3,
+  "ambient": 0.45,
   "music": "street_loop",
   "companion": true
 }

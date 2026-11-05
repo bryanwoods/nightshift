@@ -58,7 +58,7 @@
     { "id": "washer_lantern", "x": 16, "y": 2, "radius": 22, "energy": 0.7, "on": true },
     { "id": "postman_bag", "x": 13, "y": 7, "radius": 16, "energy": 0.6, "on": true }
   ],
-  "ambient": 0.3,
+  "ambient": 0.45,
   "music": "street_loop",
   "companion": true,
   "on_enter": "street_main_enter"

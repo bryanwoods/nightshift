@@ -34,7 +34,7 @@
     { "id": "bedroom_moon", "x": 8, "y": 2, "radius": 44, "color": "fog", "energy": 0.7, "on": true },
     { "id": "bedroom_radio", "x": 10, "y": 2, "radius": 18, "color": "ember", "energy": 0.6, "on": true }
   ],
-  "ambient": 0.4,
+  "ambient": 0.45,
   "music": "house_hum",
   "on_enter": "bedroom_wake"
 }

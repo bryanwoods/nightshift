@@ -34,7 +34,7 @@
     { "id": "gate_glow", "x": 13, "y": 3, "radius": 26, "color": "lamp", "on": false },
     { "id": "yard_moon", "x": 7, "y": 5, "radius": 60, "color": "fog", "energy": 0.4, "on": true }
   ],
-  "ambient": 0.3,
+  "ambient": 0.45,
   "music": "house_hum",
   "on_enter": "backyard_enter"
 }
