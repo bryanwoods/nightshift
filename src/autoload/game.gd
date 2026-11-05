@@ -141,7 +141,7 @@ func text(key: String) -> String:
 func fmt(s: String) -> String:
 	if not "{" in s:
 		return s
-	var keys: Dictionary = ui.get("keys", {})
+	var keys: Dictionary = ui.get("pad_keys" if Input.get_connected_joypads().size() > 0 else "keys", {})
 	for k in keys:
 		s = s.replace("{%s}" % k, str(keys[k]))
 	var costs: Dictionary = tuning.get("costs", {})

@@ -1,15 +1,15 @@
 extends Control
 ## Every compiled sprite sheet, tile and portrait on a grid at 4x, labeled with the text file
-## it comes from in assets/px/. Each page is saved as screens/gallery_<page>.png.
+## it comes from in assets/px/. The characters page has one row a character: the first frame of
+## each sheet and every portrait, labeled with its size. Each page is saved as screens/gallery_<page>.png.
 ## Left and right show the next page. With --screens it saves the pages and quits.
 
 const SCALE := 4
 const WIDTH := 1800
 const GAP := 28
 const LIGHTS: Array[String] = ["glow", "light_radial", "light_cone"]
-const CHARACTERS: Array[String] = ["tadzio", "wick", "dad", "unbaker", "unbaker_battle", "postman", "foreman",
-	"dummy", "dummy_battle", "window_washer", "window_washer_battle", "puddle_keeper", "puddle_keeper_battle",
-	"no_job", "no_job_battle", "curfew", "curfew_battle"]
+const CHARACTERS: Array[String] = ["tadzio", "wick", "dad", "unbaker", "postman", "foreman", "dummy",
+	"window_washer", "puddle_keeper", "no_job", "curfew"]
 
 var _pages: Array[SubViewport] = []
 var _page: int = 0
@@ -20,11 +20,22 @@ var _title: Label
 func _ready() -> void:
 	var cast: Array = []
 	for c in CHARACTERS:
-		cast.append([c, load("res://assets/sprites/%s.png" % c)])
+		for sheet in [c, c + "_battle"]:
+			if ResourceLoader.exists("res://assets/sprites/%s.png" % sheet):
+				var size := FileAccess.get_file_as_string("res://assets/px/sprites/%s.txt" % sheet).get_slice("\n", 0).get_slice(" ", 2)
+				var at := AtlasTexture.new()
+				at.atlas = load("res://assets/sprites/%s.png" % sheet)
+				at.region = Rect2(0, 0, size.get_slice("x", 0).to_int(), size.get_slice("x", 1).to_int())
+				cast.append(["%s %s" % [sheet, size], at])
+		for f in _pngs("res://assets/portraits/"):
+			if f.begins_with(c + "_"):
+				var tex: Texture2D = load("res://assets/portraits/" + f)
+				cast.append(["%s %dx%d" % [f.get_basename(), tex.get_width(), tex.get_height()], tex])
+		cast.append([])
 	_add_page("characters", cast)
 	var sprites: Array = []
 	for f in _pngs("res://assets/sprites/"):
-		if not f.get_basename() in LIGHTS and not f.get_basename() in CHARACTERS:
+		if not f.get_basename() in LIGHTS:
 			sprites.append([f.get_basename(), load("res://assets/sprites/" + f)])
 	_add_page("sprites", sprites)
 	var portraits: Array = []
@@ -36,6 +47,10 @@ func _ready() -> void:
 		var tiles: Array = []
 		var names: Array = Game.tilesets[ts]["tiles"]
 		for i in names.size():
+			var tall := "res://assets/sprites/%s.png" % names[i]
+			if ResourceLoader.exists(tall):
+				tiles.append([names[i], load(tall)])
+				continue
 			var at := AtlasTexture.new()
 			at.atlas = atlas
 			at.region = Rect2((i % 8) * 16, (i / 8) * 16, 16, 16)
@@ -93,6 +108,9 @@ func _add_page(page: String, items: Array) -> void:
 	var y := GAP + 56
 	var row_h := 0
 	for item: Array in items:
+		if item.is_empty():
+			x = GAP + WIDTH
+			continue
 		var tex: Texture2D = item[1]
 		var label := Label.new()
 		label.text = str(item[0])

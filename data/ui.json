@@ -6,6 +6,12 @@
     "rewind": "R",
     "menu": "C"
   },
+  "pad_keys": {
+    "confirm": "A",
+    "cancel": "B",
+    "rewind": "LB",
+    "menu": "Y"
+  },
   "text": {
     "title": "NIGHTSHIFT",
     "subtitle": "Every night from 2:00 to 3:00, the town has a second shift.",

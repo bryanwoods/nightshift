@@ -1,7 +1,7 @@
 # path 16x16
 # item: outdoor props (art review 2)
 # rules: viewpoint, walls
-# Stepping stones from the back door to the gate.
+# Stepping stones from the back door to the gate. A one-pixel dusk edge under each stone.
 
 @tile
 ssssssssssssssss
@@ -12,10 +12,10 @@ sssssffffffsssss
 sssffssffffffsss
 sssffffffffffsss
 ssffffffffffffss
-sssffffffsfffsss
+ssdffffffsfffdss
 sssffffffffffsss
-ssssdffffffdssss
-ssssddddddddssss
+sssddffffffddsss
+sssssddddddsssss
 ssssssssssssssss
 ssssssssssssssss
 ssssssssssssssss

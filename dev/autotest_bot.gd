@@ -498,7 +498,7 @@ func _input_battle() -> void:
 	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("enemy_unbaker"), "3:00 mid-fight abandons it with no flag")
 
 
-## Screenshots of every room and every Curfew pattern. Needs a window and shots=DIR.
+## Screenshots of every room, Wick at his lamp tutorial and every Curfew pattern. Needs a window and shots=DIR.
 func _tour() -> void:
 	await _shot("room_bedroom")
 	DialogueRunner.autoplay = false
@@ -509,6 +509,13 @@ func _tour() -> void:
 		await _tap("confirm")
 	await _wait(1.0)
 	await _shot("tadzio_talks")
+	DialogueRunner.abort()
+	Game.busy = false
+	Game.go_to_room("street_maple", "default", 0)
+	await _room("street_maple")
+	DialogueRunner.run("wick_intro")
+	await _wait(2.0)
+	await _shot("wick_tutorial")
 	DialogueRunner.abort()
 	DialogueRunner.autoplay = true
 	Game.set_flag("wick_joined")

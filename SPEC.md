@@ -663,8 +663,8 @@ The rules, with the short name a file header uses:
    shapes: Tadzio narrow with a flashlight, Wick round with antennae and a pole, the
    Un-Baker tall with a hat and a cart, the Foreman wide, Curfew a heap. Three to four
    colors each, plus the outline. In a fight, each worker uses a battle sheet
-   `<sprite>_battle` at 2x to 3x (32x64 to 48x96) with two idle frames. No letters on
-   chests.
+   `<sprite>_battle` at 2x to 3x (32x64 to 48x96) with two idle frames. Curfew, the
+   boss, is larger (64x80). No letters on chests.
 9. **lighting.** The ambient light of a night room is never below 0.9. The flashlight is
    for finding secrets, not for seeing the room. The validator reports a darker room.
 10. **portraits.** Portraits are 32x32, with the same outline rule and one clear

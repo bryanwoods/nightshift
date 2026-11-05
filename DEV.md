@@ -55,7 +55,7 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 | `test_room.tscn` | One room, clock running | `room=street_maple` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
-| `gallery.tscn` | Every sprite, tile and portrait at 4x, labeled with its text file; saves `screens/gallery_<page>.png` | |
+| `gallery.tscn` | Every sprite, tile and portrait at 4x, labeled with its text file; a characters page with each frame and portrait size; saves `screens/gallery_<page>.png` | |
 | `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget\|finish\|encounters\|alley\|tour`, `shots=/some/dir` |
 
 Routes: `help` and `hustle` play the whole night each way. `finish` checks a finished worker
@@ -221,7 +221,7 @@ Say Tadzio wants a **Night Postman** fight. Four steps, no code:
    hit this round) shows in Pockets; give it a `use_text` and a short `effect` (one line in
    Pockets, under the selected item).
 3. Draw the battle sheet `assets/px/sprites/postman_battle.txt`: two frames, `@idle_0` and
-   `@idle_1`, 32x64 to 48x96. The validator reports a worker with no battle sheet, and a
+   `@idle_1`, 32x64 to 48x96 (64 px wide at most). The validator reports a worker with no battle sheet, and a
    `job` of more than 6 words.
 4. Start the fight from a dialogue with `{ "cmd": "battle", "worker": "postman" }`.
 5. Try it alone: `Godot --path . res://dev/test_battle.tscn -- worker=postman wick`.
@@ -485,6 +485,9 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: Wick's first line about a finished worker plays inside the fight, so it works for every fight, also Curfew's.
 - Art review 2: the battle screen has three columns. The worker's name, job and battle sheet are on the left, the 120x80 arena is in the middle, and the task, Patience, Shift Lv and Awake are on the right. The textbox, the hint and the speech bubble share the strip below the arena, right of the worker, so none of them covers the arena, a meter or the worker. Pockets lists items inside the arena. Battle prompts sit inside the top of the arena.
 - Art review 2: a lamp post is a 16x32 sprite (`assets/px/sprites/lamp_post.txt`) over its `lamp_post` tile, which holds only the sidewalk and the collision. The sprite shows `@lit` while the light on its tile is on.
+- Art review 3: the worker's name and job span the top of the battle screen, 216 px wide, so a job line holds 4 words or more. The arena moved down 10 px (center y 84), so a second job line clears it. The menu bar hides while a textbox, a choice or the speech bubble shows.
+- Art review 3: a key name in text, such as `{rewind}`, shows the gamepad button from `pad_keys` in `data/ui.json` while a controller is connected.
+- Art review 3: Wick is not in the backyard. Tadzio meets him on Street Maple (SPEC.md, Night 1 step 5). The small light that bobs past the backyard gate is his flame. The tour saves `screens/tour_wick_tutorial.png`.
 - Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
 - Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.
 - Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.

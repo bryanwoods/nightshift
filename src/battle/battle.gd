@@ -10,7 +10,7 @@ signal _phase_done
 signal _hustle_done(damage: int)
 signal _item_done(item: String)
 
-const ARENA_CENTER := Vector2(160, 74)
+const ARENA_CENTER := Vector2(160, 84)
 const OPTIONS: Array[String] = ["help", "hustle", "stall", "wick", "pockets"]
 const WICK_OPTIONS: Array[String] = ["wick_light", "wick_hold"]
 const TOKEN_R := 3.0
@@ -73,6 +73,7 @@ var _awake_fill: ColorRect
 var _patience_label: Label
 var _patience_fill: ColorRect
 var _boxes: Array[Panel] = []
+var _menu_bar: Control
 var _buttons: Array[Label] = []
 var _hint: Label
 var _flavor: Label
@@ -558,6 +559,7 @@ func _process(delta: float) -> void:
 	if _arena:
 		_arena_shake = maxf(0.0, _arena_shake - delta)
 		_arena.position = ARENA_CENTER + (Vector2(randf_range(-2, 2), randf_range(-2, 2)).round() if _arena_shake > 0.0 else Vector2.ZERO)
+		_menu_bar.visible = not DialogueRunner.showing() and not _bubble.visible
 	if _bubble_t >= 0.0:
 		_type_bubble(delta)
 	if _prompt_t > 0.0:
@@ -653,7 +655,7 @@ func _build() -> void:
 		_root.add_child(_worker_sprite)
 	var tag := bool(worker.get("name_tag", true))
 	_label(Vector2(4, 2), str(worker.get("name", worker_id)) if tag else "", "moon")
-	_label(Vector2(4, 15), str(worker.get("job", "")) if tag else "", "fog", 92)
+	_label(Vector2(4, 15), str(worker.get("job", "")) if tag else "", "fog", 216)
 	_task_label = _right(20, "wake")
 	_arena = Arena.new()
 	_arena.position = ARENA_CENTER
@@ -674,15 +676,18 @@ func _build() -> void:
 	_level_label = _right(82, "fog")
 	_awake_label = _right(95, "moon")
 	_awake_fill = _bar(Vector2(256, 110), "moon")
+	_menu_bar = Control.new()
+	_root.add_child(_menu_bar)
 	for i in OPTIONS.size():
 		var box := Panel.new()
 		box.position = Vector2(6 + i * 62, 163)
 		box.size = Vector2(56, 15)
-		_root.add_child(box)
+		_menu_bar.add_child(box)
 		_boxes.append(box)
 		var l := _label(box.position, "", "moon")
 		l.size = Vector2(56, 14)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		l.reparent(_menu_bar)
 		_buttons.append(l)
 	_wipe = ColorRect.new()
 	_wipe.color = Game.color("ink")
