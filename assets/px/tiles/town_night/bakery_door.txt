@@ -1,20 +1,21 @@
 # bakery_door 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: doors (art review 1)
+# rules: viewpoint, walls, doors, warm
 
 @tile
-ddddndddddddnddd
-ddddndddddddnddd
-dddddddddddddddd
-nnnddddddddddnnn
-nddddllllllddddd
-nddddllllllddddd
-nddddllllllddddd
-nnnddllllllddnnn
-dddddllllllddddd
-dddddddddddddddd
-dddddddddddddddd
-nnndddddddfddnnn
-nddddddddddddddd
-nddddddddddddddd
-nddddddddddddddd
-nnnddddddddddnnn
+ffffffffffffffff
+ffffffffffffffff
+dddffffffffffddd
+dddfnnnnnnnnfddd
+nnnfnkkkkkknfnnn
+dddfnkllllknfddd
+dddfnkllllknfddd
+nnnfnkkkkkknfnnn
+dddfnnnnnnnnfddd
+dddfnnnnnllnfddd
+nnnfnnnnnllnfnnn
+dddfnkkkkkknfddd
+dddfnknnnnknfddd
+nnnfnkkkkkknfnnn
+dddfnnnnnnnnfddd
+kkkkkkkkkkkkkkkk

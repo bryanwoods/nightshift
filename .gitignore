@@ -3,3 +3,4 @@
 *.tmp
 .DS_Store
 /screens/
+__pycache__/

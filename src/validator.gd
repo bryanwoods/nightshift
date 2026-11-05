@@ -6,7 +6,7 @@ extends RefCounted
 const ROOMS := "res://data/rooms/"
 const WORKERS := "res://data/workers/"
 ## SPEC.md, Art: a night room is never darker than this, so the room reads without the flashlight.
-const AMBIENT_FLOOR := 0.45
+const AMBIENT_FLOOR := 0.9
 
 
 static func validate_all() -> void:

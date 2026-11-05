@@ -1,20 +1,21 @@
 # back_door 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: doors (art review 1)
+# rules: viewpoint, walls, doors, warm
 
 @tile
-dddddddddddddddd
-dddssssssssssddd
-nnnskkkkkkkksnnn
-dddskkkkkkkksddd
-dddskkkkkkkksddd
-nnnskkkkkkkksnnn
-dddskkkkkkkksddd
-dddskkkkkkkksddd
-nnnskkkkkkkksnnn
-dddskkkkkkkksddd
-dddskkkkkkkksddd
-nnnskkkkkkkksnnn
-dddskkkkkkkksddd
-dddskkkkkkkksddd
-nnnskkkkkkkksnnn
-dddskkkkkkkksddd
+ffffffffffffffff
+ffffffffffffffff
+dddffffffffffddd
+dddfsskkkkkkfddd
+nnnfsskkkkkkfnnn
+dddfsskkkkkkfddd
+dddfsskkkkkkfddd
+nnnfsskkkkkkfnnn
+dddfslkkkkkkfddd
+dddfslkkkkkkfddd
+nnnfsskkkkkkfnnn
+dddfsskkkkkkfddd
+dddfsskkkkkkfddd
+nnnfsskkkkkkfnnn
+dddfsskkkkkkfddd
+kkkkkkkkkkkkkkkk

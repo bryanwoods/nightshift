@@ -4,8 +4,8 @@
 @tile
 dddddddddddddddd
 dsssskkkkkksssss
-dsssskffffksssss
-dsssskffffksssss
+dsssskmmmmksssss
+dsssskmmmmksssss
 dsssskkkkkksssss
 dssssssffsssssss
 dssssssffdssssss

@@ -27,7 +27,7 @@
   "lights": [
     { "id": "alley_lamp", "x": 2, "y": 3, "radius": 40, "on": false }
   ],
-  "ambient": 0.45,
+  "ambient": 0.9,
   "music": "none",
   "companion": true
 }

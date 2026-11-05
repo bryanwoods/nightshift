@@ -19,8 +19,8 @@
 ...kffffffffk...
 ..kffffffffffk..
 ..kfssssssssfk..
-..kffffffffffk..
-..kffffffffffk..
+..kffffllffffk..
+..kffffllffffk..
 ..kfssssssssfk..
 ..kffffffffffk..
 ..kffffffffffk..
@@ -53,8 +53,8 @@
 ....kffffffk....
 ...kffffffffk...
 ..kffffffffffk..
-..kfssssssssfk..
-..kffffffffffk..
+..kfsssllsssfk..
+..kffffllffffk..
 ..kffffffffffk..
 ..kfssssssssfk..
 ..kffffffffffk..

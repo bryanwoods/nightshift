@@ -6,8 +6,8 @@ rrrrrrrrrrrrrrrr
 bcbbbcbbbcbbbcbb
 bcbbbbbbbbbbbcbb
 bcbbaaabaaaabcbb
-bcbbaaabaatabcbb
-bcbbaaabaaaabcbb
+bcbbaaabaamabcbb
+bcbbaaabaamabcbb
 bcbbbbbbbbbbbcbb
 bcbbaaabaaaabcbb
 bcbbaaabaaaabcbb

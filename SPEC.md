@@ -647,6 +647,7 @@ The rules, with the short name a file header uses:
    background.
 3. **warm.** Warm means touchable. Every interactable has at least one cluster of `lamp`
    or `moon` pixels: a knob, a dial, a glow. Scenery stays in the cool colors.
+   `tools/compile_px.py` refuses art that breaks this rule.
 4. **walls.** A wall has a visible top edge in `fog` and a darker face in `dusk`. A floor is
    `slate` with low-contrast texture. With the game paused, a player can tell walkable
    from blocked at a glance.
@@ -662,7 +663,7 @@ The rules, with the short name a file header uses:
    shapes: Tadzio narrow with a flashlight, Wick round with antennae and a pole, the
    Un-Baker tall with a hat and a cart, the Foreman wide, Curfew a heap. Three to four
    colors each, plus the outline.
-9. **lighting.** The ambient light of a night room is never below 0.45. The flashlight is
+9. **lighting.** The ambient light of a night room is never below 0.9. The flashlight is
    for finding secrets, not for seeing the room. The validator reports a darker room.
 10. **portraits.** Portraits are 32x32, with the same outline rule and one clear
     expression each.

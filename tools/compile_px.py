@@ -141,20 +141,53 @@ def cone(size, length, spread_deg, bands):
     return img
 
 
+def warm(img, hot):
+    """True if two touching pixels are lamp or moon: the "warm" art rule."""
+    w, h = img.size
+    px = img.load()
+    return any(px[x, y] in hot and ((x + 1 < w and px[x + 1, y] in hot) or (y + 1 < h and px[x, y + 1] in hot))
+               for y in range(h) for x in range(w))
+
+
+def touchable(tiles, sprites, hot, errors):
+    """Every interactable shows a lamp or moon cluster. A multi-tile door is an edge exit, and a false wall is a secret."""
+    for path in sorted((ROOT / "data/rooms").glob("*.json")):
+        room = json.loads(path.read_text())
+        layout, legend = room["layout"], room["legend"]
+        swaps = {(o["x"], o["y"]): o["tile"] for o in room.get("overrides", [])}
+        for e in room.get("entities", []):
+            kind, w, h = e.get("type"), e.get("w", 1), e.get("h", 1)
+            if kind in ("npc", "encounter"):
+                name = e.get("sprite", e.get("id", e.get("worker")))
+                shown = [f"sprite {name}"]
+                ok = name in sprites and warm(sprites[name], hot)
+            elif kind in ("inspect", "lamp", "hold") or (kind == "door" and w * h == 1):
+                cells = [(e["x"] + i, e["y"] + j) for i in range(w) for j in range(h)]
+                names = {legend.get(layout[y][x]) for x, y in cells if y < len(layout) and x < len(layout[y])}
+                names |= {swaps[c] for c in cells if c in swaps}
+                shown = sorted(f"tile {n}" for n in names if n)
+                ok = any(warm(tiles.get(room["tileset"], {})[n], hot) for n in names if n in tiles.get(room["tileset"], {}))
+            else:
+                continue
+            if not ok:
+                errors.append(f"{path.relative_to(ROOT)}: {kind} at {e['x']},{e['y']} ({', '.join(shown)}) has no lamp or moon cluster (SPEC.md Art, warm)")
+
+
 def main():
     colors = palette()
     errors, out = [], {}
+    tiles, sprites = {}, {}
     for path in sorted((PX / "sprites").glob("*.txt")):
         r = read(path, colors, errors)
         if r and r[2]:
             out[ROOT / f"assets/sprites/{r[0]}.png"] = sheet(r[2], *r[1], across=4)
+            sprites[r[0]] = r[2][0][1]
     for path in sorted((PX / "portraits").glob("*.txt")):
         r = read(path, colors, errors)
         for frame, img in (r[2] if r else []):
             out[ROOT / f"assets/portraits/{r[0]}_{frame}.png"] = img
     tilesets = json.loads((ROOT / "data/tilesets.json").read_text())["tilesets"]
     for ts, info in tilesets.items():
-        tiles = []
         for tile in info["tiles"]:
             path = next((p for p in (PX / "tiles" / ts / f"{tile}.txt", PX / "tiles" / f"{tile}.txt") if p.exists()), None)
             if path is None:
@@ -164,9 +197,10 @@ def main():
             if r and r[1] != (16, 16):
                 errors.append(f"{path.relative_to(ROOT)}:1: a tile is 16x16, this one is {r[1][0]}x{r[1][1]}")
             elif r and r[2]:
-                tiles.append(r[2][0])
-        if len(tiles) == len(info["tiles"]):
-            out[ROOT / info["png"].replace("res://", "")] = sheet(tiles, 16, 16, across=8)
+                tiles.setdefault(ts, {})[tile] = r[2][0][1]
+        if len(tiles.get(ts, {})) == len(info["tiles"]):
+            out[ROOT / info["png"].replace("res://", "")] = sheet(list(tiles[ts].items()), 16, 16, across=8)
+    touchable(tiles, sprites, {colors["l"], colors["m"]}, errors)
     if errors:
         print("\n".join(errors), file=sys.stderr)
         print(f"{len(errors)} problem(s). Nothing was written.", file=sys.stderr)

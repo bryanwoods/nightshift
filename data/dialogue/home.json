@@ -140,14 +140,11 @@
         { "text": "It's gone. It went toward the street." }
       ]
     },
-    "backyard_tree": {
-      "lines": [ { "text": "A tree you are not allowed to climb. It looks easier at night." } ]
-    },
     "backyard_crate": {
       "lines": [ { "text": "Garden stuff. A trowel, a glove, the other glove." } ]
     },
-    "backyard_flowers": {
-      "lines": [ { "text": "The flowers are closed up for the night. They had the right idea." } ]
+    "backyard_board": {
+      "lines": [ { "text": "The family notice board. One note says: FEED THE DUMMY? (IT IS A DUMMY.) Another just says: GLOVE." } ]
     },
     "backyard_window": {
       "lines": [ { "text": "The kitchen window. From out here, your house looks like someone else's." } ]

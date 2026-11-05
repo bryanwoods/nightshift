@@ -3,7 +3,7 @@
   "tileset": "town_night",
   "legend": {
     "R": "roof", "H": "house_wall", "w": "house_window", "d": "house_door", ".": "sidewalk", ",": "road",
-    "-": "road_line", "L": "lamp_post", "h": "hedge", "T": "tree", "F": "fence", "G": "gate",
+    "-": "road_line", "L": "lamp_post", "h": "hedge", "F": "fence", "G": "gate",
     "x": "ladder_broken", "m": "mailbox"
   },
   "layout": [
@@ -15,7 +15,7 @@
     "F-,-,-,-,-,-,-,-,-,-,-,-",
     "F,,,,,,,,,,,,,,,,,,,,,,,",
     "F.....L.....m.....L.....",
-    "hhhhhhThhhhhhhhhThhhhhhh"
+    "hhhhhhhhhhhhhhhhhhhhhhhh"
   ],
   "overrides": [
     { "x": 3, "y": 1, "tile": "house_door_bread", "if_gone": "unbaker" },
@@ -72,7 +72,7 @@
     { "id": "maple_6", "x": 18, "y": 7, "radius": 40, "on": false },
     { "id": "unbaker_lantern", "x": 19, "y": 4, "radius": 22, "energy": 0.7, "on": true }
   ],
-  "ambient": 0.45,
+  "ambient": 0.9,
   "music": "street_loop",
   "companion": true
 }

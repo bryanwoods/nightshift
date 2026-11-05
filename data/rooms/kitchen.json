@@ -31,6 +31,6 @@
     { "id": "fridge_glow", "x": 7, "y": 2, "radius": 26, "color": "moon", "energy": 0.6, "on": true },
     { "id": "kitchen_moon", "x": 10, "y": 2, "radius": 34, "color": "fog", "energy": 0.6, "on": true }
   ],
-  "ambient": 0.45,
+  "ambient": 0.9,
   "music": "house_hum"
 }

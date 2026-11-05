@@ -4,11 +4,11 @@
 @tile
 nnnnnknnnnnnnnnn
 nkkkkkkkkkkkkkkn
-skkekkkkeeekeees
-skeekkekekkkekes
-skkekkkkeeekeees
-skkekkekkkekkkes
-skeeekkkeeekeees
+skklkkkklllkllls
+skllkklklkkklkls
+skklkkkklllkllls
+skklkklkkklkkkls
+sklllkkklllkllls
 skkkkkkkkkkkkkks
 skkkkkkkkkkkkkks
 ssssssssssssssss

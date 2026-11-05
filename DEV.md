@@ -362,7 +362,10 @@ also be set per door (`minutes`). Street-to-street doors cost 3.
 
 All art is text in `assets/px/`. `tools/compile_px.py` turns it into the PNGs in
 `assets/sprites`, `assets/tiles` and `assets/portraits`. Never edit those PNGs: the next
-compile writes over them. The three soft light shapes (`light_radial`, `light_cone`,
+compile writes over them. The compiler also checks the warm rule: each npc, encounter, door, lamp
+and inspect spot in `data/rooms/` must show two touching `lamp` or `moon` pixels, or nothing
+is written. A door wider than one tile is an edge exit, and a false wall is a secret, so they
+are skipped. The three soft light shapes (`light_radial`, `light_cone`,
 `glow`) are made in code in the same script, because a letter cannot draw a soft edge.
 
 ```sh

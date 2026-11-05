@@ -4,7 +4,7 @@
   "legend": {
     "R": "roof", "S": "shop_wall", "o": "shop_window", "O": "shop_window_lit", "N": "bakery_sign",
     "B": "bakery_door", ".": "sidewalk", ",": "road", "-": "road_line", "L": "lamp_post", "b": "bench",
-    "m": "mailbox", "h": "hedge", "T": "tree"
+    "m": "mailbox", "h": "hedge"
   },
   "layout": [
     "RRRRRRRRRRRRRRRRRRRRRRRRRRRR",
@@ -15,7 +15,7 @@
     "-,-,-,-,-,-,-,-,-,-,-,-,-,-,",
     ",,,,,,,,,,,,,,,,,,,,,,,,,,,,",
     ".....L......m.......L.......",
-    "hhhhThhhhhhhhhThhhhhhhhhThhh"
+    "hhhhhhhhhhhhhhhhhhhhhhhhhhhh"
   ],
   "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "east": [26, 4, "left"], "alley": [21, 2, "down"] },
   "entities": [
@@ -58,7 +58,7 @@
     { "id": "washer_lantern", "x": 16, "y": 2, "radius": 22, "energy": 0.7, "on": true },
     { "id": "postman_bag", "x": 13, "y": 7, "radius": 16, "energy": 0.6, "on": true }
   ],
-  "ambient": 0.45,
+  "ambient": 0.9,
   "music": "street_loop",
   "companion": true,
   "on_enter": "street_main_enter"

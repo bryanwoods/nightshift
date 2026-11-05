@@ -4,7 +4,7 @@
   "legend": {
     "R": "roof", "H": "house_wall", "S": "shop_wall", "w": "house_window", "o": "shop_window",
     "t": "tower", "f": "tower_face", ".": "cobble", "F": "fountain", "b": "bench", "L": "lamp_post",
-    "h": "hedge", "T": "tree", "p": "flowerbed", "e": "sidewalk"
+    "h": "hedge", "p": "flowerbed", "e": "sidewalk"
   },
   "layout": [
     "RRRRRRRRtttRRRRRRRRR",
@@ -18,7 +18,7 @@
     "e....p.........p...e",
     "eL................Le",
     "eeeeeeeeeeeeeeeeeeee",
-    "hhhTThhhhhhhhhhTThhh"
+    "hhhhhhhhhhhhhhhhhhhh"
   ],
   "spawns": { "default": [1, 6, "right"], "west": [1, 6, "right"] },
   "entities": [
@@ -40,7 +40,7 @@
     { "id": "square_4", "x": 18, "y": 9, "radius": 44, "on": true },
     { "id": "tower_glow", "x": 9, "y": 2, "radius": 30, "color": "moon", "energy": 0.6, "on": true }
   ],
-  "ambient": 0.45,
+  "ambient": 0.9,
   "music": "street_loop",
   "companion": true
 }

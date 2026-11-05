@@ -1,0 +1,21 @@
+# notice_board 16x16
+# item: outdoor props (art review 1)
+# rules: viewpoint, outline, warm
+
+@tile
+ssssssssssssssss
+skkkkkkkkkkkkkks
+skddddddddddddks
+skdmlmmdmmhmmdks
+skdmmmmdmmmmmdks
+skdmmmmdmmmmmdks
+skdmmmmdddddddks
+skdddddddmlmddks
+skdddddddmmmddks
+skddddddddddddks
+skkkkkkkkkkkkkks
+ssskdsssssskdsss
+ssskdsssssskdsss
+ssskdsssssskdsss
+ssskdsssssskdsss
+ssssssssssssssss

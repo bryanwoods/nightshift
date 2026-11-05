@@ -1,20 +1,21 @@
 # door_closed 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: doors (art review 1)
+# rules: viewpoint, walls, doors, warm
 
 @tile
-rrrrrrrrrrrrrrrr
-bcbrrrrrrrrrrcbb
-bcbrbbbbbbbbrcbb
-bcbrbrrrrrrbrcbb
-bcbrbrrrrrrbrcbb
-bcbrbrrrrrrbrcbb
-bcbrbrrrrrrbrcbb
-bcbrbbbbbbbbrcbb
-bcbrrrrrrrtrrcbb
-bcbrbbbbbbbbrcbb
-bcbrbrrrrrrbrcbb
-bcbrbrrrrrrbrcbb
-bcbrbrrrrrrbrcbb
-bbbrbrrrrrrbrbbb
-rrrrbbbbbbbbrrrr
+tttttttttttttttt
+tttttttttttttttt
+bbcccccccccccbcb
+bbccrrrrrrrrcbcb
+bbccrnnnnnnrcbcb
+bbccrnrrrrnrcbcb
+bbccrnrrrrnrcbcb
+bbccrnnnnnnrcbcb
+bbccrrrrrrrrcbcb
+bbccrrrrrllrcbcb
+bbccrrrrrllrcbcb
+bbccrnnnnnnrcbcb
+rrrcrnrrrrnrcrrr
+rbbcrnnnnnnrcbbr
+rbbcrrrrrrrrcbbr
 rrrrrrrrrrrrrrrr

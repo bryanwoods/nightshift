@@ -3,11 +3,11 @@
 
 @tile
 cccccbcccccccccc
-ccccttttttttcccc
-ccccttttttttcccc
-bbbbtrrrrrrtbbbb
-ccbbttttttttbbcc
-ccbbttttttttbbcc
+ccccmmmmmmmmcccc
+ccccmmmmmmmmcccc
+bbbbmrrrrrrmbbbb
+ccbbmmmmmmmmbbcc
+ccbbmmmmmmmmbbcc
 ccrrrrrrrrrrrrcc
 bbrrrrrrrrrrrrbb
 ccrrrrrrrrrrrrcc

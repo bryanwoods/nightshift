@@ -1,20 +1,21 @@
 # side_door 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: doors (art review 1)
+# rules: viewpoint, walls, doors, warm
 
 @tile
-ndndndndndndndnd
-ndnssssssssssdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
-ndnskkkkkkkksdnd
+ffffffffffffffff
+ffffffffffffffff
+dndffffffffffndn
+dndfsskkkkkkfndn
+dndfsskkkkkkfndn
+dndfsskkkkkkfndn
+dndfsskkkkkkfndn
+dddfsskkkkkkfddd
+dndfslkkkkkkfndn
+dndfslkkkkkkfndn
+dndfsskkkkkkfndn
+dndfsskkkkkkfndn
+dndfsskkkkkkfndn
+dndfsskkkkkkfndn
+nnnfsskkkkkkfnnn
+kkkkkkkkkkkkkkkk

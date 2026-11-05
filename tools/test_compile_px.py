@@ -21,4 +21,8 @@ with tempfile.TemporaryDirectory(dir=c.ROOT) as d:
     name, size, frames = c.read(p, colors, errors)
     assert not errors and size == (2, 2) and [f for f, _ in frames] == ["a", "b"], errors
     assert frames[1][1].getpixel((0, 1))[3] == 255 and frames[1][1].getpixel((1, 1))[3] == 0
+    hot = {colors["l"], colors["m"]}
+    p.write_text("# w 3x3\n@a\nlkk\nkkk\nkkm\n@b\nlkk\nlkk\nkkk\n")
+    _, _, frames = c.read(p, colors, [])
+    assert not c.warm(frames[0][1], hot) and c.warm(frames[1][1], hot)
 print("compile_px ok")
