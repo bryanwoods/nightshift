@@ -1,0 +1,20 @@
+# plant 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+cccccbcccccccccc
+cccccbcccccccccc
+cccccbrrrrcccccc
+bbbbbrggggrbbbbb
+ccccrggggggrbccc
+cccrggggggggrccc
+cccrggggggggrccc
+bbbrggggggggrbbb
+ccbrggggggggrccc
+ccbcrggggggrcccc
+ccbccrggggrccccc
+bbbbbrrrrrrbbbbb
+cccccrrrrrrccccc
+cccccrrrrrrccccc
+cccccrrrrrrccccc
+bbbbbrrrrrrbbbbb

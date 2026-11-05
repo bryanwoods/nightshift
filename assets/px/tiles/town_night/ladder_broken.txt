@@ -1,0 +1,20 @@
+# ladder_broken 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddddddddddddddd
+dsssssssssssssss
+dsssssssssssssss
+dsssssssssssssss
+dsssssssssssssss
+dsssssssssssssss
+dssssssssdssssss
+dssssssdssssssss
+dsssssssdsssssss
+dssssdsssdssssss
+dsssssdsssssssss
+dssdsssdssssssss
+dsssdsssssssssss
+dssssdssssssssss
+dsssssssssssssss
+dsssssssssssssss

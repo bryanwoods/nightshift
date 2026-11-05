@@ -1,25 +1,26 @@
 {
   "id": "palette",
+  "transparent": ".",
   "night": {
-    "ink": "#0b0e1f",
-    "night": "#1b1f3b",
-    "dusk": "#2e3561",
-    "slate": "#4b568c",
-    "fog": "#8a90b8",
-    "moon": "#f4ead6",
-    "lamp": "#ffb347",
-    "ember": "#ff7a1a",
-    "hush": "#e05a6d",
-    "wake": "#6cd4a8",
-    "straw": "#d9b46c",
-    "honey": "#a9824a"
+    "ink": { "hex": "#0b0e1f", "letter": "k" },
+    "night": { "hex": "#1b1f3b", "letter": "n" },
+    "dusk": { "hex": "#2e3561", "letter": "d" },
+    "slate": { "hex": "#4b568c", "letter": "s" },
+    "fog": { "hex": "#8a90b8", "letter": "f" },
+    "moon": { "hex": "#f4ead6", "letter": "m" },
+    "lamp": { "hex": "#ffb347", "letter": "l" },
+    "ember": { "hex": "#ff7a1a", "letter": "e" },
+    "hush": { "hex": "#e05a6d", "letter": "h" },
+    "wake": { "hex": "#6cd4a8", "letter": "w" },
+    "straw": { "hex": "#d9b46c", "letter": "y" },
+    "honey": { "hex": "#a9824a", "letter": "o" }
   },
   "morning": {
-    "cream": "#fff4dc",
-    "butter": "#ffd96a",
-    "sky": "#9cc8f0",
-    "leaf": "#b8e0a8",
-    "bark": "#8a5a3c",
-    "white": "#ffffff"
+    "cream": { "hex": "#fff4dc", "letter": "c" },
+    "butter": { "hex": "#ffd96a", "letter": "b" },
+    "sky": { "hex": "#9cc8f0", "letter": "a" },
+    "leaf": { "hex": "#b8e0a8", "letter": "g" },
+    "bark": { "hex": "#8a5a3c", "letter": "r" },
+    "white": { "hex": "#ffffff", "letter": "t" }
   }
 }

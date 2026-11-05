@@ -1,0 +1,20 @@
+# alley_gap 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddkkkkkkkkkkddd
+dddkkkkkkkkkkddd
+dddkkkkkkkkkkddd
+nnnkkkkkkkkkknnn
+nddkkkkkkkkkkddd
+nddkkkkkkkkkkddd
+nddkkkkkkkkkkddd
+nnnkkkkkkkkkknnn
+dddkkkkkkkkkkddd
+dddkkkkkkkkkkddd
+dddknnnnnnnnkddd
+nnnknnnnnnnnknnn
+nddknnnnnnnnkddd
+nddknnnnnnnnkddd
+nddknnnnnnnnkddd
+nnnknnnnnnnnknnn

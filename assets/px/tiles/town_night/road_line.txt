@@ -1,0 +1,20 @@
+# road_line 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddndddd
+dddddddddddddddd
+dddndddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+ddmmmmmmmmmmmmdd
+ddmmmmmmmmmmmmdd
+dddddddddddddddd
+dddddddndddddddd
+dddddddddddddddd
+dddddddddddddddd
+dndddddddddddndd
+dddddddddddddddd
+dddddddddddddddd

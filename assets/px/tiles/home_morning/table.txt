@@ -1,0 +1,20 @@
+# table 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+cccccbcccccccccc
+cccccbcccccccccc
+cccccrrrrrrccccc
+bbbbrbbbbbbrbbbb
+cccrbbbbbbbbrccc
+ccrbbbbbbbbbbrcc
+crbbbbbbbbbbbbrc
+brbbbbbbbbbbbbrb
+crbbbbbbbbbbbbrc
+crbbbbbbbbbbbbrc
+ccrbbbbbbbbbbrcc
+bbbrbbbbbbbbrbbb
+ccccrbbbbbbrcccc
+cccccrrrrrrccccc
+cccccccccbcccccc
+bbbbbbbbbbbbbbbb

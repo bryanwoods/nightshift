@@ -1,0 +1,20 @@
+# roof 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+kkkkkkkkkkkkkkkk
+nnnnnnkknnnnnnkk
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+kkkknnnnnnkknnnn
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+nnnnnnkknnnnnnkk
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+kkkknnnnnnkknnnn
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk

@@ -1,0 +1,20 @@
+# tower 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+kddddddddddddddk
+kddddddddddddddk
+kddddddddddddddk
+kkkkkkkkkkkkkkkk
+kddddddddddddddk
+kddddddddddddddk
+kddddddddddddddk
+kkkkkkkkkkkkkkkk
+kddddddddddddddk
+kddddddddddddddk
+kddddddddddddddk
+kkkkkkkkkkkkkkkk
+kddddddddddddddk
+kddddddddddddddk
+kddddddddddddddk
+kkkkkkkkkkkkkkkk

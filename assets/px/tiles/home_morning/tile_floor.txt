@@ -1,0 +1,20 @@
+# tile_floor 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+ccccbbbbccccbbbb
+ccccbbbbccccbbbb
+ccccbbbbccccbbbb
+ccccbbbbccccbbbb
+bbbbccccbbbbcccc
+bbbbccccbbbbcccc
+bbbbccccbbbbcccc
+bbbbccccbbbbcccc
+ccccbbbbccccbbbb
+ccccbbbbccccbbbb
+ccccbbbbccccbbbb
+ccccbbbbccccbbbb
+bbbbccccbbbbcccc
+bbbbccccbbbbcccc
+bbbbccccbbbbcccc
+bbbbccccbbbbcccc

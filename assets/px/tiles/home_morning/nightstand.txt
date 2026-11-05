@@ -1,0 +1,20 @@
+# nightstand 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+cccccbcccccccccc
+cccccbcccccccccc
+cccccbcccccccccc
+bbbbbbbbbbbbbbbb
+ccbbbbbbbbbbbbcc
+ccbbbbbbbbbbbbcc
+ccrrrrrrrrrrrrcc
+bbrrrrrrrrrrrrbb
+ccrrrrrrrrrrrrcc
+ccrrrrrrrrrrrrcc
+ccrrrrrtrrrrrrcc
+bbrrrrrrrrrrrrbb
+ccrrrrrrrrrrrrcc
+ccrrrrrrrrrrrrcc
+ccrrrrrrrrrrrrcc
+bbrrrrrrrrrrrrbb

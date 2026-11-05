@@ -1,0 +1,20 @@
+# house_door_bread 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddddddddddddddd
+dddddddddddddddd
+nnnnddddddddnnnn
+dddddddddddddddd
+dddddddddddddddd
+nnnnddddddddnnnn
+dddddddddddddddd
+dddddddddddddddd
+nnnnddddddddnnnn
+ddddddddddfddddd
+dddddddddddddddd
+nnnnddkkkkddnnnn
+dddddkllllkddddd
+dddddkllllkddddd
+nnnndkllllkdnnnn
+ddddddkkkkdddddd

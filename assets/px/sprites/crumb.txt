@@ -1,0 +1,12 @@
+# crumb 8x8
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@sprite
+........
+..kkkk..
+.kllllk.
+klmllllk
+kllllllk
+kllllelk
+.kllllk.
+..kkkk..

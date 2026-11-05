@@ -1,0 +1,20 @@
+# sink 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+tttttttttttttttt
+ttttrrrrrrrrtttt
+ttttrrrrrrrrtttt
+ttttrrrrrrrrtttt
+tttttttttttttttt
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrtrrrrtrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr

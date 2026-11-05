@@ -1,0 +1,20 @@
+# shelf 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+kkkkkkkkkkkkkkkk
+dddddddddddddddd
+ddhdddldddhddddd
+ddhdsdldfdhdsddd
+ddhdsdldfdhdsddd
+dssssssssssssssd
+dddddddddddddddd
+ddsdddhdddsddddd
+ddsdfdhdldsdfddd
+ddsdfdhdldsdfddd
+dssssssssssssssd
+dddddddddddddddd
+dddddddddddddddd
+sdddddddddddddds
+dddddddddddddddd
+dssssssssssssssd

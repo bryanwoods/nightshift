@@ -127,7 +127,7 @@ func color(name: String) -> Color:
 	for set_name in ["night", "morning"]:
 		var p: Dictionary = palette.get(set_name, {})
 		if p.has(name):
-			return Color.html(str(p[name]))
+			return Color.html(str(p[name]["hex"]))
 	return Color.MAGENTA
 
 

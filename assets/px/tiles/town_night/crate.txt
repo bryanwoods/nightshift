@@ -1,0 +1,20 @@
+# crate 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+kkkkkkkkkkkkkkkk
+ksddddddddddddsk
+kdsddddddddddsdk
+kddsddddddddsddk
+kdddsddddddsdddk
+kddddsddddsddddk
+kdddddsddsdddddk
+kddddddssddddddk
+kddddddssddddddk
+kdddddsddsdddddk
+kddddsddddsddddk
+kdddsddddddsdddk
+kddsddddddddsddk
+kdsddddddddddsdk
+ksddddddddddddsk
+kkkkkkkkkkkkkkkk

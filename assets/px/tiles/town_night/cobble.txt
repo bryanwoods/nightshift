@@ -1,0 +1,20 @@
+# cobble 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddddddddddddddd
+ddsssdddddsssddd
+sssssssdsssssssd
+sssssssdsssssssd
+sssssssdsssssssd
+ddsssdddddsssddd
+ddddddsssddddddd
+ddddsssssssddddd
+ddddsssssssddddd
+ddddsssssssddddd
+ddddddsssddsssdd
+ddsssddddsssssss
+sssssssddsssssss
+sssssssddsssssss
+sssssssddddsssdd
+ddsssddddddddddd

@@ -1,0 +1,20 @@
+# hedge 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+kkkkkkkkkddddkkk
+kkddddkkddddddkk
+kddddddddddddddk
+dddddddddddddddk
+dddddddddddddddk
+dddddddddddddddk
+ddddddddddddddkk
+kddddddddddddkkk
+ddddddddddkddddk
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+dddddddddkdddddd
+ddddkkkkkkkddddk

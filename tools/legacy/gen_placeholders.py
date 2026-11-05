@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Generate every placeholder sprite, tile, portrait, sfx and music loop.
+"""LEGACY. Delete after 2026-11-11. tools/compile_px.py and tools/gen_audio.py replace it.
+
+Generate every placeholder sprite, tile, portrait, sfx and music loop.
 
 Colors come from data/palette.json. Tile lists come from data/tilesets.json.
 Run from the repo root:  uv run --with pillow python tools/gen_placeholders.py
@@ -16,7 +18,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 PALETTE = json.loads((ROOT / "data/palette.json").read_text())
 TILESETS = json.loads((ROOT / "data/tilesets.json").read_text())["tilesets"]
 
@@ -26,8 +28,8 @@ def rgb(h):
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), 255)
 
 
-N = {k: rgb(v) for k, v in PALETTE["night"].items()}
-M = {k: rgb(v) for k, v in PALETTE["morning"].items()}
+N = {k: rgb(v["hex"]) for k, v in PALETTE["night"].items()}
+M = {k: rgb(v["hex"]) for k, v in PALETTE["morning"].items()}
 CLEAR = (0, 0, 0, 0)
 
 ROLES = {

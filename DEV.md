@@ -84,7 +84,8 @@ src/battle/     battle, arena, patterns/ (one script per pattern type)
 src/ui/         title, settings, credits, clock HUD, lamps screen, night end, Help Wanted board, menu list
 src/validator.gd  checks every data file at startup
 data/           everything the player reads, and every number worth tuning
-tools/gen_placeholders.py  makes all placeholder art and sound from data/palette.json
+assets/px/      every sprite, tile and portrait as text; tools/compile_px.py builds the PNGs
+tools/gen_audio.py  makes the placeholder sounds and music
 ```
 
 ## Adding content
@@ -343,11 +344,82 @@ also be set per door (`minutes`). Street-to-street doors cost 3.
 
 ## Art and sound
 
-`uv run --with pillow python tools/gen_placeholders.py` rewrites every placeholder.
-Replace any file with real art of the same size and layout; no code changes.
-Character sheets: 4 columns (walk frames, frame 0 = idle) × 4 rows (down, up, left,
-right). 16×32, 32×32 or 48×48 frames. Portraits 32×32, `<speaker>_<mood>.png`.
-After you add a new image, open the project in Godot once so it imports it.
+All art is text in `assets/px/`. `tools/compile_px.py` turns it into the PNGs in
+`assets/sprites`, `assets/tiles` and `assets/portraits`. Never edit those PNGs: the next
+compile writes over them. The three soft light shapes (`light_radial`, `light_cone`,
+`glow`) are made in code in the same script, because a letter cannot draw a soft edge.
+
+```sh
+uv run --with pillow python tools/compile_px.py        # build every PNG
+uv run --with pillow python tools/test_compile_px.py   # check the compiler itself
+python3 tools/gen_audio.py                             # sounds and music
+```
+
+Where each file goes:
+
+| Text file | PNG |
+|---|---|
+| `assets/px/sprites/<name>.txt` | `assets/sprites/<name>.png`, frames 4 across in file order. Characters: rows down, up, left, right; 4 walk frames each, frame 0 stands still |
+| `assets/px/portraits/<name>.txt` | `assets/portraits/<name>_<frame>.png`, one PNG for each frame (`@neutral`, `@happy`) |
+| `assets/px/tiles/<tileset>/<tile>.txt` | one square of `assets/tiles/<tileset>.png`, in the order of `data/tilesets.json`. A file in `assets/px/tiles/` without a tileset folder is shared by every tileset that does not have its own |
+
+`tools/legacy/gen_placeholders.py` is the old generator. Do not run it. Delete it after
+2026-11-11.
+
+### Draw a sprite in a text editor
+
+You can change any picture in the game with a text editor. Every letter is one pixel.
+
+1. Open the folder `assets/px`. Characters and small things are in `sprites`. Faces are in
+   `portraits`. The squares of floors and walls are in `tiles`.
+2. Open a file, for example `assets/px/sprites/wick.txt`.
+3. Use a font where every letter has the same width. Most code editors already do. Then
+   the rows line up and you can see the picture.
+4. The first line tells the name and the size. `# wick 16x32` means 16 letters across
+   and 32 rows down.
+5. A line that starts with `@` starts one picture. We call it a frame. Wick has 16 frames:
+   4 for walking down, 4 for up, 4 for left, and 4 for right.
+6. Some frames are copies. `@down_2 = down_0` means "the same as down_0".
+   `@right_0 = flip left_0` means "the same as left_0, but mirrored". Change the first
+   one, and the copies change too.
+7. Change some letters. Every row in a frame must have the same number of letters.
+8. Save the file. In a terminal, in the nightshift folder, type:
+   `uv run --with pillow python tools/compile_px.py`
+9. If something is wrong, it tells you the file and the line, for example:
+   `assets/px/sprites/wick.txt:12: row is 15 wide, it needs 16`.
+   Go to line 12, fix it, and type the command again. Nothing changes until all the
+   mistakes are gone.
+10. Open the game. Godot finds the new picture by itself.
+
+The letters:
+
+| Letter | Color | Looks like |
+|---|---|---|
+| `.` | clear | see-through |
+| `k` | ink | almost black, for outlines |
+| `n` | night | very dark blue |
+| `d` | dusk | dark blue |
+| `s` | slate | grey blue |
+| `f` | fog | light grey blue |
+| `m` | moon | cream white |
+| `l` | lamp | warm orange yellow |
+| `e` | ember | bright orange |
+| `h` | hush | pink red |
+| `w` | wake | mint green |
+| `y` | straw | blond |
+| `o` | honey | golden brown |
+| `c` | cream | morning cream |
+| `b` | butter | morning yellow |
+| `a` | sky | morning blue |
+| `g` | leaf | morning green |
+| `r` | bark | morning brown |
+| `t` | white | white |
+
+The colors are in `data/palette.json`. A new color needs a new letter there. The rules
+for how things should look are in SPEC.md, under Art.
+
+To make a new picture, copy a file that is the same size, give it a new name, and change
+the name on the first line too.
 
 ## Decisions
 

@@ -1,0 +1,20 @@
+# bakery_sign 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+ddddndddddddnddd
+ddddndddddddnddd
+ddddndddddddnddd
+nnnnnnnnnnnnnnnn
+nmmmmmmmmmmmmmmd
+nmmmmmeeeemmmmmd
+nmmmmellllemmmmd
+nmmmellllllemmmn
+dmmmellllllemmmd
+dmmmmellllemmmmd
+dmmmmmeeeemmmmmd
+nmmmmmmmmmmmmmmn
+ndddddddnddddddd
+ndddddddnddddddd
+ndddddddnddddddd
+nnnnnnnnnnnnnnnn

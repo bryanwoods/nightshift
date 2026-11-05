@@ -1,0 +1,20 @@
+# bed_foot 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+ndssssssssssssdn
+ndssssssssssssdn
+ndssssssssssssdn
+kdssssssssssssdk
+ndssssssssssssdn
+ndssfsssfsssfsdn
+ndssssssssssssdn
+kdssssssssssssdk
+ndssssssssssssdn
+ndssssssssssssdn
+ndssssssssssssdn
+kdssssssssssssdk
+ndssssssssssssdn
+nssssssssssssssn
+nssssssssssssssn
+kssssssssssssssk

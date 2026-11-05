@@ -1,0 +1,20 @@
+# tree 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+nnnnnkkkkkknnnnn
+nnnnkddddddknnnn
+nnnkddddddddknnn
+nnkddddddddddknn
+nkdddsddddddddkn
+nkddddddddddddkn
+nkddddddddddddkn
+nkddddddddddddkn
+nkddddddddddddkn
+nnkddddddddddknn
+nnnkddddddddknnn
+nnnnkddddddknnnn
+nnnnnkkkkkknnnnn
+nnnnnnnddnnddnnn
+nddnnnnddnndnnnn
+ndnnnnnddnnnnnnn

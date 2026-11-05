@@ -1,0 +1,12 @@
+# bar 1x8
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@sprite
+m
+m
+m
+m
+m
+m
+m
+m

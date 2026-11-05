@@ -1,0 +1,20 @@
+# puddle 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddddddddddddddd
+dsssssssssssssss
+dsssssssssssssss
+dsssssssssssssss
+dsssssssssssssss
+dssssddddddsssss
+dsssdnnnnnndssss
+dssdnffffnnndsss
+dsdnnnnnnnnnndss
+dsdnnnnnnnnnndss
+dssdnnnnnnnndsss
+dsssdnnnnnndssss
+dssssddddddsssss
+dsssssssssssssss
+dsssssssssssssss
+dsssssssssssssss

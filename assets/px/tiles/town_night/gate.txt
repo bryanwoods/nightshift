@@ -1,0 +1,20 @@
+# gate 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+nnnnddddddddnnnn
+nnnnddddddddnnnn
+fffnddddddddnfff
+fffdddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffnddddddddnfff
+fffndddddddddfff
+fffnddddddddnfff
+ndnnddddddddnnnn

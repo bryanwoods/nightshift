@@ -1,0 +1,20 @@
+# desk 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+nnnnnknnnnnnnnnn
+nnnnnknnnnnnnnnn
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+nddnnnnnnknnnddn
+kddkkkkkkkkkkddk

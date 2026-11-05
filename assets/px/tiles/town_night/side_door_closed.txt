@@ -1,0 +1,20 @@
+# side_door_closed 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+ndndndndndndndnd
+ndndddddddddddnd
+ndndddddddddddnd
+ndnddnnnnnndddnd
+ndnddnnnnnndddnd
+ndnddnnnnnndddnd
+ndnddnnnnnndddnd
+ndndddddddddddnd
+ndndddddddddddnd
+ndndddddddfdddnd
+ndndddddddddddnd
+ndndddddddddddnd
+ndndddddddddddnd
+ndndddddddddddnd
+ndndddddddddddnd
+ndndddddddddddnd

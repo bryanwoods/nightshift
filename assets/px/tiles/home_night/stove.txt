@@ -1,0 +1,20 @@
+# stove 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+fffkkkffffkkkfff
+ffkfffkffkfffkff
+ffkfffkffkfffkff
+ffkfffkffkfffkff
+fffkkkffffkkkfff
+kkkkkkkkkkkkkkkk
+dddddddkdddddddd
+dddddddkdddddddd
+dddddddkdddddddd
+dddddfdkddfddddd
+dddddddkdddddddd
+dddddddkdddddddd
+dddddddkdddddddd
+dddddddkdddddddd
+dddddddkdddddddd
+dddddddkdddddddd

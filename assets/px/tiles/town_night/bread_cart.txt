@@ -1,0 +1,20 @@
+# bread_cart 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+dddddddddddddddd
+dddddddddddddddd
+dddkkddkkddkkddd
+ddkllkkllkkllkdd
+dkkllkkllkkllkkd
+dkdkkddkkddkkdkd
+dkddddddddddddkd
+dkddddddddddddkd
+dkddddddddddddkd
+dkddddddddddddkd
+dkddddddddddddkd
+dkkkkkkkkkkkkkkd
+dkkkkdddddkkkkdd
+dkkkkdddddkkkkdd
+ddkkdddddddkkddd
+dddddddddddddddd

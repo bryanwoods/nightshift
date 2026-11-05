@@ -1,0 +1,20 @@
+# window 16x16
+# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+
+@tile
+ndndndndndndndnd
+ndndndndndndndnd
+ndkkkkkkkkkkkknd
+ndknnnnnnnnnnknd
+ndknnnnnnnnfnknd
+ndknnnnnnnnnnknd
+ndknnnnnnnnnnknd
+ndknnnnnnnnnnknd
+ndknnnnnnnnnnknd
+ndknnnnnnnnnnknd
+ndkkkkkkkkkkkknd
+ndndndndndndndnd
+ndndndndndndndnd
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk
