@@ -19,6 +19,7 @@ const BOARD := "res://src/ui/help_wanted_board.gd"
 const TONIGHT := "tonight_"
 const FIRST_ROOM := "bedroom"
 const MORNING_ROOM := "bedroom_morning"
+const SCREENS := "res://screens/"
 
 enum TimeState { EVENING, NIGHT, MORNING }
 
@@ -79,6 +80,8 @@ func _late_ready() -> void:
 	NightClock.hour_ended.connect(func() -> void: end_night("time"))
 	SaveManager.apply_settings()
 	Validator.validate_all()
+	if "--screens" in OS.get_cmdline_user_args() or "--screens" in OS.get_cmdline_args():
+		get_tree().root.add_child(load("res://dev/screens.gd").new())
 
 
 # ------------------------------------------------------------------ data
@@ -364,6 +367,40 @@ func finish_night() -> void:
 	go_to_title()
 
 
+func room_ids() -> PackedStringArray:
+	var ids: PackedStringArray = []
+	for f in DirAccess.get_files_at("res://data/rooms/"):
+		if f.ends_with(".json"):
+			ids.append(f.get_basename())
+	ids.sort()
+	return ids
+
+
+## Debug: a room at its default spawn with every story flag cleared, for screenshots.
+func show_room(id: String) -> void:
+	flags.clear()
+	night_over = false
+	in_battle = false
+	busy = false
+	DialogueRunner.abort()
+	room_id = id
+	spawn = "default"
+	if get_tree().current_scene and get_tree().current_scene.scene_file_path == WORLD:
+		room_requested.emit()
+	else:
+		get_tree().change_scene_to_file(WORLD)
+
+
+## The current view at 1x and 4x, as screens/<name>.png and screens/<name>_4x.png.
+func save_screen(name: String) -> void:
+	await RenderingServer.frame_post_draw
+	var img := get_viewport().get_texture().get_image()
+	DirAccess.make_dir_recursive_absolute(SCREENS)
+	img.save_png(SCREENS + name + ".png")
+	img.resize(img.get_width() * 4, img.get_height() * 4, Image.INTERPOLATE_NEAREST)
+	img.save_png(SCREENS + name + "_4x.png")
+
+
 func go_to_title() -> void:
 	get_tree().paused = false
 	busy = false
@@ -487,3 +524,9 @@ func _input(event: InputEvent) -> void:
 		KEY_F6:
 			SaveManager.commit()
 			AudioBus.sfx("chime")
+		KEY_F7:
+			var ids := room_ids()
+			show_room(ids[(ids.find(room_id) + 1) % ids.size()])
+		KEY_F8:
+			save_screen(room_id)
+			AudioBus.sfx("confirm")

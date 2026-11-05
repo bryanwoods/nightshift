@@ -39,6 +39,8 @@ Confirm at a lit lamp saves. See "Saving" below.
 | F4 | Toggle every flag listed in `dev/flags.txt` |
 | F5 | Reload the current room and all dialogue from JSON |
 | F6 | Save now (commit live state to disk) |
+| F7 | Next room in `data/rooms`, at its default spawn, with every story flag cleared |
+| F8 | Save the screen as `screens/<room>.png` and `screens/<room>_4x.png` |
 | F11 | Fullscreen |
 
 Data errors show in red at the top of the screen and in the Godot output, as
@@ -53,6 +55,7 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 | `test_room.tscn` | One room, clock running | `room=street_maple` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
+| `gallery.tscn` | Every sprite, tile and portrait at 4x, labeled with its text file; saves `screens/gallery_<page>.png` | |
 | `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget\|finish\|encounters\|alley\|tour`, `shots=/some/dir` |
 
 Routes: `help` and `hustle` play the whole night each way. `finish` checks a finished worker
@@ -73,6 +76,19 @@ Godot --headless --path . res://dev/autotest.tscn -- route=help
 ```
 
 Without `--headless` and with `shots=DIR` it saves screenshots along the way.
+
+## Screenshots for review
+
+One command makes the whole gallery:
+
+```sh
+Godot --path . -- --screens
+```
+
+It shows every room at its default spawn with no story flags, saves each one as
+`screens/<room>.png` (1x) and `screens/<room>_4x.png`, then saves the sprite gallery
+(`screens/gallery_*.png`) and quits. Godot draws nothing without a window, so a small
+window opens for about twenty seconds. `screens/` is not in git.
 
 ## Where things live
 
@@ -466,6 +482,8 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: the flashlight starts off every night, and the bedroom names its key once. Without this, the check "a player who never turns it on never finds the alley" could not hold.
 - Round 2: a false wall stays open while Tadzio stands in it, so the gap cannot close on him.
 - Round 2: the key to nothing comes from every outcome of the alley fight ("a strange reward either way").
+- Round 3: `--screens` opens a window. Godot's headless mode has no renderer, so it cannot take a screenshot.
+- Round 3: the screenshot loop came before the art (Item 4 before Item 3), because each art group ends with a new gallery.
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 
 ## Open questions for Bryan
