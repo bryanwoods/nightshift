@@ -210,13 +210,14 @@ Say Tadzio wants a **Night Postman** fight. Four steps, no code:
                        "wrong_line": "postman_help_2_wrong" } }
        ]
      },
-     "dialogue": { "intro": "postman_battle_intro", "hustle_hit": "postman_hustle",
+     "hustle_lines": ["postman_hustle", "postman_hustle_2", "postman_hustle_3"],
+     "dialogue": { "intro": "postman_battle_intro",
                    "satisfied": "postman_satisfied", "spared": "postman_spared" },
      "rewards": { "satisfied": { "item": "blank_envelope" } }
    }
    ```
 
-2. Add those seven dialogue ids to any file in `data/dialogue/`, and the item to
+2. Add those nine dialogue ids to any file in `data/dialogue/`, and the item to
    `data/items.json`. An item with `awake` (Awake back) or `block` (`true`: blocks the next
    hit this round) shows in Pockets; give it a `use_text` and a short `effect` (one line in
    Pockets, under the selected item).
@@ -233,8 +234,8 @@ Optional worker fields: `arena` `[w, h]`, `idle_frames`, `music`, `rewind_tutori
 `turn_lines` and `flavor` (lists of dialogue ids). Each turn, the arena shows the next
 `flavor` line, and the dodge phase opens with the next `turn_lines` line in a speech bubble
 beside the worker. The bubble never waits for a key. A task step can also have a `bubble`
-(a dialogue id); it replaces the turn line after that step. A Hustle hit uses `hustle_hit`
-as the bubble. Keep step lines to one or two short lines: the fight should keep moving.
+(a dialogue id); it replaces the turn line after that step. A Hustle hit uses the next
+`hustle_lines` line as the bubble, so give three or four. Keep step lines to one or two short lines: the fight should keep moving.
 A pattern can also take `arena`, `damage` and `duration`.
 
 Pattern types and their params:
@@ -488,6 +489,9 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Art review 3: the worker's name and job span the top of the battle screen, 220 px wide, so a job line holds 4 words or more. The arena moved down 10 px (center y 84), so a second job line clears it. The menu bar hides while a textbox, a choice or the speech bubble shows.
 - Art review 3: a key name in text, such as `{rewind}`, shows the gamepad button from `pad_keys` in `data/ui.json` while a controller is connected.
 - Art review 3: Wick is not in the backyard. Tadzio meets him on Street Maple (SPEC.md, Night 1 step 5). The small light that bobs past the backyard gate is his flame. The tour saves `screens/tour_wick_tutorial.png`.
+- Playtest 2026-11-05: Wick takes his own turn after Tadzio's once he has joined: Light, Hold or Warm (+3 Awake, `wick_warm_awake` in tuning.json, 1 minute). Tadzio's menu is Help, Hustle, Stall and Pockets. Wick's choice shows as a short line in the arena, not a textbox, so a fight does not slow down.
+- Playtest 2026-11-05: a Hustle hit says the next of the worker's `hustle_lines`, so the line is new each hit.
+- Playtest 2026-11-05: Clock them out shows a red clock face over the worker, and its hand sweeps once around before the worker flickers and is gone. This is Nightshift's own picture for "your shift is over", not a slash.
 - Playtest 2026-11-05: every worker opens a fight with its own pattern and throws its own thing. The dummy drops straw that swings, the Un-Baker drops crumbs (SPEC.md), the Window Washer's soap bubbles rise, the Puddle Keeper's raindrops slant, the alley boss sends drifters, and Curfew sings notes in lanes (SPEC.md). Bars and rings take the worker's color. The tour saves `screens/tour_opener_<worker>.png`.
 - Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
 - Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.

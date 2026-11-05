@@ -8,6 +8,7 @@
     "stall": 0,
     "wick_light": 0,
     "wick_hold": 1,
+    "wick_warm": 1,
     "rewind": 1,
     "lamp": 2
   },
@@ -18,6 +19,7 @@
   "text_fast_multiplier": 4,
   "blip_every": 2,
   "awake_start": 20,
+  "wick_warm_awake": 3,
   "shift_levels": [0, 10, 25, 45, 70],
   "level_awake": 4,
   "level_hustle": 1,

@@ -210,7 +210,7 @@ Stall
 Skip your turn; incoming damage this round halved
 No
 Wick
-Sub-menu: Light (reveals hidden projectiles this round, free) or Hold (blocks the first hit this round, +1 minute). Wick is unavailable until he has joined
+Wick takes his own turn after Tadzio's: Light (reveals hidden projectiles this round, free), Hold (blocks the first hit this round, +1 minute) or Warm (+3 Awake, +1 minute). Wick has no turn until he has joined
 No
 Dodge phase. The worker plays one pattern from its list (chosen in order, then looping) for its duration seconds. Patterns are GDScript classes in src/battle/patterns/, each taking a params dictionary. Required for the slice:
 Pattern

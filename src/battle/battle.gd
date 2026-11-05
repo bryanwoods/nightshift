@@ -11,8 +11,8 @@ signal _hustle_done(damage: int)
 signal _item_done(item: String)
 
 const ARENA_CENTER := Vector2(160, 84)
-const OPTIONS: Array[String] = ["help", "hustle", "stall", "wick", "pockets"]
-const WICK_OPTIONS: Array[String] = ["wick_light", "wick_hold"]
+const OPTIONS: Array[String] = ["help", "hustle", "stall", "pockets"]
+const WICK_OPTIONS: Array[String] = ["wick_light", "wick_hold", "wick_warm"]
 const TOKEN_R := 3.0
 ## Battle sheets stand in the left column with their feet here.
 const WORKER_FEET := Vector2(50, 136)
@@ -118,12 +118,19 @@ func start(id: String) -> void:
 
 func _loop() -> void:
 	while not over:
+		_stall = false
+		_hold = false
+		_lit = false
 		var action: String = await _menu_phase()
 		if over:
 			break
 		var resolved: bool = await _act(action)
 		if over or resolved:
 			break
+		if Game.has_flag("wick_joined"):
+			await _act(await _wick_phase())
+			if over:
+				break
 		await _dodge_phase()
 		if over or awake <= 0:
 			break
@@ -154,11 +161,8 @@ func _line(key: String) -> void:
 func _menu_phase() -> String:
 	while not over:
 		_flavor.text = _turn_text("flavor")
-		var pats: Array = worker.get("patterns", [])
-		if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
+		if _dark_next():
 			_flavor.text = Game.text("dark_warning")
-			if Game.has_flag("wick_joined"):
-				_cursor = OPTIONS.find("wick")
 		_menu_on = true
 		_sub = false
 		_input_at = Time.get_ticks_msec() + 150
@@ -172,6 +176,28 @@ func _menu_phase() -> String:
 		if item != "":
 			return "item:" + item
 	return ""
+
+
+## Wick's own turn, after Tadzio's: Light, Hold or Warm. On a dark turn the cursor starts on Light.
+func _wick_phase() -> String:
+	var main_cursor := _cursor
+	_cursor = 0 if _dark_next() else (2 if awake < awake_max else 1)
+	_flavor.text = Game.text("wick_turn")
+	_sub = true
+	_menu_on = true
+	_input_at = Time.get_ticks_msec() + 150
+	_refresh_menu()
+	var choice: String = await _menu_done
+	_menu_on = false
+	_sub = false
+	_cursor = main_cursor
+	_refresh_menu()
+	return choice
+
+
+func _dark_next() -> bool:
+	var pats: Array = worker.get("patterns", [])
+	return not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark"
 
 
 ## Pockets: the items that do something in a fight, listed in the arena with the effect of
@@ -222,9 +248,6 @@ func _use_item(item: String) -> void:
 func _act(action: String) -> bool:
 	_stats["turns"] += 1
 	(_stats["actions"] as Array).append(action)
-	_stall = false
-	_hold = false
-	_lit = false
 	if action.begins_with("item:"):
 		_use_item(action.trim_prefix("item:"))
 		return false
@@ -241,11 +264,18 @@ func _act(action: String) -> bool:
 			_lit = true
 			NightClock.spend("wick_light")
 			AudioBus.sfx("whoosh")
-			await DialogueRunner.run("battle_wick_light")
+			_show_prompt(Game.text("wick_lit"), 1.2)
 		"wick_hold":
 			_hold = true
 			NightClock.spend("wick_hold")
-			await DialogueRunner.run("battle_wick_hold")
+			_show_prompt(Game.text("wick_holds"), 1.2)
+		"wick_warm":
+			var n := int(Game.tuning.get("wick_warm_awake", 3))
+			awake = mini(awake_max, awake + n)
+			NightClock.spend("wick_warm")
+			AudioBus.sfx("step_ok")
+			_refresh_meters()
+			_show_prompt(Game.text("wick_warmed").replace("{n}", str(n)), 1.2)
 	return false
 
 
@@ -310,7 +340,7 @@ func _hustle() -> bool:
 	if patience <= 0:
 		await _resolve("finished" if await _finish_them() else "spared")
 		return true
-	_pending_bubble = str(worker.get("dialogue", {}).get("hustle_hit", ""))
+	_pending_bubble = _turn_id("hustle_lines")
 	return false
 
 
@@ -363,13 +393,33 @@ func _resolve(outcome: String) -> void:
 		Game.give_item(item)
 
 
-## Finished: the worker goes still, flickers twice and is gone. The lantern goes out on one
-## low note, and the frame holds for a second.
+## Finished: a red clock face shows over the worker and its hand sweeps once around. Then the
+## worker goes still, flickers twice and is gone. The lantern goes out on one low note, and
+## the frame holds for a second.
 func _go_still() -> void:
 	if _worker_sprite == null:
 		return
 	_idle_frames = 1
-	await get_tree().create_timer(0.5).timeout
+	var face := Line2D.new()
+	face.width = 2.0
+	face.default_color = Game.color("hush")
+	face.closed = true
+	for i in 24:
+		face.add_point(Vector2.from_angle(TAU * i / 24.0) * 20.0)
+	face.position = _glow.position
+	_root.add_child(face)
+	var hand := Line2D.new()
+	hand.width = 3.0
+	hand.default_color = Game.color("hush")
+	hand.points = PackedVector2Array([Vector2.ZERO, Vector2(0, -17)])
+	face.add_child(hand)
+	AudioBus.sfx("tick")
+	var tw := create_tween()
+	tw.tween_property(hand, "rotation", TAU, 0.6)
+	await tw.finished
+	AudioBus.sfx("buzz", 0.8, -6.0)
+	await get_tree().create_timer(0.3).timeout
+	face.queue_free()
 	for i in 2:
 		_worker_sprite.visible = false
 		await get_tree().create_timer(0.1).timeout
@@ -595,6 +645,9 @@ func _process(delta: float) -> void:
 	if not _menu_on:
 		return
 	if DialogueRunner.autoplay:
+		if _sub:
+			_menu_done.emit(WICK_OPTIONS[_cursor])
+			return
 		var steps: Array = worker.get("task", {}).get("steps", [])
 		_menu_done.emit("help" if step_index < steps.size() and DialogueRunner.autoplay_fight == "help" else "hustle")
 		return
@@ -604,25 +657,8 @@ func _process(delta: float) -> void:
 		AudioBus.sfx("cursor")
 		_refresh_menu()
 	elif confirm:
-		if _sub:
-			AudioBus.sfx("confirm")
-			_menu_done.emit(WICK_OPTIONS[_cursor])
-		elif OPTIONS[_cursor] == "wick":
-			if Game.has_flag("wick_joined"):
-				AudioBus.sfx("confirm")
-				_sub = true
-				_cursor = 0
-				_refresh_menu()
-			else:
-				AudioBus.sfx("buzz", 1.0, -6.0)
-		else:
-			AudioBus.sfx("confirm")
-			_menu_done.emit(OPTIONS[_cursor])
-	elif Input.is_action_just_pressed("cancel") and _sub:
-		AudioBus.sfx("cancel")
-		_sub = false
-		_cursor = 3
-		_refresh_menu()
+		AudioBus.sfx("confirm")
+		_menu_done.emit(WICK_OPTIONS[_cursor] if _sub else OPTIONS[_cursor])
 
 
 # ------------------------------------------------------------------ layout
@@ -680,12 +716,12 @@ func _build() -> void:
 	_root.add_child(_menu_bar)
 	for i in OPTIONS.size():
 		var box := Panel.new()
-		box.position = Vector2(6 + i * 62, 163)
-		box.size = Vector2(56, 15)
+		box.position = Vector2(6 + i * 78, 163)
+		box.size = Vector2(74, 15)
 		_menu_bar.add_child(box)
 		_boxes.append(box)
 		var l := _label(box.position, "", "moon")
-		l.size = Vector2(56, 14)
+		l.size = Vector2(74, 14)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		l.reparent(_menu_bar)
 		_buttons.append(l)
@@ -742,7 +778,6 @@ func _refresh_meters() -> void:
 
 
 func _refresh_menu() -> void:
-	var joined := Game.has_flag("wick_joined")
 	for i in _buttons.size():
 		var key := ""
 		if _sub:
@@ -752,23 +787,18 @@ func _refresh_menu() -> void:
 		_buttons[i].text = Game.text("btn_" + key) if key != "" else ""
 		_boxes[i].visible = key != ""
 		var selected := _menu_on and i == _cursor
-		var disabled := key == "wick" and not joined
 		var sb := StyleBoxFlat.new()
 		sb.bg_color = Game.color("night") if selected else Game.color("ink")
 		sb.border_color = Game.color("lamp") if selected else Game.color("dusk")
 		sb.set_border_width_all(1)
 		sb.set_corner_radius_all(2)
 		_boxes[i].add_theme_stylebox_override("panel", sb)
-		var c := "lamp" if selected else "moon"
-		if disabled or not _menu_on:
-			c = "fog" if not disabled else "dusk"
+		var c := "lamp" if selected else ("moon" if _menu_on else "fog")
 		_buttons[i].add_theme_color_override("font_color", Game.color(c))
 	_hint.visible = _menu_on
 	_flavor.visible = _menu_on
 	if _menu_on:
 		var key := WICK_OPTIONS[_cursor] if _sub else OPTIONS[_cursor]
-		if key == "wick" and not joined:
-			key = "wick_locked"
 		_hint.text = Game.text("hint_" + key)
 
 

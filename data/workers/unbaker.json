@@ -55,9 +55,9 @@
       }
     ]
   },
+  "hustle_lines": ["unbaker_hustle", "unbaker_hustle_2", "unbaker_hustle_3", "unbaker_hustle_4"],
   "dialogue": {
     "intro": "unbaker_battle_intro",
-    "hustle_hit": "unbaker_hustle",
     "satisfied": "unbaker_satisfied",
     "spared": "unbaker_defeated"
   },

@@ -89,7 +89,6 @@
   },
   "dialogue": {
     "intro": "curfew_battle_intro",
-    "hustle_hit": "curfew_hustle",
     "satisfied": "curfew_satisfied",
     "spared": "curfew_defeated"
   },
@@ -104,5 +103,11 @@
     "curfew_flavor_2",
     "curfew_flavor_3",
     "curfew_flavor_4"
+  ],
+  "hustle_lines": [
+    "curfew_hustle",
+    "curfew_hustle_2",
+    "curfew_hustle_3",
+    "curfew_hustle_4"
   ]
 }

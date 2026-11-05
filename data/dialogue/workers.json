@@ -54,14 +54,31 @@
           "text": "Hey! I'm counting!",
           "portrait": "unbaker_grump"
         }
-      ],
-      "seen_variant": "unbaker_hustle_2"
+      ]
     },
     "unbaker_hustle_2": {
       "lines": [
         {
           "speaker": "unbaker",
           "text": "Stop that! I'll lose my place!",
+          "portrait": "unbaker_grump"
+        }
+      ]
+    },
+    "unbaker_hustle_3": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "Forty-one, forty-... now I have to start over!",
+          "portrait": "unbaker_grump"
+        }
+      ]
+    },
+    "unbaker_hustle_4": {
+      "lines": [
+        {
+          "speaker": "unbaker",
+          "text": "You're worse than the pigeons!",
           "portrait": "unbaker_grump"
         }
       ]
@@ -162,14 +179,30 @@
           "speaker": "curfew",
           "text": "Now, now... not very sleepy of you."
         }
-      ],
-      "seen_variant": "curfew_hustle_2"
+      ]
     },
     "curfew_hustle_2": {
       "lines": [
         {
           "speaker": "curfew",
           "text": "Shhh... you'll wake the whole town.",
+          "portrait": "curfew_sleepy"
+        }
+      ]
+    },
+    "curfew_hustle_3": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Such a busy little bee. Bees go to bed too."
+        }
+      ]
+    },
+    "curfew_hustle_4": {
+      "lines": [
+        {
+          "speaker": "curfew",
+          "text": "Yawn... you're making me tired. Well. More tired.",
           "portrait": "curfew_sleepy"
         }
       ]

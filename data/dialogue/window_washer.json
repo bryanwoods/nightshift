@@ -24,6 +24,15 @@
     "washer_hustle": {
       "lines": [ { "speaker": "window_washer", "text": "Streaks! You're leaving streaks!" } ]
     },
+    "washer_hustle_2": {
+      "lines": [ { "speaker": "window_washer", "text": "Fingerprints! On my clean night!" } ]
+    },
+    "washer_hustle_3": {
+      "lines": [ { "speaker": "window_washer", "text": "Do you know how long that pane took me?" } ]
+    },
+    "washer_hustle_4": {
+      "lines": [ { "speaker": "window_washer", "text": "Now I have to do the whole street again!" } ]
+    },
     "washer_satisfied": {
       "lines": [
         { "speaker": "window_washer", "text": "Not a reflection left on the street. Nice work, kid." },

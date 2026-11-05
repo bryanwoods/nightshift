@@ -8,24 +8,6 @@
         }
       ]
     },
-    "battle_wick_light": {
-      "lines": [
-        {
-          "speaker": "wick",
-          "text": "Lights up!",
-          "portrait": "wick_happy"
-        }
-      ]
-    },
-    "battle_wick_hold": {
-      "lines": [
-        {
-          "speaker": "wick",
-          "text": "I'll take the first one! Probably!",
-          "portrait": "wick_panic"
-        }
-      ]
-    },
     "battle_hustle_miss": {
       "lines": [
         {

@@ -18,9 +18,9 @@
       { "label": "Wipe the top corner", "line": "washer_help_2" }
     ]
   },
+  "hustle_lines": ["washer_hustle", "washer_hustle_2", "washer_hustle_3", "washer_hustle_4"],
   "dialogue": {
     "intro": "washer_battle_intro",
-    "hustle_hit": "washer_hustle",
     "satisfied": "washer_satisfied",
     "spared": "washer_spared"
   },

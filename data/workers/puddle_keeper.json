@@ -18,9 +18,9 @@
       { "label": "Top up the big puddle", "line": "puddle_help_2" }
     ]
   },
+  "hustle_lines": ["puddle_hustle", "puddle_hustle_2", "puddle_hustle_3", "puddle_hustle_4"],
   "dialogue": {
     "intro": "puddle_battle_intro",
-    "hustle_hit": "puddle_hustle",
     "satisfied": "puddle_satisfied",
     "spared": "puddle_spared"
   },

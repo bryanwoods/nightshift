@@ -24,6 +24,15 @@
     "puddle_hustle": {
       "lines": [ { "speaker": "puddle_keeper", "text": "Splashing! There's splashing!" } ]
     },
+    "puddle_hustle_2": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "Not the big puddle! I just got it flat!" } ]
+    },
+    "puddle_hustle_3": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "Ripples! Ripples everywhere!" } ]
+    },
+    "puddle_hustle_4": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "Stop running! You'll dry them out!" } ]
+    },
     "puddle_satisfied": {
       "lines": [
         { "speaker": "puddle_keeper", "text": "Wet until morning. Every one. Here, take a little puddle for the road." },

@@ -478,20 +478,18 @@ func _input_battle() -> void:
 	await _tap("confirm")
 	await _wait(0.3)
 	_expect(b.patience == 10, "a centered Hustle press does 5, patience is %d" % b.patience)
+	await _until(func() -> bool: return b._menu_on and b._sub, 5.0)
+	_expect(b._sub, "Wick takes his own turn after Tadzio's")
+	await _wait(0.3)
+	await _tap("move_left")
+	await _tap("confirm")
+	_expect(b._lit, "Wick's Light lights the arena")
 	while not b._dodging:
 		if DialogueRunner.showing():
 			await _tap("confirm")
 		await _wait(0.2)
 	await _press_for("move_left", 0.4)
 	_expect(b._arena.token.x < -10.0, "arrow keys move the flashlight token in the arena")
-	await _until(func() -> bool: return b._menu_on and not DialogueRunner.showing(), 15.0)
-	while b._cursor != 3:
-		await _tap("move_right")
-	await _tap("confirm")
-	_expect(b._sub, "Wick opens the Light / Hold sub-menu")
-	await _tap("confirm")
-	await _until(func() -> bool: return DialogueRunner.showing(), 3.0)
-	_expect(b._lit, "Light was chosen")
 	DialogueRunner.autoplay = true
 	NightClock.add(60)
 	await _until(func() -> bool: return _on(Game.LAMPS), 15.0)
@@ -556,7 +554,7 @@ func _tour() -> void:
 	_finish()
 
 
-## Pockets, the spare-or-finish choice and the finish, as screenshots.
+## Pockets, Wick's turn, the spare-or-finish choice and the finish, as screenshots.
 func _tour_choice() -> void:
 	DialogueRunner.autoplay = false
 	Game.give_item("heel_of_bread")
@@ -567,7 +565,7 @@ func _tour_choice() -> void:
 	while not b._menu_on or DialogueRunner.showing():
 		await _tap("confirm")
 		await _wait(0.2)
-	while b._cursor != 4:
+	while b._cursor != 3:
 		await _tap("move_right")
 	await _tap("confirm")
 	await _wait(1.0)
@@ -575,6 +573,12 @@ func _tour_choice() -> void:
 	await _tap("move_down")
 	await _tap("confirm")
 	await _until(func() -> bool: return b._menu_on and not DialogueRunner.showing(), 10.0)
+	b._menu_done.emit("item:heel_of_bread")
+	await _until(func() -> bool: return b._menu_on and b._sub, 5.0)
+	await _wait(0.5)
+	await _shot("wick_turn")
+	b._menu_done.emit("wick_warm")
+	await _until(func() -> bool: return b._menu_on and not b._sub and not DialogueRunner.showing(), 20.0)
 	b.patience = 1
 	b._menu_done.emit("hustle")
 	await _until(func() -> bool: return b._hustle_on, 3.0)
@@ -584,7 +588,9 @@ func _tour_choice() -> void:
 	await _shot("choice")
 	await _tap("move_down")
 	await _tap("confirm")
-	await _wait(0.9)
+	await _wait(0.35)
+	await _shot("finish_clock")
+	await _wait(0.75)
 	await _shot("finish_flicker")
 	await _wait(1.6)
 	await _shot("finish_gone")
@@ -603,7 +609,7 @@ func _rewind_route() -> void:
 	var b: Battle = w.battle
 	b.pattern_index = 3
 	await _until(func() -> bool: return b._dodging, 20.0)
-	_expect(b._cursor == 3, "a dark turn puts the menu cursor on Wick")
+	_expect(b._lit, "on a dark turn Wick lights the arena")
 	await _wait(1.5)
 	var t_before: float = b._pattern.t
 	var minute := NightClock.minute
