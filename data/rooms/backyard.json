@@ -26,7 +26,9 @@
     { "type": "inspect", "x": 5, "y": 1, "dialogue": "backyard_window" },
     { "type": "trigger", "x": 8, "y": 2, "h": 6, "once": true, "flag": "tonight_gate_light", "dialogue": "backyard_light" },
     { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "dialogue": "gate_chime", "unless_flag": "tonight_gate" },
-    { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "if_flag": "tonight_gate" }
+    { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "if_flag": "tonight_gate" },
+    { "type": "encounter", "worker": "dummy", "x": 5, "y": 6, "facing": "down", "respawn": "nightly", "radius": 1,
+      "approach": "dummy_approach", "chat": "dummy_chat" }
   ],
   "lights": [
     { "id": "gate_glow", "x": 13, "y": 3, "radius": 26, "color": "lamp", "on": false },

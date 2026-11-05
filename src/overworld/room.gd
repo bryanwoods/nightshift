@@ -1,7 +1,8 @@
 class_name Room
 extends Node2D
 ## Builds one room from data/rooms/<id>.json: tiles from the ASCII layout, entities, lights,
-## darkness and music. Then runs doors, triggers, hold spots, lamps and the interact marker.
+## darkness and music. Then runs doors, triggers, hold spots, lamps, encounters and the
+## interact marker.
 
 const TILE: int = 16
 const DIR := "res://data/rooms/"
@@ -224,8 +225,37 @@ func advance_hold(e: Entity, delta: float) -> void:
 func interact(e: Entity) -> void:
 	if e.kind == "lamp":
 		_use_lamp(e)
+	elif e.kind == "encounter" and not Game.has_flag("friend_" + str(e.data.get("worker", ""))):
+		_encounter(e)
 	else:
-		DialogueRunner.run(e.dialogue)
+		DialogueRunner.run(str(e.data.get("chat", e.dialogue)))
+
+
+## The approach line, the fight, then the line for how it ended. A spared worker leaves for
+## the rest of the night; a finished one is gone, and _refresh hides both.
+func _encounter(e: Entity) -> void:
+	var wid := str(e.data.get("worker", ""))
+	e.armed = false
+	e.face_toward(player.position)
+	var angry := Game.has_flag("enemy_" + wid) and e.data.has("approach_enemy")
+	await DialogueRunner.run(str(e.data.get("approach_enemy" if angry else "approach", "")))
+	if Game.night_over:
+		return
+	var outcome: String = await Game.start_battle(wid)
+	if Game.night_over:
+		return
+	if outcome == "spared":
+		Game.set_flag(Game.TONIGHT + "left_" + wid)
+	DialogueRunner.run(str(e.data.get("after", {}).get(outcome, "")))
+
+
+## Workers stand at their post every night unless gone, or gone home after being spared.
+## A worker that does not respawn leaves for good once the fight is resolved either way.
+func _present(e: Entity) -> bool:
+	var w := str(e.data.get("worker", ""))
+	if Game.has_flag("gone_" + w) or Game.has_flag(Game.TONIGHT + "left_" + w):
+		return false
+	return str(e.data.get("respawn", "nightly")) != "never" or not (Game.has_flag("friend_" + w) or Game.has_flag("enemy_" + w))
 
 
 ## A lit lamp offers a save. A dark one is lit by Wick, or by itself when "wick" is false.
@@ -249,6 +279,13 @@ func _physics_process(_delta: float) -> void:
 		return
 	var p := player.position
 	for e in entities:
+		if e.active and e.kind == "encounter" and not Game.has_flag("friend_" + str(e.data.get("worker", ""))):
+			if e.position.distance_to(p) > float(e.data.get("radius", 2)) * TILE:
+				e.armed = true
+			elif e.armed:
+				_encounter(e)
+				return
+			continue
 		if not e.active or not (e.kind == "door" or e.kind == "trigger"):
 			continue
 		if not e.rect.has_point(p):
@@ -321,6 +358,10 @@ func _refresh(at_build: bool = false) -> void:
 			tiles.set_cell(c, 0, _tile_index[name])
 	for e in entities:
 		var ok := Game.cond_ok(e.data)
+		if e.kind == "encounter":
+			ok = ok and _present(e)
+			if lights.has(str(e.data.get("light", ""))):
+				(lights[e.data["light"]] as PointLight2D).enabled = ok
 		if e.kind == "trigger" and bool(e.data.get("once", false)):
 			var flag := str(e.data.get("flag", ""))
 			ok = ok and not e.fired and (flag == "" or not Game.has_flag(flag))
@@ -346,7 +387,7 @@ func entity_by_id(eid: String) -> Entity:
 	if eid == "wick" and follower:
 		return follower
 	for e in entities:
-		if str(e.data.get("id", "")) == eid:
+		if str(e.data.get("id", e.data.get("worker", ""))) == eid:
 			return e
 	return null
 

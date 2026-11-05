@@ -572,3 +572,29 @@ The first time a worker is finished, Wick says a line in the fight. When two or 
 workers are gone (the flag `many_gone`), Wick says quieter lines at the Depot and at
 Curfew. The Foreman names every missing worker when Tadzio enters the Depot and when he
 talks to the Foreman. All of these lines are placeholders with `TODO(Tadzio)` markers.
+
+## Encounters
+
+Fights can be found on purpose. A worker stands at a post every night, and a room entity of
+type `encounter` puts them there: `worker`, `x`, `y`, `approach` (a dialogue id) and
+`respawn` (`nightly` or `never`). When Tadzio walks within `radius` tiles (default 2), or
+presses Confirm at the worker, the approach line plays and the fight starts.
+
+After the fight:
+
+- Satisfied: the worker stays at the post and does the job. A friend does not fight
+  again; Confirm plays their `chat` line.
+- Spared: the worker leaves for the rest of the night (the flag `tonight_left_<id>`). The
+  next night they are back at the post and angry (`approach_enemy`), and they fight again.
+- Finished: gone for good. The post light (`light`) goes out, and the room shows the job
+  that nobody does.
+- With `"respawn": "never"`, the worker leaves for good after any outcome.
+
+The slice has four encounters. The practice dummy stands in the backyard; a fight there
+comes before 2:00, so it costs no minutes. On the way to Curfew there are three: the
+Un-Baker on Maple Street, the Window Washer on Main Street, and the Puddle Keeper outside
+the Depot. The Window Washer washes the reflections out of windows so sleepers do not see
+themselves; when the Window Washer is gone, a shop window shows Tadzio his own face. The
+Puddle Keeper keeps the night's puddles from drying before morning; when the Puddle Keeper
+is gone, the puddles are dry. Both are placeholders for Tadzio to rename or replace, and their files are small on
+purpose so they work as examples.

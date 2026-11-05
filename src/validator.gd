@@ -80,6 +80,8 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 				Game.report(file, where + ".to", "no room \"%s\"" % to)
 			elif not (spawns[to] as Dictionary).has(str(e.get("spawn", "default"))):
 				Game.report(file, where + ".spawn", "room %s has no spawn \"%s\"" % [to, e.get("spawn", "default")])
+		if kind == "encounter":
+			_encounter(file, where, e)
 		if kind == "lamp" and str(e.get("id", "")) == "":
 			Game.report(file, where + ".id", "a lamp needs an id")
 		if e.has("light") and not str(e["light"]) in light_ids:
@@ -96,6 +98,19 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 			Game.report(file, "lights", "every light needs an id")
 	if d.has("on_enter") and not DialogueRunner.has(str(d["on_enter"])):
 		Game.report(file, "on_enter", "no dialogue \"%s\"" % d["on_enter"])
+
+
+static func _encounter(file: String, where: String, e: Dictionary) -> void:
+	if not FileAccess.file_exists(WORKERS + str(e.get("worker", "")) + ".json"):
+		Game.report(file, where + ".worker", "no worker file \"%s\"" % e.get("worker", ""))
+	var refs := {"approach": e.get("approach", ""), "approach_enemy": e.get("approach_enemy", ""), "chat": e.get("chat", "")}
+	for k: String in e.get("after", {}):
+		refs["after." + k] = e["after"][k]
+	for k: String in refs:
+		if str(refs[k]) != "" and not DialogueRunner.has(str(refs[k])):
+			Game.report(file, where + "." + k, "no dialogue \"%s\"" % refs[k])
+	if not str(e.get("respawn", "nightly")) in ["nightly", "never"]:
+		Game.report(file, where + ".respawn", "must be nightly or never")
 
 
 static func _gone_ids(file: String, where: String, d: Dictionary) -> void:

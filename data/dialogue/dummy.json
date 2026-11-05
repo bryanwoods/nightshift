@@ -1,0 +1,27 @@
+{
+  "id": "dummy",
+  "todo": "TODO(Tadzio): every line here is a placeholder. Rename, rewrite or replace.",
+  "dialogues": {
+    "dummy_approach": {
+      "lines": [ { "text": "A practice dummy, stuffed with old socks. It looks ready for anything." } ]
+    },
+    "dummy_battle_intro": {
+      "lines": [ { "text": "The dummy wobbles at you. It's practice. Nothing here costs a minute." } ]
+    },
+    "dummy_help_1": {
+      "lines": [ { "text": "You brush the grass off the dummy." } ]
+    },
+    "dummy_help_2": {
+      "lines": [ { "text": "You stand it up straight. It looks proud." } ]
+    },
+    "dummy_satisfied": {
+      "lines": [ { "text": "The dummy stands tall. Good practice." } ]
+    },
+    "dummy_spared": {
+      "lines": [ { "text": "The dummy tips over and rolls behind the tree." } ]
+    },
+    "dummy_chat": {
+      "lines": [ { "text": "The dummy stands straight and proud." } ]
+    }
+  }
+}

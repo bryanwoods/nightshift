@@ -3,13 +3,14 @@
   "tileset": "town_night",
   "legend": {
     "R": "roof", "D": "depot_wall", "U": "rolling_door", "P": "punch_clock", "S": "side_door_closed",
-    ".": "sidewalk", ",": "road", "-": "road_line", "L": "lamp_post", "c": "crate", "h": "hedge"
+    ".": "sidewalk", ",": "road", "-": "road_line", "L": "lamp_post", "c": "crate", "h": "hedge",
+    "p": "puddle"
   },
   "layout": [
     "RRRRRRRRRRRRRRRR",
     "DDDUUUUDDPDSDDDD",
     "..L..........cL.",
-    "................",
+    "....p...p.......",
     ",,,,,,,,,,,,,,,,",
     "-,-,-,-,-,-,-,-,",
     ",,,,,,,,,,,,,,,,",
@@ -17,7 +18,9 @@
     "hhhhhhhhhhhhhhhh"
   ],
   "overrides": [
-    { "x": 11, "y": 1, "tile": "side_door", "if_flag": "tonight_side_door_open" }
+    { "x": 11, "y": 1, "tile": "side_door", "if_flag": "tonight_side_door_open" },
+    { "x": 4, "y": 3, "tile": "sidewalk", "if_gone": "puddle_keeper" },
+    { "x": 8, "y": 3, "tile": "sidewalk", "if_gone": "puddle_keeper" }
   ],
   "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "side": [11, 2, "down"] },
   "entities": [
@@ -29,12 +32,19 @@
     { "type": "inspect", "x": 13, "y": 2, "dialogue": "depot_crate" },
     { "type": "lamp", "id": "depot_yard", "x": 2, "y": 2, "light": "depot_lamp_1" },
     { "type": "inspect", "x": 14, "y": 2, "dialogue": "inspect_lit_lamp" },
-    { "type": "inspect", "x": 7, "y": 7, "dialogue": "inspect_dark_lamp_far" }
+    { "type": "inspect", "x": 7, "y": 7, "dialogue": "inspect_dark_lamp_far" },
+    { "type": "encounter", "worker": "puddle_keeper", "x": 6, "y": 3, "facing": "down", "respawn": "nightly", "light": "puddle_lantern",
+      "approach": "puddle_approach", "approach_enemy": "puddle_approach_angry", "chat": "puddle_chat" },
+    { "type": "inspect", "x": 4, "y": 3, "dialogue": "inspect_puddle", "unless_gone": "puddle_keeper" },
+    { "type": "inspect", "x": 8, "y": 3, "dialogue": "inspect_puddle", "unless_gone": "puddle_keeper" },
+    { "type": "inspect", "x": 4, "y": 3, "dialogue": "inspect_dry_puddle", "if_gone": "puddle_keeper" },
+    { "type": "inspect", "x": 8, "y": 3, "dialogue": "inspect_dry_puddle", "if_gone": "puddle_keeper" }
   ],
   "lights": [
     { "id": "depot_lamp_1", "x": 2, "y": 2, "radius": 40, "on": false },
     { "id": "depot_lamp_2", "x": 14, "y": 2, "radius": 40, "on": true },
     { "id": "depot_lamp_3", "x": 7, "y": 7, "radius": 40, "on": false },
+    { "id": "puddle_lantern", "x": 6, "y": 3, "radius": 22, "energy": 0.7, "on": true },
     { "id": "punch_glow", "x": 9, "y": 1, "radius": 16, "color": "ember", "energy": 0.5, "on": true }
   ],
   "ambient": 0.3,

@@ -1,9 +1,6 @@
 {
   "id": "street_main",
   "dialogues": {
-    "unbaker_busy": {
-      "lines": [ { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "One. Two. Don't talk to me, I'm counting." } ]
-    },
     "street_main_enter": {
       "lines": [
         { "cmd": "if_flag", "flag": "tonight_main_seen", "goto": "" },

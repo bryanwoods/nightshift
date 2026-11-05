@@ -8,6 +8,8 @@
     "postman": { "name": "Night Postman", "pitch": 1.25 },
     "foreman": { "name": "The Foreman", "pitch": 0.55 },
     "curfew": { "name": "Curfew", "pitch": 0.4 },
+    "window_washer": { "name": "The Window Washer", "pitch": 1.1 },
+    "puddle_keeper": { "name": "The Puddle Keeper", "pitch": 0.9 },
     "fridge": { "name": "", "pitch": 0.5 }
   }
 }

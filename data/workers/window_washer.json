@@ -1,0 +1,30 @@
+{
+  "id": "window_washer",
+  "todo": "TODO(Tadzio): rename or replace this worker. It is a placeholder and an example.",
+  "name": "The Window Washer",
+  "job": "Washes the reflections out of windows so sleepers don't see themselves",
+  "sprite": "window_washer",
+  "patience": 18,
+  "hours": 8,
+  "hit_damage": 2,
+  "patterns": [
+    { "type": "sweep", "duration": 5, "bars": 3, "gap_px": 26, "speed": 64, "from": "left" },
+    { "type": "drift", "duration": 5, "count": 5, "speed": 36, "turn_rate": 1.0, "sprite": "note" }
+  ],
+  "task": {
+    "title": "Wash the windows",
+    "steps": [
+      { "label": "Hold the bucket", "line": "washer_help_1" },
+      { "label": "Wipe the top corner", "line": "washer_help_2" }
+    ]
+  },
+  "dialogue": {
+    "intro": "washer_battle_intro",
+    "hustle_hit": "washer_hustle",
+    "satisfied": "washer_satisfied",
+    "spared": "washer_spared"
+  },
+  "rewards": {
+    "satisfied": { "item": "squeaky_cloth" }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "puddle_keeper",
+  "todo": "TODO(Tadzio): every line here is a placeholder. Rename, rewrite or replace.",
+  "dialogues": {
+    "puddle_approach": {
+      "lines": [
+        { "text": "Someone in a rain hat is pouring water into a puddle from a watering can." },
+        { "speaker": "puddle_keeper", "text": "Careful. Every puddle has to last until morning. That one's mine." },
+        { "speaker": "puddle_keeper", "text": "And you have very dry slippers. Suspicious." }
+      ]
+    },
+    "puddle_approach_angry": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "You. My puddles nearly dried because of you." } ]
+    },
+    "puddle_battle_intro": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "Stand back from the water!" } ]
+    },
+    "puddle_help_1": {
+      "lines": [ { "text": "You fill the watering can at the drain. It glugs." } ]
+    },
+    "puddle_help_2": {
+      "lines": [ { "text": "You tip it into the big puddle. The puddle looks relieved." } ]
+    },
+    "puddle_hustle": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "Splashing! There's splashing!" } ]
+    },
+    "puddle_satisfied": {
+      "lines": [
+        { "speaker": "puddle_keeper", "text": "Wet until morning. Every one. Here, take a little puddle for the road." },
+        { "text": "You got a jar of puddle." }
+      ]
+    },
+    "puddle_spared": {
+      "lines": [
+        { "speaker": "puddle_keeper", "text": "Hmph. The puddles and I are leaving." },
+        { "text": "The Puddle Keeper sloshes off down the street." }
+      ]
+    },
+    "puddle_chat": {
+      "lines": [ { "speaker": "puddle_keeper", "text": "Still wet. Still mine. Thanks to you." } ]
+    },
+    "inspect_puddle": {
+      "lines": [ { "text": "A puddle. It's holding very still." } ]
+    },
+    "inspect_dry_puddle": {
+      "lines": [ { "text": "A dry spot where a puddle used to be." } ]
+    }
+  }
+}

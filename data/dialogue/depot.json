@@ -406,6 +406,18 @@
         {
           "speaker": "foreman",
           "portrait": "foreman_grump",
+          "text": "The Window Washer didn't clock in tonight.",
+          "if_flag": "gone_window_washer"
+        },
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "The Puddle Keeper didn't clock in tonight.",
+          "if_flag": "gone_puddle_keeper"
+        },
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
           "text": "Curfew didn't clock in tonight.",
           "if_flag": "gone_curfew"
         }

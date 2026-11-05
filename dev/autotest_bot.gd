@@ -1,6 +1,7 @@
 extends Node
 ## Plays Night 1 by itself and checks the clock, flags and rooms on the way.
-## Routes: help (default), hustle, clock (run out the clock before the square), asleep, forget, finish.
+## Routes: help (default), hustle, clock (run out the clock before the square), asleep, forget,
+## finish, encounters.
 ## Run:  godot --path . res://dev/autotest.tscn -- route=help shots=/tmp/shots
 ## Screenshots need a window (no --headless). Prints AUTOTEST PASS or AUTOTEST FAIL and quits.
 
@@ -46,6 +47,9 @@ func _run() -> void:
 		return
 	if route == "finish":
 		await _finish_route()
+		return
+	if route == "encounters":
+		await _encounters_route()
 		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
@@ -93,7 +97,7 @@ func _run() -> void:
 	await _walk(10, 4)
 	await _shot("04_maple_lit")
 	var before := NightClock.minute
-	await _walk(17, 4)
+	await _walk(18, 4)
 	await _battle_shots("05_unbaker")
 	if route == "asleep":
 		await _morning()
@@ -183,7 +187,7 @@ func _forget_route() -> void:
 	await _room("street_maple")
 	await _hold_at(3, 2)
 	_expect(Game.has_flag("wick_joined") and SaveManager.committed.get("flags", {}).has("wick_joined"), "the tutorial lamp offers a save, and Save commits Wick")
-	await _walk(17, 4)
+	await _walk(18, 4)
 	await _until(func() -> bool: return Game.in_battle, 15.0)
 	await _until(func() -> bool: return not Game.in_battle, 120.0)
 	await _idle()
@@ -200,7 +204,7 @@ func _forget_route() -> void:
 	NightClock.set_minute(0)
 	Game.go_to_room("street_maple", "gate", 0)
 	await _room("street_maple")
-	await _walk(17, 4)
+	await _walk(18, 4)
 	await _until(func() -> bool: return Game.in_battle, 15.0)
 	await _until(func() -> bool: return not Game.in_battle, 120.0)
 	await _idle()
@@ -230,7 +234,7 @@ func _finish_route() -> void:
 	NightClock.set_minute(0)
 	Game.go_to_room("street_maple", "gate", 0)
 	await _room("street_maple")
-	await _walk(17, 4)
+	await _walk(18, 4)
 	await _until(func() -> bool: return Game.in_battle, 15.0)
 	await _until(func() -> bool: return not Game.in_battle, 120.0)
 	await _idle()
@@ -261,6 +265,60 @@ func _finish_route() -> void:
 	_finish()
 
 
+## Item 3: three fights at their posts before Curfew. Spare the Un-Baker, help the Window
+## Washer, finish the Puddle Keeper, save, and come back the next night: the Un-Baker is back
+## and angry, the Window Washer is a friend who chats, and the Puddle Keeper is gone.
+func _encounters_route() -> void:
+	Game.set_flag("met_wick")
+	Game.set_flag("wick_joined")
+	NightClock.set_minute(0)
+	var fights := [["street_maple", "unbaker", Vector2i(18, 4), "hustle"],
+		["street_main", "window_washer", Vector2i(16, 4), "help"],
+		["depot_exterior", "puddle_keeper", Vector2i(6, 5), "finish"]]
+	for f: Array in fights:
+		Game.go_to_room(f[0], "west" if f[0] != "street_maple" else "gate", 0)
+		await _room(f[0])
+		_expect(_cur_room().entity_by_id(f[1]).active, "%s stands at the post" % f[1])
+		DialogueRunner.autoplay_fight = f[3]
+		await _walk(f[2].x, f[2].y)
+		await _until(func() -> bool: return Game.in_battle, 15.0)
+		await _until(func() -> bool: return not Game.in_battle, 120.0)
+		await _idle()
+	_expect(Game.has_flag("enemy_unbaker") and Game.has_flag("friend_window_washer") and Game.has_flag("gone_puddle_keeper"), "three fights: spared, satisfied, finished")
+	_expect("squeaky_cloth" in Game.items, "the Window Washer gave the squeaky cloth")
+	var r := _cur_room()
+	_expect(not r.entity_by_id("puddle_keeper").active and r.tiles.get_cell_atlas_coords(Vector2i(4, 3)) == r._tile_index["sidewalk"], "the Puddle Keeper is gone and the puddles are dry")
+	r.interact(_target_at(2, 2))
+	await _idle()
+	NightClock.add(60)
+	await _wake()
+	Game.start_night(false)
+	await _room("bedroom")
+	NightClock.set_minute(0)
+	Game.go_to_room("street_main", "west", 0)
+	await _room("street_main")
+	var washer := _cur_room().entity_by_id("window_washer")
+	_expect(washer.active, "night 2: the Window Washer is back at the post")
+	var fights_started := []
+	Game.battle_requested.connect(func(w: String) -> void: fights_started.append(w))
+	await _walk(16, 4)
+	await _wait(1.0)
+	await _idle()
+	_expect(fights_started.is_empty(), "night 2: a friend does not fight again")
+	Game.go_to_room("depot_exterior", "west", 0)
+	await _room("depot_exterior")
+	_expect(not _cur_room().entity_by_id("puddle_keeper").active, "night 2: the finished Puddle Keeper stays gone")
+	Game.go_to_room("street_maple", "east", 0)
+	await _room("street_maple")
+	_expect(_cur_room().entity_by_id("unbaker").active, "night 2: the spared Un-Baker is back at his post")
+	DialogueRunner.autoplay_fight = "help"
+	await _walk(18, 4)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	_expect(Game.seen.has("unbaker_approach_angry"), "night 2: the Un-Baker is angry")
+	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	_finish()
+
+
 func _night_two() -> void:
 	_note("--- night 2 (Continue) ---")
 	Game.start_night(false)
@@ -278,7 +336,7 @@ func _night_two() -> void:
 	await _room("street_maple")
 	_expect(NightClock.minute == 0, "night 2 starts at 2:00 at the gate")
 	_expect(_cur_room().follower != null, "wick follows from the start of night 2")
-	await _walk(17, 4)
+	await _walk(18, 4)
 	await _idle()
 	await _walk(23, 4)
 	await _room("street_main")
@@ -400,7 +458,7 @@ func _tour() -> void:
 	Game.set_flag("wick_joined")
 	Game.set_flag("met_wick")
 	NightClock.set_minute(0)
-	for room in ["hallway", "backyard", "street_maple", "depot_exterior", "depot_interior", "square"]:
+	for room in ["hallway", "backyard", "street_maple", "street_main", "depot_exterior", "depot_interior", "square"]:
 		Game.busy = false
 		Game.go_to_room(room, "default", 0)
 		await _room(room)

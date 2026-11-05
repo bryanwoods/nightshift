@@ -1,0 +1,30 @@
+{
+  "id": "puddle_keeper",
+  "todo": "TODO(Tadzio): rename or replace this worker. It is a placeholder and an example.",
+  "name": "The Puddle Keeper",
+  "job": "Keeps the night's puddles from drying before morning",
+  "sprite": "puddle_keeper",
+  "patience": 18,
+  "hours": 8,
+  "hit_damage": 2,
+  "patterns": [
+    { "type": "rain", "duration": 5, "count": 12, "speed": 58, "sprite": "crumb" },
+    { "type": "ring", "duration": 5, "rings": 2, "speed": 40, "gap_angle": 60 }
+  ],
+  "task": {
+    "title": "Keep the puddles wet",
+    "steps": [
+      { "label": "Fill the watering can", "line": "puddle_help_1" },
+      { "label": "Top up the big puddle", "line": "puddle_help_2" }
+    ]
+  },
+  "dialogue": {
+    "intro": "puddle_battle_intro",
+    "hustle_hit": "puddle_hustle",
+    "satisfied": "puddle_satisfied",
+    "spared": "puddle_spared"
+  },
+  "rewards": {
+    "satisfied": { "item": "jar_of_puddle" }
+  }
+}

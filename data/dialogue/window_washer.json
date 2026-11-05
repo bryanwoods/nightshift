@@ -1,0 +1,46 @@
+{
+  "id": "window_washer",
+  "todo": "TODO(Tadzio): every line here is a placeholder. Rename, rewrite or replace.",
+  "dialogues": {
+    "washer_approach": {
+      "lines": [
+        { "text": "Someone on a short ladder is scrubbing a shop window. Squeak. Squeak." },
+        { "speaker": "window_washer", "text": "Don't look in the glass. You'll see somebody awake, and that's bad for business." },
+        { "speaker": "window_washer", "text": "Hold on. YOU'RE somebody awake." }
+      ]
+    },
+    "washer_approach_angry": {
+      "lines": [ { "speaker": "window_washer", "text": "You again. I had to wash your face off three windows last night." } ]
+    },
+    "washer_battle_intro": {
+      "lines": [ { "speaker": "window_washer", "text": "Out of my reflection!" } ]
+    },
+    "washer_help_1": {
+      "lines": [ { "text": "You hold the bucket steady. The water smells like nothing at all." } ]
+    },
+    "washer_help_2": {
+      "lines": [ { "text": "You wipe the top corner. Your reflection squeaks away." } ]
+    },
+    "washer_hustle": {
+      "lines": [ { "speaker": "window_washer", "text": "Streaks! You're leaving streaks!" } ]
+    },
+    "washer_satisfied": {
+      "lines": [
+        { "speaker": "window_washer", "text": "Not a reflection left on the street. Nice work, kid." },
+        { "text": "You got a squeaky cloth." }
+      ]
+    },
+    "washer_spared": {
+      "lines": [
+        { "speaker": "window_washer", "text": "Fine! The windows can wait!" },
+        { "text": "The Window Washer folds the ladder and stomps off." }
+      ]
+    },
+    "washer_chat": {
+      "lines": [ { "speaker": "window_washer", "text": "Squeak. Squeak. All clean." } ]
+    },
+    "inspect_reflection": {
+      "lines": [ { "text": "In the window, you can see yourself. Nobody washed the reflection out." } ]
+    }
+  }
+}

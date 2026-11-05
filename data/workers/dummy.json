@@ -1,0 +1,25 @@
+{
+  "id": "dummy",
+  "todo": "TODO(Tadzio): what is the practice dummy, and who left it in the yard?",
+  "name": "The practice dummy",
+  "job": "Stands there. Takes it.",
+  "sprite": "dummy",
+  "patience": 8,
+  "hours": 0,
+  "hit_damage": 1,
+  "patterns": [
+    { "type": "rain", "duration": 4, "count": 6, "speed": 45, "sprite": "crumb" }
+  ],
+  "task": {
+    "title": "Stand it back up",
+    "steps": [
+      { "label": "Brush it off", "line": "dummy_help_1" },
+      { "label": "Stand it up straight", "line": "dummy_help_2" }
+    ]
+  },
+  "dialogue": {
+    "intro": "dummy_battle_intro",
+    "satisfied": "dummy_satisfied",
+    "spared": "dummy_spared"
+  }
+}

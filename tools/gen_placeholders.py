@@ -327,6 +327,12 @@ def t_bread_cart(d, r):
         d.ellipse([x - 2, 11, x + 1, 14], fill=r["outline"])
 
 
+def t_puddle(d, r):
+    t_sidewalk(d, r)
+    d.ellipse([2, 5, 13, 12], fill=r["glass"], outline=r["stone_line"])
+    d.line([(5, 7), (8, 7)], fill=r["glass_hi"])
+
+
 def t_sidewalk(d, r):
     R(d, 0, 0, 15, 15, r["stone"])
     d.line([(0, 0), (15, 0)], fill=r["stone_line"])
@@ -629,7 +635,7 @@ TILES = {
     "bakery_sign": t_bakery_sign, "cobble": t_cobble, "tower": t_tower, "tower_face": t_tower_face,
     "fountain": t_fountain, "depot_wall": t_depot_wall, "rolling_door": t_rolling_door,
     "side_door": t_side_door, "side_door_closed": t_side_door_closed, "punch_clock": t_punch_clock,
-    "crate": t_crate, "house_door_bread": t_house_door_bread, "bread_cart": t_bread_cart, "flowerbed": t_flowerbed, "ladder_broken": t_ladder_broken, "path": t_path,
+    "crate": t_crate, "house_door_bread": t_house_door_bread, "bread_cart": t_bread_cart, "puddle": t_puddle, "flowerbed": t_flowerbed, "ladder_broken": t_ladder_broken, "path": t_path,
     "back_door": t_back_door, "porch": t_porch, "concrete": t_concrete, "floor_line": t_floor_line,
     "board": t_board, "bin": t_bin, "lantern": t_lantern, "timecards": t_timecards, "desk_big": t_desk_big, "locker": t_locker,
 }
@@ -918,6 +924,12 @@ CHARACTERS = {
                                         letter="P", letter_color=N["moon"])),
     "foreman": (32, 32, big_person, dict(head=N["moon"], visor=N["ember"], body=N["dusk"], legs=N["night"])),
     "curfew": (48, 48, blob, dict(body=N["slate"], pillow=N["moon"])),
+    "window_washer": (16, 32, humanoid, dict(head=N["moon"], cap=N["wake"], brim=N["wake"], body=N["slate"],
+                                              legs=N["night"], arms=N["slate"], bag=N["wake"], stripes=N["fog"])),
+    "puddle_keeper": (16, 32, humanoid, dict(head=N["moon"], hat=N["lamp"], body=N["dusk"], apron=N["lamp"],
+                                              legs=N["ink"], arms=N["dusk"], bag=N["fog"])),
+    "dummy": (16, 32, humanoid, dict(head=N["fog"], body=N["fog"], legs=N["fog"], arms=N["fog"],
+                                      stripes=N["slate"], eye=N["slate"])),
 }
 
 
@@ -1007,6 +1019,8 @@ PORTRAITS = {
     "unbaker": (["neutral", "grump", "happy"], dict(head=N["moon"], body=N["moon"], hat=N["moon"])),
     "postman": (["neutral"], dict(head=N["moon"], body=N["night"], cap=N["night"])),
     "foreman": (["neutral", "grump"], dict(head=N["moon"], body=N["dusk"], visor=N["ember"], head_x=(5, 26))),
+    "window_washer": (["neutral"], dict(head=N["moon"], body=N["slate"], cap=N["wake"])),
+    "puddle_keeper": (["neutral"], dict(head=N["moon"], body=N["dusk"], hat=N["lamp"])),
     "curfew": (["neutral", "sleepy", "happy"], dict(head=N["slate"], body=N["slate"], pillows=True,
                                                      eye=N["hush"], head_x=(2, 29), eye_y=17)),
 }

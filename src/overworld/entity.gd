@@ -1,10 +1,11 @@
 class_name Entity
 extends Node2D
-## One thing in a room: an npc, an inspect spot, a door, a trigger, a hold spot or a lamp.
+## One thing in a room: an npc, an inspect spot, a door, a trigger, a hold spot, a lamp, or an
+## encounter (a worker at their post who fights when you come close).
 ## Positions in room files are tile coordinates. NPC positions are their feet.
 
 const ROWS := {"down": 0, "up": 1, "left": 2, "right": 3}
-const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp"]
+const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp", "encounter"]
 
 var kind: String = ""
 var data: Dictionary = {}
@@ -30,9 +31,9 @@ func setup(d: Dictionary) -> void:
 	kind = str(d.get("type", ""))
 	dialogue = str(d.get("dialogue", ""))
 	var tile := Vector2(float(d.get("x", 0)), float(d.get("y", 0)))
-	if kind == "npc":
+	if kind in ["npc", "encounter"]:
 		position = tile * Room.TILE + Vector2(8, 14)
-		make_sprite(str(d.get("sprite", d.get("id", ""))))
+		make_sprite(str(d.get("sprite", d.get("id", d.get("worker", "")))))
 		idle_frames = int(d.get("idle_frames", 1))
 		face(str(d.get("facing", "down")))
 		body = StaticBody2D.new()
@@ -49,7 +50,7 @@ func setup(d: Dictionary) -> void:
 
 
 func update_rect() -> void:
-	if kind == "npc":
+	if kind in ["npc", "encounter"]:
 		var w := maxf(14.0, frame_size.x - 2.0)
 		rect = Rect2(position + Vector2(-w / 2, -8), Vector2(w, 9))
 	else:
@@ -73,11 +74,11 @@ func make_sprite(sheet: String) -> void:
 
 
 func interactive() -> bool:
-	return kind in ["npc", "inspect", "hold", "lamp"]
+	return kind in ["npc", "inspect", "hold", "lamp", "encounter"]
 
 
 func top_point() -> Vector2:
-	if kind == "npc":
+	if kind in ["npc", "encounter"]:
 		return position - Vector2(0, frame_size.y + 1)
 	return Vector2(rect.get_center().x, rect.position.y - 2)
 

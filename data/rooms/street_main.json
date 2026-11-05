@@ -30,6 +30,10 @@
     { "type": "inspect", "x": 19, "y": 1, "dialogue": "inspect_dark_shop" },
     { "type": "inspect", "x": 13, "y": 2, "dialogue": "inspect_bench" },
 
+    { "type": "encounter", "worker": "window_washer", "x": 16, "y": 2, "facing": "up", "respawn": "nightly", "light": "washer_lantern",
+      "approach": "washer_approach", "approach_enemy": "washer_approach_angry", "chat": "washer_chat" },
+    { "type": "inspect", "x": 16, "y": 1, "dialogue": "inspect_reflection", "if_gone": "window_washer" },
+
     { "type": "npc", "id": "postman", "sprite": "postman", "x": 13, "y": 7, "facing": "left", "dialogue": "postman_talk" },
     { "type": "inspect", "x": 12, "y": 7, "dialogue": "inspect_postbox" },
 
@@ -50,6 +54,7 @@
     { "id": "main_4", "x": 24, "y": 2, "radius": 40, "on": false },
     { "id": "main_5", "x": 5, "y": 7, "radius": 40, "on": true },
     { "id": "main_6", "x": 20, "y": 7, "radius": 40, "on": false },
+    { "id": "washer_lantern", "x": 16, "y": 2, "radius": 22, "energy": 0.7, "on": true },
     { "id": "postman_bag", "x": 13, "y": 7, "radius": 16, "energy": 0.6, "on": true }
   ],
   "ambient": 0.3,

@@ -62,7 +62,8 @@ room, every Curfew pattern, Pockets, the spare-or-finish choice and a finish. `c
 Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
 Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
 hold-to-light, the battle menu, Hustle timing, and 3:00 in the middle of a fight. `rewind`
-presses the watch in the Curfew fight. `forget` checks the save model: an unsaved friend is
+presses the watch in the Curfew fight. `encounters` spares the Un-Baker, helps the Window Washer, finishes the Puddle Keeper, saves,
+and checks all three the next night. `forget` checks the save model: an unsaved friend is
 forgotten at the end of the night, and a friend saved at a lamp is kept.
 
 The bot prints `AUTOTEST PASS` or `AUTOTEST FAIL` and quits. It runs headless:
@@ -119,6 +120,7 @@ take worker ids instead of flags. Tile overrides take the same four fields.
 | `door` | `to`, `spawn`, `minutes`, `dialogue`, `w`, `h` | Walk into it. Costs the door minutes (default from tuning) |
 | `trigger` | `dialogue`, `once`, `flag`, `w`, `h` | Walk into it. `once` + `flag` sets the flag and never fires again |
 | `hold` | `dialogue`, `seconds`, `minutes`, `light`, `flag`, `hint` | Hold Confirm to fill a bar. Ticks the clock as it fills, then lights `light`, sets `flag`, runs `dialogue` |
+| `encounter` | `worker`, `approach`, `respawn`, `radius`, `facing`, `light`, `approach_enemy`, `chat`, `after` | A worker at a post. Come close or press Confirm: the approach line, then the fight. See "An encounter" below |
 | `lamp` | `id`, `light`, `wick` | A save point. The flag `lamp_<id>` means lit, and `light` is on while it is. Dark: Wick lights it (2 min), or it lights itself when `wick` is `false`. Lit: Confirm offers a save |
 
 ### Dialogue
@@ -225,6 +227,47 @@ Pattern types and their params:
 
 A new pattern type is one new script in `src/battle/patterns/`, named after the type.
 
+### An encounter
+
+An encounter is a worker who stands at a post every night and fights when Tadzio comes
+close. Say the Night Postman from the example above should stand on Main Street.
+
+1. Make the worker file and its dialogue, as in "A worker". Give the worker an `approach`
+   line too: what happens when Tadzio walks up.
+2. Add one entity to `data/rooms/street_main.json`, in `entities`:
+
+   ```json
+   { "type": "encounter", "worker": "postman", "x": 13, "y": 7, "facing": "left",
+     "respawn": "nightly", "approach": "postman_approach" }
+   ```
+
+   `x` and `y` are where the worker's feet are, in tiles. The fight starts when Tadzio is
+   within `radius` tiles (default 2) or presses Confirm at the worker.
+3. Optional fields:
+
+   | Field | Meaning |
+   |---|---|
+   | `approach_enemy` | The approach line for the night after Tadzio let them go |
+   | `chat` | What a friend says when Tadzio presses Confirm. Friends do not fight again |
+   | `after` | `{ "satisfied": id, "spared": id, "finished": id }`: a line after the fight |
+   | `light` | The id of a light in this room. It is on while the worker is at the post |
+   | `respawn` | `never` for a secret boss: once the fight is over, any way, they never come back |
+
+4. Show the job nobody does when the worker is gone. Any entity or tile override can take
+   `if_gone` or `unless_gone` with the worker's id:
+
+   ```json
+   { "type": "inspect", "x": 12, "y": 7, "dialogue": "postbox_full", "if_gone": "postman" }
+   ```
+
+5. Add a line for the Foreman in `foreman_missing` (`data/dialogue/depot.json`) with
+   `"if_flag": "gone_postman"`.
+6. Walk up to the worker, or try the fight alone with
+   `Godot --path . res://dev/test_battle.tscn -- worker=postman wick`.
+
+The Window Washer (`data/workers/window_washer.json`, `data/dialogue/window_washer.json`)
+and the Puddle Keeper are complete small examples.
+
 ### A Help Wanted posting
 
 Add `{ "title", "posted_by", "text", "status" }` to `data/help_wanted.json`.
@@ -319,6 +362,9 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: Wick's first line about a finished worker plays inside the fight, so it works for every fight, also Curfew's.
 - Round 2: five battle buttons need the full bottom row, so Awake and Patience moved up one row, and the level shows as `LV n` above Awake.
 - Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
+- Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.
+- Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.
+- Round 2: the Un-Baker stands at his post from the start of the night, with his cart and a lantern. He no longer walks in.
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 
 ## Open questions for Bryan

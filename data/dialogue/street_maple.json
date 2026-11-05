@@ -127,15 +127,19 @@
     },
     "unbaker_approach": {
       "lines": [
-        { "cmd": "move", "entity": "unbaker", "dx": -4, "dy": 0, "speed": 32 },
-        { "text": "A tall figure pushes a cart up the street. At every doorstep, it stops and takes the bread back." },
+        { "cmd": "set_flag", "flag": "unbaker_seen" },
+        { "text": "A tall figure stands by a cart. At every doorstep on this street, it takes the bread back." },
         { "speaker": "unbaker", "text": "Twelve. Thirteen. Fourteen loaves. Yesterday's. All accounted for." },
         { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "You're not on my list. Nobody awake is on my list." },
-        { "speaker": "wick", "portrait": "wick_panic", "text": "That's the Un-Baker! He takes yesterday's bread back before morning. He's very, very particular." },
-        { "speaker": "unbaker", "text": "A kid off the list is a problem. I don't like problems. I like lists." },
-        { "cmd": "battle", "worker": "unbaker" },
-        { "cmd": "if_flag", "flag": "gone_unbaker", "goto": "" },
-        { "cmd": "if_flag", "flag": "friend_unbaker", "goto": "unbaker_after_friend", "else": "unbaker_after_enemy" }
+        { "speaker": "wick", "portrait": "wick_panic", "text": "That's the Un-Baker! He takes yesterday's bread back before morning. He's very, very particular.", "if_flag": "wick_joined" },
+        { "speaker": "unbaker", "text": "A kid off the list is a problem. I don't like problems. I like lists." }
+      ]
+    },
+    "unbaker_approach_angry": {
+      "todo": "TODO(Tadzio): what the Un-Baker says the night after you let him go.",
+      "lines": [
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "You. The kid off the list. I did the whole route backward because of you." },
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "Not tonight. Tonight I count YOU." }
       ]
     },
     "unbaker_after_friend": {

@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 			holding = true
 			room.advance_hold(target, delta)
 	elif Input.is_action_just_pressed("confirm") and not DialogueRunner.just_ended():
-		if target.kind == "npc":
+		if target.kind in ["npc", "encounter"]:
 			target.face_toward(position)
 		room.interact(target)
 
