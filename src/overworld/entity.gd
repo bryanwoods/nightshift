@@ -1,11 +1,12 @@
 class_name Entity
 extends Node2D
 ## One thing in a room: an npc, an inspect spot, a door, a trigger, a hold spot, a lamp, or an
-## encounter (a worker at their post who fights when you come close).
+## encounter (a worker at their post who fights when you come close), or a false wall (a wall
+## that opens inside the flashlight beam and leads to a secret room).
 ## Positions in room files are tile coordinates. NPC positions are their feet.
 
 const ROWS := {"down": 0, "up": 1, "left": 2, "right": 3}
-const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp", "encounter"]
+const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp", "encounter", "false_wall"]
 
 var kind: String = ""
 var data: Dictionary = {}

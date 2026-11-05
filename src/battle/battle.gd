@@ -620,8 +620,9 @@ func _build() -> void:
 		_glow.position = _worker_base - Vector2(0, tex.get_height() / 8.0)
 		_root.add_child(_glow)
 		_root.add_child(_worker_sprite)
-	_header.append(_label(Vector2(6, 2), str(worker.get("name", worker_id)), "moon"))
-	_header.append(_label(Vector2(6, 15), str(worker.get("job", "")), "fog", 126))
+	var tag := bool(worker.get("name_tag", true))
+	_header.append(_label(Vector2(6, 2), str(worker.get("name", worker_id)) if tag else "", "moon"))
+	_header.append(_label(Vector2(6, 15), str(worker.get("job", "")) if tag else "", "fog", 126))
 	_task_label = _label(Vector2(190, 21), "", "wake", 124)
 	_task_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_arena = Arena.new()

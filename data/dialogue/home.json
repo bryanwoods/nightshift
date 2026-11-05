@@ -9,7 +9,8 @@
         { "cmd": "wait", "seconds": 0.8 },
         { "text": "You sit up in bed. You are not sure why." },
         { "text": "The clock radio says 1:59. It has said 1:59 for a while now." },
-        { "speaker": "tadzio", "text": "Huh." }
+        { "speaker": "tadzio", "text": "Huh." },
+        { "text": "Your flashlight is in your pajama pocket. {menu} turns it on and off." }
       ]
     },
     "bedroom_wake_again": {

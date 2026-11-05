@@ -1,0 +1,33 @@
+{
+  "id": "alley_1",
+  "todo": "TODO(Tadzio): what is in this alley? Keep it unexplained in the game.",
+  "tileset": "town_night",
+  "legend": {
+    "R": "roof", "S": "shop_wall", ".": "cobble", "L": "lamp_post", "c": "crate", "g": "alley_gap"
+  },
+  "layout": [
+    "RRRRRRRR",
+    "SSSSSSSS",
+    "S..c...S",
+    "S.L....S",
+    "S......S",
+    "S.....cS",
+    "SSSgSSSS"
+  ],
+  "spawns": { "default": [3, 5, "up"], "street": [3, 5, "up"] },
+  "entities": [
+    { "type": "door", "x": 3, "y": 6, "to": "street_main", "spawn": "alley", "minutes": 1 },
+    { "type": "lamp", "id": "alley", "x": 2, "y": 3, "light": "alley_lamp", "wick": false },
+    { "type": "encounter", "worker": "no_job", "x": 4, "y": 2, "facing": "down", "respawn": "never", "radius": 2,
+      "approach": "no_job_approach",
+      "after": { "satisfied": "no_job_key", "spared": "no_job_key", "finished": "no_job_key" } },
+    { "type": "inspect", "x": 3, "y": 2, "dialogue": "alley_crate" },
+    { "type": "inspect", "x": 6, "y": 5, "dialogue": "alley_crate" }
+  ],
+  "lights": [
+    { "id": "alley_lamp", "x": 2, "y": 3, "radius": 40, "on": false }
+  ],
+  "ambient": 0.2,
+  "music": "none",
+  "companion": true
+}

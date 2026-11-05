@@ -270,7 +270,7 @@ func start_night(new_game: bool) -> void:
 			flags.erase(f)
 	playtest("night_start", {"night": night, "new_game": new_game})
 	lights.clear()
-	flashlight = true
+	flashlight = false
 	night_over = false
 	in_battle = false
 	busy = true

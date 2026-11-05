@@ -1,7 +1,7 @@
 extends Node
 ## Plays Night 1 by itself and checks the clock, flags and rooms on the way.
 ## Routes: help (default), hustle, clock (run out the clock before the square), asleep, forget,
-## finish, encounters.
+## finish, encounters, alley.
 ## Run:  godot --path . res://dev/autotest.tscn -- route=help shots=/tmp/shots
 ## Screenshots need a window (no --headless). Prints AUTOTEST PASS or AUTOTEST FAIL and quits.
 
@@ -50,6 +50,9 @@ func _run() -> void:
 		return
 	if route == "encounters":
 		await _encounters_route()
+		return
+	if route == "alley":
+		await _alley_route()
 		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
@@ -316,6 +319,59 @@ func _encounters_route() -> void:
 	await _until(func() -> bool: return Game.in_battle, 15.0)
 	_expect(Game.seen.has("unbaker_approach_angry"), "night 2: the Un-Baker is angry")
 	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	_finish()
+
+
+## Item 4: with the flashlight off, the gap on Main Street is a wall. With it on, the gap opens.
+## Behind it: fight the one with no job, save at the alley lamp, and keep the key next night.
+func _alley_route() -> void:
+	Game.set_flag("met_wick")
+	Game.set_flag("wick_joined")
+	NightClock.set_minute(0)
+	_expect(not Game.flashlight, "the flashlight starts off")
+	Game.go_to_room("street_main", "west", 0)
+	await _room("street_main")
+	var r := _cur_room()
+	var wall := Vector2i(21, 1)
+	await _walk(21, 2)
+	await _press_for("move_up", 0.6)
+	await _wait(0.2)
+	_expect(Game.room_id == "street_main" and r.tiles.get_cell_atlas_coords(wall) == r._tile_index["shop_wall"], "flashlight off: the gap is a solid wall, Tadzio stays on Main Street")
+	await _walk(21, 4)
+	r.player.face(Vector2.UP)
+	await _wait(0.2)
+	await _shot("wall_dark")
+	await _tap("menu")
+	await _wait(0.2)
+	await _shot("wall_lit")
+	_expect(Game.flashlight and r.tiles.get_cell_atlas_coords(wall) == r._tile_index["alley_gap"], "flashlight on and pointed at it: the gap opens")
+	Input.action_press("move_up")
+	await _until(func() -> bool: return Game.room_id == "alley_1", 5.0)
+	Input.action_release("move_up")
+	await _room("alley_1")
+	await _shot("alley")
+	DialogueRunner.autoplay_fight = "help"
+	await _walk(4, 4)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	await _wait(3.0)
+	await _shot("no_job")
+	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	await _idle()
+	_expect(Game.has_flag("friend_no_job") and "key_to_nothing" in Game.items, "helped the one with no job and got the key to nothing")
+	_cur_room().interact(_target_at(2, 3))
+	await _idle()
+	_expect(Game.seen.has("lamp_lit") and Game.has_flag("lamp_alley"), "the alley lamp lights without Wick")
+	_expect("key_to_nothing" in SaveManager.committed.get("items", []), "the save in the alley keeps the key")
+	NightClock.add(60)
+	await _wake()
+	Game.start_night(false)
+	await _room("bedroom")
+	_expect("key_to_nothing" in Game.items, "night 2: the key is still in Tadzio's pocket")
+	NightClock.set_minute(0)
+	Game.go_to_room("alley_1", "street", 0)
+	await _room("alley_1")
+	_expect(not _cur_room().entity_by_id("no_job").active, "night 2: the alley is quiet")
+	_expect(_cur_room().lights["alley_lamp"].enabled, "night 2: the alley lamp is still lit")
 	_finish()
 
 

@@ -10,6 +10,7 @@
     "curfew": { "name": "Curfew", "pitch": 0.4 },
     "window_washer": { "name": "The Window Washer", "pitch": 1.1 },
     "puddle_keeper": { "name": "The Puddle Keeper", "pitch": 0.9 },
+    "no_job": { "name": "", "pitch": 0.3 },
     "fridge": { "name": "", "pitch": 0.5 }
   }
 }

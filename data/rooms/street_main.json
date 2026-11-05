@@ -17,10 +17,11 @@
     ".....L......m.......L.......",
     "hhhhThhhhhhhhhThhhhhhhhhThhh"
   ],
-  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "east": [26, 4, "left"] },
+  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "east": [26, 4, "left"], "alley": [21, 2, "down"] },
   "entities": [
     { "type": "door", "x": 0, "y": 2, "h": 6, "to": "street_maple", "spawn": "east", "minutes": 3 },
     { "type": "door", "x": 27, "y": 2, "h": 6, "to": "depot_exterior", "spawn": "west", "minutes": 3 },
+    { "type": "false_wall", "x": 21, "y": 1, "tile": "alley_gap", "to": "alley_1", "spawn": "street", "minutes": 1 },
 
     { "type": "inspect", "x": 12, "y": 1, "dialogue": "inspect_bakery_door" },
     { "type": "inspect", "x": 11, "y": 1, "dialogue": "inspect_bakery_door" },

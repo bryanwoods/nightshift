@@ -1,0 +1,34 @@
+{
+  "id": "no_job",
+  "todo": "TODO(Tadzio): who is this? Name, look, and what it wants. The game never explains it.",
+  "name": "the one with no job",
+  "job": "",
+  "name_tag": false,
+  "sprite": "no_job",
+  "patience": 24,
+  "hours": 15,
+  "hit_damage": 3,
+  "patterns": [
+    { "type": "drift", "duration": 5, "count": 7, "speed": 40, "turn_rate": 1.4, "sprite": "note" },
+    { "type": "ring", "duration": 5, "rings": 3, "speed": 46, "gap_angle": 45, "arena": [150, 96] },
+    { "type": "dark", "duration": 5, "inner": { "type": "sweep", "bars": 3, "gap_px": 24, "speed": 66, "from": "both" } }
+  ],
+  "task": {
+    "title": "Answer it",
+    "steps": [
+      { "label": "Its first question", "line": "no_job_q1" },
+      { "label": "Its second question", "line": "no_job_q2" },
+      { "label": "Its third question", "line": "no_job_q3" }
+    ]
+  },
+  "dialogue": {
+    "intro": "no_job_intro",
+    "satisfied": "no_job_satisfied",
+    "spared": "no_job_spared"
+  },
+  "rewards": {
+    "satisfied": { "item": "key_to_nothing" },
+    "spared": { "item": "key_to_nothing" },
+    "finished": { "item": "key_to_nothing" }
+  }
+}

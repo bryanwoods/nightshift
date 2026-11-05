@@ -53,7 +53,7 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 | `test_room.tscn` | One room, clock running | `room=street_maple` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
-| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget`, `shots=/some/dir` |
+| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget\|finish\|encounters\|alley\|tour`, `shots=/some/dir` |
 
 Routes: `help` and `hustle` play the whole night each way. `finish` checks a finished worker
 across a save: his post is empty, the bread is on the steps, Wick and the Foreman notice,
@@ -62,7 +62,7 @@ room, every Curfew pattern, Pockets, the spare-or-finish choice and a finish. `c
 Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
 Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
 hold-to-light, the battle menu, Hustle timing, and 3:00 in the middle of a fight. `rewind`
-presses the watch in the Curfew fight. `encounters` spares the Un-Baker, helps the Window Washer, finishes the Puddle Keeper, saves,
+presses the watch in the Curfew fight. `alley` checks the secret alley. `encounters` spares the Un-Baker, helps the Window Washer, finishes the Puddle Keeper, saves,
 and checks all three the next night. `forget` checks the save model: an unsaved friend is
 forgotten at the end of the night, and a friend saved at a lamp is kept.
 
@@ -121,6 +121,7 @@ take worker ids instead of flags. Tile overrides take the same four fields.
 | `trigger` | `dialogue`, `once`, `flag`, `w`, `h` | Walk into it. `once` + `flag` sets the flag and never fires again |
 | `hold` | `dialogue`, `seconds`, `minutes`, `light`, `flag`, `hint` | Hold Confirm to fill a bar. Ticks the clock as it fills, then lights `light`, sets `flag`, runs `dialogue` |
 | `encounter` | `worker`, `approach`, `respawn`, `radius`, `facing`, `light`, `approach_enemy`, `chat`, `after` | A worker at a post. Come close or press Confirm: the approach line, then the fight. See "An encounter" below |
+| `false_wall` | `tile`, `to`, `spawn`, `minutes` | Looks like the wall under it and is solid. Inside the flashlight beam it shows `tile` (a gap) and is walkable; walking in goes to `to`, like a door |
 | `lamp` | `id`, `light`, `wick` | A save point. The flag `lamp_<id>` means lit, and `light` is on while it is. Dark: Wick lights it (2 min), or it lights itself when `wick` is `false`. Lit: Confirm offers a save |
 
 ### Dialogue
@@ -268,6 +269,31 @@ close. Say the Night Postman from the example above should stand on Main Street.
 The Window Washer (`data/workers/window_washer.json`, `data/dialogue/window_washer.json`)
 and the Puddle Keeper are complete small examples.
 
+### A secret room
+
+A secret room is a normal room behind a `false_wall`. Say there should be a hidden yard
+behind the Depot.
+
+1. Make `data/rooms/depot_yard.json` like any room. Give it a spawn near its way out, for
+   example `"spawns": { "default": [3, 5, "up"], "secret": [3, 5, "up"] }`, and a door back:
+   `{ "type": "door", "x": 3, "y": 6, "to": "depot_exterior", "spawn": "yard" }`.
+2. In `data/rooms/depot_exterior.json`, pick a wall tile and put a false wall on it:
+
+   ```json
+   { "type": "false_wall", "x": 13, "y": 1, "tile": "alley_gap", "to": "depot_yard", "spawn": "secret" }
+   ```
+
+   Also add the spawn `"yard"` just below that tile, facing down.
+3. That is all. In the dark the tile is the wall it was. Inside the flashlight beam it shows
+   `alley_gap` and Tadzio can walk through. Do not add a label or an inspect spot there.
+4. Optional: a lamp with `"wick": false` (it lights itself), and a boss as an `encounter`
+   with `"respawn": "never"`. A worker file can hide its name and job in the fight with
+   `"name_tag": false`.
+
+`data/rooms/alley_1.json` and `data/workers/no_job.json` are the example. The `alley` route
+of the autotest bot checks it: the wall stays solid with the flashlight off, opens with it
+on, and the key and the quiet alley last into the next night.
+
 ### A Help Wanted posting
 
 Add `{ "title", "posted_by", "text", "status" }` to `data/help_wanted.json`.
@@ -365,6 +391,9 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.
 - Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.
 - Round 2: the Un-Baker stands at his post from the start of the night, with his cart and a lantern. He no longer walks in.
+- Round 2: the flashlight starts off every night, and the bedroom names its key once. Without this, the check "a player who never turns it on never finds the alley" could not hold.
+- Round 2: a false wall stays open while Tadzio stands in it, so the gap cannot close on him.
+- Round 2: the key to nothing comes from every outcome of the alley fight ("a strange reward either way").
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 
 ## Open questions for Bryan

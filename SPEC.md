@@ -513,7 +513,7 @@ state to disk. Interact with a lit lamp to save again. The lit flag is part of t
 committed state, so a lamp that was not saved is dark again next night.
 
 There is one lamp in each outdoor room on the route (Maple Street, Main Street, the Depot
-yard and the square) and one in the Depot. There are no lamps in the house.
+yard, the square and the alley) and one in the Depot. There are no lamps in the house.
 
 When the night ends (3:00, the `end_night` command, or falling asleep), live state reverts
 to committed state. Then the "What the lamps remember" screen shows two columns. Kept is
@@ -598,3 +598,22 @@ themselves; when the Window Washer is gone, a shop window shows Tadzio his own f
 Puddle Keeper keeps the night's puddles from drying before morning; when the Puddle Keeper
 is gone, the puddles are dry. Both are placeholders for Tadzio to rename or replace, and their files are small on
 purpose so they work as examples.
+
+## Secret rooms
+
+The town hides things. A room entity of type `false_wall` sits on a wall tile. In the dark
+it is the room's own wall and it is solid. Inside the flashlight beam (56 px, 60 degrees)
+it shows its `tile`, a gap, and the gap is walkable. Walking into the gap goes to the room
+in `to`, like a door. There is no label and no marker.
+
+The flashlight starts off every night. The bedroom names its key once. A player who never
+turns it on never finds the gap. The flashlight is for finding secrets, not for seeing.
+
+On Main Street, between two shops, a false wall opens on `alley_1`: a small dead end with
+one lamp and something that is not a worker. It has no name tag and no job; its
+placeholder name is "the one with no job" (`TODO(Tadzio)`). Patience 24, hit damage 3,
+three patterns (drift, ring, and a dark sweep), 15 hours. Its Help task is three steps,
+and each step is a question it asks; any answer counts. Every outcome leaves behind the
+same item, a key to nothing. It has `"respawn": "never"`: once the fight is over, any way,
+the alley is quiet, and the lamp still works. The alley lamp lights without Wick
+(`"wick": false`). The game never explains any of it.

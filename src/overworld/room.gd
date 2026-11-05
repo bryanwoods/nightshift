@@ -8,6 +8,9 @@ const TILE: int = 16
 const DIR := "res://data/rooms/"
 const VIEW := Vector2(320, 180)
 const ATLAS_COLUMNS := 8
+## The flashlight cone texture: 56 px long, 60 degrees wide.
+const BEAM_LENGTH := 56.0
+const BEAM_HALF_ANGLE := 30.0
 
 var id: String = ""
 var data: Dictionary = {}
@@ -274,6 +277,22 @@ func _use_lamp(e: Entity) -> void:
 		DialogueRunner.run("lamp_lit_wick" if needs_wick else "lamp_lit")
 
 
+## A false wall shows its gap tile while the flashlight beam covers it, or while Tadzio stands
+## in it, and the room's own wall tile the rest of the time. Only the gap tile is walkable.
+func _update_false_walls() -> void:
+	var origin := player.position + player.flashlight.position
+	for e in entities:
+		if e.kind != "false_wall" or not e.active:
+			continue
+		var c := Vector2i(int(e.data.get("x", 0)), int(e.data.get("y", 0)))
+		var v := e.rect.get_center() - origin
+		var lit := player.flashlight.enabled and v.length() <= BEAM_LENGTH and absf(v.angle_to(player.facing)) <= deg_to_rad(BEAM_HALF_ANGLE)
+		var open := lit or e.rect.grow(4).has_point(player.position)
+		var name := str(e.data.get("tile", "")) if open else str(data.get("legend", {}).get(str(_layout[c.y])[c.x], ""))
+		if _tile_index.has(name) and tiles.get_cell_atlas_coords(c) != _tile_index[name]:
+			tiles.set_cell(c, 0, _tile_index[name])
+
+
 func _physics_process(_delta: float) -> void:
 	if player == null or Game.busy or Game.in_battle or Game.night_over or DialogueRunner.is_active():
 		return
@@ -286,7 +305,7 @@ func _physics_process(_delta: float) -> void:
 				_encounter(e)
 				return
 			continue
-		if not e.active or not (e.kind == "door" or e.kind == "trigger"):
+		if not e.active or not e.kind in ["door", "trigger", "false_wall"]:
 			continue
 		if not e.rect.has_point(p):
 			e.armed = true
@@ -294,7 +313,7 @@ func _physics_process(_delta: float) -> void:
 		if not e.armed:
 			continue
 		e.armed = false
-		if e.kind == "door":
+		if e.kind != "trigger":
 			var minutes := int(e.data.get("minutes", NightClock.cost("door")))
 			Game.go_to_room(str(e.data.get("to", "")), str(e.data.get("spawn", "default")), minutes, e.dialogue)
 		else:
@@ -314,6 +333,8 @@ func _process(delta: float) -> void:
 		pl.energy = float(_light_base[lid]) * (1.0 + 0.02 * sin(_time * 7.0 + pl.position.x) * sin(_time * 2.3))
 	_update_camera()
 	_update_overlay()
+	if player:
+		_update_false_walls()
 	if _shake_t > 0.0:
 		_shake_t -= delta
 		camera.offset = Vector2(randf_range(-1, 1), randf_range(-1, 1)) * _shake_amp if _shake_t > 0 else Vector2.ZERO

@@ -74,7 +74,9 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 			Game.report(file, where + ".type", "\"%s\" must be one of %s" % [kind, ", ".join(Entity.KINDS)])
 		_in_bounds(file, where, [e.get("x", -1), e.get("y", -1)], size)
 		_gone_ids(file, where, e)
-		if kind == "door":
+		if kind == "false_wall" and not str(e.get("tile", "")) in tile_names:
+			Game.report(file, where + ".tile", "tile \"%s\" is not in tileset %s" % [e.get("tile", ""), ts])
+		if kind in ["door", "false_wall"]:
 			var to := str(e.get("to", ""))
 			if not spawns.has(to):
 				Game.report(file, where + ".to", "no room \"%s\"" % to)

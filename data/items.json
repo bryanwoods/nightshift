@@ -5,6 +5,7 @@
     "squeaky_cloth": { "name": "Squeaky cloth", "block": true, "use_text": "You hold up the squeaky cloth. The next hit slides off." },
     "jar_of_puddle": { "name": "Jar of puddle", "awake": 5, "use_text": "You splash your face with the jar of puddle. +5 Awake." },
     "pocket_watch": { "name": "Pocket watch" },
-    "punch_card": { "name": "Punch card" }
+    "punch_card": { "name": "Punch card" },
+    "key_to_nothing": { "name": "A key to nothing" }
   }
 }

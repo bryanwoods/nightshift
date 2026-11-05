@@ -1,0 +1,45 @@
+{
+  "id": "alley",
+  "todo": "TODO(Tadzio): every line here is a placeholder. Do not explain the one with no job.",
+  "dialogues": {
+    "alley_crate": {
+      "lines": [ { "text": "A crate with no label. Everything else in this town has a label." } ]
+    },
+    "no_job_approach": {
+      "lines": [ { "text": "At the end of the alley, something is standing very still. It is awake." } ]
+    },
+    "no_job_intro": {
+      "lines": [ { "speaker": "no_job", "text": "..." } ]
+    },
+    "no_job_q1": {
+      "lines": [
+        { "speaker": "no_job", "text": "What is your job?",
+          "choices": [ { "text": "I don't have one." }, { "text": "Helping, I think." } ] }
+      ]
+    },
+    "no_job_q2": {
+      "lines": [
+        { "speaker": "no_job", "text": "Who gave it to you?",
+          "choices": [ { "text": "Nobody." }, { "text": "Wick." } ] }
+      ]
+    },
+    "no_job_q3": {
+      "lines": [
+        { "speaker": "no_job", "text": "What time is it?",
+          "choices": [ { "text": "Two." }, { "text": "I don't know anymore." } ] }
+      ]
+    },
+    "no_job_satisfied": {
+      "lines": [ { "speaker": "no_job", "text": "..." } ]
+    },
+    "no_job_spared": {
+      "lines": [ { "text": "It steps back into the dark, and the dark keeps it." } ]
+    },
+    "no_job_key": {
+      "lines": [
+        { "text": "Where it stood, there is a key. It doesn't fit anything you know of." },
+        { "text": "You got a key to nothing." }
+      ]
+    }
+  }
+}
