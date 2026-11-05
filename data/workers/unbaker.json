@@ -6,6 +6,7 @@
   "portrait": "unbaker",
   "size": "normal",
   "patience": 15,
+  "hours": 6,
   "hit_damage": 2,
   "patterns": [
     {
@@ -57,16 +58,10 @@
     "intro": "unbaker_battle_intro",
     "hustle_hit": "unbaker_hustle",
     "satisfied": "unbaker_satisfied",
-    "defeated": "unbaker_defeated"
+    "spared": "unbaker_defeated"
   },
   "rewards": {
-    "satisfied": {
-      "flag": "friend_unbaker",
-      "item": "heel_of_bread"
-    },
-    "defeated": {
-      "flag": "enemy_unbaker"
-    }
+    "satisfied": { "item": "heel_of_bread" }
   },
   "music": "battle_loop",
   "turn_lines": [

@@ -33,6 +33,19 @@
         }
       ]
     },
+    "battle_pockets_empty": {
+      "lines": [ { "text": "Your pockets are empty." } ]
+    },
+    "battle_finished": {
+      "todo": "TODO(Tadzio): what Wick says the first time a worker is gone.",
+      "lines": [
+        { "text": "It's quiet now." },
+        { "cmd": "if_flag", "flag": "wick_saw_gone", "goto": "" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "...", "if_flag": "wick_joined" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "They're gone. They're not coming back. Are they.", "if_flag": "wick_joined" },
+        { "cmd": "set_flag", "flag": "wick_saw_gone", "if_flag": "wick_joined" }
+      ]
+    },
     "battle_asleep": {
       "lines": [
         {

@@ -2,20 +2,23 @@
   "id": "square",
   "dialogues": {
     "square_curfew": {
+      "todo": "TODO(Tadzio): Wick's quieter lines once two or more workers are gone (many_gone).",
       "lines": [
         { "text": "The town square. Above it, the clock tower." },
         { "cmd": "face", "entity": "player", "dir": "up" },
         { "text": "The big clock says 2:00." },
-        { "speaker": "wick", "text": "That's... not right. That clock is never wrong. It's THE clock." },
+        { "speaker": "wick", "text": "That's... not right. That clock is never wrong. It's THE clock.", "unless_flag": "many_gone" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "..." },
         { "cmd": "music", "track": "curfew_theme" },
         { "text": "Something rolls across the cobbles like a slow wave. Quilts. Pillows. Two sleepy eyes." },
         { "cmd": "move", "entity": "curfew", "dx": -4, "dy": 0, "speed": 16 },
         { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Up past bedtime." },
         { "speaker": "curfew", "text": "That's my department." },
-        { "speaker": "wick", "portrait": "wick_panic", "text": "It's Curfew! It puts awake kids back to bed! It's very nice about it! That's the hard part!" },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "It's Curfew! It puts awake kids back to bed! It's very nice about it! That's the hard part!", "unless_flag": "many_gone" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "It's Curfew.", "if_flag": "many_gone" },
         { "cmd": "battle", "worker": "curfew" },
-        { "cmd": "if_flag", "flag": "friend_curfew", "goto": "square_end_help", "else": "square_end_hustle" }
+        { "cmd": "if_flag", "flag": "friend_curfew", "goto": "square_end_help" },
+        { "cmd": "if_flag", "flag": "gone_curfew", "goto": "square_end_gone", "else": "square_end_hustle" }
       ]
     },
     "square_end_help": {
@@ -32,6 +35,15 @@
     "square_end_hustle": {
       "lines": [
         { "text": "Curfew rolls away into the dark, grumbling softly." },
+        { "cmd": "wait", "seconds": 0.8 },
+        { "text": "Up on the tower, the big clock does not move." },
+        { "cmd": "goto", "goto": "square_ending" }
+      ]
+    },
+    "square_end_gone": {
+      "todo": "TODO(Tadzio): what the square is like when Curfew is gone.",
+      "lines": [
+        { "text": "The square is very still." },
         { "cmd": "wait", "seconds": 0.8 },
         { "text": "Up on the tower, the big clock does not move." },
         { "cmd": "goto", "goto": "square_ending" }

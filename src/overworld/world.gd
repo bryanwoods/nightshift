@@ -57,6 +57,6 @@ func _on_battle_finished(result: String) -> void:
 	room.process_mode = Node.PROCESS_MODE_INHERIT
 	room.visible = true
 	AudioBus.play_music(_music_before_battle)
-	Game.battle_finished.emit(result)
-	if result == "asleep":
+	if result == "abandoned" and not Game.night_over:
 		Game.end_night("asleep")
+	Game.battle_finished.emit(result)

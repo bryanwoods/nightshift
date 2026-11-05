@@ -17,6 +17,12 @@
     "F.....L.....m.....L.....",
     "hhhhhhThhhhhhhhhThhhhhhh"
   ],
+  "overrides": [
+    { "x": 3, "y": 1, "tile": "house_door_bread", "if_gone": "unbaker" },
+    { "x": 12, "y": 1, "tile": "house_door_bread", "if_gone": "unbaker" },
+    { "x": 21, "y": 1, "tile": "house_door_bread", "if_gone": "unbaker" },
+    { "x": 20, "y": 4, "tile": "bread_cart", "if_gone": "unbaker" }
+  ],
   "spawns": { "default": [1, 3, "right"], "gate": [1, 3, "right"], "east": [22, 4, "left"] },
   "entities": [
     { "type": "door", "x": 0, "y": 3, "to": "backyard", "spawn": "gate" },
@@ -41,13 +47,18 @@
     { "type": "inspect", "x": 6, "y": 7, "dialogue": "inspect_dark_lamp_far" },
     { "type": "inspect", "x": 18, "y": 7, "dialogue": "inspect_dark_lamp_far" },
 
-    { "type": "trigger", "x": 17, "y": 2, "h": 6, "once": true, "flag": "unbaker_seen", "dialogue": "unbaker_approach", "if_flag": "wick_joined" },
-    { "type": "npc", "id": "unbaker", "sprite": "unbaker", "x": 23, "y": 4, "facing": "left", "dialogue": "unbaker_busy", "if_flag": "unbaker_seen", "unless_flag": ["friend_unbaker", "enemy_unbaker"] },
+    { "type": "trigger", "x": 17, "y": 2, "h": 6, "once": true, "flag": "unbaker_seen", "dialogue": "unbaker_approach", "if_flag": "wick_joined", "unless_gone": "unbaker" },
+    { "type": "npc", "id": "unbaker", "sprite": "unbaker", "x": 23, "y": 4, "facing": "left", "dialogue": "unbaker_busy", "if_flag": "unbaker_seen", "unless_flag": ["friend_unbaker", "enemy_unbaker"], "unless_gone": "unbaker" },
+    { "type": "trigger", "x": 17, "y": 2, "h": 6, "once": true, "flag": "tonight_saw_cart", "dialogue": "wick_cart", "if_flag": "wick_joined", "if_gone": "unbaker" },
+    { "type": "inspect", "x": 20, "y": 4, "dialogue": "inspect_cart", "if_gone": "unbaker" },
     { "type": "npc", "id": "unbaker_friend", "sprite": "unbaker", "x": 19, "y": 4, "facing": "left", "dialogue": "unbaker_friend_chat", "if_flag": "friend_unbaker" },
 
-    { "type": "inspect", "x": 3, "y": 1, "dialogue": "inspect_own_door" },
-    { "type": "inspect", "x": 12, "y": 1, "dialogue": "inspect_neighbor_door" },
-    { "type": "inspect", "x": 21, "y": 1, "dialogue": "inspect_neighbor_door" },
+    { "type": "inspect", "x": 3, "y": 1, "dialogue": "inspect_own_door", "unless_gone": "unbaker" },
+    { "type": "inspect", "x": 12, "y": 1, "dialogue": "inspect_neighbor_door", "unless_gone": "unbaker" },
+    { "type": "inspect", "x": 21, "y": 1, "dialogue": "inspect_neighbor_door", "unless_gone": "unbaker" },
+    { "type": "inspect", "x": 3, "y": 1, "dialogue": "inspect_bread_step", "if_gone": "unbaker" },
+    { "type": "inspect", "x": 12, "y": 1, "dialogue": "inspect_bread_step", "if_gone": "unbaker" },
+    { "type": "inspect", "x": 21, "y": 1, "dialogue": "inspect_bread_step", "if_gone": "unbaker" },
     { "type": "inspect", "x": 6, "y": 1, "dialogue": "inspect_house_window" },
     { "type": "inspect", "x": 15, "y": 1, "dialogue": "inspect_house_window" },
     { "type": "inspect", "x": 12, "y": 7, "dialogue": "inspect_mailbox_maple" }

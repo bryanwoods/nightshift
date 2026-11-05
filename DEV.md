@@ -55,7 +55,10 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
 | `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget`, `shots=/some/dir` |
 
-Routes: `help` and `hustle` play the whole night each way. `clock` runs out the time on
+Routes: `help` and `hustle` play the whole night each way. `finish` checks a finished worker
+across a save: his post is empty, the bread is on the steps, Wick and the Foreman notice,
+and the hours carry. `tour` (with `shots=DIR` and a window) takes screenshots of every
+room, every Curfew pattern, Pockets, the spare-or-finish choice and a finish. `clock` runs out the time on
 Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
 Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
 hold-to-light, the battle menu, Hustle timing, and 3:00 in the middle of a fight. `rewind`
@@ -106,7 +109,8 @@ tile name in `legend`; the tile names come from `data/tilesets.json`.
 | `hud`, `flashlight`, `background` | `false`, `false`, a palette name |
 
 Entity types. All take `x`, `y` in tiles, and optional `if_flag` / `unless_flag`
-(a name or a list) that decide if the entity exists right now.
+(a name or a list) that decide if the entity exists right now. `if_gone` / `unless_gone`
+take worker ids instead of flags. Tile overrides take the same four fields.
 
 | type | Fields | Does |
 |---|---|---|
@@ -121,6 +125,8 @@ Entity types. All take `x`, `y` in tiles, and optional `if_flag` / `unless_flag`
 
 `data/dialogue/<file>.json`. A file holds one dialogue (`lines`) or many (`dialogues`
 keyed by id). Every id is global, so any file can `goto` any dialogue.
+
+A dialogue can carry a `todo` field. The game never shows it; search for `TODO(Tadzio)`.
 
 A line has `speaker` (from `_speakers.json`), `portrait` (a file in
 `assets/portraits/` without `.png`; defaults to `<speaker>_neutral`), `text`, optional
@@ -169,6 +175,7 @@ Say Tadzio wants a **Night Postman** fight. Four steps, no code:
      "job": "Delivers dreams in envelopes",
      "sprite": "postman", "portrait": "postman", "size": "normal",
      "patience": 12,
+     "hours": 8,
      "hit_damage": 2,
      "patterns": [
        { "type": "drift", "duration": 6, "count": 5, "speed": 35, "turn_rate": 1.0, "sprite": "note" },
@@ -184,15 +191,19 @@ Say Tadzio wants a **Night Postman** fight. Four steps, no code:
        ]
      },
      "dialogue": { "intro": "postman_battle_intro", "hustle_hit": "postman_hustle",
-                   "satisfied": "postman_satisfied", "defeated": "postman_defeated" },
-     "rewards": { "satisfied": { "flag": "friend_postman", "item": "blank_envelope" },
-                  "defeated": { "flag": "enemy_postman" } }
+                   "satisfied": "postman_satisfied", "spared": "postman_spared" },
+     "rewards": { "satisfied": { "item": "blank_envelope" } }
    }
    ```
 
-2. Add those seven dialogue ids to any file in `data/dialogue/`.
+2. Add those seven dialogue ids to any file in `data/dialogue/`, and the item to
+   `data/items.json`. An item with `awake` (Awake back) or `block` (`true`: blocks the next
+   hit this round) shows in Pockets; give it a `use_text`.
 3. Start the fight from a dialogue with `{ "cmd": "battle", "worker": "postman" }`.
 4. Try it alone: `Godot --path . res://dev/test_battle.tscn -- worker=postman wick`.
+
+The outcome flags are fixed: `friend_<id>`, `enemy_<id>`, `gone_<id>`. `rewards` can give an
+`item` for `satisfied`, `spared` or `finished`.
 
 Optional worker fields: `arena` `[w, h]`, `idle_frames`, `music`, `rewind_tutorial`,
 `turn_lines` and `flavor` (lists of dialogue ids). Each turn, the menu panel shows the next
@@ -257,7 +268,7 @@ Release builds have no debug keys and no on-screen data errors. `dev/` is left o
 
 ## Tuning
 
-`data/tuning.json` holds the minute costs, Awake, token speed, rewind frames and
+`data/tuning.json` holds the minute costs, Awake, Shift Level thresholds, token speed, rewind frames and
 charges, Hustle timing, text speed, music tension and the arena size. Door minutes can
 also be set per door (`minutes`). Street-to-street doors cost 3.
 
@@ -303,6 +314,11 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: the optional hold lamps (+2 min each) stay. They light for one night and do not save.
 - Round 2: seen dialogue reverts with the rest, so an unsaved first meeting plays again.
 - Round 2: Continue shows after the first lamp save or the first finished night. There is no autosave.
+- Round 2: a spared worker gives 1 hour, but never more than their `hours`, so the practice dummy (0 hours) gives nothing.
+- Round 2: sparing someone who was a friend clears the friendship; helping someone who was an enemy clears the grudge.
+- Round 2: Wick's first line about a finished worker plays inside the fight, so it works for every fight, also Curfew's.
+- Round 2: five battle buttons need the full bottom row, so Awake and Patience moved up one row, and the level shows as `LV n` above Awake.
+- Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 
 ## Open questions for Bryan

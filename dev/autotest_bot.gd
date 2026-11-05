@@ -1,6 +1,6 @@
 extends Node
 ## Plays Night 1 by itself and checks the clock, flags and rooms on the way.
-## Routes: help (default), hustle, clock (run out the clock before the square), asleep, forget.
+## Routes: help (default), hustle, clock (run out the clock before the square), asleep, forget, finish.
 ## Run:  godot --path . res://dev/autotest.tscn -- route=help shots=/tmp/shots
 ## Screenshots need a window (no --headless). Prints AUTOTEST PASS or AUTOTEST FAIL and quits.
 
@@ -43,6 +43,9 @@ func _run() -> void:
 		return
 	if route == "forget":
 		await _forget_route()
+		return
+	if route == "finish":
+		await _finish_route()
 		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
@@ -218,6 +221,46 @@ func _forget_route() -> void:
 	_finish()
 
 
+## Item 2: finish the Un-Baker, save, and start a new night. His post is empty, the bread is
+## on the steps, Wick and the Foreman speak about it, and Shift Lv is 1 with 6 hours.
+func _finish_route() -> void:
+	DialogueRunner.autoplay_fight = "finish"
+	Game.set_flag("met_wick")
+	Game.set_flag("wick_joined")
+	NightClock.set_minute(0)
+	Game.go_to_room("street_maple", "gate", 0)
+	await _room("street_maple")
+	await _walk(17, 4)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	await _idle()
+	_expect(Game.has_flag("gone_unbaker") and Game.hours == 6 and int(Game.tally["finished_count"]) == 1, "finished the Un-Baker: gone, 6 hours, finished_count 1")
+	_expect(Game.has_flag("wick_saw_gone"), "Wick spoke the first time a worker was finished")
+	Game.go_to_room("street_main", "west", 0)
+	await _room("street_main")
+	_cur_room().interact(_target_at(2, 2))
+	await _idle()
+	NightClock.add(60)
+	await _wake()
+	Game.start_night(false)
+	await _room("bedroom")
+	NightClock.set_minute(0)
+	Game.go_to_room("street_maple", "gate", 0)
+	await _room("street_maple")
+	var r := _cur_room()
+	var unbaker := r.entity_by_id("unbaker")
+	_expect(unbaker == null or not unbaker.active, "night 2: the Un-Baker's post is empty")
+	_expect(r.tiles.get_cell_atlas_coords(Vector2i(12, 1)) == r._tile_index["house_door_bread"], "night 2: the bread is on the steps")
+	await _walk(17, 4)
+	await _idle()
+	_expect(Game.has_flag("tonight_saw_cart"), "night 2: Wick speaks at the empty post")
+	Game.go_to_room("depot_interior", "side", 0)
+	await _room("depot_interior")
+	_expect(Game.seen.has("foreman_missing"), "night 2: the Foreman names the missing Un-Baker")
+	_expect(Game.shift_level() == 1 and Game.hours == 6, "Shift Lv 1 with 6 hours")
+	_finish()
+
+
 func _night_two() -> void:
 	_note("--- night 2 (Continue) ---")
 	Game.start_night(false)
@@ -369,15 +412,54 @@ func _tour() -> void:
 	var w := _world()
 	await _until(func() -> bool: return w.battle != null, 10.0)
 	var b: Battle = w.battle
+	DialogueRunner.autoplay_fight = "hustle"
 	for i in 4:
 		if not Game.in_battle:
 			break
 		b._lit = i == 3
-		await _until(func() -> bool: return b._dodging, 30.0)
+		await _until(func() -> bool: return w.battle == null or w.battle._dodging, 30.0)
 		await _wait(2.5)
 		await _shot("curfew_pattern_%d" % (i + 1))
-		await _until(func() -> bool: return not b._dodging, 30.0)
+		await _until(func() -> bool: return w.battle == null or not w.battle._dodging, 30.0)
+	await _until(func() -> bool: return not Game.in_battle, 180.0)
+	await _tour_choice()
 	_finish()
+
+
+## Pockets, the spare-or-finish choice and the finish, as screenshots.
+func _tour_choice() -> void:
+	DialogueRunner.autoplay = false
+	Game.give_item("heel_of_bread")
+	Game.start_battle("unbaker")
+	var w := _world()
+	await _until(func() -> bool: return w.battle != null, 10.0)
+	var b: Battle = w.battle
+	while not b._menu_on or DialogueRunner.showing():
+		await _tap("confirm")
+		await _wait(0.2)
+	while b._cursor != 4:
+		await _tap("move_right")
+	await _tap("confirm")
+	await _wait(1.0)
+	await _shot("pockets")
+	await _tap("move_down")
+	await _tap("confirm")
+	await _until(func() -> bool: return b._menu_on and not DialogueRunner.showing(), 10.0)
+	b.patience = 1
+	b._menu_done.emit("hustle")
+	await _until(func() -> bool: return b._hustle_on, 3.0)
+	b._hustle_done.emit(5)
+	await _until(func() -> bool: return DialogueRunner.showing() and DialogueRunner.textbox._options.size() == 2, 10.0)
+	await _wait(2.0)
+	await _shot("choice")
+	await _tap("move_down")
+	await _tap("confirm")
+	await _wait(0.9)
+	await _shot("finish_flicker")
+	await _wait(1.6)
+	await _shot("finish_gone")
+	DialogueRunner.autoplay = true
+	await _until(func() -> bool: return not Game.in_battle, 30.0)
 
 
 func _rewind_route() -> void:

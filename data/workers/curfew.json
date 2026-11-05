@@ -8,6 +8,7 @@
   "idle_frames": 2,
   "music": "curfew_theme",
   "patience": 30,
+  "hours": 25,
   "hit_damage": 3,
   "arena": [
     140,
@@ -94,15 +95,7 @@
     "intro": "curfew_battle_intro",
     "hustle_hit": "curfew_hustle",
     "satisfied": "curfew_satisfied",
-    "defeated": "curfew_defeated"
-  },
-  "rewards": {
-    "satisfied": {
-      "flag": "friend_curfew"
-    },
-    "defeated": {
-      "flag": "enemy_curfew"
-    }
+    "spared": "curfew_defeated"
   },
   "turn_lines": [
     "curfew_turn_1",

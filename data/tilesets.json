@@ -27,11 +27,11 @@
                 "hedge", "tree", "fence", "gate", "lamp_post", "mailbox", "bench", "shop_wall",
                 "shop_window_lit", "shop_window", "bakery_door", "bakery_sign", "cobble", "tower", "tower_face", "fountain",
                 "depot_wall", "rolling_door", "side_door", "side_door_closed", "punch_clock", "crate", "flowerbed", "ladder_broken",
-                "path", "back_door", "porch"],
+                "path", "back_door", "porch", "house_door_bread", "bread_cart"],
       "solid": ["roof", "house_wall", "house_window", "house_door", "hedge", "tree", "fence", "lamp_post",
                 "mailbox", "bench", "shop_wall", "shop_window_lit", "shop_window", "bakery_door", "bakery_sign",
                 "tower", "tower_face", "fountain", "depot_wall", "rolling_door", "side_door_closed", "punch_clock",
-                "crate", "flowerbed"]
+                "crate", "flowerbed", "house_door_bread", "bread_cart"]
     },
     "depot_night": {
       "png": "res://assets/tiles/depot_night.png",

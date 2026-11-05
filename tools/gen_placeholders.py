@@ -312,6 +312,21 @@ def t_house_door(d, r):
     d.point((10, 9), fill=r["hi"])
 
 
+def t_house_door_bread(d, r):
+    t_house_door(d, r)
+    d.ellipse([5, 11, 10, 15], fill=r["warm"], outline=r["outline"])
+
+
+def t_bread_cart(d, r):
+    t_road(d, r)
+    R(d, 1, 4, 14, 11, r["wood"])
+    d.rectangle([1, 4, 14, 11], outline=r["outline"])
+    for x in (3, 7, 11):
+        d.ellipse([x - 1, 2, x + 2, 5], fill=r["warm"], outline=r["outline"])
+    for x in (3, 12):
+        d.ellipse([x - 2, 11, x + 1, 14], fill=r["outline"])
+
+
 def t_sidewalk(d, r):
     R(d, 0, 0, 15, 15, r["stone"])
     d.line([(0, 0), (15, 0)], fill=r["stone_line"])
@@ -614,7 +629,7 @@ TILES = {
     "bakery_sign": t_bakery_sign, "cobble": t_cobble, "tower": t_tower, "tower_face": t_tower_face,
     "fountain": t_fountain, "depot_wall": t_depot_wall, "rolling_door": t_rolling_door,
     "side_door": t_side_door, "side_door_closed": t_side_door_closed, "punch_clock": t_punch_clock,
-    "crate": t_crate, "flowerbed": t_flowerbed, "ladder_broken": t_ladder_broken, "path": t_path,
+    "crate": t_crate, "house_door_bread": t_house_door_bread, "bread_cart": t_bread_cart, "flowerbed": t_flowerbed, "ladder_broken": t_ladder_broken, "path": t_path,
     "back_door": t_back_door, "porch": t_porch, "concrete": t_concrete, "floor_line": t_floor_line,
     "board": t_board, "bin": t_bin, "lantern": t_lantern, "timecards": t_timecards, "desk_big": t_desk_big, "locker": t_locker,
 }
@@ -1190,6 +1205,7 @@ def sfx():
                                      for i, n in enumerate(("C5", "E5", "G5", "C6"))])
     make("door", 0.15, lambda b: (noise(b, 0, 0.05, 0.3, decay=60), tone(b, 0, 0.12, 160, "sine", 0.3, glide=120)))
     make("block", 0.2, lambda b: tone(b, 0, 0.2, note_hz("E5"), "tri", 0.4, release=0.15))
+    make("gone", 1.2, lambda b: tone(b, 0, 1.2, note_hz("C3"), "tri", 0.4, attack=0.02, release=0.8))
     make("step_ok", 0.25, lambda b: (tone(b, 0, 0.1, note_hz("E5"), "tri", 0.3), tone(b, 0.1, 0.15, note_hz("A5"), "tri", 0.3)))
 
 

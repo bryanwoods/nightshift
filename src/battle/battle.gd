@@ -1,8 +1,8 @@
 class_name Battle
 extends CanvasLayer
 ## One fight against a worker from data/workers/<id>.json.
-## The loop is menu phase, dodge phase, clock tick. It ends when the worker is satisfied
-## or storms off, when Tadzio falls asleep, or when 3:00 arrives.
+## The loop is menu phase, dodge phase, clock tick. Every ending goes through _resolve:
+## satisfied, spared, finished, or abandoned (asleep, or 3:00).
 
 signal finished(result: String)
 signal _menu_done(choice: String)
@@ -10,7 +10,7 @@ signal _phase_done
 signal _hustle_done(damage: int)
 
 const ARENA_CENTER := Vector2(160, 102)
-const OPTIONS: Array[String] = ["help", "hustle", "stall", "wick"]
+const OPTIONS: Array[String] = ["help", "hustle", "stall", "wick", "pockets"]
 const WICK_OPTIONS: Array[String] = ["wick_light", "wick_hold"]
 const TOKEN_R := 3.0
 
@@ -55,6 +55,7 @@ var _menu_panel: Vector2 = Vector2(216, 76)
 var _root: Control
 var _arena: Arena
 var _worker_sprite: Sprite2D
+var _glow: Sprite2D
 var _worker_base: Vector2
 var _shake: float = 0.0
 var _arena_shake: float = 0.0
@@ -62,6 +63,7 @@ var _anim_t: float = 0.0
 var _idle_frames: int = 1
 var _task_label: Label
 var _awake_label: Label
+var _level_label: Label
 var _awake_fill: ColorRect
 var _patience_label: Label
 var _patience_fill: ColorRect
@@ -89,7 +91,7 @@ func start(id: String) -> void:
 	worker = d
 	patience_max = maxi(1, int(worker.get("patience", 10)))
 	patience = patience_max
-	awake_max = int(Game.tuning.get("awake_start", 20))
+	awake_max = int(Game.tuning.get("awake_start", 20)) + (Game.shift_level() - 1) * int(Game.tuning.get("level_awake", 4))
 	awake = awake_max
 	var dflt: Array = Game.tuning.get("arena_default", [120, 80])
 	base_arena = Pattern.arena_for(worker, Vector2(float(dflt[0]), float(dflt[1])))
@@ -119,17 +121,12 @@ func _loop() -> void:
 		if over or resolved:
 			break
 		await _dodge_phase()
-		if over:
-			break
-		if awake <= 0:
-			AudioBus.sfx("asleep")
-			await DialogueRunner.run("battle_asleep")
-			result = "asleep"
+		if over or awake <= 0:
 			break
 		NightClock.spend("battle_round")
 		AudioBus.sfx("tick")
 	if result == "":
-		result = "abandoned"
+		await _resolve("abandoned")
 	_stats["result"] = result
 	_stats["worker"] = worker_id
 	_stats["minutes"] = NightClock.minute - _start_minute
@@ -150,20 +147,54 @@ func _line(key: String) -> void:
 # ------------------------------------------------------------------ menu phase
 
 func _menu_phase() -> String:
-	_flavor.text = _turn_text("flavor")
-	var pats: Array = worker.get("patterns", [])
-	if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
-		_flavor.text = Game.text("dark_warning")
-		if Game.has_flag("wick_joined"):
-			_cursor = OPTIONS.find("wick")
-	_menu_on = true
-	_sub = false
-	_input_at = Time.get_ticks_msec() + 150
-	_refresh_menu()
-	var choice: String = await _menu_done
-	_menu_on = false
-	_refresh_menu()
-	return choice
+	while not over:
+		_flavor.text = _turn_text("flavor")
+		var pats: Array = worker.get("patterns", [])
+		if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
+			_flavor.text = Game.text("dark_warning")
+			if Game.has_flag("wick_joined"):
+				_cursor = OPTIONS.find("wick")
+		_menu_on = true
+		_sub = false
+		_input_at = Time.get_ticks_msec() + 150
+		_refresh_menu()
+		var choice: String = await _menu_done
+		_menu_on = false
+		_refresh_menu()
+		if choice != "pockets":
+			return choice
+		var item := await _pick_item()
+		if item != "":
+			return "item:" + item
+	return ""
+
+
+## Pockets: the items that do something in a fight. Close goes back to the menu.
+func _pick_item() -> String:
+	var usable: Array[String] = []
+	var names: Array[String] = []
+	for it in Game.items:
+		var info: Dictionary = Game.item_info.get(it, {})
+		if info.has("awake") or info.has("block"):
+			usable.append(it)
+			names.append(Game.item_name(it))
+	if usable.is_empty():
+		await DialogueRunner.run("battle_pockets_empty")
+		return ""
+	names.append(Game.text("pockets_close"))
+	var pick: int = await DialogueRunner.ask("narrator", Game.text("pockets_prompt"), names)
+	return usable[pick] if pick >= 0 and pick < usable.size() else ""
+
+
+func _use_item(item: String) -> void:
+	var info: Dictionary = Game.item_info.get(item, {})
+	Game.items.erase(item)
+	Game.playtest("item", {"item": item, "worker": worker_id})
+	awake = mini(awake_max, awake + int(info.get("awake", 0)))
+	_hold = bool(info.get("block", false))
+	AudioBus.sfx("step_ok")
+	_refresh_meters()
+	_show_prompt(str(info.get("use_text", Game.item_name(item))), 1.5)
 
 
 func _act(action: String) -> bool:
@@ -172,6 +203,9 @@ func _act(action: String) -> bool:
 	_stall = false
 	_hold = false
 	_lit = false
+	if action.begins_with("item:"):
+		_use_item(action.trim_prefix("item:"))
+		return false
 	match action:
 		"help":
 			return await _help()
@@ -224,10 +258,7 @@ func _help() -> bool:
 	AudioBus.sfx("step_ok")
 	_refresh_meters()
 	if step_index >= steps.size():
-		AudioBus.sfx("satisfied")
-		await _line("satisfied")
-		_reward("satisfied")
-		result = "satisfied"
+		await _resolve("satisfied")
 		return true
 	return false
 
@@ -250,24 +281,94 @@ func _hustle() -> bool:
 		AudioBus.sfx("cancel")
 		await DialogueRunner.run("battle_hustle_miss")
 		return false
-	patience = maxi(0, patience - dmg)
+	patience = maxi(0, patience - dmg - (Game.shift_level() - 1) * int(Game.tuning.get("level_hustle", 1)))
 	AudioBus.sfx("hustle")
 	_shake = 0.35
 	_refresh_meters()
 	if patience <= 0:
-		await _line("defeated")
-		_reward("defeated")
-		result = "defeated"
+		await _resolve("finished" if await _finish_them() else "spared")
 		return true
 	_pending_bubble = str(worker.get("dialogue", {}).get("hustle_hit", ""))
 	return false
 
 
-func _reward(kind: String) -> void:
-	var r: Dictionary = worker.get("rewards", {}).get(kind, {})
-	Game.set_flag(str(r.get("flag", ("friend_" if kind == "satisfied" else "enemy_") + worker_id)))
-	if r.has("item"):
-		Game.give_item(str(r["item"]))
+## Patience is gone: let them go, or clock them out. Help is not offered again.
+func _finish_them() -> bool:
+	var spare_h := mini(1, int(worker.get("hours", 0)))
+	var options: Array[String] = [
+		"%s (%s)" % [Game.text("spare_option"), Game.hours_text(spare_h)],
+		"%s (%s)" % [Game.text("finish_option"), Game.hours_text(int(worker.get("hours", 0)))],
+	]
+	if DialogueRunner.autoplay:
+		return DialogueRunner.autoplay_fight == "finish"
+	var prompt := Game.text("spare_prompt").replace("{name}", Game.display_name(worker_id))
+	return await DialogueRunner.ask("narrator", prompt, options) == 1
+
+
+## Every way a fight ends. Satisfied: Help finished the task. Spared and finished: Hustle
+## took all Patience. Abandoned: asleep, or 3:00.
+func _resolve(outcome: String) -> void:
+	result = outcome
+	match outcome:
+		"satisfied":
+			AudioBus.sfx("satisfied")
+			await _line("satisfied")
+			Game.clear_flag("enemy_" + worker_id)
+			Game.set_flag("friend_" + worker_id)
+			Game.tally["helper_count"] += 1
+		"spared":
+			_gain(mini(1, int(worker.get("hours", 0))))
+			await _line("spared")
+			Game.clear_flag("friend_" + worker_id)
+			Game.set_flag("enemy_" + worker_id)
+			Game.tally["hustler_count"] += 1
+		"finished":
+			await _go_still()
+			Game.clear_flag("friend_" + worker_id)
+			Game.clear_flag("enemy_" + worker_id)
+			Game.set_flag("gone_" + worker_id)
+			if Game.gone().size() >= 2:
+				Game.set_flag("many_gone")
+			Game.tally["finished_count"] += 1
+			_gain(int(worker.get("hours", 0)))
+			await DialogueRunner.run("battle_finished")
+		"abandoned":
+			if awake <= 0 and not over:
+				AudioBus.sfx("asleep")
+				await DialogueRunner.run("battle_asleep")
+	var item := str(worker.get("rewards", {}).get(outcome, {}).get("item", ""))
+	if item != "":
+		Game.give_item(item)
+
+
+## Finished: the worker goes still, flickers twice and is gone. The lantern goes out on one
+## low note, and the frame holds for a second.
+func _go_still() -> void:
+	if _worker_sprite == null:
+		return
+	_idle_frames = 1
+	await get_tree().create_timer(0.5).timeout
+	for i in 2:
+		_worker_sprite.visible = false
+		await get_tree().create_timer(0.1).timeout
+		_worker_sprite.visible = true
+		await get_tree().create_timer(0.15).timeout
+	_worker_sprite.visible = false
+	_glow.visible = false
+	AudioBus.sfx("gone")
+	await get_tree().create_timer(1.0).timeout
+
+
+func _gain(n: int) -> void:
+	if n <= 0:
+		return
+	var before := Game.shift_level()
+	Game.hours += n
+	var t := Game.hours_text(n)
+	if Game.shift_level() > before:
+		t += "   " + Game.text("level_up").replace("{n}", str(Game.shift_level()))
+	_show_prompt(t, 2.5)
+	_refresh_meters()
 
 
 # ------------------------------------------------------------------ dodge phase
@@ -513,6 +614,11 @@ func _build() -> void:
 		_worker_sprite.offset = Vector2(-tex.get_width() / 8.0, -tex.get_height() / 4.0)
 		_worker_base = Vector2(160, ARENA_CENTER.y - base_arena.y / 2.0 - 6)
 		_worker_sprite.position = _worker_base
+		_glow = Sprite2D.new()
+		_glow.texture = load("res://assets/sprites/light_radial.png")
+		_glow.modulate = Color(Game.color("lamp"), 0.3)
+		_glow.position = _worker_base - Vector2(0, tex.get_height() / 8.0)
+		_root.add_child(_glow)
 		_root.add_child(_worker_sprite)
 	_header.append(_label(Vector2(6, 2), str(worker.get("name", worker_id)), "moon"))
 	_header.append(_label(Vector2(6, 15), str(worker.get("job", "")), "fog", 126))
@@ -532,20 +638,21 @@ func _build() -> void:
 	_prompt.add_theme_color_override("font_outline_color", Game.color("ink"))
 	_prompt.add_theme_constant_override("outline_size", 2)
 	_prompt.visible = false
-	_awake_label = _label(Vector2(6, 150), "", "moon")
-	_awake_fill = _bar(Vector2(6, 165), "moon")
-	_patience_label = _label(Vector2(214, 150), "", "moon")
+	_level_label = _label(Vector2(2, 126), "", "fog")
+	_awake_label = _label(Vector2(2, 140), "", "moon")
+	_awake_fill = _bar(Vector2(2, 155), "moon")
+	_patience_label = _label(Vector2(218, 140), "", "moon")
 	_patience_label.size = Vector2(100, 14)
 	_patience_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_patience_fill = _bar(Vector2(254, 165), "ember")
+	_patience_fill = _bar(Vector2(258, 155), "ember")
 	for i in OPTIONS.size():
 		var box := Panel.new()
-		box.position = Vector2(74 + i * 44, 163)
-		box.size = Vector2(40, 15)
+		box.position = Vector2(6 + i * 62, 163)
+		box.size = Vector2(56, 15)
 		_root.add_child(box)
 		_boxes.append(box)
 		var l := _label(box.position, "", "moon")
-		l.size = Vector2(40, 14)
+		l.size = Vector2(56, 14)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_buttons.append(l)
 	_wipe = ColorRect.new()
@@ -583,6 +690,7 @@ func _bar(pos: Vector2, c: String) -> ColorRect:
 
 
 func _refresh_meters() -> void:
+	_level_label.text = Game.text("battle_lv").replace("{n}", str(Game.shift_level()))
 	_awake_label.text = "%s %d/%d" % [Game.text("awake"), awake, awake_max]
 	_awake_fill.size.x = 60.0 * awake / awake_max
 	_patience_label.text = "%s %d" % [Game.text("patience"), patience]

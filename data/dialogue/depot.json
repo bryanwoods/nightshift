@@ -14,9 +14,17 @@
         },
         {
           "speaker": "wick",
-          "text": "The Depot. Nightshift headquarters. You clock in, you clock out, the Foreman counts the rest."
+          "text": "The Depot. Nightshift headquarters. You clock in, you clock out, the Foreman counts the rest.",
+          "unless_flag": "many_gone"
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_sad",
+          "text": "The Depot.",
+          "if_flag": "many_gone"
         }
-      ]
+      ],
+      "todo": "TODO(Tadzio): Wick's quieter lines once two or more workers are gone (many_gone)."
     },
     "depot_punch_clock": {
       "lines": [
@@ -131,7 +139,14 @@
         {
           "speaker": "wick",
           "portrait": "wick_panic",
-          "text": "He's okay! He held the light on Maple! He's a natural! Kind of!"
+          "text": "He's okay! He held the light on Maple! He's a natural! Kind of!",
+          "unless_flag": "many_gone"
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_sad",
+          "text": "He's with me.",
+          "if_flag": "many_gone"
         },
         {
           "speaker": "foreman",
@@ -179,9 +194,21 @@
         {
           "speaker": "wick",
           "portrait": "wick_sad",
-          "text": "Thank you, sir. Sorry, sir. Seven lamps, sir."
+          "text": "Thank you, sir. Sorry, sir. Seven lamps, sir.",
+          "unless_flag": "many_gone"
+        },
+        {
+          "speaker": "wick",
+          "portrait": "wick_sad",
+          "text": "Yes, sir.",
+          "if_flag": "many_gone"
+        },
+        {
+          "cmd": "goto",
+          "goto": "foreman_missing"
         }
-      ]
+      ],
+      "todo": "TODO(Tadzio): Wick's quieter lines once two or more workers are gone (many_gone)."
     },
     "foreman_talk": {
       "lines": [
@@ -210,6 +237,10 @@
             "tonight_foreman_ok",
             "enemy_unbaker"
           ]
+        },
+        {
+          "cmd": "goto",
+          "goto": "foreman_missing"
         }
       ]
     },
@@ -360,6 +391,23 @@
       "lines": [
         {
           "text": "The mitten, the key, the yo-yo. In your pocket, the watch ticks. Sometimes backward."
+        }
+      ]
+    },
+    "foreman_missing": {
+      "todo": "TODO(Tadzio): what the Foreman says about each missing worker.",
+      "lines": [
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "The Un-Baker didn't clock in tonight.",
+          "if_flag": "gone_unbaker"
+        },
+        {
+          "speaker": "foreman",
+          "portrait": "foreman_grump",
+          "text": "Curfew didn't clock in tonight.",
+          "if_flag": "gone_curfew"
         }
       ]
     }

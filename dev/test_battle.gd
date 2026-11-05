@@ -34,7 +34,7 @@ func _fight() -> void:
 	NightClock.set_minute(0)
 	Game.night_over = false
 	var result: String = await Game.start_battle(_worker)
-	if result == "asleep":
+	if result == "abandoned":
 		Game.end_night("asleep")
 		return
 	_info.text = "result: %s   clock %s\nflags: %s\nconfirm: fight again" % [result, NightClock.text(), ", ".join(Game.flags.keys())]

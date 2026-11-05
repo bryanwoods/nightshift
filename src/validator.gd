@@ -73,6 +73,7 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 		if not kind in Entity.KINDS:
 			Game.report(file, where + ".type", "\"%s\" must be one of %s" % [kind, ", ".join(Entity.KINDS)])
 		_in_bounds(file, where, [e.get("x", -1), e.get("y", -1)], size)
+		_gone_ids(file, where, e)
 		if kind == "door":
 			var to := str(e.get("to", ""))
 			if not spawns.has(to):
@@ -88,11 +89,20 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 			Game.report(file, where + ".dialogue", "no dialogue \"%s\"" % dlg)
 		if kind in ["npc", "inspect", "hold", "trigger"] and dlg == "":
 			Game.report(file, where + ".dialogue", "a %s needs a dialogue" % kind)
+	for o: Dictionary in d.get("overrides", []):
+		_gone_ids(file, "overrides", o)
 	for l: Dictionary in d.get("lights", []):
 		if not l.has("id"):
 			Game.report(file, "lights", "every light needs an id")
 	if d.has("on_enter") and not DialogueRunner.has(str(d["on_enter"])):
 		Game.report(file, "on_enter", "no dialogue \"%s\"" % d["on_enter"])
+
+
+static func _gone_ids(file: String, where: String, d: Dictionary) -> void:
+	for key in ["if_gone", "unless_gone"]:
+		for w: Variant in (d[key] if d.get(key) is Array else [d.get(key, "")]):
+			if str(w) != "" and not FileAccess.file_exists(WORKERS + str(w) + ".json"):
+				Game.report(file, where + "." + key, "no worker file \"%s\"" % w)
 
 
 static func _in_bounds(file: String, field: String, v: Variant, size: Vector2i) -> void:
@@ -112,7 +122,7 @@ static func _worker(file: String, v: Variant) -> void:
 	var id := file.get_basename()
 	if str(d.get("id", "")) != id:
 		Game.report(file, "id", "must be \"%s\" to match the file name" % id)
-	for f in ["name", "job", "sprite", "patience", "hit_damage", "patterns", "task", "dialogue"]:
+	for f in ["name", "job", "sprite", "patience", "hours", "hit_damage", "patterns", "task", "dialogue"]:
 		if not d.has(f):
 			Game.report(file, f, "missing")
 	var pats: Array = d.get("patterns", [])
@@ -127,6 +137,10 @@ static func _worker(file: String, v: Variant) -> void:
 		for ref: Variant in d.get(list_key, []):
 			if not DialogueRunner.has(str(ref)):
 				Game.report(file, list_key, "no dialogue \"%s\"" % ref)
+	for outcome: String in d.get("rewards", {}):
+		var item := str(d["rewards"][outcome].get("item", ""))
+		if item != "" and not Game.item_info.has(item):
+			Game.report(file, "rewards.%s.item" % outcome, "no item \"%s\" in data/items.json" % item)
 	var dlg: Dictionary = d.get("dialogue", {})
 	for k: String in dlg:
 		if not DialogueRunner.has(str(dlg[k])):

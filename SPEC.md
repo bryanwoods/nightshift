@@ -527,3 +527,48 @@ Continue on the title loads committed state. Debug key F6 commits now.
 
 `Game.time_state` is `EVENING` (the house before 2:00), `NIGHT` (the clock runs) or
 `MORNING` (after the night ends). It is the hook for the alarm clock in the next round.
+
+## Spare or finish
+
+A fight ends in one of four ways, and all four go through `Battle._resolve`:
+
+| Outcome | How | Result |
+|---|---|---|
+| satisfied | Help finishes the task | `friend_<id>`, the worker's `rewards.satisfied.item`, `helper_count` + 1 |
+| spared | Hustle takes all Patience, then "Let them go" | The worker storms off. `enemy_<id>`, 1 hour (0 for a worker worth 0), `hustler_count` + 1 |
+| finished | Hustle takes all Patience, then "Clock them out" | The worker goes still, flickers twice and is gone. The lantern behind them goes out on one low note, and the frame holds for one second. `gone_<id>`, the worker's full `hours`, `finished_count` + 1 |
+| abandoned | Awake reaches 0, or 3:00 | Asleep ends the night. No flags |
+
+When Patience reaches 0 by Hustle, the fight stops and the choice opens. Help is not
+offered again. The two verbs are placeholders (`TODO(Tadzio)` in `data/ui.json`). Each
+option shows the hours it gives. Finishing is quiet and final: no blood, no sound of pain,
+no scream.
+
+## Hours and Shift Level
+
+Hours are experience. Every worker file has `hours`: the dummy 0, the Un-Baker 6, posted
+workers 8, the alley boss 15, Curfew 25. Helpers gain no hours.
+
+Shift Level comes from `shift_levels` in `tuning.json` (0, 10, 25, 45, 70 hours for
+levels 1 to 5). Each level after 1 adds `level_awake` (4) max Awake and `level_hustle` (1)
+Hustle damage. The battle shows `LV n` above Awake. The Night End card shows the Shift
+Level, the hours and the path.
+
+The path is the largest of `helper_count`, `hustler_count` and `finished_count`, with ties
+to the later one. Its placeholder names are Helper, Hustler and Overtime (`TODO(Tadzio)`).
+
+A helper's power is friends. A satisfied worker gives an item. Pockets, the fifth battle
+button, lists the items that do something in a fight; using one takes the turn. The
+Un-Baker's heel of bread restores 8 Awake.
+
+## Workers who are gone
+
+A gone worker never comes back, and the town shows that the job is undone. Room entities
+and tile overrides take `if_gone` and `unless_gone` with a worker id. Dialogue lines check
+the `gone_<id>` flags. When the Un-Baker is gone, his bread stays on the doorsteps of
+Maple Street and his cart stands there with nobody pushing it.
+
+The first time a worker is finished, Wick says a line in the fight. When two or more
+workers are gone (the flag `many_gone`), Wick says quieter lines at the Depot and at
+Curfew. The Foreman names every missing worker when Tadzio enters the Depot and when he
+talks to the Foreman. All of these lines are placeholders with `TODO(Tadzio)` markers.

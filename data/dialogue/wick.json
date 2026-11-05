@@ -24,7 +24,8 @@
     },
     "wick_chat_depot_done": {
       "lines": [
-        { "speaker": "wick", "text": "Curfew's on the square. Through the big door on the right." },
+        { "speaker": "wick", "text": "Curfew's on the square. Through the big door on the right.", "unless_flag": "many_gone" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "The square's through the big door.", "if_flag": "many_gone" },
         { "speaker": "wick", "portrait": "wick_panic", "text": "And don't wind anything you find in the lost-and-found! I mean it!", "unless_flag": "has_watch" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "That watch. In a fight, if something's about to hit you, press {rewind}. Don't ask me how I know.", "if_flag": "has_watch" },
         { "speaker": "wick", "text": "Curfew's slow. Watch the notes when it sings. They fall in an order.", "if_flag": "has_watch" }

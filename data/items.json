@@ -1,7 +1,7 @@
 {
   "id": "items",
   "items": {
-    "heel_of_bread": { "name": "Heel of bread" },
+    "heel_of_bread": { "name": "Heel of bread", "awake": 8, "use_text": "You eat the heel of bread. +8 Awake." },
     "pocket_watch": { "name": "Pocket watch" },
     "punch_card": { "name": "Punch card" }
   }

@@ -31,6 +31,8 @@ func _ready() -> void:
 		y = _line(Game.text("not_friends") + " " + ", ".join(enemies), y, "bark")
 	var reason := Game.text("reason_" + (Game.last_night_reason if Game.last_night_reason != "" else "time"))
 	y = _line(Game.text("minutes_used").replace("{minutes}", str(Game.last_night_minutes)), y, "bark")
+	y = _line(Game.text("shift_line").replace("{n}", str(Game.shift_level())).replace("{hours}", str(Game.hours)), y, "bark")
+	y = _line(Game.text("path_line").replace("{path}", Game.path_name()), y, "bark")
 	y = _line(reason, y, "bark") + 8
 	y = _line(Game.text("night_complete").replace("{night}", str(Game.night)), y, "bark")
 	card.size = Vector2(280, y - 30 + 6)

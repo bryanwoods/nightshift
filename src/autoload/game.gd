@@ -165,11 +165,12 @@ func clear_flag(name: String) -> void:
 		flag_cleared.emit(name)
 
 
+## if_flag / unless_flag take flag names; if_gone / unless_gone take worker ids.
 func cond_ok(d: Dictionary) -> bool:
-	for f in _names(d.get("if_flag", [])):
+	for f in _names(d.get("if_flag", [])) + _names(d.get("if_gone", [])).map(func(w: String) -> String: return "gone_" + w):
 		if not has_flag(f):
 			return false
-	for f in _names(d.get("unless_flag", [])):
+	for f in _names(d.get("unless_flag", [])) + _names(d.get("unless_gone", [])).map(func(w: String) -> String: return "gone_" + w):
 		if has_flag(f):
 			return false
 	return true
@@ -210,6 +211,35 @@ func friends() -> Array[String]:
 
 func enemies() -> Array[String]:
 	return _flag_names("enemy_")
+
+
+func gone() -> Array[String]:
+	return _flag_names("gone_")
+
+
+## Shift Level 1 to 5 from the hours thresholds in tuning.json.
+func shift_level() -> int:
+	var lv := 0
+	for t: Variant in tuning.get("shift_levels", [0]):
+		if hours >= int(t):
+			lv += 1
+	return maxi(1, lv)
+
+
+func hours_text(n: int) -> String:
+	return text("hours_one" if n == 1 else "hours_many").replace("{n}", str(n))
+
+
+## The tally with the most, ties to the later one: helper, hustler, finished.
+func path_name() -> String:
+	var best := "none"
+	var top := 0
+	for k: String in ["helper", "hustler", "finished"]:
+		var n := int(tally[k + "_count"])
+		if n > 0 and n >= top:
+			best = k
+			top = n
+	return text("path_" + best)
 
 
 func _flag_names(prefix: String) -> Array[String]:

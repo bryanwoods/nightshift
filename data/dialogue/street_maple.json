@@ -110,6 +110,18 @@
     "inspect_house_window": {
       "lines": [ { "text": "A dark window. Somebody in there is asleep, and doing a great job of it." } ]
     },
+    "inspect_bread_step": {
+      "lines": [ { "text": "Yesterday's bread, still on the step. Nobody came to take it back." } ]
+    },
+    "inspect_cart": {
+      "lines": [ { "text": "The Un-Baker's cart. Full of yesterday's bread. Nobody is pushing it." } ]
+    },
+    "wick_cart": {
+      "todo": "TODO(Tadzio): what Wick says at the Un-Baker's empty post.",
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "His cart. He never leaves his cart." }
+      ]
+    },
     "inspect_mailbox_maple": {
       "lines": [ { "text": "A mailbox. Empty. Even the mail is asleep." } ]
     },
@@ -122,6 +134,7 @@
         { "speaker": "wick", "portrait": "wick_panic", "text": "That's the Un-Baker! He takes yesterday's bread back before morning. He's very, very particular." },
         { "speaker": "unbaker", "text": "A kid off the list is a problem. I don't like problems. I like lists." },
         { "cmd": "battle", "worker": "unbaker" },
+        { "cmd": "if_flag", "flag": "gone_unbaker", "goto": "" },
         { "cmd": "if_flag", "flag": "friend_unbaker", "goto": "unbaker_after_friend", "else": "unbaker_after_enemy" }
       ]
     },
