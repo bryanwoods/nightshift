@@ -226,7 +226,7 @@ The outcome flags are fixed: `friend_<id>`, `enemy_<id>`, `gone_<id>`. `rewards`
 `item` for `satisfied`, `spared` or `finished`.
 
 Optional worker fields: `arena` `[w, h]`, `idle_frames`, `music`, `rewind_tutorial`,
-`turn_lines` and `flavor` (lists of dialogue ids). Each turn, the menu panel shows the next
+`turn_lines` and `flavor` (lists of dialogue ids). Each turn, the arena shows the next
 `flavor` line, and the dodge phase opens with the next `turn_lines` line in a speech bubble
 beside the worker. The bubble never waits for a key. A task step can also have a `bubble`
 (a dialogue id); it replaces the turn line after that step. A Hustle hit uses `hustle_hit`
@@ -477,7 +477,7 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: a spared worker gives 1 hour, but never more than their `hours`, so the practice dummy (0 hours) gives nothing.
 - Round 2: sparing someone who was a friend clears the friendship; helping someone who was an enemy clears the grudge.
 - Round 2: Wick's first line about a finished worker plays inside the fight, so it works for every fight, also Curfew's.
-- Round 2: five battle buttons need the full bottom row, so Awake and Patience moved up one row, and the level shows as `LV n` above Awake.
+- Art review 1: the battle screen has three columns. The worker's name and job are on the left, the 120x80 arena is in the middle, and the task, Patience, Shift Lv and Awake are on the right. The textbox and the button row share the strip below the arena, so a textbox never covers the arena or a meter. Pockets has no prompt line, so four items fit.
 - Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
 - Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.
 - Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.

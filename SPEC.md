@@ -551,7 +551,7 @@ workers 8, the alley boss 15, Curfew 25. Helpers gain no hours.
 
 Shift Level comes from `shift_levels` in `tuning.json` (0, 10, 25, 45, 70 hours for
 levels 1 to 5). Each level after 1 adds `level_awake` (4) max Awake and `level_hustle` (1)
-Hustle damage. The battle shows `LV n` above Awake. The Night End card shows the Shift
+Hustle damage. The battle shows `Shift Lv n` above Awake. The Night End card shows the Shift
 Level, the hours and the path.
 
 The path is the largest of `helper_count`, `hustler_count` and `finished_count`, with ties

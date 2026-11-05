@@ -6,7 +6,7 @@
       "lines": [ { "text": "A practice dummy, stuffed with old socks. It looks ready for anything." } ]
     },
     "dummy_battle_intro": {
-      "lines": [ { "text": "The dummy wobbles at you. It's practice. Nothing here costs a minute." } ]
+      "lines": [ { "text": "The dummy wobbles at you. It's practice." } ]
     },
     "dummy_help_1": {
       "lines": [ { "text": "You brush the grass off the dummy." } ]

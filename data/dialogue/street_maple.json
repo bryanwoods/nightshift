@@ -18,7 +18,6 @@
       "lines": [
         { "speaker": "wick", "portrait": "wick_panic", "text": "You- you'd do that? For a lamp? For me?" },
         { "speaker": "wick", "text": "Okay. Okay okay. Stand by the lamp, face it, and hold {confirm}. I'll do the flame part." },
-        { "speaker": "wick", "text": "It takes a couple of minutes. Everything takes minutes." },
         { "cmd": "set_flag", "flag": "tonight_lamp_task" }
       ]
     },
@@ -58,8 +57,6 @@
       "lines": [
         { "text": "The lamp catches. Warm light spills down the sidewalk." },
         { "speaker": "wick", "portrait": "wick_happy", "text": "You did it. You actually held it!" },
-        { "speaker": "tadzio", "text": "Took two minutes." },
-        { "speaker": "wick", "text": "Everything does. That's the job: you trade minutes for light." },
         { "speaker": "wick", "text": "I'm Wick. Apprentice lamplighter. Second class. Fourth class. Some class." },
         { "speaker": "wick", "portrait": "wick_happy", "text": "I'm coming with you. Somebody has to explain things. Just- keep that flashlight off my face." },
         { "cmd": "set_flag", "flag": "wick_joined" },
@@ -73,7 +70,7 @@
       "seen_variant": "lamp_extra_lit_2",
       "lines": [
         { "speaker": "wick", "portrait": "wick_happy", "text": "One less for the Foreman to count!" },
-        { "speaker": "wick", "text": "Each lamp costs a couple of minutes. But look at the street. Worth it? Your call." }
+        { "speaker": "wick", "text": "Look at the street. Worth it? Your call." }
       ]
     },
     "lamp_extra_lit_2": {

@@ -26,7 +26,7 @@ func _ready() -> void:
 	for n in ["ink", "night", "dusk", "moon", "ember", "hush", "wake", "lamp"]:
 		_c[n] = Game.color(n)
 	_box = StyleBoxFlat.new()
-	_box.draw_center = false
+	_box.bg_color = _c["ink"]
 	_box.border_color = _c["moon"]
 	_box.set_border_width_all(1)
 	_box.set_corner_radius_all(4)

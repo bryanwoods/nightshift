@@ -10,10 +10,6 @@
   "patience": 30,
   "hours": 25,
   "hit_damage": 3,
-  "arena": [
-    140,
-    90
-  ],
   "rewind_tutorial": true,
   "patterns": [
     {
@@ -36,8 +32,8 @@
       "speed": 42,
       "gap_angle": 50,
       "arena": [
-        160,
-        100
+        150,
+        96
       ]
     },
     {

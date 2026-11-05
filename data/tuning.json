@@ -28,7 +28,6 @@
   "rewind_tutorial_slowmo": 0.2,
   "rewind_tutorial_lookahead": 0.3,
   "arena_default": [120, 80],
-  "menu_panel": [216, 76],
   "hustle": { "center_damage": 5, "edge_damage": 2, "center_zone": 0.22, "sweep_seconds": 1.1 },
   "battle_wipe_seconds": 0.6,
   "white_fade_seconds": 1.5,

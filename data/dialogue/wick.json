@@ -7,7 +7,7 @@
         { "cmd": "if_flag", "flag": "tonight_depot_ext_seen", "goto": "wick_chat_depot" },
         { "cmd": "if_flag", "flag": "unbaker_seen", "goto": "wick_chat_east" },
         { "speaker": "wick", "text": "We should keep moving. East. The Depot's that way. Everything's east of something." },
-        { "speaker": "wick", "text": "And every dark lamp you light is one less for the Foreman to count. Costs minutes, though." }
+        { "speaker": "wick", "text": "And every dark lamp you light is one less for the Foreman to count." }
       ]
     },
     "wick_chat_east": {

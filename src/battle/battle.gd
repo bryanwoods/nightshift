@@ -9,7 +9,7 @@ signal _menu_done(choice: String)
 signal _phase_done
 signal _hustle_done(damage: int)
 
-const ARENA_CENTER := Vector2(160, 102)
+const ARENA_CENTER := Vector2(160, 74)
 const OPTIONS: Array[String] = ["help", "hustle", "stall", "wick", "pockets"]
 const WICK_OPTIONS: Array[String] = ["wick_light", "wick_hold"]
 const TOKEN_R := 3.0
@@ -50,7 +50,6 @@ var _pending_bubble: String = ""
 var _bubble_t: float = -1.0
 var _bubble_pitch: float = 1.0
 var _bubble_seen: int = 0
-var _menu_panel: Vector2 = Vector2(216, 76)
 
 var _root: Control
 var _arena: Arena
@@ -96,8 +95,6 @@ func start(id: String) -> void:
 	var dflt: Array = Game.tuning.get("arena_default", [120, 80])
 	base_arena = Pattern.arena_for(worker, Vector2(float(dflt[0]), float(dflt[1])))
 	_idle_frames = int(worker.get("idle_frames", 1))
-	var mp: Array = Game.tuning.get("menu_panel", [216, 76])
-	_menu_panel = Vector2(float(mp[0]), float(mp[1]))
 	Game.rewind_charges = int(Game.tuning.get("rewind_charges", 3))
 	Game.charges_changed.emit()
 	_build()
@@ -182,7 +179,7 @@ func _pick_item() -> String:
 		await DialogueRunner.run("battle_pockets_empty")
 		return ""
 	names.append(Game.text("pockets_close"))
-	var pick: int = await DialogueRunner.ask("narrator", Game.text("pockets_prompt"), names)
+	var pick: int = await DialogueRunner.ask("narrator", "", names)
 	return usable[pick] if pick >= 0 and pick < usable.size() else ""
 
 
@@ -411,7 +408,7 @@ func _dodge_phase() -> void:
 	_bubble_t = -1.0
 	_turn += 1
 	if not over:
-		await _arena.tween_size(_menu_panel)
+		await _arena.tween_size(base_arena)
 
 
 func _physics_process(delta: float) -> void:
@@ -515,7 +512,7 @@ func _end_tutorial() -> void:
 
 func _show_prompt(t: String, seconds: float) -> void:
 	_prompt.text = t
-	_prompt.position.y = ARENA_CENTER.y - _arena.size.y / 2.0 + 2.0
+	_prompt.position.y = ARENA_CENTER.y + _arena.size.y / 2.0 + 4.0
 	_prompt.visible = true
 	_prompt_t = seconds
 
@@ -612,7 +609,8 @@ func _build() -> void:
 		_worker_sprite.vframes = 4
 		_worker_sprite.centered = false
 		_worker_sprite.offset = Vector2(-tex.get_width() / 8.0, -tex.get_height() / 4.0)
-		_worker_base = Vector2(160, ARENA_CENTER.y - base_arena.y / 2.0 - 6)
+		var frame := tex.get_image().get_region(Rect2i(0, 0, tex.get_width() / 4, tex.get_height() / 4))
+		_worker_base = Vector2(160, maxf(ARENA_CENTER.y - base_arena.y / 2.0 - 2, frame.get_height() - frame.get_used_rect().position.y))
 		_worker_sprite.position = _worker_base
 		_glow = Sprite2D.new()
 		_glow.texture = load("res://assets/sprites/light_radial.png")
@@ -621,17 +619,16 @@ func _build() -> void:
 		_root.add_child(_glow)
 		_root.add_child(_worker_sprite)
 	var tag := bool(worker.get("name_tag", true))
-	_header.append(_label(Vector2(6, 2), str(worker.get("name", worker_id)) if tag else "", "moon"))
-	_header.append(_label(Vector2(6, 15), str(worker.get("job", "")) if tag else "", "fog", 126))
-	_task_label = _label(Vector2(190, 21), "", "wake", 124)
-	_task_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_header.append(_label(Vector2(4, 2), str(worker.get("name", worker_id)) if tag else "", "moon"))
+	_header.append(_label(Vector2(4, 15), str(worker.get("job", "")) if tag else "", "fog", 90))
+	_task_label = _right(20, "wake")
 	_arena = Arena.new()
 	_arena.position = ARENA_CENTER
 	_root.add_child(_arena)
-	_arena.set_size(_menu_panel)
-	var text_w := _menu_panel.x - 12.0
-	_flavor = _label(ARENA_CENTER + Vector2(-text_w / 2.0, -_menu_panel.y / 2.0 + 3), "", "moon", text_w)
-	_hint = _label(ARENA_CENTER + Vector2(-text_w / 2.0, 0), "", "fog", text_w)
+	_arena.set_size(base_arena)
+	var text_w := base_arena.x - 12.0
+	_flavor = _label(ARENA_CENTER + Vector2(-text_w / 2.0, -base_arena.y / 2.0 + 3), "", "moon", text_w)
+	_hint = _label(Vector2(8, ARENA_CENTER.y + base_arena.y / 2.0 + 4), "", "fog", 304)
 	_build_bubble()
 	_prompt = _label(Vector2(0, 30), "", "wake")
 	_prompt.size = Vector2(320, 14)
@@ -639,13 +636,11 @@ func _build() -> void:
 	_prompt.add_theme_color_override("font_outline_color", Game.color("ink"))
 	_prompt.add_theme_constant_override("outline_size", 2)
 	_prompt.visible = false
-	_level_label = _label(Vector2(2, 126), "", "fog")
-	_awake_label = _label(Vector2(2, 140), "", "moon")
-	_awake_fill = _bar(Vector2(2, 155), "moon")
-	_patience_label = _label(Vector2(218, 140), "", "moon")
-	_patience_label.size = Vector2(100, 14)
-	_patience_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_patience_fill = _bar(Vector2(258, 155), "ember")
+	_patience_label = _right(60, "moon")
+	_patience_fill = _bar(Vector2(256, 74), "ember")
+	_level_label = _right(82, "fog")
+	_awake_label = _right(95, "moon")
+	_awake_fill = _bar(Vector2(256, 110), "moon")
 	for i in OPTIONS.size():
 		var box := Panel.new()
 		box.position = Vector2(6 + i * 62, 163)
@@ -677,6 +672,13 @@ func _label(pos: Vector2, t: String, c: String, width: float = 0.0) -> Label:
 	return l
 
 
+## A label in the right column, beside the arena.
+func _right(y: float, c: String) -> Label:
+	var l := _label(Vector2(226, y), "", c, 90)
+	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	return l
+
+
 func _bar(pos: Vector2, c: String) -> ColorRect:
 	var bg := ColorRect.new()
 	bg.color = Game.color("dusk")
@@ -698,7 +700,7 @@ func _refresh_meters() -> void:
 	_patience_fill.size.x = 60.0 * patience / patience_max
 	var task: Dictionary = worker.get("task", {})
 	var total := (task.get("steps", []) as Array).size()
-	_task_label.text = "%s: %s %d/%d" % [Game.text("task"), str(task.get("title", "")), step_index, total] if total > 0 else ""
+	_task_label.text = "%s %d/%d\n%s" % [Game.text("task"), step_index, total, str(task.get("title", ""))] if total > 0 else ""
 
 
 func _refresh_menu() -> void:
@@ -772,15 +774,14 @@ func _show_bubble(id: String) -> void:
 		return
 	_bubble_pitch = float(DialogueRunner.speakers.get(str(line.get("speaker", "")), {}).get("pitch", 1.0))
 	var font := _bubble_text.get_theme_font("font")
-	var max_w := 110.0
+	var max_w := 66.0
 	var size := font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, max_w, _bubble_text.get_theme_font_size("font_size"))
 	_bubble_text.size = Vector2(max_w, size.y)
 	_bubble_text.text = text
 	_bubble_text.visible_characters = 0
 	var w := minf(size.x, max_w) + 11.0
 	var h := size.y + 4.0
-	var right := 160.0 - (_worker_sprite.texture.get_width() / 8.0 if _worker_sprite else 8.0) - 8.0
-	_bubble.position = Vector2(maxf(4.0, right - w), 6).round()
+	_bubble.position = Vector2(4, 4)
 	_bubble.size = Vector2(w, h)
 	_bubble_tail.polygon = PackedVector2Array([Vector2(w - 1, 5), Vector2(w + 6, 9), Vector2(w - 1, 12)])
 	_bubble.visible = true
