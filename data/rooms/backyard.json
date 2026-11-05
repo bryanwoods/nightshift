@@ -16,7 +16,7 @@
     "~~~~~~~~~~~~~F",
     "hhhhhhhhhhhhhh"
   ],
-  "spawns": { "default": [2, 2, "down"], "house": [2, 2, "down"], "gate": [12, 4, "left"] },
+  "spawns": { "default": [2, 3, "down"], "house": [2, 3, "down"], "gate": [12, 4, "left"] },
   "entities": [
     { "type": "door", "x": 2, "y": 1, "to": "kitchen", "spawn": "backyard" },
     { "type": "inspect", "x": 1, "y": 6, "dialogue": "backyard_crate" },

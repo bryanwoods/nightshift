@@ -23,6 +23,7 @@ var follower: Follower
 var camera: Camera2D
 var entities: Array[Entity] = []
 var lights: Dictionary = {}
+var _lamp_posts: Dictionary = {}
 
 var _light_base: Dictionary = {}
 var _tile_index: Dictionary = {}
@@ -60,6 +61,7 @@ func build(room_id: String, spawn_name: String) -> bool:
 		entities.append(ent)
 	for l: Dictionary in data.get("lights", []):
 		_add_light(l)
+	_build_lamp_posts()
 	player = Player.new()
 	player.room = self
 	actors.add_child(player)
@@ -114,6 +116,25 @@ func _build_tiles(layout: Array) -> void:
 			var tile_name := str(legend.get(row[x], ""))
 			if index.has(tile_name):
 				tiles.set_cell(Vector2i(x, y), 0, index[tile_name])
+
+
+## Each lamp_post tile gets a 16x32 post on top. It shows its lit frame while the light on its
+## tile is on.
+func _build_lamp_posts() -> void:
+	if not _tile_index.has("lamp_post"):
+		return
+	var tex: Texture2D = load("res://assets/sprites/lamp_post.png")
+	for c in tiles.get_used_cells_by_id(0, _tile_index["lamp_post"]):
+		var post := Sprite2D.new()
+		post.texture = tex
+		post.hframes = 2
+		post.centered = false
+		post.offset = Vector2(-8, -32)
+		post.position = Vector2(c * TILE) + Vector2(8, TILE)
+		actors.add_child(post)
+		for lid: String in lights:
+			if Vector2i((lights[lid] as PointLight2D).position / TILE) == c:
+				_lamp_posts[post] = lights[lid]
 
 
 func _build_bounds() -> void:
@@ -331,6 +352,8 @@ func _process(delta: float) -> void:
 	for lid: String in lights:
 		var pl: PointLight2D = lights[lid]
 		pl.energy = float(_light_base[lid]) * (1.0 + 0.02 * sin(_time * 7.0 + pl.position.x) * sin(_time * 2.3))
+	for post: Sprite2D in _lamp_posts:
+		post.frame = 1 if (_lamp_posts[post] as PointLight2D).enabled else 0
 	_update_camera()
 	_update_overlay()
 	if player:

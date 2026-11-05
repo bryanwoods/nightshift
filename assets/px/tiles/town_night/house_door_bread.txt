@@ -1,6 +1,7 @@
 # house_door_bread 16x16
-# item: doors (art review 1)
+# item: doors (art review 2)
 # rules: viewpoint, walls, doors, warm
+# The Un-Baker is gone, so a 6x4 warm loaf waits on the step.
 
 @tile
 ffffffffffffffff
@@ -15,7 +16,7 @@ dddfnnnnnnnnfddd
 dddfnnnnnllnfddd
 nnnfnnnnnllnfnnn
 dddfnkkkkkknfddd
-dddfnkkkkkknfddd
-nnnfkyyyyyykfnnn
+dddfnkllllknfddd
+nnnfkoloolokfnnn
 dddfkooooookfddd
 kkkkkkkkkkkkkkkk

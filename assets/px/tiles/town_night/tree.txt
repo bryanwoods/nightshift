@@ -1,20 +1,22 @@
 # tree 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: outdoor props (art review 2)
+# rules: viewpoint
+# Scenery, so no ink outline: a bumpy leaf edge in night, a honey trunk.
 
 @tile
-nnnnnkkkkkknnnnn
-nnnnkddddddknnnn
-nnnkddddddddknnn
-nnkddddddddddknn
-nkdddsddddddddkn
-nkddddddddddddkn
-nkddddddddddddkn
-nkddddddddddddkn
-nkddddddddddddkn
-nnkddddddddddknn
-nnnkddddddddknnn
-nnnnkddddddknnnn
-nnnnnkkkkkknnnnn
-nnnnnnnddnnddnnn
-nddnnnnddnndnnnn
-ndnnnnnddnnnnnnn
+ssssssssssssssss
+sssdssdddddsssss
+ssdsdddddsddssss
+sssssddsddddddss
+ssssddsddddsddss
+sssdddddddddddds
+ssddsdddddddsdds
+ssddddddddddddds
+ssddddddddddddds
+ssddddddddddddds
+ssddddddddddddds
+ssddddddddddddds
+sssdddnodnsdddss
+ssssssnoonssssss
+ssssssnoonssssss
+ssssssnoonssssss

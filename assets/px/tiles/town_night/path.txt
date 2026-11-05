@@ -1,21 +1,22 @@
 # path 16x16
-# item: tiles
+# item: outdoor props (art review 2)
 # rules: viewpoint, walls
+# Stepping stones from the back door to the gate.
 
 @tile
 ssssssssssssssss
-ssfssssssssfssss
 ssssssssssssssss
-sssssssfssssssss
-ssssssssssssssfs
-sfssssssssssssss
-ssssssssfsssssss
 ssssssssssssssss
-sssssssssssfssss
-ssssfsssssssssss
 ssssssssssssssss
-sssssssssfssssss
-ssfsssssssssssss
-ssssssssssssssfs
-ssssssfsssssssss
+sssssffffffsssss
+sssffssffffffsss
+sssffffffffffsss
+ssffffffffffffss
+sssffffffsfffsss
+sssffffffffffsss
+ssssdffffffdssss
+ssssddddddddssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
 ssssssssssssssss

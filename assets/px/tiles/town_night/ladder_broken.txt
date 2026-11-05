@@ -1,20 +1,22 @@
 # ladder_broken 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: outdoor props (art review 2)
+# rules: viewpoint, outline, warm
+# Wick's ladder: the right rail snapped at the fifth rung, one rung hangs, the lower rail lies on the walk.
 
 @tile
-dddddddddddddddd
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dssssssssdssssss
-dssssssdssssssss
-dsssssssmmssssss
-dssssdsssdssssss
-dsssssdsssssssss
-dssdsssdssssssss
-dsssdsssssssssss
-dssssdssssssssss
-dsssssssssssssss
-dsssssssssssssss
+ssskfksssskfkssd
+sfskfksssskfkssd
+ssskfmmmmmmfkssd
+ssskfksssskfkssd
+ssskfksssskfkssd
+ssskfksssskfkssd
+ssskfmmmmmmfkssd
+ssskfksssssmkssd
+ssskfksssssssssd
+ssskfksssssssssd
+ssskfmsssssssssd
+ssskfkmssssssssd
+ssskfksmmssskksd
+ssskfksssmkksffd
+ssskfksskkfffssd
+dddkfkddffdddddd

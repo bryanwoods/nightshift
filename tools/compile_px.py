@@ -150,7 +150,8 @@ def warm(img, hot):
 
 
 def touchable(tiles, sprites, hot, errors):
-    """Every interactable shows a lamp or moon cluster. A multi-tile door is an edge exit, and a false wall is a secret."""
+    """Every interactable shows a lamp or moon cluster. A multi-tile door is an edge exit, and a false wall is a secret.
+    A tile with a sprite of the same name (lamp_post) is drawn by that sprite, so the sprite is checked."""
     for path in sorted((ROOT / "data/rooms").glob("*.json")):
         room = json.loads(path.read_text())
         layout, legend = room["layout"], room["legend"]
@@ -166,7 +167,7 @@ def touchable(tiles, sprites, hot, errors):
                 names = {legend.get(layout[y][x]) for x, y in cells if y < len(layout) and x < len(layout[y])}
                 names |= {swaps[c] for c in cells if c in swaps}
                 shown = sorted(f"tile {n}" for n in names if n)
-                ok = any(warm(tiles.get(room["tileset"], {})[n], hot) for n in names if n in tiles.get(room["tileset"], {}))
+                ok = any(warm(sprites.get(n) or tiles.get(room["tileset"], {})[n], hot) for n in names if n in tiles.get(room["tileset"], {}))
             else:
                 continue
             if not ok:

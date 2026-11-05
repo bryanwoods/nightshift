@@ -1,17 +1,19 @@
 # fountain 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: outdoor props (art review 2)
+# rules: viewpoint, warm
+# A spout in the middle throws moon-white water both ways into the basin.
 
 @tile
 dddddddddddddddd
-ddsssdddddsssddd
-ssssskkkkkkssssd
-sssskffffffksssd
-ssskffnnnnffkssd
-ddkffnnnnnnffkdd
-dkffnnnnnnnnffkd
-dkfnnnnmmnnnnfkd
-dkfnnnnnnnnnnfkd
-dkfnnnnnnnnnnfkd
+ddsssdmmmmsssddd
+sssssmkmmkmssssd
+ssssmffmmffmsssd
+ssskmfnmmnfmkssd
+ddkffnnmmnnffkdd
+dkffnnnffnnnffkd
+dkfnnnnffnnnnfkd
+dkfnnnnffnnnnfkd
+dkfnnnkkkknnnfkd
 dkffnnnnnnnnffkd
 ddkffnnnnnnffkss
 ssskffnnnnffksss

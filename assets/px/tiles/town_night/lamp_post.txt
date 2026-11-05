@@ -1,20 +1,22 @@
 # lamp_post 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: outdoor props (art review 2)
+# rules: viewpoint
+# Only the sidewalk and the collision. assets/px/sprites/lamp_post.txt draws the 16x32 post on top.
 
 @tile
+sssssssssssssssd
+sfsssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
 dddddddddddddddd
-dsssskkkkkksssss
-dsssskmmmmksssss
-dsssskmmmmksssss
-dsssskkkkkksssss
-dssssssffsssssss
-dssssssffdssssss
-dssssssffsssssss
-dssssssffsssssss
-dssssssffsssssss
-dssssssffsssssss
-dssssssffsssssss
-dssssssffsssssss
-dssssssffsssssss
-dsssskkkkkksssss
-dsssskkkkkksssss

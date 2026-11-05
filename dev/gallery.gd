@@ -7,6 +7,9 @@ const SCALE := 4
 const WIDTH := 1800
 const GAP := 28
 const LIGHTS: Array[String] = ["glow", "light_radial", "light_cone"]
+const CHARACTERS: Array[String] = ["tadzio", "wick", "dad", "unbaker", "unbaker_battle", "postman", "foreman",
+	"dummy", "dummy_battle", "window_washer", "window_washer_battle", "puddle_keeper", "puddle_keeper_battle",
+	"no_job", "no_job_battle", "curfew", "curfew_battle"]
 
 var _pages: Array[SubViewport] = []
 var _page: int = 0
@@ -15,9 +18,13 @@ var _title: Label
 
 
 func _ready() -> void:
+	var cast: Array = []
+	for c in CHARACTERS:
+		cast.append([c, load("res://assets/sprites/%s.png" % c)])
+	_add_page("characters", cast)
 	var sprites: Array = []
 	for f in _pngs("res://assets/sprites/"):
-		if not f.get_basename() in LIGHTS:
+		if not f.get_basename() in LIGHTS and not f.get_basename() in CHARACTERS:
 			sprites.append([f.get_basename(), load("res://assets/sprites/" + f)])
 	_add_page("sprites", sprites)
 	var portraits: Array = []
@@ -77,7 +84,7 @@ func _add_page(page: String, items: Array) -> void:
 	root.add_child(bg)
 	var font := ThemeDB.get_project_theme().default_font
 	var head := Label.new()
-	head.text = "assets/px/%s/" % page.replace("tiles_", "tiles/")
+	head.text = "assets/px/%s/" % page.replace("tiles_", "tiles/").replace("characters", "sprites")
 	head.add_theme_font_size_override("font_size", 48)
 	head.add_theme_color_override("font_color", Game.color("lamp"))
 	head.position = Vector2(GAP, GAP / 2.0)
