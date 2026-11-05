@@ -8,7 +8,7 @@
   "hours": 0,
   "hit_damage": 1,
   "patterns": [
-    { "type": "rain", "duration": 4, "count": 6, "speed": 45, "sprite": "crumb" }
+    { "type": "rain", "duration": 4, "count": 6, "speed": 40, "wobble": 22, "sprite": "straw" }
   ],
   "task": {
     "title": "Stand it back up",

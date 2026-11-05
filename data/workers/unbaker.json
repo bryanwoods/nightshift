@@ -22,7 +22,8 @@
       "bars": 3,
       "gap_px": 24,
       "speed": 70,
-      "from": "both"
+      "from": "both",
+      "color": "straw"
     }
   ],
   "task": {

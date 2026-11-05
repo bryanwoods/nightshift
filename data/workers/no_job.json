@@ -9,8 +9,8 @@
   "hours": 15,
   "hit_damage": 3,
   "patterns": [
-    { "type": "drift", "duration": 5, "count": 7, "speed": 40, "turn_rate": 1.4, "sprite": "note" },
-    { "type": "ring", "duration": 5, "rings": 3, "speed": 46, "gap_angle": 45, "arena": [150, 96] },
+    { "type": "drift", "duration": 5, "count": 7, "speed": 40, "turn_rate": 1.4, "sprite": "drifter" },
+    { "type": "ring", "duration": 5, "rings": 3, "speed": 46, "gap_angle": 45, "arena": [150, 96], "color": "hush" },
     { "type": "dark", "duration": 5, "inner": { "type": "sweep", "bars": 3, "gap_px": 24, "speed": 66, "from": "both" } }
   ],
   "task": {

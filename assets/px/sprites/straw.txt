@@ -1,0 +1,13 @@
+# straw 8x8
+# item: projectiles (playtest: each worker throws its own thing)
+# Straw that falls out of the practice dummy and swings side to side as it falls.
+
+@sprite
+......k.
+.....kyk
+....kyok
+...kyok.
+..kyok..
+.kyok...
+kyok....
+.kk.....

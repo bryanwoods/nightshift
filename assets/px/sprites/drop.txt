@@ -1,0 +1,13 @@
+# drop 8x8
+# item: projectiles (playtest: each worker throws its own thing)
+# A raindrop from the Puddle Keeper's can. It falls fast and slants.
+
+@sprite
+...kk...
+...kfk..
+..kffk..
+..kfmfk.
+.kfmmfk.
+.kffffk.
+..kffk..
+...kk...

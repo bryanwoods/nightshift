@@ -8,8 +8,8 @@
   "hours": 8,
   "hit_damage": 2,
   "patterns": [
-    { "type": "rain", "duration": 5, "count": 12, "speed": 58, "sprite": "crumb" },
-    { "type": "ring", "duration": 5, "rings": 2, "speed": 40, "gap_angle": 60 }
+    { "type": "rain", "duration": 5, "count": 14, "speed": 80, "slant": -32, "sprite": "drop" },
+    { "type": "ring", "duration": 5, "rings": 2, "speed": 40, "gap_angle": 60, "color": "fog" }
   ],
   "task": {
     "title": "Keep the puddles wet",

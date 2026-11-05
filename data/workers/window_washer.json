@@ -8,8 +8,8 @@
   "hours": 8,
   "hit_damage": 2,
   "patterns": [
-    { "type": "sweep", "duration": 5, "bars": 3, "gap_px": 26, "speed": 64, "from": "left" },
-    { "type": "drift", "duration": 5, "count": 5, "speed": 36, "turn_rate": 1.0, "sprite": "note" }
+    { "type": "rain", "duration": 5, "count": 10, "speed": 38, "from": "bottom", "wobble": 18, "sprite": "bubble" },
+    { "type": "sweep", "duration": 5, "bars": 3, "gap_px": 26, "speed": 64, "from": "left", "color": "wake" }
   ],
   "task": {
     "title": "Wash the windows",

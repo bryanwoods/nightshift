@@ -75,8 +75,9 @@ func _draw_layer() -> void:
 	var dark := pattern != null and pattern.dark
 	_layer.draw_rect(Rect2(-half, size), _c["ink"] if dark else _c["night"])
 	if pattern and (not dark or lit):
+		var col := Game.color(str(pattern.params.get("color", "moon")))
 		for b in pattern.bullets:
-			_draw_bullet(b, half)
+			_draw_bullet(b, half, col)
 	if token_visible:
 		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(1, 1, 1, 0.9))
 		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:
@@ -93,21 +94,21 @@ func _draw_layer() -> void:
 		_layer.draw_rect(Rect2(-half, size), Color(_c["wake"], 0.35 * rewind_flash))
 
 
-func _draw_bullet(b: Pattern.Bullet, half: Vector2) -> void:
+func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 	match b.kind:
 		Pattern.Kind.BAR:
 			var x := b.pos.x - b.width / 2.0
 			var top := b.gap_center - b.gap / 2.0
 			var bottom := b.gap_center + b.gap / 2.0
-			_layer.draw_rect(Rect2(x, -half.y, b.width, top + half.y), _c["moon"])
-			_layer.draw_rect(Rect2(x, bottom, b.width, half.y - bottom), _c["moon"])
+			_layer.draw_rect(Rect2(x, -half.y, b.width, top + half.y), col)
+			_layer.draw_rect(Rect2(x, bottom, b.width, half.y - bottom), col)
 		Pattern.Kind.RING:
 			var n := 48
 			var step := TAU / n
 			for i in n:
 				if absf(angle_difference(i * step + step / 2.0, b.gap_center)) <= b.gap / 2.0:
 					continue
-				_layer.draw_arc(b.pos, b.radius, i * step, (i + 1) * step, 3, _c["moon"], b.width)
+				_layer.draw_arc(b.pos, b.radius, i * step, (i + 1) * step, 3, col, b.width)
 		_:
 			var tex := _texture(b.tex)
 			if tex:

@@ -241,9 +241,9 @@ Pattern types and their params:
 
 | type | params |
 |---|---|
-| `rain` | `count`, `speed`, `sprite`; `lanes` + `sequence` drop them in a lane order with a note per lane |
-| `sweep` | `bars`, `gap_px`, `speed`, `from` (`left`, `right`, `both`) |
-| `ring` | `rings`, `speed`, `gap_angle` |
+| `rain` | `count`, `speed`, `sprite`; `lanes` + `sequence` drop them in a lane order with a note per lane; `from` (`top`, `bottom`), `slant` (sideways px/s), `wobble` (swing px/s) |
+| `sweep` | `bars`, `gap_px`, `speed`, `from` (`left`, `right`, `both`), `color` (a palette name, default `moon`) |
+| `ring` | `rings`, `speed`, `gap_angle`, `color` |
 | `drift` | `count`, `speed`, `turn_rate`, `sprite` |
 | `dark` | `inner`: another pattern. Invisible unless Wick used Light |
 
@@ -485,9 +485,10 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: Wick's first line about a finished worker plays inside the fight, so it works for every fight, also Curfew's.
 - Art review 2: the battle screen has three columns. The worker's name, job and battle sheet are on the left, the 120x80 arena is in the middle, and the task, Patience, Shift Lv and Awake are on the right. The textbox, the hint and the speech bubble share the strip below the arena, right of the worker, so none of them covers the arena, a meter or the worker. Pockets lists items inside the arena. Battle prompts sit inside the top of the arena.
 - Art review 2: a lamp post is a 16x32 sprite (`assets/px/sprites/lamp_post.txt`) over its `lamp_post` tile, which holds only the sidewalk and the collision. The sprite shows `@lit` while the light on its tile is on.
-- Art review 3: the worker's name and job span the top of the battle screen, 216 px wide, so a job line holds 4 words or more. The arena moved down 10 px (center y 84), so a second job line clears it. The menu bar hides while a textbox, a choice or the speech bubble shows.
+- Art review 3: the worker's name and job span the top of the battle screen, 220 px wide, so a job line holds 4 words or more. The arena moved down 10 px (center y 84), so a second job line clears it. The menu bar hides while a textbox, a choice or the speech bubble shows.
 - Art review 3: a key name in text, such as `{rewind}`, shows the gamepad button from `pad_keys` in `data/ui.json` while a controller is connected.
 - Art review 3: Wick is not in the backyard. Tadzio meets him on Street Maple (SPEC.md, Night 1 step 5). The small light that bobs past the backyard gate is his flame. The tour saves `screens/tour_wick_tutorial.png`.
+- Playtest 2026-11-05: every worker opens a fight with its own pattern and throws its own thing. The dummy drops straw that swings, the Un-Baker drops crumbs (SPEC.md), the Window Washer's soap bubbles rise, the Puddle Keeper's raindrops slant, the alley boss sends drifters, and Curfew sings notes in lanes (SPEC.md). Bars and rings take the worker's color. The tour saves `screens/tour_opener_<worker>.png`.
 - Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
 - Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.
 - Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.

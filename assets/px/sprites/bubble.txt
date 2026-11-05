@@ -1,0 +1,13 @@
+# bubble 8x8
+# item: projectiles (playtest: each worker throws its own thing)
+# A soap bubble from the Window Washer's bucket. It rises and swings.
+
+@sprite
+..ffff..
+.f....f.
+f.mm...f
+f.m....f
+f......f
+f.....hf
+.f...hf.
+..ffff..

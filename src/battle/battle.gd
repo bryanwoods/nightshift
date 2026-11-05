@@ -655,7 +655,7 @@ func _build() -> void:
 		_root.add_child(_worker_sprite)
 	var tag := bool(worker.get("name_tag", true))
 	_label(Vector2(4, 2), str(worker.get("name", worker_id)) if tag else "", "moon")
-	_label(Vector2(4, 15), str(worker.get("job", "")) if tag else "", "fog", 216)
+	_label(Vector2(4, 15), str(worker.get("job", "")) if tag else "", "fog", 220)
 	_task_label = _right(20, "wake")
 	_arena = Arena.new()
 	_arena.position = ARENA_CENTER

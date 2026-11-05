@@ -498,7 +498,8 @@ func _input_battle() -> void:
 	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("enemy_unbaker"), "3:00 mid-fight abandons it with no flag")
 
 
-## Screenshots of every room, Wick at his lamp tutorial and every Curfew pattern. Needs a window and shots=DIR.
+## Screenshots of every room, Wick at his lamp tutorial, every Curfew pattern and the first pattern of
+## every other worker. Needs a window and shots=DIR.
 func _tour() -> void:
 	await _shot("room_bedroom")
 	DialogueRunner.autoplay = false
@@ -543,6 +544,14 @@ func _tour() -> void:
 		await _shot("curfew_pattern_%d" % (i + 1))
 		await _until(func() -> bool: return w.battle == null or not w.battle._dodging, 30.0)
 	await _until(func() -> bool: return not Game.in_battle, 180.0)
+	for id in ["dummy", "unbaker", "window_washer", "puddle_keeper", "no_job"]:
+		Game.start_battle(id)
+		await _until(func() -> bool: return w.battle != null and w.battle._dodging, 30.0)
+		await _wait(2.0)
+		await _shot("opener_" + id)
+		Engine.time_scale = 4.0
+		await _until(func() -> bool: return not Game.in_battle, 120.0)
+		Engine.time_scale = 1.0
 	await _tour_choice()
 	_finish()
 
