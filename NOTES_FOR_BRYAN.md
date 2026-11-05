@@ -44,6 +44,7 @@ Every check also runs headless: `Godot --headless --path . res://dev/autotest.ts
 - The credits list (`data/credits.json`).
 - The pajama pattern (art; the placeholder copies the white-and-teal shirt from the photo).
 - His own Help Wanted card (`data/help_wanted.json`, the blank card).
+- Hours on the spare-or-finish choice: `show_choice_rewards` in `data/tuning.json` (on for now).
 
 ## Not done
 

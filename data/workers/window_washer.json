@@ -2,7 +2,7 @@
   "id": "window_washer",
   "todo": "TODO(Tadzio): rename or replace this worker. It is a placeholder and an example.",
   "name": "The Window Washer",
-  "job": "Washes the reflections out of windows so sleepers don't see themselves",
+  "job": "Washes reflections out of windows",
   "sprite": "window_washer",
   "patience": 18,
   "hours": 8,

@@ -1,9 +1,9 @@
 {
   "id": "items",
   "items": {
-    "heel_of_bread": { "name": "Heel of bread", "awake": 8, "use_text": "You eat the heel of bread. +8 Awake." },
-    "squeaky_cloth": { "name": "Squeaky cloth", "block": true, "use_text": "You hold up the squeaky cloth. The next hit slides off." },
-    "jar_of_puddle": { "name": "Jar of puddle", "awake": 5, "use_text": "You splash your face with the jar of puddle. +5 Awake." },
+    "heel_of_bread": { "name": "Heel of bread", "awake": 8, "effect": "+8 Awake", "use_text": "You eat the heel of bread. +8 Awake." },
+    "squeaky_cloth": { "name": "Squeaky cloth", "block": true, "effect": "Blocks one hit", "use_text": "You hold up the squeaky cloth. The next hit slides off." },
+    "jar_of_puddle": { "name": "Jar of puddle", "awake": 5, "effect": "+5 Awake", "use_text": "You splash your face with the jar of puddle. +5 Awake." },
     "pocket_watch": { "name": "Pocket watch" },
     "punch_card": { "name": "Punch card" },
     "key_to_nothing": { "name": "A key to nothing" }

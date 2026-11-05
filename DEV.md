@@ -218,9 +218,13 @@ Say Tadzio wants a **Night Postman** fight. Four steps, no code:
 
 2. Add those seven dialogue ids to any file in `data/dialogue/`, and the item to
    `data/items.json`. An item with `awake` (Awake back) or `block` (`true`: blocks the next
-   hit this round) shows in Pockets; give it a `use_text`.
-3. Start the fight from a dialogue with `{ "cmd": "battle", "worker": "postman" }`.
-4. Try it alone: `Godot --path . res://dev/test_battle.tscn -- worker=postman wick`.
+   hit this round) shows in Pockets; give it a `use_text` and a short `effect` (one line in
+   Pockets, under the selected item).
+3. Draw the battle sheet `assets/px/sprites/postman_battle.txt`: two frames, `@idle_0` and
+   `@idle_1`, 32x64 to 48x96. The validator reports a worker with no battle sheet, and a
+   `job` of more than 6 words.
+4. Start the fight from a dialogue with `{ "cmd": "battle", "worker": "postman" }`.
+5. Try it alone: `Godot --path . res://dev/test_battle.tscn -- worker=postman wick`.
 
 The outcome flags are fixed: `friend_<id>`, `enemy_<id>`, `gone_<id>`. `rewards` can give an
 `item` for `satisfied`, `spared` or `finished`.
@@ -355,7 +359,9 @@ Release builds have no debug keys and no on-screen data errors. `dev/` is left o
 ## Tuning
 
 `data/tuning.json` holds the minute costs, Awake, Shift Level thresholds, token speed, rewind frames and
-charges, Hustle timing, text speed, music tension and the arena size. Door minutes can
+charges, Hustle timing, text speed, music tension and the arena size.
+`show_choice_rewards` shows the hours on "Let them go" and "Clock them out" (`TODO(Tadzio)`:
+keep them or hide them). Door minutes can
 also be set per door (`minutes`). Street-to-street doors cost 3.
 
 ## Art and sound
@@ -477,7 +483,8 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: a spared worker gives 1 hour, but never more than their `hours`, so the practice dummy (0 hours) gives nothing.
 - Round 2: sparing someone who was a friend clears the friendship; helping someone who was an enemy clears the grudge.
 - Round 2: Wick's first line about a finished worker plays inside the fight, so it works for every fight, also Curfew's.
-- Art review 1: the battle screen has three columns. The worker's name and job are on the left, the 120x80 arena is in the middle, and the task, Patience, Shift Lv and Awake are on the right. The textbox and the button row share the strip below the arena, so a textbox never covers the arena or a meter. Pockets has no prompt line, so four items fit.
+- Art review 2: the battle screen has three columns. The worker's name, job and battle sheet are on the left, the 120x80 arena is in the middle, and the task, Patience, Shift Lv and Awake are on the right. The textbox, the hint and the speech bubble share the strip below the arena, right of the worker, so none of them covers the arena, a meter or the worker. Pockets lists items inside the arena. Battle prompts sit inside the top of the arena.
+- Art review 2: a lamp post is a 16x32 sprite (`assets/px/sprites/lamp_post.txt`) over its `lamp_post` tile, which holds only the sidewalk and the collision. The sprite shows `@lit` while the light on its tile is on.
 - Round 2: if Curfew is gone, the square has no fight and the night ends at 3:00.
 - Round 2: friends do not fight again. They stand at their post and chat. Their item comes once, when they are first helped.
 - Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.

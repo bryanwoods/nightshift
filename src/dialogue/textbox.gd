@@ -31,6 +31,8 @@ var _auto: float = -1.0
 var _auto_t: float = 0.0
 var _last_press: int = -1
 var _blink: float = 0.0
+## Pixels kept clear on the left of the box. A fight sets it, so the worker stays in view.
+var inset: float = 0.0
 
 
 func _ready() -> void:
@@ -106,21 +108,22 @@ func show_line(speaker_name: String, portrait: Texture2D, text: String, pitch: f
 
 func _layout() -> void:
 	var lh := float(_text.get_line_height())
-	var text_x := BOX_X + PAD + (PORTRAIT + 6 if _portrait.visible else 2)
+	var x := BOX_X + inset
+	var text_x := x + PAD + (PORTRAIT + 6 if _portrait.visible else 2)
 	_text.position = Vector2(text_x, 0)
 	_text.size = Vector2(BOX_X + BOX_W - PAD - 2 - text_x, 0)
 	var lines := maxi(1, _text.get_line_count()) if _text.text != "" else 0
 	var content := lines * lh + (_options.size() * lh + 2 if not _options.is_empty() else 0.0)
 	var h := maxf(maxf(content, PORTRAIT if _portrait.visible else 0.0) + PAD * 2, MIN_H)
 	var top := BOX_BOTTOM - h
-	_panel.position = Vector2(BOX_X, top)
-	_panel.size = Vector2(BOX_W, h)
-	_portrait.position = Vector2(BOX_X + PAD, top + PAD)
+	_panel.position = Vector2(x, top)
+	_panel.size = Vector2(BOX_W - inset, h)
+	_portrait.position = Vector2(x + PAD, top + PAD)
 	_text.position.y = top + PAD - 2
 	for i in _choice_labels.size():
 		_choice_labels[i].position = Vector2(text_x + 8, top + PAD - 2 + lines * lh + 2 + i * lh)
-	_name.position = Vector2(BOX_X + 8, top - 14)
-	_name_panel.position = Vector2(BOX_X + 4, top - 13)
+	_name.position = Vector2(x + 8, top - 14)
+	_name_panel.position = Vector2(x + 4, top - 13)
 	_name_panel.size = Vector2(_name.get_minimum_size().x + 8, 14)
 	_more.position = Vector2(BOX_X + BOX_W - 10, BOX_BOTTOM - 8)
 

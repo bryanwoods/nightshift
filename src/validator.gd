@@ -7,6 +7,8 @@ const ROOMS := "res://data/rooms/"
 const WORKERS := "res://data/workers/"
 ## SPEC.md, Art: a night room is never darker than this, so the room reads without the flashlight.
 const AMBIENT_FLOOR := 0.9
+## The job line sits in a 92 px column beside the arena.
+const JOB_WORDS := 6
 
 
 static func validate_all() -> void:
@@ -146,6 +148,10 @@ static func _worker(file: String, v: Variant) -> void:
 	for f in ["name", "job", "sprite", "patience", "hours", "hit_damage", "patterns", "task", "dialogue"]:
 		if not d.has(f):
 			Game.report(file, f, "missing")
+	if str(d.get("job", "")).split(" ", false).size() > JOB_WORDS:
+		Game.report(file, "job", "has more than %d words, so it does not fit beside the arena" % JOB_WORDS)
+	if not ResourceLoader.exists("res://assets/sprites/%s_battle.png" % str(d.get("sprite", ""))):
+		Game.report(file, "sprite", "needs a battle sheet, assets/px/sprites/%s_battle.txt" % str(d.get("sprite", "")))
 	var pats: Array = d.get("patterns", [])
 	for i in pats.size():
 		var p: Dictionary = pats[i]
