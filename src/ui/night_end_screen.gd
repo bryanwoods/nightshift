@@ -22,10 +22,10 @@ func _ready() -> void:
 	y = _line(Game.text("card_title"), y, "bark") + 4
 	var friends: Array[String] = []
 	for f in Game.friends():
-		friends.append(_name_of(f))
+		friends.append(Game.display_name(f))
 	var enemies: Array[String] = []
 	for e in Game.enemies():
-		enemies.append(_name_of(e))
+		enemies.append(Game.display_name(e))
 	y = _line(Game.text("friends_made") + " " + (", ".join(friends) if not friends.is_empty() else Game.text("nobody")), y, "bark")
 	if not enemies.is_empty():
 		y = _line(Game.text("not_friends") + " " + ", ".join(enemies), y, "bark")
@@ -38,11 +38,6 @@ func _ready() -> void:
 	_ready_at = Time.get_ticks_msec() + 800
 	AudioBus.play_music("none")
 	Game.fade_from(0.6)
-
-
-func _name_of(id: String) -> String:
-	var sp: Dictionary = DialogueRunner.speakers.get(id, {})
-	return str(sp.get("name", id.capitalize()))
 
 
 func _line(t: String, y: float, c: String) -> float:

@@ -554,6 +554,13 @@ def t_depot_face(d, r):
     R(d, 0, 13, 15, 15, r["outline"])
 
 
+def t_lantern(d, r):
+    t_depot_face(d, r)
+    R(d, 7, 1, 8, 3, r["metal"])
+    R(d, 5, 4, 10, 11, r["outline"])
+    R(d, 6, 5, 9, 10, r["hi"])
+
+
 def t_bin(d, r):
     t_concrete(d, r)
     R(d, 1, 3, 14, 15, r["metal"])
@@ -609,7 +616,7 @@ TILES = {
     "side_door": t_side_door, "side_door_closed": t_side_door_closed, "punch_clock": t_punch_clock,
     "crate": t_crate, "flowerbed": t_flowerbed, "ladder_broken": t_ladder_broken, "path": t_path,
     "back_door": t_back_door, "porch": t_porch, "concrete": t_concrete, "floor_line": t_floor_line,
-    "board": t_board, "bin": t_bin, "timecards": t_timecards, "desk_big": t_desk_big, "locker": t_locker,
+    "board": t_board, "bin": t_bin, "lantern": t_lantern, "timecards": t_timecards, "desk_big": t_desk_big, "locker": t_locker,
 }
 DEPOT_OVERRIDES = {"wall_face": t_depot_face, "window": t_depot_window, "door": t_door}
 

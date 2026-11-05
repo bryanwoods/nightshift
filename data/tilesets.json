@@ -36,8 +36,8 @@
     "depot_night": {
       "png": "res://assets/tiles/depot_night.png",
       "tiles": ["wall", "wall_face", "concrete", "floor_line", "board", "bin", "timecards", "desk_big",
-                "shelf", "crate", "locker", "door", "rug", "window"],
-      "solid": ["wall", "wall_face", "board", "bin", "timecards", "desk_big", "shelf", "crate", "locker", "window"]
+                "shelf", "crate", "locker", "door", "rug", "window", "lantern"],
+      "solid": ["wall", "wall_face", "board", "bin", "timecards", "desk_big", "shelf", "crate", "locker", "window", "lantern"]
     }
   }
 }

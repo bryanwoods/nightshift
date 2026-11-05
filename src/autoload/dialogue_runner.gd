@@ -11,7 +11,7 @@ signal room_command(cmd: Dictionary)
 const DIR := "res://data/dialogue/"
 const COMMANDS: PackedStringArray = [
 	"set_flag", "clear_flag", "if_flag", "goto", "clock_add", "clock_set", "battle", "give_item",
-	"light", "move", "face", "shake", "wait", "music", "sfx", "end_night", "help_wanted",
+	"light", "move", "face", "shake", "wait", "music", "sfx", "end_night", "help_wanted", "save",
 ]
 
 var dialogues: Dictionary = {}
@@ -207,6 +207,8 @@ func _command(line: Dictionary) -> bool:
 		"help_wanted":
 			textbox.hide_box()
 			await Game.open_help_wanted()
+		"save":
+			SaveManager.commit()
 	return gen != _gen
 
 

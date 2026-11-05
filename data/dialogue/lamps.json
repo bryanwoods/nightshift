@@ -1,0 +1,41 @@
+{
+  "id": "lamps",
+  "dialogues": {
+    "lamp_dark": {
+      "lines": [ { "text": "A streetlamp. Dark." } ]
+    },
+    "lamp_lit_wick": {
+      "seen_variant": "lamp_lit_wick_2",
+      "lines": [
+        { "speaker": "wick", "text": "Hold still. Lamps are my department." },
+        { "text": "Wick lifts his pole. The lamp catches." },
+        { "cmd": "goto", "goto": "lamp_save" }
+      ]
+    },
+    "lamp_lit_wick_2": {
+      "lines": [
+        { "text": "Wick lifts his pole. The lamp catches." },
+        { "cmd": "goto", "goto": "lamp_save" }
+      ]
+    },
+    "lamp_lit": {
+      "lines": [
+        { "text": "You touch the lamp. It lights." },
+        { "cmd": "goto", "goto": "lamp_save" }
+      ]
+    },
+    "lamp_save": {
+      "lines": [
+        { "text": "The lamp remembers. Save here?",
+          "choices": [ { "text": "Save", "goto": "lamp_saved" }, { "text": "Not now" } ] }
+      ]
+    },
+    "lamp_saved": {
+      "lines": [
+        { "cmd": "save" },
+        { "cmd": "sfx", "name": "step_ok" },
+        { "text": "Saved." }
+      ]
+    }
+  }
+}

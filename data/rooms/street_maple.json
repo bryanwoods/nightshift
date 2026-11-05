@@ -26,9 +26,9 @@
     { "type": "npc", "id": "wick", "sprite": "wick", "x": 4, "y": 3, "facing": "up", "dialogue": "wick_again", "unless_flag": "wick_joined" },
     { "type": "trigger", "x": 16, "y": 2, "h": 6, "dialogue": "wick_wait_up", "if_flag": "met_wick", "unless_flag": "wick_joined" },
 
-    { "type": "hold", "x": 3, "y": 2, "seconds": 2.5, "minutes": 2, "dialogue": "lamp_maple_lit", "if_flag": "tonight_lamp_task", "unless_flag": "tonight_lamp_lit" },
-    { "type": "inspect", "x": 3, "y": 2, "dialogue": "inspect_dark_lamp", "unless_flag": ["tonight_lamp_task", "tonight_lamp_lit"] },
-    { "type": "inspect", "x": 3, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_lamp_lit" },
+    { "type": "hold", "x": 3, "y": 2, "seconds": 2.5, "minutes": 2, "flag": "lamp_maple", "dialogue": "lamp_maple_lit", "if_flag": "tonight_lamp_task", "unless_flag": "lamp_maple" },
+    { "type": "inspect", "x": 3, "y": 2, "dialogue": "inspect_dark_lamp", "unless_flag": ["tonight_lamp_task", "lamp_maple"] },
+    { "type": "lamp", "id": "maple", "x": 3, "y": 2, "light": "maple_1", "if_flag": "lamp_maple" },
     { "type": "inspect", "x": 4, "y": 2, "dialogue": "inspect_ladder" },
 
     { "type": "hold", "x": 9, "y": 2, "seconds": 2.0, "minutes": 2, "light": "maple_2", "flag": "tonight_maple_2", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_maple_2" },

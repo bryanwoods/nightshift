@@ -1,5 +1,8 @@
 extends Node
-## user://save.json holds what carries across nights. Settings live in their own file.
+## Live state is Game: flags, items, hours, tallies and seen dialogue for this session.
+## Committed state is what is on disk. A save at a lamp commits live state, and the end of
+## the night reverts live state to it. Pending is what live has that committed does not.
+## Settings live in their own file.
 
 signal saved
 signal loaded
@@ -7,8 +10,10 @@ signal loaded
 const PATH := "user://save.json"
 const SETTINGS_PATH := "user://settings.json"
 const TEXT_SPEEDS: Array[float] = [0.6, 1.0, 2.0]
+const KINDS: Array[String] = ["friend", "enemy", "gone", "lamp"]
 
 var settings: Dictionary = {"music": 7, "sfx": 8, "text_speed": 1, "scale": 4, "fullscreen": false}
+var committed: Dictionary = {}
 
 
 func _ready() -> void:
@@ -22,24 +27,32 @@ func has_save() -> bool:
 	return FileAccess.file_exists(PATH)
 
 
-func save_game() -> void:
+func snapshot() -> Dictionary:
 	var persistent := {}
 	for f in Game.flags:
 		if not str(f).begins_with(Game.TONIGHT):
 			persistent[f] = true
-	var data := {
+	return {
 		"night": Game.night,
 		"flags": persistent,
-		"items": Game.items,
-		"friends": Game.friends(),
-		"enemies": Game.enemies(),
+		"items": Game.items.duplicate(),
+		"hours": Game.hours,
+		"tally": Game.tally.duplicate(),
 		"seen_dialogue": Game.seen.keys(),
-		"settings": settings,
 	}
+
+
+func commit() -> void:
+	committed = snapshot()
 	var f := FileAccess.open(PATH, FileAccess.WRITE)
 	if f:
-		f.store_string(JSON.stringify(data, "  "))
+		f.store_string(JSON.stringify(committed, "  "))
+		Game.playtest("save", {})
 		saved.emit()
+
+
+func revert() -> void:
+	_apply(committed)
 
 
 func load_game() -> bool:
@@ -49,14 +62,47 @@ func load_game() -> bool:
 	if not d is Dictionary:
 		Game.report("save.json", "", "the save file could not be read")
 		return false
+	committed = d
+	_apply(d)
+	loaded.emit()
+	return true
+
+
+func _apply(d: Dictionary) -> void:
 	Game.night = int(d.get("night", 1))
 	Game.flags = (d.get("flags", {}) as Dictionary).duplicate()
 	Game.items.assign(d.get("items", []))
+	Game.hours = int(d.get("hours", 0))
+	var t: Dictionary = d.get("tally", {})
+	for k: String in Game.tally:
+		Game.tally[k] = int(t.get(k, 0))
 	Game.seen.clear()
 	for id: Variant in d.get("seen_dialogue", []):
 		Game.seen[str(id)] = true
-	loaded.emit()
-	return true
+
+
+## What `state` holds that `minus` does not, by kind: friend, enemy, gone and lamp ids, items, hours.
+func difference(state: Dictionary, minus: Dictionary) -> Dictionary:
+	var out := {"items": [], "hours": int(state.get("hours", 0)) - int(minus.get("hours", 0))}
+	for k in KINDS:
+		out[k] = []
+	var old: Dictionary = minus.get("flags", {})
+	for f: String in state.get("flags", {}):
+		var kind := f.get_slice("_", 0)
+		if kind in KINDS and not old.has(f):
+			out[kind].append(f.trim_prefix(kind + "_"))
+	for it: Variant in state.get("items", []):
+		if not it in minus.get("items", []):
+			out["items"].append(str(it))
+	return out
+
+
+func pending() -> Dictionary:
+	return difference(snapshot(), committed)
+
+
+func kept() -> Dictionary:
+	return difference(committed, {})
 
 
 func erase() -> void:

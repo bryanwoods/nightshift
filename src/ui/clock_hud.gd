@@ -47,7 +47,7 @@ func _update() -> void:
 func _process(delta: float) -> void:
 	_t += delta
 	var c := Game.color("moon")
-	if not NightClock.started:
+	if Game.time_state == Game.TimeState.EVENING:
 		c = Game.color("fog")
 	elif NightClock.minute >= int(Game.tuning.get("clock_pulse_minute", 55)) and fmod(_t, 1.0) < 0.5:
 		c = Game.color("ember")

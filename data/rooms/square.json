@@ -30,7 +30,8 @@
     { "type": "inspect", "x": 10, "y": 2, "dialogue": "square_clock" },
     { "type": "inspect", "x": 9, "y": 6, "dialogue": "square_fountain" },
     { "type": "inspect", "x": 5, "y": 5, "dialogue": "square_bench" },
-    { "type": "inspect", "x": 13, "y": 5, "dialogue": "square_bench" }
+    { "type": "inspect", "x": 13, "y": 5, "dialogue": "square_bench" },
+    { "type": "lamp", "id": "square", "x": 1, "y": 9, "light": "square_3" }
   ],
   "lights": [
     { "id": "square_1", "x": 1, "y": 3, "radius": 44, "on": true },

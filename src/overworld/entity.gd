@@ -1,10 +1,10 @@
 class_name Entity
 extends Node2D
-## One thing in a room: an npc, an inspect spot, a door, a trigger, or a hold spot.
+## One thing in a room: an npc, an inspect spot, a door, a trigger, a hold spot or a lamp.
 ## Positions in room files are tile coordinates. NPC positions are their feet.
 
 const ROWS := {"down": 0, "up": 1, "left": 2, "right": 3}
-const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold"]
+const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp"]
 
 var kind: String = ""
 var data: Dictionary = {}
@@ -73,7 +73,7 @@ func make_sprite(sheet: String) -> void:
 
 
 func interactive() -> bool:
-	return kind in ["npc", "inspect", "hold"]
+	return kind in ["npc", "inspect", "hold", "lamp"]
 
 
 func top_point() -> Vector2:

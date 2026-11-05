@@ -27,6 +27,7 @@ The first open imports the assets into `.godot/`. That folder is not in git.
 | Fullscreen | F11 | |
 
 Hold Confirm near a hold spot (a dark lamp after Wick joins) to fill the bar.
+Confirm at a lit lamp saves. See "Saving" below.
 
 ## Debug keys (debug builds only)
 
@@ -37,6 +38,7 @@ Hold Confirm near a hold spot (a dark lamp after Wick joins) to fill the bar.
 | F3 | Start the Curfew fight in the current room |
 | F4 | Toggle every flag listed in `dev/flags.txt` |
 | F5 | Reload the current room and all dialogue from JSON |
+| F6 | Save now (commit live state to disk) |
 | F11 | Fullscreen |
 
 Data errors show in red at the top of the screen and in the Godot output, as
@@ -51,13 +53,14 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 | `test_room.tscn` | One room, clock running | `room=street_maple` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
-| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind`, `shots=/some/dir` |
+| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget`, `shots=/some/dir` |
 
 Routes: `help` and `hustle` play the whole night each way. `clock` runs out the time on
 Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
 Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
 hold-to-light, the battle menu, Hustle timing, and 3:00 in the middle of a fight. `rewind`
-presses the watch in the Curfew fight.
+presses the watch in the Curfew fight. `forget` checks the save model: an unsaved friend is
+forgotten at the end of the night, and a friend saved at a lamp is kept.
 
 The bot prints `AUTOTEST PASS` or `AUTOTEST FAIL` and quits. It runs headless:
 
@@ -74,7 +77,7 @@ src/autoload/   Game, NightClock, SaveManager, AudioBus, DialogueRunner
 src/overworld/  world (room + battle holder), room (loader), entity, follower, player
 src/dialogue/   textbox
 src/battle/     battle, arena, patterns/ (one script per pattern type)
-src/ui/         title, settings, credits, clock HUD, night end, Help Wanted board, menu list
+src/ui/         title, settings, credits, clock HUD, lamps screen, night end, Help Wanted board, menu list
 src/validator.gd  checks every data file at startup
 data/           everything the player reads, and every number worth tuning
 tools/gen_placeholders.py  makes all placeholder art and sound from data/palette.json
@@ -112,6 +115,7 @@ Entity types. All take `x`, `y` in tiles, and optional `if_flag` / `unless_flag`
 | `door` | `to`, `spawn`, `minutes`, `dialogue`, `w`, `h` | Walk into it. Costs the door minutes (default from tuning) |
 | `trigger` | `dialogue`, `once`, `flag`, `w`, `h` | Walk into it. `once` + `flag` sets the flag and never fires again |
 | `hold` | `dialogue`, `seconds`, `minutes`, `light`, `flag`, `hint` | Hold Confirm to fill a bar. Ticks the clock as it fills, then lights `light`, sets `flag`, runs `dialogue` |
+| `lamp` | `id`, `light`, `wick` | A save point. The flag `lamp_<id>` means lit, and `light` is on while it is. Dark: Wick lights it (2 min), or it lights itself when `wick` is `false`. Lit: Confirm offers a save |
 
 ### Dialogue
 
@@ -150,6 +154,7 @@ Commands (`{ "cmd": "..." }`):
 | `sfx` | `name`, `pitch` | |
 | `end_night` | | At night: it is 3:00 now. In the morning: show the Night End card |
 | `help_wanted` | | Open the Help Wanted board |
+| `save` | | Commit live state to disk, as a lamp save does |
 
 ### A worker (worked example)
 
@@ -213,6 +218,14 @@ A new pattern type is one new script in `src/battle/patterns/`, named after the 
 
 Add `{ "title", "posted_by", "text", "status" }` to `data/help_wanted.json`.
 `status` is `open`, `taken` or `done`.
+
+## Saving
+
+The town forgets every night. Only what was saved at a lamp stays. `SaveManager` keeps two
+copies: live state (`Game.flags`, `items`, `hours`, `tally`, `seen`) and committed state
+(`user://save.json`). `commit()` writes live to disk. At the end of the night, `revert()`
+puts live back to the last commit, and `lamps_screen` lists what was kept and what was
+forgotten. Flags that start with `tonight_` never save. `data/items.json` holds item names.
 
 ## Playtest log
 
@@ -285,6 +298,11 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Wick counts as a friend (`friend_wick`) once he joins, so the Night End card lists him.
 - Before a dark turn, the battle menu cursor moves to Wick and the warning says "Ask Wick!". In the first playtest, the player chose Hustle on the dark turn and lost 15 of 20 Awake.
 - The crate beside the Depot side door opens the lost-and-found. In the first playtest, the player inspected that crate and missed the bin one tile away, so they never got the watch.
+- Round 2: the backyard has no lamp. It is part of the house, Wick is not there yet, and the night has not started, so there is nothing to save.
+- Round 2: the save prompt opens right after a lamp lights, so the first lamp teaches saving. Lighting costs 2 minutes; saving is free.
+- Round 2: the optional hold lamps (+2 min each) stay. They light for one night and do not save.
+- Round 2: seen dialogue reverts with the rest, so an unsaved first meeting plays again.
+- Round 2: Continue shows after the first lamp save or the first finished night. There is no autosave.
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 
 ## Open questions for Bryan

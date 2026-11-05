@@ -1,7 +1,7 @@
 class_name Room
 extends Node2D
 ## Builds one room from data/rooms/<id>.json: tiles from the ASCII layout, entities, lights,
-## darkness and music. Then runs doors, triggers, hold spots and the interact marker.
+## darkness and music. Then runs doors, triggers, hold spots, lamps and the interact marker.
 
 const TILE: int = 16
 const DIR := "res://data/rooms/"
@@ -221,6 +221,29 @@ func advance_hold(e: Entity, delta: float) -> void:
 		DialogueRunner.run(e.dialogue)
 
 
+func interact(e: Entity) -> void:
+	if e.kind == "lamp":
+		_use_lamp(e)
+	else:
+		DialogueRunner.run(e.dialogue)
+
+
+## A lit lamp offers a save. A dark one is lit by Wick, or by itself when "wick" is false.
+func _use_lamp(e: Entity) -> void:
+	var lid := str(e.data.get("id", ""))
+	var needs_wick := bool(e.data.get("wick", true))
+	if Game.has_flag("lamp_" + lid):
+		DialogueRunner.run("lamp_save")
+	elif needs_wick and not Game.has_flag("wick_joined"):
+		DialogueRunner.run("lamp_dark")
+	else:
+		NightClock.spend("lamp")
+		AudioBus.sfx("whoosh")
+		Game.playtest("lamp_lit", {"id": lid})
+		Game.set_flag("lamp_" + lid)
+		DialogueRunner.run("lamp_lit_wick" if needs_wick else "lamp_lit")
+
+
 func _physics_process(_delta: float) -> void:
 	if player == null or Game.busy or Game.in_battle or Game.night_over or DialogueRunner.is_active():
 		return
@@ -303,6 +326,8 @@ func _refresh(at_build: bool = false) -> void:
 			ok = ok and not e.fired and (flag == "" or not Game.has_flag(flag))
 		if e.active != ok:
 			e.set_active(ok)
+		if e.kind == "lamp" and lights.has(str(e.data.get("light", ""))):
+			(lights[e.data["light"]] as PointLight2D).enabled = Game.has_flag("lamp_" + str(e.data.get("id", "")))
 	var wants_follower := Game.has_flag("wick_joined") and bool(data.get("companion", false))
 	if wants_follower and follower == null:
 		var start := player.position - player.facing * float(Game.tuning.get("follow_distance", 24))

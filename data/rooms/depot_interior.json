@@ -4,11 +4,11 @@
   "legend": {
     "#": "wall", "=": "wall_face", ".": "concrete", "_": "floor_line", "B": "board", "b": "bin",
     "T": "timecards", "K": "desk_big", "s": "shelf", "c": "crate", "l": "locker", "D": "door",
-    "r": "rug", "w": "window"
+    "r": "rug", "w": "window", "n": "lantern"
   },
   "layout": [
     "######################",
-    "#==TTT==BB===w===ll==#",
+    "#==TTT==BB=n=w===ll==#",
     "#....................#",
     "#....................D",
     "#.....KKKK...........D",
@@ -34,12 +34,14 @@
     { "type": "inspect", "x": 13, "y": 1, "dialogue": "depot_window" },
     { "type": "inspect", "x": 20, "y": 8, "dialogue": "depot_shelf" },
     { "type": "inspect", "x": 3, "y": 9, "dialogue": "depot_bin" },
-    { "type": "inspect", "x": 20, "y": 9, "dialogue": "depot_crate" }
+    { "type": "inspect", "x": 20, "y": 9, "dialogue": "depot_crate" },
+    { "type": "lamp", "id": "depot", "x": 11, "y": 1, "light": "depot_lantern" }
   ],
   "lights": [
     { "id": "depot_in_1", "x": 4, "y": 2, "radius": 56, "energy": 0.8, "on": true },
     { "id": "depot_in_2", "x": 15, "y": 2, "radius": 56, "energy": 0.8, "on": true },
     { "id": "depot_in_3", "x": 10, "y": 8, "radius": 60, "energy": 0.7, "on": true },
+    { "id": "depot_lantern", "x": 11, "y": 1, "radius": 30, "on": false },
     { "id": "depot_bin_glow", "x": 2, "y": 8, "radius": 14, "color": "wake", "energy": 0.5, "on": true }
   ],
   "ambient": 0.4,

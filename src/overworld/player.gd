@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed("confirm") and not DialogueRunner.just_ended():
 		if target.kind == "npc":
 			target.face_toward(position)
-		DialogueRunner.run(target.dialogue)
+		room.interact(target)
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -64,6 +64,7 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 		Game.report(file, "spawns", "needs a \"default\" spawn")
 	for k: String in sp:
 		_in_bounds(file, "spawns." + k, sp[k], size)
+	var light_ids := (d.get("lights", []) as Array).map(func(l: Dictionary) -> String: return str(l.get("id", "")))
 	var ents: Array = d.get("entities", [])
 	for i in ents.size():
 		var e: Dictionary = ents[i]
@@ -78,6 +79,10 @@ static func _room(file: String, id: String, d: Dictionary, spawns: Dictionary) -
 				Game.report(file, where + ".to", "no room \"%s\"" % to)
 			elif not (spawns[to] as Dictionary).has(str(e.get("spawn", "default"))):
 				Game.report(file, where + ".spawn", "room %s has no spawn \"%s\"" % [to, e.get("spawn", "default")])
+		if kind == "lamp" and str(e.get("id", "")) == "":
+			Game.report(file, where + ".id", "a lamp needs an id")
+		if e.has("light") and not str(e["light"]) in light_ids:
+			Game.report(file, where + ".light", "no light \"%s\" in this room" % e["light"])
 		var dlg := str(e.get("dialogue", ""))
 		if dlg != "" and not DialogueRunner.has(dlg):
 			Game.report(file, where + ".dialogue", "no dialogue \"%s\"" % dlg)

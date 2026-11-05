@@ -33,8 +33,7 @@
     { "type": "npc", "id": "postman", "sprite": "postman", "x": 13, "y": 7, "facing": "left", "dialogue": "postman_talk" },
     { "type": "inspect", "x": 12, "y": 7, "dialogue": "inspect_postbox" },
 
-    { "type": "hold", "x": 2, "y": 2, "seconds": 2.0, "minutes": 2, "light": "main_1", "flag": "tonight_main_1", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_main_1" },
-    { "type": "inspect", "x": 2, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_main_1" },
+    { "type": "lamp", "id": "main", "x": 2, "y": 2, "light": "main_1" },
     { "type": "hold", "x": 8, "y": 2, "seconds": 2.0, "minutes": 2, "light": "main_2", "flag": "tonight_main_2", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_main_2" },
     { "type": "inspect", "x": 8, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_main_2" },
     { "type": "inspect", "x": 18, "y": 2, "dialogue": "inspect_lit_lamp" },

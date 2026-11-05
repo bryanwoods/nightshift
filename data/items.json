@@ -1,0 +1,8 @@
+{
+  "id": "items",
+  "items": {
+    "heel_of_bread": { "name": "Heel of bread" },
+    "pocket_watch": { "name": "Pocket watch" },
+    "punch_card": { "name": "Punch card" }
+  }
+}

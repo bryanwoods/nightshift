@@ -27,8 +27,7 @@
     { "type": "inspect", "x": 9, "y": 1, "dialogue": "depot_punch_clock" },
     { "type": "inspect", "x": 3, "y": 1, "w": 4, "dialogue": "depot_rolling_door" },
     { "type": "inspect", "x": 13, "y": 2, "dialogue": "depot_crate" },
-    { "type": "hold", "x": 2, "y": 2, "seconds": 2.0, "minutes": 2, "light": "depot_lamp_1", "flag": "tonight_depot_lamp", "dialogue": "lamp_extra_lit", "if_flag": "wick_joined", "unless_flag": "tonight_depot_lamp" },
-    { "type": "inspect", "x": 2, "y": 2, "dialogue": "inspect_lit_lamp", "if_flag": "tonight_depot_lamp" },
+    { "type": "lamp", "id": "depot_yard", "x": 2, "y": 2, "light": "depot_lamp_1" },
     { "type": "inspect", "x": 14, "y": 2, "dialogue": "inspect_lit_lamp" },
     { "type": "inspect", "x": 7, "y": 7, "dialogue": "inspect_dark_lamp_far" }
   ],

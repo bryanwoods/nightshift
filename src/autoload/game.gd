@@ -1,5 +1,6 @@
 extends Node
-## Night number, flags, items, scene routing, fades, data errors and debug keys.
+## Night number, live state (flags, items, hours, tallies), scene routing, fades, data errors
+## and debug keys. SaveManager commits live state to disk and reverts to it.
 
 signal flag_set(name: String)
 signal flag_cleared(name: String)
@@ -13,15 +14,26 @@ signal charges_changed
 const WORLD := "res://src/overworld/world.tscn"
 const TITLE := "res://src/ui/title_screen.tscn"
 const NIGHT_END := "res://src/ui/night_end_screen.tscn"
+const LAMPS := "res://src/ui/lamps_screen.tscn"
 const BOARD := "res://src/ui/help_wanted_board.gd"
 const TONIGHT := "tonight_"
 const FIRST_ROOM := "bedroom"
 const MORNING_ROOM := "bedroom_morning"
 
+enum TimeState { EVENING, NIGHT, MORNING }
+
 var night: int = 1
 var flags: Dictionary = {}
 var items: Array[String] = []
+var hours: int = 0
+var tally: Dictionary = {"helper_count": 0, "hustler_count": 0, "finished_count": 0}
 var seen: Dictionary = {}
+## Evening is the house before 2:00, night is the running clock, morning is after the night ends.
+var time_state: TimeState:
+	get:
+		if night_over:
+			return TimeState.MORNING
+		return TimeState.NIGHT if NightClock.started else TimeState.EVENING
 var room_id: String = FIRST_ROOM
 var spawn: String = "default"
 var lights: Dictionary = {}
@@ -29,6 +41,8 @@ var flashlight: bool = true
 var tuning: Dictionary = {}
 var ui: Dictionary = {}
 var palette: Dictionary = {}
+var item_info: Dictionary = {}
+var last_forgotten: Dictionary = {}
 var tilesets: Dictionary = {}
 var in_battle: bool = false
 var night_over: bool = false
@@ -56,6 +70,7 @@ func _ready() -> void:
 	ui = _dict(load_json("res://data/ui.json"))
 	palette = _dict(load_json("res://data/palette.json"))
 	tilesets = _dict(_dict(load_json("res://data/tilesets.json")).get("tilesets", {}))
+	item_info = _dict(_dict(load_json("res://data/items.json")).get("items", {}))
 	rewind_charges = int(tuning.get("rewind_charges", 3))
 	_late_ready.call_deferred()
 
@@ -171,9 +186,22 @@ func give_item(item: String) -> void:
 		items.append(item)
 
 
+func item_name(item: String) -> String:
+	return str(item_info.get(item, {}).get("name", item.capitalize()))
+
+
 func set_light(id: String, on: bool) -> void:
 	lights[id] = on
 	light_changed.emit(id, on)
+
+
+## A speaker's name, else the worker file's name, else the id.
+func display_name(id: String) -> String:
+	var n := str(DialogueRunner.speakers.get(id, {}).get("name", ""))
+	var path := "res://data/workers/%s.json" % id
+	if n == "" and FileAccess.file_exists(path):
+		n = str(_dict(load_json(path)).get("name", ""))
+	return n if n != "" else id.capitalize()
 
 
 func friends() -> Array[String]:
@@ -200,7 +228,11 @@ func start_night(new_game: bool) -> void:
 		flags.clear()
 		items.clear()
 		seen.clear()
+		hours = 0
+		for k: String in tally:
+			tally[k] = 0
 		SaveManager.erase()
+		SaveManager.committed = SaveManager.snapshot()
 	else:
 		SaveManager.load_game()
 	for f in flags.keys():
@@ -238,7 +270,6 @@ func go_to_room(id: String, spawn_name: String, minutes: int, dialogue: String =
 			return
 	room_id = id
 	spawn = spawn_name
-	SaveManager.save_game()
 	AudioBus.sfx("door")
 	room_requested.emit()
 	scene_changed.emit("room")
@@ -275,9 +306,15 @@ func end_night(reason: String) -> void:
 	in_battle = false
 	busy = true
 	overlay_open = false
+	last_forgotten = SaveManager.pending()
+	SaveManager.revert()
+	get_tree().change_scene_to_file(LAMPS)
+	scene_changed.emit("lamps")
+
+
+func go_to_morning() -> void:
 	room_id = MORNING_ROOM
 	spawn = "default"
-	SaveManager.save_game()
 	get_tree().change_scene_to_file(WORLD)
 	scene_changed.emit("morning")
 
@@ -293,7 +330,7 @@ func end_night_command() -> void:
 
 func finish_night() -> void:
 	night += 1
-	SaveManager.save_game()
+	SaveManager.commit()
 	go_to_title()
 
 
@@ -417,3 +454,6 @@ func _input(event: InputEvent) -> void:
 		KEY_F5:
 			if get_tree().current_scene and get_tree().current_scene.scene_file_path == WORLD and not in_battle:
 				reload_room()
+		KEY_F6:
+			SaveManager.commit()
+			AudioBus.sfx("chime")

@@ -1,6 +1,6 @@
 extends Node
 ## Plays Night 1 by itself and checks the clock, flags and rooms on the way.
-## Routes: help (default), hustle, clock (run out the clock before the square), asleep.
+## Routes: help (default), hustle, clock (run out the clock before the square), asleep, forget.
 ## Run:  godot --path . res://dev/autotest.tscn -- route=help shots=/tmp/shots
 ## Screenshots need a window (no --headless). Prints AUTOTEST PASS or AUTOTEST FAIL and quits.
 
@@ -40,6 +40,9 @@ func _run() -> void:
 		return
 	if route == "tour":
 		await _tour()
+		return
+	if route == "forget":
+		await _forget_route()
 		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
@@ -133,16 +136,7 @@ func _run() -> void:
 
 
 func _morning() -> void:
-	await _room("bedroom_morning", 30.0)
-	await _shot("10_morning")
-	_expect(Game.night_over, "night is over in the morning")
-	await _idle()
-	DialogueRunner.run("morning_card")
-	await _until(func() -> bool: return get_tree().current_scene != null and get_tree().current_scene.scene_file_path == Game.NIGHT_END, 10.0)
-	await _wait(1.0)
-	await _shot("11_night_end")
-	await _tap("confirm")
-	await _until(func() -> bool: return get_tree().current_scene != null and get_tree().current_scene.scene_file_path == Game.TITLE, 10.0)
+	await _wake()
 	var want := 3 if route_done_once else 2
 	route_done_once = true
 	_expect(SaveManager.has_save() and Game.night == want, "night %d saved, night is %d" % [want, Game.night])
@@ -154,11 +148,81 @@ func _morning() -> void:
 	_finish()
 
 
+## The lamps screen, the morning room, the punch card and back to the title.
+func _wake() -> void:
+	await _until(func() -> bool: return _on(Game.LAMPS), 30.0)
+	await _wait(1.0)
+	await _shot("10_lamps")
+	await _tap("confirm")
+	await _room("bedroom_morning", 30.0)
+	await _shot("10_morning")
+	_expect(Game.night_over, "night is over in the morning")
+	await _idle()
+	DialogueRunner.run("morning_card")
+	await _until(func() -> bool: return _on(Game.NIGHT_END), 10.0)
+	await _wait(1.0)
+	await _shot("11_night_end")
+	await _tap("confirm")
+	await _until(func() -> bool: return _on(Game.TITLE), 10.0)
+
+
+func _on(scene: String) -> bool:
+	return get_tree().current_scene != null and get_tree().current_scene.scene_file_path == scene
+
+
+## Item 1: a friend made after the last save is forgotten at the end of the night and is a
+## stranger next night. A friend saved at a lamp is kept.
+func _forget_route() -> void:
+	Game.set_flag("met_wick")
+	Game.set_flag("tonight_lamp_task")
+	NightClock.set_minute(0)
+	Game.go_to_room("street_maple", "gate", 0)
+	await _room("street_maple")
+	await _hold_at(3, 2)
+	_expect(Game.has_flag("wick_joined") and SaveManager.committed.get("flags", {}).has("wick_joined"), "the tutorial lamp offers a save, and Save commits Wick")
+	await _walk(17, 4)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	await _idle()
+	_expect(Game.has_flag("friend_unbaker"), "helped the Un-Baker, not saved")
+	NightClock.add(60)
+	await _until(func() -> bool: return _on(Game.LAMPS), 30.0)
+	_expect("unbaker" in Game.last_forgotten.get("friend", []), "the unsaved friend is listed under forgotten")
+	_expect("wick" in SaveManager.kept().get("friend", []), "the saved friend is listed under kept")
+	_expect(not Game.has_flag("friend_unbaker") and Game.has_flag("wick_joined"), "live state reverted to the last save")
+	await _wake()
+	Game.start_night(false)
+	await _room("bedroom")
+	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("unbaker_seen"), "night 2: the Un-Baker is a stranger")
+	NightClock.set_minute(0)
+	Game.go_to_room("street_maple", "gate", 0)
+	await _room("street_maple")
+	await _walk(17, 4)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	await _idle()
+	Game.go_to_room("street_main", "west", 0)
+	await _room("street_main")
+	var lamp := _target_at(2, 2)
+	_expect(lamp != null and lamp.kind == "lamp", "Main Street has a lamp")
+	_cur_room().interact(lamp)
+	await _idle()
+	_expect(Game.has_flag("lamp_main") and SaveManager.committed.get("flags", {}).has("friend_unbaker"), "Wick lit the lamp and the save kept the friend")
+	NightClock.add(60)
+	await _until(func() -> bool: return _on(Game.LAMPS), 30.0)
+	_expect("unbaker" in SaveManager.kept().get("friend", []) and Game.has_flag("friend_unbaker"), "the saved friend is kept")
+	await _wake()
+	Game.start_night(false)
+	await _room("bedroom")
+	_expect(Game.night == 3 and Game.has_flag("friend_unbaker") and Game.has_flag("lamp_main"), "night 3 remembers the friend and the lamp")
+	_finish()
+
+
 func _night_two() -> void:
 	_note("--- night 2 (Continue) ---")
 	Game.start_night(false)
 	await _room("bedroom")
-	_expect(Game.night == 2 and Game.has_flag("wick_joined") and not Game.has_flag("tonight_lamp_lit"), "night 2 keeps flags and resets tonight_ flags")
+	_expect(Game.night == 2 and Game.has_flag("wick_joined") and not Game.has_flag("tonight_lamp_task"), "night 2 keeps saved flags and resets tonight_ flags")
 	await _walk(5, 8)
 	await _room("hallway")
 	await _walk(12, 3)
@@ -225,7 +289,7 @@ func _input_route() -> void:
 	await _press_for("move_up", 0.1)
 	_expect(r.player.target != null and r.player.target.kind == "hold", "under the lamp, the target is the hold spot")
 	Input.action_press("confirm")
-	await _until(func() -> bool: return Game.has_flag("tonight_lamp_lit"), 8.0)
+	await _until(func() -> bool: return Game.has_flag("lamp_maple"), 8.0)
 	Input.action_release("confirm")
 	await _idle()
 	_expect(Game.has_flag("wick_joined") and NightClock.minute == 2, "holding confirm lit the lamp for 2 minutes, clock " + NightClock.text())
@@ -273,7 +337,7 @@ func _input_battle() -> void:
 	_expect(b._lit, "Light was chosen")
 	DialogueRunner.autoplay = true
 	NightClock.add(60)
-	await _room("bedroom_morning", 15.0)
+	await _until(func() -> bool: return _on(Game.LAMPS), 15.0)
 	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("enemy_unbaker"), "3:00 mid-fight abandons it with no flag")
 
 

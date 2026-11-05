@@ -8,7 +8,8 @@
     "stall": 0,
     "wick_light": 0,
     "wick_hold": 1,
-    "rewind": 1
+    "rewind": 1,
+    "lamp": 2
   },
   "player_speed": 60,
   "interact_range": 12,

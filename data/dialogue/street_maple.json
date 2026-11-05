@@ -56,8 +56,6 @@
     },
     "lamp_maple_lit": {
       "lines": [
-        { "cmd": "light", "id": "maple_1", "on": true },
-        { "cmd": "set_flag", "flag": "tonight_lamp_lit" },
         { "text": "The lamp catches. Warm light spills down the sidewalk." },
         { "speaker": "wick", "portrait": "wick_happy", "text": "You did it. You actually held it!" },
         { "speaker": "tadzio", "text": "Took two minutes." },
@@ -66,7 +64,9 @@
         { "speaker": "wick", "portrait": "wick_happy", "text": "I'm coming with you. Somebody has to explain things. Just- keep that flashlight off my face." },
         { "cmd": "set_flag", "flag": "wick_joined" },
         { "cmd": "set_flag", "flag": "friend_wick" },
-        { "text": "Wick joined you. Talk to him any time with {confirm}." }
+        { "text": "Wick joined you. Talk to him any time with {confirm}." },
+        { "speaker": "wick", "text": "One more thing. Lit lamps remember. The rest of the town forgets by morning." },
+        { "cmd": "goto", "goto": "lamp_save" }
       ]
     },
     "lamp_extra_lit": {

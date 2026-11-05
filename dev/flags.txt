@@ -3,7 +3,7 @@ met_wick
 wick_joined
 friend_wick
 tonight_lamp_task
-tonight_lamp_lit
+lamp_maple
 unbaker_seen
 friend_unbaker
 postman_met
