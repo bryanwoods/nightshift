@@ -33,7 +33,7 @@
     { "type": "inspect", "x": 17, "y": 1, "w": 2, "dialogue": "depot_lockers" },
     { "type": "inspect", "x": 13, "y": 1, "dialogue": "depot_window" },
     { "type": "inspect", "x": 20, "y": 8, "dialogue": "depot_shelf" },
-    { "type": "inspect", "x": 3, "y": 9, "dialogue": "depot_crate" },
+    { "type": "inspect", "x": 3, "y": 9, "dialogue": "depot_bin" },
     { "type": "inspect", "x": 20, "y": 9, "dialogue": "depot_crate" }
   ],
   "lights": [

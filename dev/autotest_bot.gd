@@ -323,8 +323,11 @@ func _rewind_route() -> void:
 	NightClock.set_minute(0)
 	Game.start_battle("curfew")
 	var w := _world()
-	await _until(func() -> bool: return w.battle != null and w.battle._dodging, 20.0)
+	await _until(func() -> bool: return w.battle != null, 10.0)
 	var b: Battle = w.battle
+	b.pattern_index = 3
+	await _until(func() -> bool: return b._dodging, 20.0)
+	_expect(b._cursor == 3, "a dark turn puts the menu cursor on Wick")
 	await _wait(1.5)
 	var t_before: float = b._pattern.t
 	var minute := NightClock.minute

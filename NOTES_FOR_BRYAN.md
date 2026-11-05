@@ -11,7 +11,10 @@ Each one is easy to undo. The full list of small decisions is in DEV.md, Decisio
 4. **Font.** m6x11 by Daniel Linssen (the spec's pick), "free to use with attribution" per its itch.io page. It is in the credits.
 5. **Curfew's lights-out pattern** comes 4th, so a clean Help route never sees it (3 dodge phases). The Hustle route does. Move it earlier in `data/workers/curfew.json` if every player should meet it.
 
-6. **Tadzio's look and two new colors.** Tadzio is drawn from your photo. Matching his hair took two colors outside the spec's palette (`straw`, `honey` in `data/palette.json`).
+6. **Hustle wins every fight (playtest 2026-11-04).** Tadzio chose Hustle on 10 of 11 turns and hit the center on 9 of 10 presses. Hustle costs 0 minutes, and Help costs 2. Is this the game he wants, or must Help pull harder? Knobs: `costs.hustle`, `hustle.center_zone` (0.22) in `data/tuning.json`.
+7. **The slice is short for a fast player.** Tadzio finished in 7:40 real time (the spec says 15) and reached Curfew at 2:28 (target 2:36 to 2:44). They lit 1 optional lamp.
+
+8. **Tadzio's look and two new colors.** Tadzio is drawn from your photo. Matching his hair took two colors outside the spec's palette (`straw`, `honey` in `data/palette.json`).
 
 ## Things for Tadzio (search `TODO(Tadzio)`)
 

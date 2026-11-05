@@ -154,6 +154,8 @@ func _menu_phase() -> String:
 	var pats: Array = worker.get("patterns", [])
 	if not pats.is_empty() and str(pats[pattern_index % pats.size()].get("type", "")) == "dark":
 		_flavor.text = Game.text("dark_warning")
+		if Game.has_flag("wick_joined"):
+			_cursor = OPTIONS.find("wick")
 	_menu_on = true
 	_sub = false
 	_input_at = Time.get_ticks_msec() + 150

@@ -283,6 +283,8 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - The palette has two extra night colors, `straw` and `honey`, for Tadzio's dirty-blonde hair. With only the spec's ten colors, the hair read as ginger.
 - Tadzio's sprite and portraits are drawn from a photo: long straight hair parted in the middle, light eyes, a small closed smile. The pajamas copy his white-and-teal colorblock shirt. The pajama pattern is still `TODO(Tadzio)`.
 - Wick counts as a friend (`friend_wick`) once he joins, so the Night End card lists him.
+- Before a dark turn, the battle menu cursor moves to Wick and the warning says "Ask Wick!". In the first playtest, the player chose Hustle on the dark turn and lost 15 of 20 Awake.
+- The crate beside the Depot side door opens the lost-and-found. In the first playtest, the player inspected that crate and missed the bin one tile away, so they never got the watch.
 - Commits are not one per milestone: the slice was built in one pass, then tested by the autotest bot.
 
 ## Open questions for Bryan
