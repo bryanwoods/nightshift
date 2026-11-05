@@ -1,20 +1,21 @@
 # roof 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
+nnnnnnnnnnnnnnnn
+ndnnnnnndnnnnnnn
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
-nnnnnnkknnnnnnkk
+nnnndnnnnnnndnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
+ndnnnnnndnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
-kkkkkkkkkkkkkkkk
-kkkknnnnnnkknnnn
-kkkkkkkkkkkkkkkk
-kkkkkkkkkkkkkkkk
-kkkkkkkkkkkkkkkk
-nnnnnnkknnnnnnkk
-kkkkkkkkkkkkkkkk
-kkkkkkkkkkkkkkkk
-kkkkkkkkkkkkkkkk
-kkkknnnnnnkknnnn
-kkkkkkkkkkkkkkkk
+nnnndnnnnnnndnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk

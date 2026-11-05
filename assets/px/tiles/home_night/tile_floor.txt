@@ -1,20 +1,21 @@
 # tile_floor 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-nnnnkkkknnnnkkkk
-nnnnkkkknnnnkkkk
-nnnnkkkknnnnkkkk
-nnnnkkkknnnnkkkk
-kkkknnnnkkkknnnn
-kkkknnnnkkkknnnn
-kkkknnnnkkkknnnn
-kkkknnnnkkkknnnn
-nnnnkkkknnnnkkkk
-nnnnkkkknnnnkkkk
-nnnnkkkknnnnkkkk
-nnnnkkkknnnnkkkk
-kkkknnnnkkkknnnn
-kkkknnnnkkkknnnn
-kkkknnnnkkkknnnn
-kkkknnnnkkkknnnn
+ssssssssdssssssd
+sfssssssdsfssssd
+ssssssssdssssssd
+ssssssssdssssssd
+ssssssssdssssssd
+ssssssssdssssssd
+ssssssssdssssssd
+dddddddddddddddd
+ssssssssdssssssd
+sfssssssdsfssssd
+ssssssssdssssssd
+ssssssssdssssssd
+ssssssssdssssssd
+ssssssssdssssssd
+ssssssssdssssssd
+dddddddddddddddd

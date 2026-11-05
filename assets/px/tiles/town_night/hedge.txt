@@ -1,20 +1,21 @@
 # hedge 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-kkkkkkkkkddddkkk
-kkddddkkddddddkk
-kddddddddddddddk
-dddddddddddddddk
-dddddddddddddddk
-dddddddddddddddk
-ddddddddddddddkk
-kddddddddddddkkk
-ddddddddddkddddk
+ssffssssffsssffs
+sfddfssfddfsfddf
+fddddffddddfdddd
+dddndddddndddddd
+ddddddnddddddndd
+dndddddddddddddd
+ddddnddddnddddnd
 dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddkdddddd
-ddddkkkkkkkddddk
+nddddddnddddnddd
+ddddnddddddddddd
+dddddddddnddddnd
+ndddddnddddddddd
+dddddddddddndddd
+nnnnnnnnnnnnnnnn
+kkkkkkkkkkkkkkkk
+kkkkkkkkkkkkkkkk

@@ -1,20 +1,21 @@
 # wall_face 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-ndndndndndndndnd
-kkkkkkkkkkkkkkkk
-kkkkkkkkkkkkkkkk
+ffffffffffffffff
+ffffffffffffffff
+dndndndndndndndn
+dndndndndndndndn
+dndndndndndndndn
+dndndndndndndndn
+dndndndndndndndn
+dddddddddddddddd
+dndndndndndndndn
+dndndndndndndndn
+dndndndndndndndn
+dndndndndndndndn
+dndndndndndndndn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk

@@ -1,20 +1,21 @@
 # grass 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-nnnnnnnnnnnnnnnn
-nnnnnnnnnddnnnnn
-nnnnnnnnndnnnnnn
-nnddnnnnnnnnnnnn
-nndnnnnnnnnnnnnn
-nnnnnnnnnnnnnnnn
-nnnnnnnnnnnnnnnn
-nnnnnnnnnnnnnddn
-nnnnnnnnnnnnndnn
-nnnnnnnnnnnnnnnn
-nnnnnddnnnnnnnnn
-nnnnndnnnnnnnnnn
-nnnnnnnnnnnnnnnn
-nnnnnnnnnnnddnnn
-nddnnnnnnnndnnnn
-ndnnnnnnnnnnnnnn
+ssssssssssssssss
+sssdssssssssdsss
+ssdsdsssssssdsds
+ssssssssssssssss
+ssssssssdsssssss
+sssssssdsdssssss
+ssssssssssssssss
+sdssssssssssssss
+dsdsssssssssdsss
+sssssssssssdsdss
+ssssssssssssssss
+ssssssdsssssssss
+sssssdsdsssssdss
+sssssssssssssdsd
+ssssssssssssssss
+ssssssssssssssss

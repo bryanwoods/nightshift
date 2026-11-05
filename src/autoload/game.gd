@@ -379,6 +379,7 @@ func room_ids() -> PackedStringArray:
 ## Debug: a room at its default spawn with every story flag cleared, for screenshots.
 func show_room(id: String) -> void:
 	flags.clear()
+	flashlight = false
 	night_over = false
 	in_battle = false
 	busy = false

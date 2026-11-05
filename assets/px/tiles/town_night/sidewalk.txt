@@ -1,20 +1,21 @@
 # sidewalk 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
+sssssssssssssssd
+sfsssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
+sssssssssssssssd
 dddddddddddddddd
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dssssssssdssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss
-dsssssssssssssss

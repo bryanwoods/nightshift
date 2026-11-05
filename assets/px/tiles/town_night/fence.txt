@@ -1,20 +1,21 @@
 # fence 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-nnnnnnnnnnnnnnnn
-nnfnnnfnndfnnnfn
-nfffnfffnfffnfff
-nfffnfffnfffnfff
-nfffnfffnfffnfff
+sfsssfsssfsssfss
+fffsfffsfffsfffs
+fffsfffsfffsfffs
+fffsfffsfffsfffs
+ffffffffffffffff
+dddddddddddddddd
+fffsfffsfffsfffs
+fffsfffsfffsfffs
+fffsfffsfffsfffs
+fffsfffsfffsfffs
+ffffffffffffffff
+dddddddddddddddd
+fffsfffsfffsfffs
+dddsdddsdddsddds
+dddsdddsdddsddds
 ssssssssssssssss
-nfffnfffnfffnfff
-nfffnfffnfffnfff
-nfffnfffnfffnfff
-nfffnfffnfffnfff
-nfffnfffnfffnfff
-ssssssssssssssss
-nfffnfffnfffnfff
-nfffnfffnfffdfff
-nfffnfffnfffnfff
-ndnnnnnnnnnnnnnn

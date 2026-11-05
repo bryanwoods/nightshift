@@ -1,20 +1,21 @@
 # shop_wall 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-ddddndddddddnddd
-ddddndddddddnddd
-ddddndddddddnddd
+ffffffffffffffff
+ffffffffffffffff
+dddddddndddddddd
+dddddddndddddddd
 nnnnnnnnnnnnnnnn
-ndddddddnddddddd
-ndddddddnddddddd
-ndddddddnddddddd
+dddndddddddndddd
+dddndddddddndddd
 nnnnnnnnnnnnnnnn
-ddddndddddddnddd
-ddddndddddddnddd
-ddddndddddddnddd
+dddddddndddddddd
+dddddddndddddddd
 nnnnnnnnnnnnnnnn
-ndddddddnddddddd
-ndddddddnddddddd
-ndddddddnddddddd
+dddndddddddndddd
+dddndddddddndddd
 nnnnnnnnnnnnnnnn
+dddddddndddddddd
+kkkkkkkkkkkkkkkk

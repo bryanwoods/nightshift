@@ -1,20 +1,21 @@
 # alley_gap 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls, doors
 
 @tile
-dddkkkkkkkkkkddd
+fffkkkkkkkkkkfff
+fffkkkkkkkkkkfff
 dddkkkkkkkkkkddd
 dddkkkkkkkkkkddd
 nnnkkkkkkkkkknnn
-nddkkkkkkkkkkddd
-nddkkkkkkkkkkddd
-nddkkkkkkkkkkddd
+dddkkkkkkkkkkddd
+dddkkkkkkkkkkddd
 nnnkkkkkkkkkknnn
 dddkkkkkkkkkkddd
 dddkkkkkkkkkkddd
-dddknnnnnnnnkddd
-nnnknnnnnnnnknnn
-nddknnnnnnnnkddd
-nddknnnnnnnnkddd
-nddknnnnnnnnkddd
-nnnknnnnnnnnknnn
+nnnkkkkkkkkkknnn
+dddkkkkkkkkkkddd
+dddnnnnnnnnnnddd
+nnnnnnnnnnnnnnnn
+dddnnnnnnnnnnddd
+kkksssssssssskkk

@@ -1,5 +1,6 @@
 # wall 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
 rrrrrrrrrrrrrrrr
@@ -9,7 +10,7 @@ rrrrrrrrrrrrrrrr
 rrrrrrrrrrrrrrrr
 rrrrrrrrrrrrrrrr
 rrrrrrrrrrrrrrrr
-rcrrrcrrrcrrrcrr
+rrrrrrrrrrrrrrrr
 rrrrrrrrrrrrrrrr
 rrrrrrrrrrrrrrrr
 rrrrrrrrrrrrrrrr

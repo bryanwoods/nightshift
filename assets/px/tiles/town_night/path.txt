@@ -1,20 +1,21 @@
 # path 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-dddddddddddddddd
-dddddddddddddddd
-dddsdddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-ddddddddddsddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-ddddddsddddddddd
-dddddddddddddddd
-dddddddddddddsdd
-dddddddddddddddd
-dddddddddddddddd
+ssssssssssssssss
+ssfssssssssfssss
+ssssssssssssssss
+sssssssfssssssss
+ssssssssssssssfs
+sfssssssssssssss
+ssssssssfsssssss
+ssssssssssssssss
+sssssssssssfssss
+ssssfsssssssssss
+ssssssssssssssss
+sssssssssfssssss
+ssfsssssssssssss
+ssssssssssssssfs
+ssssssfsssssssss
+ssssssssssssssss

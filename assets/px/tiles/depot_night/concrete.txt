@@ -1,20 +1,21 @@
 # concrete 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
-dddddddddddddddd
-dddddddddddddddd
-ddddddddddddnddd
-ddnddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddndddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddndddddddddddd
-dddddddddddddndd
-dddddddddddddddd
-dddddddddddddddd
+ssssssssssssssss
+sssssdssssssssss
+ssssssssssssssds
+ssssssssssssssss
+ssdsssssssssssss
+sssssssssfssssss
+ssssssssssssssss
+sssssssssssssdss
+ssssssssssssssss
+sssdssssssssssss
+ssssssssssdsssss
+ssssssssssssssss
+sssssssssssssssd
+ssssssdsssssssss
+ssssssssssssssss
+dsssssssssssssss

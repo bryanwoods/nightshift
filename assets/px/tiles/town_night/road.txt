@@ -1,20 +1,21 @@
 # road 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# item: tiles
+# rules: viewpoint, walls
 
 @tile
 dddddddddddddddd
+ddddsddddddddndd
 dddddddddddddddd
-dddddddddddndddd
-dddddddddddddddd
-dddndddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
+dndddddddddsdddd
 dddddddddddddddd
 dddddddndddddddd
+ddddddddddddddsd
 dddddddddddddddd
+dsdddddddddddddd
+dddddddddndddddd
 dddddddddddddddd
-dndddddddddddndd
+ddddnddddddddddd
+ddddddddddddsddd
 dddddddddddddddd
-dddddddddddddddd
+ddddddsddddddddd
+dddddddddddddddn
