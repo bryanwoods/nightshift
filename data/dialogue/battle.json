@@ -19,9 +19,12 @@
       "lines": [ { "text": "Your pockets are empty." } ]
     },
     "battle_finished": {
-      "todo": "TODO(Tadzio): what Wick says the first time a worker is gone.",
+      "todo": "TODO(Tadzio): what Wick says the first time a worker is gone, and when many are gone.",
       "lines": [
-        { "text": "It's quiet now." },
+        { "text": "It's quiet now.", "unless_flag": "many_gone" },
+        { "text": "Even quieter now.", "dark": true, "if_flag": "many_gone" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "T-Tadzio... everyone heard that. They're hiding. From us.", "if_flag": ["wick_joined", "many_gone"], "unless_flag": "wick_saw_many" },
+        { "cmd": "set_flag", "flag": "wick_saw_many", "if_flag": ["wick_joined", "many_gone"] },
         { "cmd": "if_flag", "flag": "wick_saw_gone", "goto": "" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "...", "if_flag": "wick_joined" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "They're gone. They're not coming back. Are they.", "if_flag": "wick_joined" },

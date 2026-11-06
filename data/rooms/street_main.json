@@ -35,7 +35,8 @@
       "approach": "washer_approach", "approach_enemy": "washer_approach_angry", "chat": "washer_chat" },
     { "type": "inspect", "x": 16, "y": 1, "dialogue": "inspect_reflection", "if_gone": "window_washer" },
 
-    { "type": "npc", "id": "postman", "sprite": "postman", "x": 13, "y": 7, "facing": "left", "dialogue": "postman_talk" },
+    { "type": "npc", "id": "postman", "sprite": "postman", "x": 13, "y": 7, "facing": "left", "dialogue": "postman_talk", "unless_flag": "many_gone" },
+    { "type": "npc", "id": "mailbag", "sprite": "mailbag", "x": 13, "y": 7, "dialogue": "postman_gone", "if_flag": "many_gone" },
     { "type": "inspect", "x": 12, "y": 7, "dialogue": "inspect_postbox" },
 
     { "type": "lamp", "id": "main", "x": 2, "y": 2, "light": "main_1" },

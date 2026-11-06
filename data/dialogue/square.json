@@ -2,7 +2,7 @@
   "id": "square",
   "dialogues": {
     "square_curfew": {
-      "todo": "TODO(Tadzio): Wick's quieter lines once two or more workers are gone (many_gone).",
+      "todo": "TODO(Tadzio): Wick's quieter lines and what Tadzio does when two or more workers are gone (many_gone).",
       "lines": [
         { "text": "The town square. Above it, the clock tower." },
         { "cmd": "face", "entity": "player", "dir": "up" },
@@ -16,6 +16,10 @@
         { "speaker": "curfew", "text": "That's my department." },
         { "speaker": "wick", "portrait": "wick_panic", "text": "It's Curfew! It puts awake kids back to bed! It's very nice about it! That's the hard part!", "unless_flag": "many_gone" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "It's Curfew.", "if_flag": "many_gone" },
+        { "cmd": "move", "entity": "player", "dx": -1, "dy": 0, "speed": 24, "unless_flag": "many_gone" },
+        { "cmd": "move", "entity": "player", "dx": 3, "dy": 0, "speed": 20, "if_flag": "many_gone" },
+        { "cmd": "face", "entity": "player", "dir": "right" },
+        { "speaker": "tadzio", "text": "Bedtime is for other kids.", "dark": true, "if_flag": "many_gone" },
         { "cmd": "battle", "worker": "curfew" },
         { "cmd": "if_flag", "flag": "friend_curfew", "goto": "square_end_help" },
         { "cmd": "if_flag", "flag": "gone_curfew", "goto": "square_end_gone", "else": "square_end_hustle" }

@@ -27,6 +27,13 @@
     "inspect_postbox": {
       "lines": [ { "text": "The corner mailbox. Something inside it is breathing very softly. Probably letters." } ]
     },
+    "postman_gone": {
+      "todo": "TODO(Tadzio): what the Postman leaves behind when he runs (many_gone).",
+      "lines": [
+        { "text": "The Night Postman's mailbag, dropped on the sidewalk. The envelopes inside still glow." },
+        { "text": "No dreams tonight.", "dark": true }
+      ]
+    },
     "postman_talk": {
       "lines": [
         { "cmd": "if_flag", "flag": "postman_met", "goto": "postman_again" },

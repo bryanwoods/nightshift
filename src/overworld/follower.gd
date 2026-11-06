@@ -42,3 +42,10 @@ func follow(p: Vector2) -> void:
 	update_rect()
 	if not moving:
 		_apply_frame(0)
+
+
+func _process(delta: float) -> void:
+	super(delta)
+	var t := Time.get_ticks_msec()
+	if sprite:
+		sprite.position.x = float(t / 50 % 2) if Game.has_flag("many_gone") and t % 2400 < 700 else 0.0

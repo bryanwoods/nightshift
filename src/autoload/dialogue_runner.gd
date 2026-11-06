@@ -139,14 +139,29 @@ func _run_lines(lines: Array, gen: int) -> void:
 func _show(line: Dictionary, options: Array[String]) -> int:
 	var speaker := str(line.get("speaker", "narrator"))
 	var sp: Dictionary = speakers.get(speaker, {})
+	var dark := bool(line.get("dark", false))
+	var text := Game.fmt(str(line.get("text", "")))
 	return await textbox.show_line(
 		str(sp.get("name", "")),
 		_portrait(speaker, str(line.get("portrait", ""))),
-		Game.fmt(str(line.get("text", ""))),
+		_uneven(text) if dark else text,
 		float(sp.get("pitch", 1.0)),
 		options,
 		float(line.get("auto", -1.0)),
+		Game.color("hush" if dark else "moon"),
 	)
+
+
+static func _uneven(text: String) -> String:
+	var out := ""
+	var up := true
+	for ch in text:
+		if ch.to_upper() != ch.to_lower():
+			out += ch.to_upper() if up else ch.to_lower()
+			up = not up
+		else:
+			out += ch
+	return out
 
 
 func _portrait(speaker: String, name: String) -> Texture2D:

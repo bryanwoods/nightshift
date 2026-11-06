@@ -123,11 +123,13 @@
       "lines": [ { "text": "A mailbox. Empty. Even the mail is asleep." } ]
     },
     "unbaker_approach": {
+      "todo": "TODO(Tadzio): what workers say when they are afraid of Tadzio (many_gone).",
       "lines": [
         { "cmd": "set_flag", "flag": "unbaker_seen" },
         { "text": "A tall figure stands by a cart. At every doorstep on this street, it takes the bread back." },
         { "speaker": "unbaker", "text": "Twelve. Thirteen. Fourteen loaves. Yesterday's. All accounted for." },
         { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "You're not on my list. Nobody awake is on my list." },
+        { "speaker": "unbaker", "portrait": "unbaker_grump", "text": "I count workers too. There are fewer every night.", "if_flag": "many_gone" },
         { "speaker": "wick", "portrait": "wick_panic", "text": "That's the Un-Baker! He takes yesterday's bread back before morning. He's very, very particular.", "if_flag": "wick_joined" },
         { "speaker": "unbaker", "text": "A kid off the list is a problem. I don't like problems. I like lists." }
       ]

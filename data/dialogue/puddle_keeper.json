@@ -3,10 +3,13 @@
   "todo": "TODO(Tadzio): every line here is a placeholder. Rename, rewrite or replace.",
   "dialogues": {
     "puddle_approach": {
+      "todo": "TODO(Tadzio): what workers say when they are afraid of Tadzio (many_gone).",
       "lines": [
         { "text": "Someone in a rain hat is pouring water into a puddle from a watering can." },
-        { "speaker": "puddle_keeper", "text": "Careful. Every puddle has to last until morning. That one's mine." },
-        { "speaker": "puddle_keeper", "text": "And you have very dry slippers. Suspicious." }
+        { "speaker": "puddle_keeper", "text": "Careful. Every puddle has to last until morning. That one's mine.", "unless_flag": "many_gone" },
+        { "speaker": "puddle_keeper", "text": "And you have very dry slippers. Suspicious.", "unless_flag": "many_gone" },
+        { "speaker": "puddle_keeper", "text": "Stop. Stay right there. I know about you.", "if_flag": "many_gone" },
+        { "speaker": "puddle_keeper", "text": "Somebody has to be here when morning comes. It's going to be me.", "if_flag": "many_gone" }
       ]
     },
     "puddle_approach_angry": {

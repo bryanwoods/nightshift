@@ -265,6 +265,17 @@ func _finish_route() -> void:
 	await _room("depot_interior")
 	_expect(Game.seen.has("foreman_missing"), "night 2: the Foreman names the missing Un-Baker")
 	_expect(Game.shift_level() == 1 and Game.hours == 6, "Shift Lv 1 with 6 hours")
+	Game.go_to_room("street_main", "west", 0)
+	await _room("street_main")
+	await _walk(16, 4)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	await _idle()
+	r = _cur_room()
+	_expect(Game.has_flag("many_gone") and Game.has_flag("wick_saw_many"), "two gone: the dark route starts and Wick speaks")
+	_expect(AudioBus._pitch < 1.0, "the music plays slower on the dark route")
+	_expect(not r.entity_by_id("postman").active and r.entity_by_id("mailbag").active, "the Postman ran and left his mailbag")
+	_expect(DialogueRunner._uneven("Who's still up?") == "WhO's StIlL uP?", "dark lines alternate upper and lower case")
 	_finish()
 
 
@@ -551,6 +562,15 @@ func _tour() -> void:
 		await _until(func() -> bool: return not Game.in_battle, 120.0)
 		Engine.time_scale = 1.0
 	await _tour_choice()
+	DialogueRunner.abort()
+	DialogueRunner.autoplay = false
+	Game.busy = false
+	Game.set_flag("many_gone")
+	Game.go_to_room("street_main", "default", 0)
+	await _room("street_main")
+	DialogueRunner.run("battle_finished")
+	await _wait(1.5)
+	await _shot("dark_route")
 	_finish()
 
 

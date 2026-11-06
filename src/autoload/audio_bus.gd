@@ -32,6 +32,7 @@ func _ready() -> void:
 		add_child(p)
 		_pool.append(p)
 	NightClock.minute_passed.connect(_on_minute)
+	Game.flag_set.connect(func(_f: String) -> void: _on_minute(NightClock.minute))
 
 
 func current() -> String:
@@ -115,6 +116,8 @@ func _on_minute(minute: int) -> void:
 	for step: Dictionary in Game.tuning.get("music_tension", []):
 		if minute >= int(step.get("minute", 99)):
 			pitch = float(step.get("pitch", 1.0))
+	if Game.has_flag("many_gone"):
+		pitch *= float(Game.tuning.get("dark_music_pitch", 1.0))
 	_pitch = pitch
 	for p in _music:
 		p.pitch_scale = pitch

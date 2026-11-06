@@ -71,7 +71,8 @@ func _label(c: Color) -> Label:
 	return l
 
 
-func show_line(speaker_name: String, portrait: Texture2D, text: String, pitch: float, options: Array[String], auto: float) -> int:
+func show_line(speaker_name: String, portrait: Texture2D, text: String, pitch: float, options: Array[String], auto: float, ink: Color) -> int:
+	_text.add_theme_color_override("font_color", ink)
 	_pitch = pitch
 	_options = options
 	_cursor = 0

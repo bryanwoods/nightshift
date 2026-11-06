@@ -1,0 +1,37 @@
+# mailbag 16x16
+# item: dark route (2026-11-06)
+# rules: viewpoint, outline, warm
+# The Night Postman drops it when he runs. The envelopes still glow.
+
+@down_0
+................
+................
+................
+................
+................
+.....kkkkk......
+...kkdddddkk....
+..kddkkkmmmmk...
+.kdkkkksmllmk...
+..ksssssmmmmk...
+..kfffffffffk...
+.ksfffffffffskk.
+.ksssfffffssmmmk
+..ksssssssssmlmk
+...kssssssskmmmk
+....kkkskkk.kkk.
+@down_1 = down_0
+@down_2 = down_0
+@down_3 = down_0
+@up_0 = down_0
+@up_1 = down_0
+@up_2 = down_0
+@up_3 = down_0
+@left_0 = down_0
+@left_1 = down_0
+@left_2 = down_0
+@left_3 = down_0
+@right_0 = down_0
+@right_1 = down_0
+@right_2 = down_0
+@right_3 = down_0

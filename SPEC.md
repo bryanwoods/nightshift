@@ -669,3 +669,31 @@ The rules, with the short name a file header uses:
    for finding secrets, not for seeing the room. The validator reports a darker room.
 10. **portraits.** Portraits are 32x32, with the same outline rule and one clear
     expression each.
+
+---
+
+# Round 4: the dark route (2026-11-06)
+
+Direction from the lead designer, Tadzio: when you clock workers out, the course of the game
+changes, as in Undertale. Nightshift does this in its own way, with its own words. This
+route is the one place where the tone can become creepy. It stays kid-safe: no blood, no
+weapons, and nobody is hurt on screen.
+
+The dark route starts when two or more workers are gone (the flag `many_gone`, set in
+`Battle._resolve`). Gone workers stay gone on later nights, so the route stays on.
+
+On the dark route:
+
+- The music plays slower and lower. `dark_music_pitch` in `tuning.json` (0.8) multiplies
+  the music pitch.
+- A dialogue line with `"dark": true` shows in hush red, and every other letter is upper
+  case. Write the line in plain case. The game changes the case.
+- Townspeople leave because they are afraid. The Night Postman is not on Main Street. His
+  mailbag lies where he stood, and its envelopes still glow.
+- Workers at their posts are afraid of Tadzio, and their approach lines change.
+- Wick shivers while he follows Tadzio. After the fight that starts the route, he says
+  once that everyone is hiding from them.
+- At Curfew, Tadzio walks toward the danger and says a dark line. On the other routes, he
+  takes a step back.
+
+All of these lines are placeholders with `TODO(Tadzio)` markers.
