@@ -13,8 +13,8 @@
   "rewind_tutorial": true,
   "patterns": [
     {
-      "type": "rain",
-      "duration": 5,
+      "type": "staff",
+      "duration": 5.5,
       "count": 12,
       "speed": 52,
       "sprite": "note",
@@ -23,7 +23,8 @@
         2,
         0,
         1
-      ]
+      ],
+      "period": 2.0
     },
     {
       "type": "ring",

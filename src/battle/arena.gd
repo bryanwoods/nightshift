@@ -125,6 +125,14 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				if absf(angle_difference(i * step + step / 2.0, b.gap_center)) <= b.gap / 2.0:
 					continue
 				_layer.draw_arc(b.pos, b.radius, i * step, (i + 1) * step, 3, col, b.width)
+		Pattern.Kind.STAFF:
+			var ax := Vector2.from_angle(b.steer) * b.width / 2.0
+			var ay := Vector2.from_angle(b.steer).orthogonal()
+			for i in 5:
+				var o := b.pos + ay * (i * 2.0 - 4.0)
+				_layer.draw_line(o - ax, o + ax, col, 1.0)
+			for end in [-ax, ax]:
+				_layer.draw_line(b.pos + end - ay * 4.0, b.pos + end + ay * 4.0, col, 1.0)
 		Pattern.Kind.BLOCK:
 			_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 + 0.5, b.pos.y - b.radius, b.width - 1.0, b.radius * 2.0), col)
 		Pattern.Kind.LANE:

@@ -4,7 +4,7 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING, LANE, BLOCK }
+enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF }
 
 const LANE_DROP := 600.0
 const SHINE_REACH := 30.0
@@ -18,16 +18,16 @@ class Bullet:
 	var vel: Vector2 = Vector2.ZERO
 	var tex: String = ""
 	## Sprite: hit radius. Ring: current radius. Lane: age, scaled by grow (its pace).
-	## Block: half its height.
+	## Block and staff: half the height.
 	var radius: float = 3.0
-	## Bar, lane and block: width. Ring: thickness.
+	## Bar, lane, block and staff: width. Ring: thickness.
 	var width: float = 6.0
 	## Bar: y of the gap. Ring: angle of the gap. Lane: strike time.
 	var gap_center: float = 0.0
 	## Bar: gap in px. Ring: gap in radians. Lane: warning time.
 	var gap: float = 0.0
 	var grow: float = 0.0
-	## Drift: turn rate. Lane: angle of the beam.
+	## Drift: turn rate. Lane: angle of the beam. Staff: its tilt.
 	var steer: float = 0.0
 	var alive: bool = true
 
@@ -138,6 +138,8 @@ func _gone(b: Bullet) -> bool:
 			return b.radius > half.length() + 6
 		Kind.LANE:
 			return b.radius > b.gap + b.gap_center
+		Kind.STAFF:
+			return false
 	return b.pos.y > half.y + 10 or b.pos.y < -half.y - 14 or absf(b.pos.x) > half.x + 14
 
 
@@ -171,6 +173,9 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 			return absf(angle_difference((p - b.pos).angle(), b.gap_center)) > b.gap / 2.0
 		Kind.BLOCK:
 			return absf(p.x - b.pos.x) < b.width / 2.0 + r and absf(p.y - b.pos.y) < b.radius + r
+		Kind.STAFF:
+			var local := (p - b.pos).rotated(-b.steer)
+			return absf(local.x) < b.width / 2.0 + r and absf(local.y) < b.radius + r
 		Kind.LANE:
 			var d := Vector2.from_angle(b.steer)
 			var u := (p - b.pos).dot(d)
