@@ -335,7 +335,7 @@ Wide, clipboard, visor, a pencil behind each ear. 32×32
 Clipped. Everything is a schedule problem
 Curfew
 Boss. Puts awake kids back to bed
-A heap of quilt and pillows with two sleepy eyes, 48×48. Moves like a slow wave
+A heap of patchwork quilts in a nightcap, with a big sleepy face, 48×48. Moves like a slow wave
 Slow, kind, exhausted. Speaks in lullaby cadence
 Beat-by-beat
 1. Bedroom, 1:59. Fade in on Tadzio sitting up. Clock radio reads 1:59 and stays there. Everything inspectable has a line; the bed says “Not yet.”

@@ -10,7 +10,7 @@
         { "speaker": "wick", "text": "That's... not right. That clock is never wrong. It's THE clock.", "unless_flag": "many_gone" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "..." },
         { "cmd": "music", "track": "curfew_theme" },
-        { "text": "Something rolls across the cobbles like a slow wave. Quilts. Pillows. Two sleepy eyes." },
+        { "text": "Something rolls across the cobbles like a slow wave. Quilts. A nightcap. Two sleepy eyes." },
         { "cmd": "set_flag", "flag": "tonight_curfew_here" },
         { "cmd": "move", "entity": "curfew", "dx": -6, "dy": 0, "speed": 24, "enter": true },
         { "speaker": "curfew", "portrait": "curfew_sleepy", "text": "Up past bedtime." },
