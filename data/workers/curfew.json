@@ -27,11 +27,12 @@
       "period": 2.0
     },
     {
-      "type": "ring",
-      "duration": 5,
-      "rings": 2,
-      "speed": 42,
-      "gap_angle": 50,
+      "type": "sheep",
+      "duration": 6,
+      "count": 8,
+      "speed": 52,
+      "fences": 3,
+      "sprite": "sheep",
       "arena": [
         150,
         96

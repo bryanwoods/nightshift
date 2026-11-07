@@ -1,0 +1,14 @@
+# sheep 12x9
+# item: projectiles (playtest 2026-11-07)
+# A sheep for Curfew's counting-sheep attack: cream wool, slate face and legs, facing right.
+
+@sprite
+..mm.mm.mm..
+.mmmmmmmmm..
+mmmmmmmmmss.
+mmmmmmmmssss
+mmmmmmmmsmss
+.mmmmmmmmss.
+..mmmmmmm...
+..s.s..s.s..
+..s.s..s.s..

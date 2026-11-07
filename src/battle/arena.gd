@@ -133,6 +133,14 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_line(o - ax, o + ax, col, 1.0)
 			for end in [-ax, ax]:
 				_layer.draw_line(b.pos + end - ay * 4.0, b.pos + end + ay * 4.0, col, 1.0)
+		Pattern.Kind.FENCE:
+			var wood := Game.color("honey")
+			var left := b.pos.x - b.width / 2.0
+			var top := b.pos.y - b.radius
+			for x in [left, left + b.width - 2.0]:
+				_layer.draw_rect(Rect2(x, top, 2, b.radius * 2.0), wood)
+			for y in [top + 2.0, top + 6.0]:
+				_layer.draw_rect(Rect2(left - 2.0, y, b.width + 4.0, 1), wood)
 		Pattern.Kind.BLOCK:
 			_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 + 0.5, b.pos.y - b.radius, b.width - 1.0, b.radius * 2.0), col)
 		Pattern.Kind.LANE:
