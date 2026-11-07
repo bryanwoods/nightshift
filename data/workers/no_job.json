@@ -21,12 +21,14 @@
     {
       "type": "strike",
       "duration": 7.5,
-      "volleys": 6,
+      "volleys": 8,
       "lanes": 3,
-      "warn": 0.7,
+      "warn": 0.8,
       "strike": 0.35,
-      "width": 10,
+      "width": 8,
       "aim": true,
+      "accel": 0.5,
+      "ramp": 0.08,
       "color": "hush"
     },
     {
@@ -41,6 +43,19 @@
       }
     },
     {
+      "type": "strike",
+      "duration": 7.5,
+      "volleys": 8,
+      "lanes": 3,
+      "warn": 0.8,
+      "strike": 0.35,
+      "width": 8,
+      "aim": true,
+      "accel": 0.5,
+      "ramp": 0.08,
+      "color": "hush"
+    },
+    {
       "type": "rain",
       "duration": 7,
       "count": 18,
@@ -49,6 +64,19 @@
       "from": "bottom",
       "slant": 16,
       "wobble": 24
+    },
+    {
+      "type": "strike",
+      "duration": 7.5,
+      "volleys": 8,
+      "lanes": 3,
+      "warn": 0.8,
+      "strike": 0.35,
+      "width": 8,
+      "aim": true,
+      "accel": 0.5,
+      "ramp": 0.08,
+      "color": "hush"
     },
     {
       "type": "dark",

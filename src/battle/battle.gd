@@ -464,6 +464,7 @@ func _dodge_phase() -> void:
 	_pattern = Pattern.create(p, size, int(worker.get("hit_damage", 2)))
 	if _pattern == null or over:
 		return
+	_pattern.fight_round = pattern_index - 1
 	_arena.pattern = _pattern
 	_arena.lit = _lit
 	_arena.token = _pattern.token_start()

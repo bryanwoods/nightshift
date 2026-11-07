@@ -14,15 +14,16 @@ class Bullet:
 	var pos: Vector2 = Vector2.ZERO
 	var vel: Vector2 = Vector2.ZERO
 	var tex: String = ""
-	## Sprite: hit radius. Ring: current radius. Lane: age in seconds.
+	## Sprite: hit radius. Ring: current radius. Lane: age, scaled by grow (its pace).
 	var radius: float = 3.0
 	## Bar and lane: width. Ring: thickness.
 	var width: float = 6.0
-	## Bar: y of the gap. Ring: angle of the gap. Lane: strike seconds.
+	## Bar: y of the gap. Ring: angle of the gap. Lane: strike time.
 	var gap_center: float = 0.0
-	## Bar: gap in px. Ring: gap in radians. Lane: warning seconds.
+	## Bar: gap in px. Ring: gap in radians. Lane: warning time.
 	var gap: float = 0.0
 	var grow: float = 0.0
+	## Drift: turn rate. Lane: angle of the beam.
 	var steer: float = 0.0
 	var alive: bool = true
 
@@ -52,6 +53,8 @@ var bullets: Array[Bullet] = []
 var half: Vector2 = Vector2(60, 40)
 var damage: int = 2
 var dark: bool = false
+## The dodge round of the fight, from 0.
+var fight_round: int = 0
 var rng := RandomNumberGenerator.new()
 
 
@@ -155,13 +158,15 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 				return false
 			return absf(angle_difference((p - b.pos).angle(), b.gap_center)) > b.gap / 2.0
 		Kind.LANE:
-			return absf(p.x - b.pos.x) < b.width / 2.0 + r and p.y - r < lane_bottom(b)
+			var d := Vector2.from_angle(b.steer)
+			var u := (p - b.pos).dot(d)
+			return absf((p - b.pos).cross(d)) < b.width / 2.0 + r and u > -r and u - r < lane_reach(b)
 	return b.pos.distance_to(p) < b.radius + r
 
 
-## How far down a lane has struck, or -INF while it still hovers above the box.
-func lane_bottom(b: Bullet) -> float:
-	return minf(half.y, -half.y + (b.radius - b.gap) * LANE_DROP) if b.radius >= b.gap else -INF
+## How far into the box a lane has struck, or -INF while it still hovers outside.
+func lane_reach(b: Bullet) -> float:
+	return (b.radius - b.gap) * LANE_DROP if b.radius >= b.gap else -INF
 
 
 func snapshot() -> Dictionary:

@@ -67,7 +67,9 @@ func _draw() -> void:
 	var col := Game.color(str(pattern.params.get("color", "moon")))
 	for b in pattern.bullets:
 		if b.kind == Pattern.Kind.LANE and b.radius < b.gap and (b.gap - b.radius > 0.25 or fmod(b.radius, 0.1) < 0.06):
-			draw_rect(Rect2(b.pos.x - 1.0, -size.y / 2.0 - 15.0 + roundf(sin(b.radius * 9.0 + b.pos.x)), 2, 10), col)
+			var d := Vector2.from_angle(b.steer)
+			var at := b.pos - d * (10.0 + roundf(sin(b.radius * 9.0 + b.pos.x)))
+			draw_line(at - d * 5.0, at + d * 5.0, col, 2.0)
 
 
 func _process(delta: float) -> void:
@@ -117,10 +119,11 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 					continue
 				_layer.draw_arc(b.pos, b.radius, i * step, (i + 1) * step, 3, col, b.width)
 		Pattern.Kind.LANE:
+			var d := Vector2.from_angle(b.steer)
 			if b.radius < b.gap:
-				_layer.draw_rect(Rect2(b.pos.x - 0.5, -half.y, 1, size.y), Color(col, 0.25))
+				_layer.draw_line(b.pos, b.pos + d * size.length(), Color(col, 0.25), 1.0)
 			else:
-				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0, -half.y, b.width, pattern.lane_bottom(b) + half.y), col)
+				_layer.draw_line(b.pos, b.pos + d * pattern.lane_reach(b), col, b.width)
 		_:
 			var tex := _texture(b.tex)
 			if tex:
