@@ -42,18 +42,8 @@
       "arena": [
         80,
         80
-      ]
-    },
-    {
-      "type": "dark",
-      "duration": 7,
-      "inner": {
-        "type": "sweep",
-        "bars": 4,
-        "gap_px": 24,
-        "speed": 72,
-        "from": "both"
-      }
+      ],
+      "prompt": "shine_prompt"
     },
     {
       "type": "strike",
@@ -67,6 +57,28 @@
       "accel": 0.5,
       "ramp": 0.08,
       "color": "hush"
+    },
+    {
+      "type": "flash",
+      "duration": 8,
+      "count": 16,
+      "speed": 30,
+      "turn_rate": 0.9,
+      "accel": 0.8,
+      "ramp": 0.08,
+      "sprite": "drifter",
+      "prompt": "flash_prompt"
+    },
+    {
+      "type": "dark",
+      "duration": 7,
+      "inner": {
+        "type": "sweep",
+        "bars": 4,
+        "gap_px": 24,
+        "speed": 72,
+        "from": "both"
+      }
     },
     {
       "type": "rain",

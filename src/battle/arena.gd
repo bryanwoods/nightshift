@@ -90,6 +90,8 @@ func _draw_layer() -> void:
 		var col := Game.color(str(pattern.params.get("color", "moon")))
 		for b in pattern.bullets:
 			_draw_bullet(b, half, col)
+		for s in pattern.sparks:
+			_layer.draw_rect(Rect2(s.x - 0.5, s.y - 3.0, 1, 4), _c["lamp"])
 	if token_visible:
 		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(1, 1, 1, 0.9))
 		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:

@@ -237,7 +237,8 @@ fight), `idle_frames`, `music`, `rewind_tutorial`,
 beside the worker. The bubble never waits for a key. A task step can also have a `bubble`
 (a dialogue id); it replaces the turn line after that step. A Hustle hit uses the next
 `hustle_lines` line as the bubble, so give three or four. Keep step lines to one or two short lines: the fight should keep moving.
-A pattern can also take `arena`, `damage` and `duration`.
+A pattern can also take `arena`, `damage`, `duration` and `prompt` (a ui.json text key that
+shows over the arena when the pattern starts).
 
 Pattern types and their params:
 
@@ -246,6 +247,7 @@ Pattern types and their params:
 | `rain` | `count`, `speed`, `sprite`; `lanes` + `sequence` drop them in a lane order with a note per lane; `from` (`top`, `bottom`), `slant` (sideways px/s), `wobble` (swing px/s) |
 | `sweep` | `bars`, `gap_px`, `speed`, `from` (`left`, `right`, `both`), `color` (a palette name, default `moon`) |
 | `ring` | `rings`, `speed`, `gap_angle`, `color` |
+| `flash` | `count`, `speed`, `turn_rate`, `sprite`, `accel`, `ramp`. The token moves only left and right along the bottom, and confirm flicks a spark of light up. Shadows drift down and steer toward the token. A spark melts the first shadow it touches |
 | `shine` | `count`, `speed`, `sprite`, `accel`, `ramp`. The token stays in the middle, and the arrows turn the flashlight up, down, left or right. Shadows come straight in from the four sides, and the beam melts them. Give it a square `arena` |
 | `strike` | `volleys`, `lanes`, `warn`, `strike` (seconds), `width`, `aim`, `accel`, `ramp`, `color`. Lines hover outside the box at any angle, blink, then strike across it as beams. `aim` sends the first line of each volley through the token. The last volley is (1 + `accel`) times as fast as the first. Each later dodge round of the fight adds `ramp` to the pace |
 | `drift` | `count`, `speed`, `turn_rate`, `sprite` |

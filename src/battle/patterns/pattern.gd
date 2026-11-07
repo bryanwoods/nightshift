@@ -60,6 +60,9 @@ var fight_round: int = 0
 ## True: the token stays in the middle, and the arrows turn the flashlight to facing.
 var locked: bool = false
 var facing: Vector2 = Vector2.UP
+## True: the token moves only left and right. Sparks are the light Tadzio flicks up.
+var rail: bool = false
+var sparks: Array[Vector2] = []
 var rng := RandomNumberGenerator.new()
 
 
