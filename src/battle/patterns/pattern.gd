@@ -7,6 +7,8 @@ extends RefCounted
 enum Kind { SPRITE, BAR, RING, LANE }
 
 const LANE_DROP := 600.0
+const SHINE_REACH := 30.0
+const SHINE_HALF_ANGLE := 0.61
 
 
 class Bullet:
@@ -55,6 +57,9 @@ var damage: int = 2
 var dark: bool = false
 ## The dodge round of the fight, from 0.
 var fight_round: int = 0
+## True: the token stays in the middle, and the arrows turn the flashlight to facing.
+var locked: bool = false
+var facing: Vector2 = Vector2.UP
 var rng := RandomNumberGenerator.new()
 
 

@@ -32,6 +32,19 @@
       "color": "hush"
     },
     {
+      "type": "shine",
+      "duration": 8,
+      "count": 14,
+      "speed": 38,
+      "accel": 1.0,
+      "ramp": 0.08,
+      "sprite": "drifter",
+      "arena": [
+        80,
+        80
+      ]
+    },
+    {
       "type": "dark",
       "duration": 7,
       "inner": {

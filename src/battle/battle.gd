@@ -468,6 +468,8 @@ func _dodge_phase() -> void:
 	_arena.pattern = _pattern
 	_arena.lit = _lit
 	_arena.token = _pattern.token_start()
+	if _pattern.locked:
+		_show_prompt(Game.text("shine_prompt"), 1.5)
 	_arena.token_visible = true
 	_invuln = 0.0
 	_since_hit = 99.0
@@ -494,7 +496,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var dt := delta * _time_scale
 	var v := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var lim := _arena.size / 2.0 - Vector2(TOKEN_R + 1, TOKEN_R + 1)
+	var lim := Vector2.ZERO if _pattern.locked else _arena.size / 2.0 - Vector2(TOKEN_R + 1, TOKEN_R + 1)
 	_arena.token = (_arena.token + v * float(Game.tuning.get("token_speed", 90)) * dt).clamp(-lim, lim)
 	if Input.is_action_just_pressed("rewind"):
 		_try_rewind()

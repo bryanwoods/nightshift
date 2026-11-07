@@ -83,6 +83,9 @@ func _draw_layer() -> void:
 	var half := size / 2.0
 	var dark := pattern != null and pattern.dark
 	_layer.draw_rect(Rect2(-half, size), _c["ink"] if dark else _c["night"])
+	if pattern and pattern.locked:
+		var f := pattern.facing * Pattern.SHINE_REACH
+		_layer.draw_colored_polygon(PackedVector2Array([token, token + f.rotated(Pattern.SHINE_HALF_ANGLE), token + f.rotated(-Pattern.SHINE_HALF_ANGLE)]), Color(_c["moon"], 0.3))
 	if pattern and (not dark or lit):
 		var col := Game.color(str(pattern.params.get("color", "moon")))
 		for b in pattern.bullets:

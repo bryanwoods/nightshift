@@ -246,6 +246,7 @@ Pattern types and their params:
 | `rain` | `count`, `speed`, `sprite`; `lanes` + `sequence` drop them in a lane order with a note per lane; `from` (`top`, `bottom`), `slant` (sideways px/s), `wobble` (swing px/s) |
 | `sweep` | `bars`, `gap_px`, `speed`, `from` (`left`, `right`, `both`), `color` (a palette name, default `moon`) |
 | `ring` | `rings`, `speed`, `gap_angle`, `color` |
+| `shine` | `count`, `speed`, `sprite`, `accel`, `ramp`. The token stays in the middle, and the arrows turn the flashlight up, down, left or right. Shadows come straight in from the four sides, and the beam melts them. Give it a square `arena` |
 | `strike` | `volleys`, `lanes`, `warn`, `strike` (seconds), `width`, `aim`, `accel`, `ramp`, `color`. Lines hover outside the box at any angle, blink, then strike across it as beams. `aim` sends the first line of each volley through the token. The last volley is (1 + `accel`) times as fast as the first. Each later dodge round of the fight adds `ramp` to the pace |
 | `drift` | `count`, `speed`, `turn_rate`, `sprite` |
 | `dark` | `inner`: another pattern. Invisible unless Wick used Light |

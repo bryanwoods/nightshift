@@ -70,6 +70,7 @@
     "wick_holds": "Wick: I'll take the first one!",
     "wick_warmed": "Wick warms your hands. +{n} Awake",
     "dark_warning": "The lights are going out. Ask Wick!",
+    "shine_prompt": "Turn the light!",
     "rewind_prompt": "Press {rewind} to wind the watch back!",
 
     "lamps_title": "What the lamps remember",
