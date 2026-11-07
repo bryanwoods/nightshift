@@ -39,6 +39,16 @@
       ]
     },
     {
+      "type": "cloud",
+      "duration": 6,
+      "waves": 2,
+      "blades": 5,
+      "arena": [
+        150,
+        96
+      ]
+    },
+    {
       "type": "sweep",
       "duration": 4.5,
       "bars": 2,

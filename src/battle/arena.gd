@@ -94,6 +94,12 @@ func _draw_layer() -> void:
 			var full := pattern.charge >= Pattern.CHARGE_FULL
 			var ring := 3.0 + 6.0 * minf(1.0, pattern.charge / Pattern.CHARGE_FULL)
 			_layer.draw_arc(token, ring, 0.0, TAU, 16, Color(_c["lamp"], 1.0 if full and fmod(pattern.charge, 0.2) < 0.1 else 0.5), 1.0)
+	if pattern and pattern.fog > 0.0:
+		var pink := Color(_c["hush"].lerp(_c["moon"], 0.55), pattern.fog)
+		_layer.draw_rect(Rect2(-half, size), pink)
+		for i in 9:
+			var at := Vector2(sin(i * 2.4 + pattern.t * 0.7) * half.x * 0.8, cos(i * 1.7 + pattern.t * 0.5) * half.y * 0.7)
+			_layer.draw_circle(at, 12.0 + 4.0 * sin(i + pattern.t), Color(_c["moon"], 0.35 * pattern.fog))
 	if token_visible:
 		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(1, 1, 1, 0.9))
 		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:
@@ -133,6 +139,17 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_line(o - ax, o + ax, col, 1.0)
 			for end in [-ax, ax]:
 				_layer.draw_line(b.pos + end - ay * 4.0, b.pos + end + ay * 4.0, col, 1.0)
+		Pattern.Kind.BLADE:
+			var gliding := b.radius >= Pattern.BLADE_HOLD
+			var shade := Color(_c["hush"].lerp(_c["moon"], 0.6), 1.0 if gliding or fmod(b.radius, 0.16) < 0.1 else 0.5)
+			var blade := PackedVector2Array([Vector2(9, 0), Vector2(1, -3), Vector2(-9, -0.5), Vector2(-9, 0.5), Vector2(1, 3)])
+			if gliding:
+				var a := (b.pos - b.anchor).angle()
+				for k: int in [3, 2, 1]:
+					var back := a - signf(b.gap) * 0.12 * k
+					var ghost := Transform2D(back + signf(b.gap) * PI / 2.0, b.anchor + Vector2.from_angle(back) * b.width)
+					_layer.draw_colored_polygon(ghost * blade, Color(shade, 0.12 * (4 - k)))
+			_layer.draw_colored_polygon(Transform2D(b.steer, b.pos) * blade, shade)
 		Pattern.Kind.FENCE:
 			var wood := Game.color("honey")
 			var left := b.pos.x - b.width / 2.0

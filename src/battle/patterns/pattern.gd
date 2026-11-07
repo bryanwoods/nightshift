@@ -4,12 +4,14 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE }
+enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE }
 
 const LANE_DROP := 600.0
 const SHINE_REACH := 30.0
 const SHINE_HALF_ANGLE := 0.61
 const CHARGE_FULL := 0.6
+const BLADE_HOLD := 1.5
+const BLADE_GLIDE := 1.2
 
 
 class Bullet:
@@ -18,18 +20,21 @@ class Bullet:
 	var vel: Vector2 = Vector2.ZERO
 	var tex: String = ""
 	## Sprite: hit radius. Ring: current radius. Lane: age, scaled by grow (its pace).
+	## Blade: age in seconds.
 	## Block, staff and fence: half the height.
 	var radius: float = 3.0
-	## Bar, lane, block, staff and fence: width. Ring: thickness.
+	## Bar, lane, block, staff and fence: width. Ring: thickness. Blade: radius of its arc.
 	var width: float = 6.0
-	## Bar: y of the gap. Ring: angle of the gap. Lane: strike time.
+	## Bar: y of the gap. Ring: angle of the gap. Lane: strike time. Blade: start angle.
 	var gap_center: float = 0.0
-	## Bar: gap in px. Ring: gap in radians. Lane: warning time.
+	## Bar: gap in px. Ring: gap in radians. Lane: warning time. Blade: signed sweep.
 	var gap: float = 0.0
 	var grow: float = 0.0
-	## Drift: turn rate. Lane: angle of the beam. Staff: its tilt.
+	## Drift: turn rate. Lane: angle of the beam. Staff and blade: their tilt.
 	var steer: float = 0.0
 	var alive: bool = true
+	## Blade: center of its arc.
+	var anchor: Vector2 = Vector2.ZERO
 
 	func copy() -> Bullet:
 		var b := Bullet.new()
@@ -44,6 +49,7 @@ class Bullet:
 		b.grow = grow
 		b.steer = steer
 		b.alive = alive
+		b.anchor = anchor
 		return b
 
 
@@ -57,6 +63,8 @@ var bullets: Array[Bullet] = []
 var half: Vector2 = Vector2(60, 40)
 var damage: int = 2
 var dark: bool = false
+## How thick the cloud over the box is, from 0 to 1.
+var fog: float = 0.0
 ## The dodge round of the fight, from 0.
 var fight_round: int = 0
 ## True: the token stays in the middle, and the arrows turn the flashlight to facing.
@@ -140,6 +148,8 @@ func _gone(b: Bullet) -> bool:
 			return b.radius > b.gap + b.gap_center
 		Kind.STAFF, Kind.FENCE:
 			return false
+		Kind.BLADE:
+			return b.radius > BLADE_HOLD + BLADE_GLIDE + 0.15
 	return b.pos.y > half.y + 10 or b.pos.y < -half.y - 14 or absf(b.pos.x) > half.x + 14
 
 
@@ -175,6 +185,9 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 			return absf(p.x - b.pos.x) < b.width / 2.0 + r and absf(p.y - b.pos.y) < b.radius + r
 		Kind.FENCE:
 			return false
+		Kind.BLADE:
+			var tip := (p - b.pos).rotated(-b.steer)
+			return b.radius >= BLADE_HOLD and absf(tip.x) < 9.0 + r and absf(tip.y) < 2.5 + r
 		Kind.STAFF:
 			var local := (p - b.pos).rotated(-b.steer)
 			return absf(local.x) < b.width / 2.0 + r and absf(local.y) < b.radius + r
