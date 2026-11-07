@@ -247,7 +247,7 @@ Pattern types and their params:
 | `rain` | `count`, `speed`, `sprite`; `lanes` + `sequence` drop them in a lane order with a note per lane; `from` (`top`, `bottom`), `slant` (sideways px/s), `wobble` (swing px/s) |
 | `sweep` | `bars`, `gap_px`, `speed`, `from` (`left`, `right`, `both`), `color` (a palette name, default `moon`) |
 | `ring` | `rings`, `speed`, `gap_angle`, `color` |
-| `flash` | `count`, `speed`, `turn_rate`, `sprite`, `accel`, `ramp`. The token moves only left and right along the bottom, and confirm flicks a spark of light up. Shadows drift down and steer toward the token. A spark melts the first shadow it touches |
+| `flash` | `rows`, `speed`, `block` (px), `gaps`, `accel`, `ramp`, `color`. The token moves only left and right along the bottom. Rows of blocks come down, each with `gaps` open blocks. A tap of confirm flicks a spark that breaks one block. Holding confirm charges; let go after 0.6 s for a wide flash that breaks every block in its path |
 | `shine` | `count`, `speed`, `sprite`, `accel`, `ramp`. The token stays in the middle, and the arrows turn the flashlight up, down, left or right. Shadows come straight in from the four sides, and the beam melts them. Give it a square `arena` |
 | `strike` | `volleys`, `lanes`, `warn`, `strike` (seconds), `width`, `aim`, `accel`, `ramp`, `color`. Lines hover outside the box at any angle, blink, then strike across it as beams. `aim` sends the first line of each volley through the token. The last volley is (1 + `accel`) times as fast as the first. Each later dodge round of the fight adds `ramp` to the pace |
 | `drift` | `count`, `speed`, `turn_rate`, `sprite` |

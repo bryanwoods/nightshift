@@ -61,12 +61,13 @@
     {
       "type": "flash",
       "duration": 8,
-      "count": 16,
-      "speed": 30,
-      "turn_rate": 0.9,
+      "rows": 9,
+      "speed": 26,
+      "block": 12,
+      "gaps": 1,
       "accel": 0.8,
       "ramp": 0.08,
-      "sprite": "drifter",
+      "color": "hush",
       "prompt": "flash_prompt"
     },
     {

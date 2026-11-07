@@ -71,7 +71,7 @@
     "wick_warmed": "Wick warms your hands. +{n} Awake",
     "dark_warning": "The lights are going out. Ask Wick!",
     "shine_prompt": "Turn the light!",
-    "flash_prompt": "{confirm} flicks the light!",
+    "flash_prompt": "Hold {confirm} to charge!",
     "rewind_prompt": "Press {rewind} to wind the watch back!",
 
     "lamps_title": "What the lamps remember",

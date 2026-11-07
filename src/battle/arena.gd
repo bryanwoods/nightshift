@@ -91,7 +91,11 @@ func _draw_layer() -> void:
 		for b in pattern.bullets:
 			_draw_bullet(b, half, col)
 		for s in pattern.sparks:
-			_layer.draw_rect(Rect2(s.x - 0.5, s.y - 3.0, 1, 4), _c["lamp"])
+			_layer.draw_rect(Rect2(s.x - s.z / 2.0, s.y - 3.0, s.z, 4), _c["lamp"])
+		if pattern.charge > 0.0:
+			var full := pattern.charge >= Pattern.CHARGE_FULL
+			var ring := 3.0 + 6.0 * minf(1.0, pattern.charge / Pattern.CHARGE_FULL)
+			_layer.draw_arc(token, ring, 0.0, TAU, 16, Color(_c["lamp"], 1.0 if full and fmod(pattern.charge, 0.2) < 0.1 else 0.5), 1.0)
 	if token_visible:
 		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(1, 1, 1, 0.9))
 		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:
@@ -123,6 +127,8 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				if absf(angle_difference(i * step + step / 2.0, b.gap_center)) <= b.gap / 2.0:
 					continue
 				_layer.draw_arc(b.pos, b.radius, i * step, (i + 1) * step, 3, col, b.width)
+		Pattern.Kind.BLOCK:
+			_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 + 0.5, b.pos.y - b.radius, b.width - 1.0, b.radius * 2.0), col)
 		Pattern.Kind.LANE:
 			var d := Vector2.from_angle(b.steer)
 			if b.radius < b.gap:

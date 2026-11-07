@@ -4,11 +4,12 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING, LANE }
+enum Kind { SPRITE, BAR, RING, LANE, BLOCK }
 
 const LANE_DROP := 600.0
 const SHINE_REACH := 30.0
 const SHINE_HALF_ANGLE := 0.61
+const CHARGE_FULL := 0.6
 
 
 class Bullet:
@@ -17,8 +18,9 @@ class Bullet:
 	var vel: Vector2 = Vector2.ZERO
 	var tex: String = ""
 	## Sprite: hit radius. Ring: current radius. Lane: age, scaled by grow (its pace).
+	## Block: half its height.
 	var radius: float = 3.0
-	## Bar and lane: width. Ring: thickness.
+	## Bar, lane and block: width. Ring: thickness.
 	var width: float = 6.0
 	## Bar: y of the gap. Ring: angle of the gap. Lane: strike time.
 	var gap_center: float = 0.0
@@ -60,9 +62,11 @@ var fight_round: int = 0
 ## True: the token stays in the middle, and the arrows turn the flashlight to facing.
 var locked: bool = false
 var facing: Vector2 = Vector2.UP
-## True: the token moves only left and right. Sparks are the light Tadzio flicks up.
+## True: the token moves only left and right. Sparks are the light Tadzio flicks up: x, y
+## and width. Charge is how long confirm has been held.
 var rail: bool = false
-var sparks: Array[Vector2] = []
+var sparks: Array[Vector3] = []
+var charge: float = 0.0
 var rng := RandomNumberGenerator.new()
 
 
@@ -140,7 +144,7 @@ func _gone(b: Bullet) -> bool:
 func collide(token: Vector2, r: float) -> int:
 	for b in bullets:
 		if _hits(b, token, r):
-			if b.kind == Kind.SPRITE:
+			if b.kind in [Kind.SPRITE, Kind.BLOCK]:
 				b.alive = false
 			return damage
 	return 0
@@ -165,6 +169,8 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 			if absf(d - b.radius) > b.width / 2.0 + r:
 				return false
 			return absf(angle_difference((p - b.pos).angle(), b.gap_center)) > b.gap / 2.0
+		Kind.BLOCK:
+			return absf(p.x - b.pos.x) < b.width / 2.0 + r and absf(p.y - b.pos.y) < b.radius + r
 		Kind.LANE:
 			var d := Vector2.from_angle(b.steer)
 			var u := (p - b.pos).dot(d)
