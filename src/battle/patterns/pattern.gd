@@ -4,7 +4,9 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING }
+enum Kind { SPRITE, BAR, RING, LANE }
+
+const LANE_DROP := 600.0
 
 
 class Bullet:
@@ -12,13 +14,13 @@ class Bullet:
 	var pos: Vector2 = Vector2.ZERO
 	var vel: Vector2 = Vector2.ZERO
 	var tex: String = ""
-	## Sprite: hit radius. Ring: current radius.
+	## Sprite: hit radius. Ring: current radius. Lane: age in seconds.
 	var radius: float = 3.0
-	## Bar: width. Ring: thickness.
+	## Bar and lane: width. Ring: thickness.
 	var width: float = 6.0
-	## Bar: y of the gap. Ring: angle of the gap.
+	## Bar: y of the gap. Ring: angle of the gap. Lane: strike seconds.
 	var gap_center: float = 0.0
-	## Bar: gap in px. Ring: gap in radians.
+	## Bar: gap in px. Ring: gap in radians. Lane: warning seconds.
 	var gap: float = 0.0
 	var grow: float = 0.0
 	var steer: float = 0.0
@@ -119,6 +121,8 @@ func _gone(b: Bullet) -> bool:
 			return (b.vel.x > 0 and b.pos.x > half.x + 8) or (b.vel.x < 0 and b.pos.x < -half.x - 8)
 		Kind.RING:
 			return b.radius > half.length() + 6
+		Kind.LANE:
+			return b.radius > b.gap + b.gap_center
 	return b.pos.y > half.y + 10 or b.pos.y < -half.y - 14 or absf(b.pos.x) > half.x + 14
 
 
@@ -150,7 +154,14 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 			if absf(d - b.radius) > b.width / 2.0 + r:
 				return false
 			return absf(angle_difference((p - b.pos).angle(), b.gap_center)) > b.gap / 2.0
+		Kind.LANE:
+			return absf(p.x - b.pos.x) < b.width / 2.0 + r and p.y - r < lane_bottom(b)
 	return b.pos.distance_to(p) < b.radius + r
+
+
+## How far down a lane has struck, or -INF while it still hovers above the box.
+func lane_bottom(b: Bullet) -> float:
+	return minf(half.y, -half.y + (b.radius - b.gap) * LANE_DROP) if b.radius >= b.gap else -INF
 
 
 func snapshot() -> Dictionary:

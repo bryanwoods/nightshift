@@ -19,15 +19,14 @@
       "sprite": "drifter"
     },
     {
-      "type": "ring",
+      "type": "strike",
       "duration": 7.5,
-      "rings": 5,
-      "speed": 50,
-      "gap_angle": 40,
-      "arena": [
-        150,
-        96
-      ],
+      "volleys": 6,
+      "lanes": 3,
+      "warn": 0.7,
+      "strike": 0.35,
+      "width": 10,
+      "aim": true,
       "color": "hush"
     },
     {

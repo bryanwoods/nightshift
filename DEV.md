@@ -246,6 +246,7 @@ Pattern types and their params:
 | `rain` | `count`, `speed`, `sprite`; `lanes` + `sequence` drop them in a lane order with a note per lane; `from` (`top`, `bottom`), `slant` (sideways px/s), `wobble` (swing px/s) |
 | `sweep` | `bars`, `gap_px`, `speed`, `from` (`left`, `right`, `both`), `color` (a palette name, default `moon`) |
 | `ring` | `rings`, `speed`, `gap_angle`, `color` |
+| `strike` | `volleys`, `lanes`, `warn`, `strike` (seconds), `width`, `aim`, `color`. Lines hover above the box, blink, then strike down through it as columns. `aim` hangs the first line of each volley over the token |
 | `drift` | `count`, `speed`, `turn_rate`, `sprite` |
 | `dark` | `inner`: another pattern. Invisible unless Wick used Light |
 

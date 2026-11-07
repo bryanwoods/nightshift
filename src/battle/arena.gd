@@ -62,12 +62,19 @@ func tween_size(s: Vector2, seconds: float = 0.25) -> void:
 
 func _draw() -> void:
 	draw_style_box(_box, Rect2(-size / 2.0 - Vector2(2, 2), size + Vector2(4, 4)))
+	if pattern == null or (pattern.dark and not lit):
+		return
+	var col := Game.color(str(pattern.params.get("color", "moon")))
+	for b in pattern.bullets:
+		if b.kind == Pattern.Kind.LANE and b.radius < b.gap and (b.gap - b.radius > 0.25 or fmod(b.radius, 0.1) < 0.06):
+			draw_rect(Rect2(b.pos.x - 1.0, -size.y / 2.0 - 15.0 + roundf(sin(b.radius * 9.0 + b.pos.x)), 2, 10), col)
 
 
 func _process(delta: float) -> void:
 	hit_flash = maxf(0.0, hit_flash - delta * 3.0)
 	rewind_flash = maxf(0.0, rewind_flash - delta * 2.0)
 	_layer.queue_redraw()
+	queue_redraw()
 
 
 func _draw_layer() -> void:
@@ -109,6 +116,11 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				if absf(angle_difference(i * step + step / 2.0, b.gap_center)) <= b.gap / 2.0:
 					continue
 				_layer.draw_arc(b.pos, b.radius, i * step, (i + 1) * step, 3, col, b.width)
+		Pattern.Kind.LANE:
+			if b.radius < b.gap:
+				_layer.draw_rect(Rect2(b.pos.x - 0.5, -half.y, 1, size.y), Color(col, 0.25))
+			else:
+				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0, -half.y, b.width, pattern.lane_bottom(b) + half.y), col)
 		_:
 			var tex := _texture(b.tex)
 			if tex:
