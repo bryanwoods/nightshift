@@ -456,6 +456,8 @@ func _on_room_command(cmd: Dictionary) -> void:
 			var delta := Vector2(float(cmd.get("dx", 0)), float(cmd.get("dy", 0))) * TILE
 			var seconds := (absf(delta.x) + absf(delta.y)) / float(cmd.get("speed", Game.tuning.get("move_speed", 40)))
 			if target is Entity:
+				if bool(cmd.get("enter", false)):
+					target.position -= delta
 				(target as Entity).walk_to(target.position + delta, seconds)
 			else:
 				player.face(delta.normalized().snapped(Vector2.ONE))

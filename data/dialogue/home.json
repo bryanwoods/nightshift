@@ -33,10 +33,25 @@
       "lines": [ { "text": "Your desk. Homework you finished. Homework you said you finished." } ]
     },
     "bedroom_drawing": {
+      "todo": "TODO(Tadzio): who is in the drawing? Does tearing it down (drawing_torn) change anything later?",
       "lines": [
         { "text": "A drawing you made and taped to the wall." },
-        { "text": "TODO(Tadzio): what is in the drawing?" }
+        { "text": "It's somebody you used to like. You drew them smiling.",
+          "choices": [
+            { "text": "Leave it up." },
+            { "text": "Tear it down.", "goto": "bedroom_drawing_tear" }
+          ] }
       ]
+    },
+    "bedroom_drawing_tear": {
+      "lines": [
+        { "cmd": "sfx", "name": "hustle" },
+        { "cmd": "set_flag", "flag": "drawing_torn" },
+        { "text": "Rrrrip. The tape keeps a strip of it." }
+      ]
+    },
+    "bedroom_drawing_torn": {
+      "lines": [ { "text": "Tape, and a strip of paper. You don't remember the rest." } ]
     },
     "bedroom_window": {
       "lines": [

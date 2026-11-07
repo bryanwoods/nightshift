@@ -12,21 +12,30 @@
       "lines": [ { "speaker": "no_job", "text": "..." } ]
     },
     "no_job_q1": {
-      "lines": [
-        { "speaker": "no_job", "text": "What is your job?",
-          "choices": [ { "text": "I don't have one." }, { "text": "Helping, I think." } ] }
-      ]
+      "lines": [ { "speaker": "no_job", "text": "What is your job?" } ]
     },
     "no_job_q2": {
-      "lines": [
-        { "speaker": "no_job", "text": "Who gave it to you?",
-          "choices": [ { "text": "Nobody." }, { "text": "Wick." } ] }
-      ]
+      "lines": [ { "speaker": "no_job", "text": "Who gave it to you?" } ]
     },
     "no_job_q3": {
+      "lines": [ { "speaker": "no_job", "text": "What time is it? Ask the tower." } ]
+    },
+    "no_job_q4": {
+      "lines": [ { "speaker": "no_job", "text": "What does the baker take back?" } ]
+    },
+    "no_job_q5": {
+      "lines": [ { "speaker": "no_job", "text": "What is your name?" } ]
+    },
+    "no_job_q6": {
       "lines": [
-        { "speaker": "no_job", "text": "What time is it?",
-          "choices": [ { "text": "Two." }, { "text": "I don't know anymore." } ] }
+        { "speaker": "no_job", "text": "Will you remember me?",
+          "choices": [ { "text": "Yes." }, { "text": "I'll try." } ] }
+      ]
+    },
+    "no_job_wrong": {
+      "lines": [
+        { "speaker": "no_job", "text": "No." },
+        { "text": "The dark leans closer." }
       ]
     },
     "no_job_satisfied": {

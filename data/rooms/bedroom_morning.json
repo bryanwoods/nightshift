@@ -18,12 +18,16 @@
     "#####D######"
   ],
   "spawns": { "default": [2, 3, "up"] },
+  "overrides": [
+    { "x": 5, "y": 1, "tile": "drawing_torn", "if_flag": "drawing_torn" }
+  ],
   "entities": [
     { "type": "inspect", "x": 2, "y": 2, "dialogue": "morning_card" },
     { "type": "inspect", "x": 10, "y": 2, "dialogue": "morning_clock" },
     { "type": "inspect", "x": 8, "y": 1, "dialogue": "morning_window" },
     { "type": "inspect", "x": 1, "y": 2, "h": 2, "dialogue": "morning_bed" },
-    { "type": "inspect", "x": 5, "y": 1, "dialogue": "bedroom_drawing" },
+    { "type": "inspect", "x": 5, "y": 1, "dialogue": "bedroom_drawing", "unless_flag": "drawing_torn" },
+    { "type": "inspect", "x": 5, "y": 1, "dialogue": "bedroom_drawing_torn", "if_flag": "drawing_torn" },
     { "type": "inspect", "x": 5, "y": 8, "dialogue": "morning_door" }
   ],
   "lights": [],

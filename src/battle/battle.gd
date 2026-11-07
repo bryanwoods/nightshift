@@ -94,6 +94,8 @@ func start(id: String) -> void:
 		finished.emit.call_deferred("abandoned")
 		return
 	worker = d
+	if not bool(worker.get("clock", true)):
+		NightClock.paused = true
 	patience_max = maxi(1, int(worker.get("patience", 10)))
 	patience = patience_max
 	awake_max = int(Game.tuning.get("awake_start", 20)) + (Game.shift_level() - 1) * int(Game.tuning.get("level_awake", 4))
@@ -144,6 +146,8 @@ func _loop() -> void:
 	_stats["seconds"] = snappedf((Time.get_ticks_msec() - _start_msec) / 1000.0, 0.1)
 	_stats["awake_left"] = awake
 	Game.playtest("battle_end", _stats)
+	if not bool(worker.get("clock", true)):
+		NightClock.paused = false
 	if not Game.night_over:
 		await _wipe_out()
 	DialogueRunner.textbox.inset = 0.0

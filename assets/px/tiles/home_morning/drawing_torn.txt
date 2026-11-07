@@ -1,0 +1,21 @@
+# drawing_torn 16x16
+# The drawing after Tadzio tears it down: the tape and a ragged top strip.
+# rules: viewpoint, walls
+
+@tile
+tttttttttttttttt
+tttttttttttttttt
+bbcfmmmmmmmmfbcb
+bbcmmmcmmbmmmbcb
+bbcmmbcbbbbmmbcb
+bbcmbbcbbbbcbbcb
+bbcbbbcbbbbcbbcb
+bbcbbbcbbbbcbbcb
+bbcbbbcbbbbcbbcb
+bbcbbbcbbbbcbbcb
+bbcfmbcbbbbmfbcb
+bbcbbbcbbbbcbbcb
+rrrrrrrrrrrrrrrr
+rbbbbbbbbbbbbbbr
+rbbbbbbbbbbbbbbr
+rrrrrrrrrrrrrrrr

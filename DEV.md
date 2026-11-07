@@ -172,7 +172,7 @@ Commands (`{ "cmd": "..." }`):
 | `battle` | `worker` | Fight; the dialogue goes on after the fight |
 | `give_item` | `item` | |
 | `light` | `id`, `on` | Lasts for this night |
-| `move` | `entity`, `dx`, `dy`, `speed` | Walk in tiles. `entity` can be `player` or `wick` |
+| `move` | `entity`, `dx`, `dy`, `speed`, `enter` | Walk in tiles. `entity` can be `player` or `wick`. With `enter`, the entity starts dx,dy tiles away and walks back to its own spot |
 | `face` | `entity`, `dir` | |
 | `shake` | `strength`, `seconds` | |
 | `wait` | `seconds` | |
@@ -230,7 +230,8 @@ Say Tadzio wants a **Night Postman** fight. Four steps, no code:
 The outcome flags are fixed: `friend_<id>`, `enemy_<id>`, `gone_<id>`. `rewards` can give an
 `item` for `satisfied`, `spared` or `finished`.
 
-Optional worker fields: `arena` `[w, h]`, `idle_frames`, `music`, `rewind_tutorial`,
+Optional worker fields: `arena` `[w, h]`, `clock` (false stops the night clock during the
+fight), `idle_frames`, `music`, `rewind_tutorial`,
 `turn_lines` and `flavor` (lists of dialogue ids). Each turn, the arena shows the next
 `flavor` line, and the dodge phase opens with the next `turn_lines` line in a speech bubble
 beside the worker. The bubble never waits for a key. A task step can also have a `bubble`
@@ -489,6 +490,8 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Art review 3: the worker's name and job span the top of the battle screen, 220 px wide, so a job line holds 4 words or more. The arena moved down 10 px (center y 84), so a second job line clears it. The menu bar hides while a textbox, a choice or the speech bubble shows.
 - Art review 3: a key name in text, such as `{rewind}`, shows the gamepad button from `pad_keys` in `data/ui.json` while a controller is connected.
 - Art review 3: Wick is not in the backyard. Tadzio meets him on Street Maple (SPEC.md, Night 1 step 5). The small light that bobs past the backyard gate is his flame. The tour saves `screens/tour_wick_tutorial.png`.
+- Playtest 2026-11-07: the one with no job is the secret boss, and its fight took 20 seconds. A fight ends at the last Help with no dodge after it, so 3 questions meant 2 dodges. Now it asks 6 questions, 5 with a wrong answer that costs a round, and it has 5 harder patterns of 7 to 8 seconds, `hit_damage` 4 and `patience` 50. The longer fight would use up the minutes that the night needs for Curfew, so the night clock stops during this fight (`"clock": false`).
+- Playtest 2026-11-07: the round 1 town sheets of the workers did not look like their battle sheets. Each town sheet is now its battle sheet at half size (16x32, the Un-Baker with his cart 24x32, Curfew 32x40), with the face drawn again by hand. The battle sheet at full size was tried first, but it made the workers twice as tall as Tadzio and Wick. The Un-Baker, Window Washer and Puddle Keeper portraits are the heads of their battle sheets. Curfew keeps its portraits. Curfew starts off screen and rolls in (`move` with `enter`). The bedroom drawing shows somebody Tadzio used to like, and he can leave it up or tear it down (`drawing_torn`).
 - Playtest 2026-11-06: the dark route (SPEC.md, Round 4) starts on the `many_gone` flag that Round 2 already sets, so there is no new counter. `"dark": true` is set on each line in the data, not on all narration, so Tadzio picks which lines turn red. The tour saves `screens/tour_dark_route.png`.
 - Playtest 2026-11-05: Wick takes his own turn after Tadzio's once he has joined: Light, Hold or Warm (+3 Awake, `wick_warm_awake` in tuning.json, 1 minute). Tadzio's menu is Help, Hustle, Stall and Pockets. Wick's choice shows as a short line in the arena, not a textbox, so a fight does not slow down.
 - Playtest 2026-11-05: a Hustle hit says the next of the worker's `hustle_lines`, so the line is new each hit.

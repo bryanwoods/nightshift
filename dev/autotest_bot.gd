@@ -364,9 +364,11 @@ func _alley_route() -> void:
 	DialogueRunner.autoplay_fight = "help"
 	await _walk(4, 4)
 	await _until(func() -> bool: return Game.in_battle, 15.0)
+	var minute := NightClock.minute
 	await _wait(3.0)
 	await _shot("no_job")
 	await _until(func() -> bool: return not Game.in_battle, 120.0)
+	_expect(NightClock.minute == minute, "the night clock stops while the one with no job fights")
 	await _idle()
 	_expect(Game.has_flag("friend_no_job") and "key_to_nothing" in Game.items, "helped the one with no job and got the key to nothing")
 	_cur_room().interact(_target_at(2, 3))

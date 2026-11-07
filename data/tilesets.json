@@ -6,20 +6,20 @@
       "tiles": ["wall", "wall_face", "floor", "rug", "bed_head", "bed_foot", "desk", "clock_radio",
                 "window", "drawing", "closet", "door", "door_closed", "stairs", "counter", "stove",
                 "fridge", "table", "chair", "tile_floor", "nightstand", "nightstand_card", "plant", "shelf",
-                "railing", "sink"],
+                "railing", "sink", "drawing_torn"],
       "solid": ["wall", "wall_face", "bed_head", "bed_foot", "desk", "clock_radio", "window", "drawing",
                 "closet", "door_closed", "counter", "stove", "fridge", "table", "chair", "nightstand",
-                "nightstand_card", "plant", "shelf", "railing", "sink"]
+                "nightstand_card", "plant", "shelf", "railing", "sink", "drawing_torn"]
     },
     "home_morning": {
       "png": "res://assets/tiles/home_morning.png",
       "tiles": ["wall", "wall_face", "floor", "rug", "bed_head", "bed_foot", "desk", "clock_radio",
                 "window", "drawing", "closet", "door", "door_closed", "stairs", "counter", "stove",
                 "fridge", "table", "chair", "tile_floor", "nightstand", "nightstand_card", "plant", "shelf",
-                "railing", "sink"],
+                "railing", "sink", "drawing_torn"],
       "solid": ["wall", "wall_face", "bed_head", "bed_foot", "desk", "clock_radio", "window", "drawing",
                 "closet", "door_closed", "counter", "stove", "fridge", "table", "chair", "nightstand",
-                "nightstand_card", "plant", "shelf", "railing", "sink"]
+                "nightstand_card", "plant", "shelf", "railing", "sink", "drawing_torn"]
     },
     "town_night": {
       "png": "res://assets/tiles/town_night.png",

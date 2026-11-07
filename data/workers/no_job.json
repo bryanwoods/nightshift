@@ -1,24 +1,144 @@
 {
   "id": "no_job",
-  "todo": "TODO(Tadzio): who is this? Name, look, and what it wants. The game never explains it.",
+  "todo": "TODO(Tadzio): who is this? Name, look, and what it wants. The game never explains it. Its questions and right answers are placeholders.",
   "name": "the one with no job",
   "job": "",
   "name_tag": false,
   "sprite": "no_job",
-  "patience": 24,
+  "patience": 50,
   "hours": 15,
-  "hit_damage": 3,
+  "hit_damage": 4,
+  "clock": false,
   "patterns": [
-    { "type": "drift", "duration": 5, "count": 7, "speed": 40, "turn_rate": 1.4, "sprite": "drifter" },
-    { "type": "ring", "duration": 5, "rings": 3, "speed": 46, "gap_angle": 45, "arena": [150, 96], "color": "hush" },
-    { "type": "dark", "duration": 5, "inner": { "type": "sweep", "bars": 3, "gap_px": 24, "speed": 66, "from": "both" } }
+    {
+      "type": "drift",
+      "duration": 7,
+      "count": 11,
+      "speed": 46,
+      "turn_rate": 1.8,
+      "sprite": "drifter"
+    },
+    {
+      "type": "ring",
+      "duration": 7.5,
+      "rings": 5,
+      "speed": 50,
+      "gap_angle": 40,
+      "arena": [
+        150,
+        96
+      ],
+      "color": "hush"
+    },
+    {
+      "type": "dark",
+      "duration": 7,
+      "inner": {
+        "type": "sweep",
+        "bars": 4,
+        "gap_px": 24,
+        "speed": 72,
+        "from": "both"
+      }
+    },
+    {
+      "type": "rain",
+      "duration": 7,
+      "count": 18,
+      "speed": 58,
+      "sprite": "drifter",
+      "from": "bottom",
+      "slant": 16,
+      "wobble": 24
+    },
+    {
+      "type": "dark",
+      "duration": 8,
+      "inner": {
+        "type": "drift",
+        "count": 10,
+        "speed": 44,
+        "turn_rate": 1.7
+      }
+    }
   ],
   "task": {
     "title": "Answer it",
     "steps": [
-      { "label": "Its first question", "line": "no_job_q1" },
-      { "label": "Its second question", "line": "no_job_q2" },
-      { "label": "Its third question", "line": "no_job_q3" }
+      {
+        "label": "Its first question",
+        "line": "no_job_q1",
+        "choice": {
+          "prompt": "You answer...",
+          "options": [
+            "I don't have one.",
+            "Helping, I think.",
+            "Lamps."
+          ],
+          "correct": 1,
+          "wrong_line": "no_job_wrong"
+        }
+      },
+      {
+        "label": "Its second question",
+        "line": "no_job_q2",
+        "choice": {
+          "prompt": "You answer...",
+          "options": [
+            "Nobody.",
+            "Wick.",
+            "The Foreman."
+          ],
+          "correct": 1,
+          "wrong_line": "no_job_wrong"
+        }
+      },
+      {
+        "label": "Its third question",
+        "line": "no_job_q3",
+        "choice": {
+          "prompt": "You answer...",
+          "options": [
+            "Two.",
+            "Three.",
+            "I don't know anymore."
+          ],
+          "correct": 0,
+          "wrong_line": "no_job_wrong"
+        }
+      },
+      {
+        "label": "Its fourth question",
+        "line": "no_job_q4",
+        "choice": {
+          "prompt": "You answer...",
+          "options": [
+            "Yesterday's bread.",
+            "Tomorrow's bread.",
+            "Shoes."
+          ],
+          "correct": 0,
+          "wrong_line": "no_job_wrong"
+        }
+      },
+      {
+        "label": "Its fifth question",
+        "line": "no_job_q5",
+        "choice": {
+          "prompt": "You answer...",
+          "options": [
+            "Wick.",
+            "Tadzio.",
+            "Nobody."
+          ],
+          "correct": 1,
+          "wrong_line": "no_job_wrong"
+        }
+      },
+      {
+        "label": "Its last question",
+        "line": "no_job_q6"
+      }
     ]
   },
   "dialogue": {
@@ -27,8 +147,14 @@
     "spared": "no_job_spared"
   },
   "rewards": {
-    "satisfied": { "item": "key_to_nothing" },
-    "spared": { "item": "key_to_nothing" },
-    "finished": { "item": "key_to_nothing" }
+    "satisfied": {
+      "item": "key_to_nothing"
+    },
+    "spared": {
+      "item": "key_to_nothing"
+    },
+    "finished": {
+      "item": "key_to_nothing"
+    }
   }
 }

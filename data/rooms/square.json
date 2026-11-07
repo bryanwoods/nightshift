@@ -24,7 +24,7 @@
   "entities": [
     { "type": "door", "x": 0, "y": 3, "h": 7, "to": "depot_interior", "spawn": "east", "minutes": 3 },
     { "type": "trigger", "x": 3, "y": 3, "h": 8, "once": true, "flag": "tonight_curfew_seen", "dialogue": "square_curfew", "unless_gone": "curfew" },
-    { "type": "npc", "id": "curfew", "sprite": "curfew", "x": 17, "y": 6, "facing": "left", "idle_frames": 2, "dialogue": "curfew_after", "if_flag": "tonight_curfew_seen", "unless_flag": "enemy_curfew", "unless_gone": "curfew" },
+    { "type": "npc", "id": "curfew", "sprite": "curfew", "x": 17, "y": 6, "facing": "left", "idle_frames": 2, "dialogue": "curfew_after", "if_flag": "tonight_curfew_here", "unless_flag": "enemy_curfew", "unless_gone": "curfew" },
     { "type": "inspect", "x": 9, "y": 2, "dialogue": "square_clock" },
     { "type": "inspect", "x": 8, "y": 2, "dialogue": "square_clock" },
     { "type": "inspect", "x": 10, "y": 2, "dialogue": "square_clock" },

@@ -1,20 +1,21 @@
 # drawing 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# A crayon drawing of somebody Tadzio used to like, taped to the wall_face wallpaper.
+# rules: viewpoint, walls
 
 @tile
+tttttttttttttttt
+tttttttttttttttt
+bbcfmmmmmmmmfbcb
+bbcmmmllllmmmbcb
+bbcmmlkllklmmbcb
+bbcmmlhhhhlmmbcb
+bbcmmmllllmmmbcb
+bbcmwwwwwwwwmbcb
+bbcmmmwwwwmmmbcb
+bbcmmmwmmwmmmbcb
+bbcfmmmmmmmmfbcb
+bbcbbbcbbbbcbbcb
 rrrrrrrrrrrrrrrr
-bcbbbcbbbcbbbcbb
-bcbrrrrrrrrrrcbb
-bcbrrbrrrrrbrcbb
-bcbrrrrrrrllrcbb
-bcbrrrrrrrllrcbb
-bcbrrrrrrrrrrcbb
-bcbrrrrrrrrrrcbb
-bcbrrrrrrrrrrcbb
-bcbrrrrrrrrrrcbb
-bcbrrrrrrrrrrcbb
-bcbbbcbbbcbbbcbb
-bcbbbcbbbcbbbcbb
-bbbbbbbbbbbbbbbb
-rrrrrrrrrrrrrrrr
+rbbbbbbbbbbbbbbr
+rbbbbbbbbbbbbbbr
 rrrrrrrrrrrrrrrr

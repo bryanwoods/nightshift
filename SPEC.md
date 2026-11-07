@@ -664,11 +664,13 @@ The rules, with the short name a file header uses:
    Un-Baker tall with a hat and a cart, the Foreman wide, Curfew a heap. Three to four
    colors each, plus the outline. In a fight, each worker uses a battle sheet
    `<sprite>_battle` at 2x to 3x (32x64 to 48x96) with two idle frames. Curfew, the
-   boss, is larger (64x80). No letters on chests.
+   boss, is larger (64x80). A worker's town sheet is its battle sheet at half size, with
+   the face drawn again by hand, so the worker looks the same in town and in a fight
+   (playtest 2026-11-07). No letters on chests.
 9. **lighting.** The ambient light of a night room is never below 0.9. The flashlight is
    for finding secrets, not for seeing the room. The validator reports a darker room.
 10. **portraits.** Portraits are 32x32, with the same outline rule and one clear
-    expression each.
+    expression each. A worker's portrait is the head of its battle sheet.
 
 ---
 

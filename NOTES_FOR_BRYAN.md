@@ -39,7 +39,7 @@ Every check also runs headless: `Godot --headless --path . res://dev/autotest.ts
 
 ## Things for Tadzio (search `TODO(Tadzio)`)
 
-- The drawing on the bedroom wall (`data/dialogue/home.json`, `bedroom_drawing`).
+- The drawing on the bedroom wall: who is in it, and does tearing it down change anything later (`data/dialogue/home.json`, `bedroom_drawing`, flag `drawing_torn`).
 - Who lives next door (`inspect_neighbor_door`).
 - The credits list (`data/credits.json`).
 - The pajama pattern (art; the placeholder copies the white-and-teal shirt from the photo).
