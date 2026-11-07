@@ -90,8 +90,6 @@ func _draw_layer() -> void:
 		var col := Game.color(str(pattern.params.get("color", "moon")))
 		for b in pattern.bullets:
 			_draw_bullet(b, half, col)
-		for s in pattern.sparks:
-			_layer.draw_rect(Rect2(s.x - s.z / 2.0, s.y - 3.0, s.z, 4), _c["lamp"])
 		if pattern.charge > 0.0:
 			var full := pattern.charge >= Pattern.CHARGE_FULL
 			var ring := 3.0 + 6.0 * minf(1.0, pattern.charge / Pattern.CHARGE_FULL)

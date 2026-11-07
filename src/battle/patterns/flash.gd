@@ -1,14 +1,14 @@
 extends Pattern
-## Tadzio moves along the bottom of the box, and rows of blocks come down toward him. Tap
-## confirm to flick a spark that breaks one block. Hold it to charge, and let go for a wide
-## flash that breaks every block in its path.
+## Tadzio moves along the bottom of the box, and rows of blocks come down toward him. Hold
+## confirm to charge, then let go: Tadzio dashes up and breaks every block he touches. A
+## longer charge dashes farther. On the way back down to his row, blocks hit him again.
 ## Params: rows, speed, block (px), gaps (open blocks in each row), accel, ramp, color.
 
-const SPARK_SPEED := 220.0
-const SPARK_EVERY := 0.2
-const FLASH_WIDTH := 26.0
+const DASH_SPEED := 300.0
+const RETURN_SPEED := 160.0
+const DASH_MIN := 14.0
 
-var _cool: float = 0.0
+var _dash_to: float = 0.0
 
 
 func _init_pattern() -> void:
@@ -20,33 +20,22 @@ func token_start() -> Vector2:
 
 
 func step(dt: float, token: Vector2) -> void:
-	_cool -= dt
-	if Input.is_action_pressed("confirm"):
+	if Input.is_action_pressed("confirm") and _dash_to == 0.0 and lift == 0.0:
 		charge += dt
 	elif charge > 0.0:
-		if charge >= CHARGE_FULL:
-			sparks.append(Vector3(token.x, token.y, FLASH_WIDTH))
-			AudioBus.sfx("whoosh", 1.4, -4.0)
-		elif _cool <= 0.0:
-			sparks.append(Vector3(token.x, token.y, 1.0))
-			AudioBus.sfx("cursor", 1.6, -8.0)
-		_cool = SPARK_EVERY
+		_dash_to = lerpf(DASH_MIN, 2.0 * half.y - 12.0, minf(1.0, charge / CHARGE_FULL))
 		charge = 0.0
-	super(dt, token)
-	for i in range(sparks.size() - 1, -1, -1):
-		var s := sparks[i]
-		s.y -= SPARK_SPEED * dt
-		sparks[i] = s
-		var hit := false
+		AudioBus.sfx("whoosh", 1.4, -4.0)
+	if _dash_to > 0.0:
+		lift = minf(_dash_to, lift + DASH_SPEED * dt)
+		if lift >= _dash_to:
+			_dash_to = 0.0
 		for b in bullets:
-			if b.alive and absf(b.pos.x - s.x) < (b.width + s.z) / 2.0 and absf(b.pos.y - s.y) < b.radius + 3.0:
+			if _hits(b, token, 4.0):
 				b.alive = false
-				hit = true
-				if s.z <= 1.0:
-					break
-		if (hit and s.z <= 1.0) or s.y < -half.y - 4.0:
-			sparks.remove_at(i)
-	bullets.assign(bullets.filter(func(b: Bullet) -> bool: return b.alive))
+	else:
+		lift = maxf(0.0, lift - RETURN_SPEED * dt)
+	super(dt, token)
 
 
 func _spawn() -> void:

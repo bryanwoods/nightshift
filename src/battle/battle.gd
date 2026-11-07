@@ -500,6 +500,8 @@ func _physics_process(delta: float) -> void:
 		v.y = 0.0
 	var lim := Vector2.ZERO if _pattern.locked else _arena.size / 2.0 - Vector2(TOKEN_R + 1, TOKEN_R + 1)
 	_arena.token = (_arena.token + v * float(Game.tuning.get("token_speed", 90)) * dt).clamp(-lim, lim)
+	if _pattern.rail:
+		_arena.token.y = _pattern.token_start().y - _pattern.lift
 	if Input.is_action_just_pressed("rewind"):
 		_try_rewind()
 		if over:

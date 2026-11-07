@@ -62,10 +62,10 @@ var fight_round: int = 0
 ## True: the token stays in the middle, and the arrows turn the flashlight to facing.
 var locked: bool = false
 var facing: Vector2 = Vector2.UP
-## True: the token moves only left and right. Sparks are the light Tadzio flicks up: x, y
-## and width. Charge is how long confirm has been held.
+## True: the token moves only left and right on its row. Lift is how far above that row a
+## dash has carried it. Charge is how long confirm has been held.
 var rail: bool = false
-var sparks: Array[Vector3] = []
+var lift: float = 0.0
 var charge: float = 0.0
 var rng := RandomNumberGenerator.new()
 
