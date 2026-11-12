@@ -11,6 +11,13 @@ const ATLAS_COLUMNS := 8
 ## The flashlight cone texture: 56 px long, 60 degrees wide.
 const BEAM_LENGTH := 56.0
 const BEAM_HALF_ANGLE := 30.0
+const BAYER: PackedByteArray = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]
+const GLOW_ALPHA := 0.2
+## Seconds a light takes to flicker on, and to flicker out.
+const WAKE_ON := 1.35
+const WAKE_OFF := 0.48
+
+static var _light_tex: Dictionary = {}
 
 var id: String = ""
 var data: Dictionary = {}
@@ -26,6 +33,12 @@ var lights: Dictionary = {}
 var _lamp_posts: Dictionary = {}
 
 var _light_base: Dictionary = {}
+var _light_scale: Dictionary = {}
+var _glows: Dictionary = {}
+var _glow_clip: Control
+## Light id to [seconds since the switch, the state it is going to].
+var _wake: Dictionary = {}
+var _window_lights: Array[String] = []
 var _tile_index: Dictionary = {}
 var _layout: Array = []
 var _marker: Sprite2D
@@ -46,6 +59,7 @@ func build(room_id: String, spawn_name: String) -> bool:
 	var layout: Array = data.get("layout", [])
 	grid = Vector2i(str(layout[0]).length() if layout.size() > 0 else 0, layout.size())
 	_build_tiles(layout)
+	_add_fx(false)
 	actors = Node2D.new()
 	actors.y_sort_enabled = true
 	add_child(actors)
@@ -71,8 +85,10 @@ func build(room_id: String, spawn_name: String) -> bool:
 	camera = Camera2D.new()
 	add_child(camera)
 	camera.make_current()
+	_add_fx(true)
 	_build_overlay()
 	_refresh(true)
+	_forget_lamps()
 	for e in entities:
 		e.armed = not e.rect.has_point(player.position)
 	_update_camera()
@@ -153,8 +169,10 @@ func _build_bounds() -> void:
 
 func _add_light(l: Dictionary) -> void:
 	var pl := PointLight2D.new()
-	pl.texture = load("res://assets/sprites/light_radial.png")
-	pl.texture_scale = float(l.get("radius", 40)) * 2.0 / 64.0
+	var radius := float(l.get("radius", 40))
+	var warm := bool(Game.tuning.get("warm_light", true))
+	pl.texture = light_texture(radius, false) if warm else load("res://assets/sprites/light_radial.png")
+	pl.texture_scale = 1.0 if warm else radius * 2.0 / 64.0
 	pl.color = Game.color(str(l.get("color", "lamp")))
 	pl.energy = float(l.get("energy", 1.0))
 	pl.position = Vector2(float(l.get("x", 0)) * TILE + 8, float(l.get("y", 0)) * TILE + 4)
@@ -163,6 +181,122 @@ func _add_light(l: Dictionary) -> void:
 	add_child(pl)
 	lights[lid] = pl
 	_light_base[lid] = pl.energy
+	_light_scale[lid] = pl.texture_scale
+	if _tile_index.has("shop_window_lit") and tiles.get_cell_atlas_coords(Vector2i(pl.position / TILE)) == _tile_index["shop_window_lit"]:
+		_window_lights.append(lid)
+	if warm and str(l.get("color", "lamp")) == "lamp":
+		if _glow_clip == null:
+			_glow_clip = Control.new()
+			_glow_clip.size = Vector2(grid) * TILE
+			_glow_clip.clip_contents = true
+			_glow_clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			add_child(_glow_clip)
+		var glow := Sprite2D.new()
+		glow.texture = light_texture(radius, true)
+		glow.position = pl.position
+		glow.modulate = Color(pl.color.r, pl.color.g, pl.color.b * 0.2, 0.0)
+		var m := CanvasItemMaterial.new()
+		m.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+		m.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED
+		glow.material = m
+		_glow_clip.add_child(glow)
+		_glows[lid] = glow
+
+
+## The light pool at its real size, so each pixel of it is one screen pixel: four bands, as in
+## light_radial.png, with dithered edges. The glow copy fades faster toward the rim.
+static func light_texture(radius: float, glow: bool) -> Texture2D:
+	var size := int(radius) * 2 * (-1 if glow else 1)
+	if not _light_tex.has(size):
+		size = absi(size)
+		var img := Image.create(size, size, false, Image.FORMAT_RGBA8)
+		for y in size:
+			for x in size:
+				var a := pow(maxf(0.0, 1.0 - Vector2(x + 0.5 - radius, y + 0.5 - radius).length() / radius), 0.8)
+				var dither := (BAYER[(y & 3) * 4 + (x & 3)] / 16.0 - 0.5) * 0.7 - 0.15
+				var level := clampf(ceilf(a * 4.0 + dither) / 4.0, 0.0, 1.0) if a > 0.0 else 0.0
+				img.set_pixel(x, y, Color(1, 1, 1, pow(level, 1.6) if glow else level))
+		_light_tex[-size if glow else size] = ImageTexture.create_from_image(img)
+	return _light_tex[-absi(size) if glow else absi(size)]
+
+
+func _add_fx(above: bool) -> void:
+	var fx := RoomFx.new()
+	fx.room = self
+	fx.above = above
+	add_child(fx)
+
+
+## A lamp that was lit last night and not saved starts lit, then flickers out.
+func _forget_lamps() -> void:
+	var lost: Array = Game.last_forgotten.get("lamp", [])
+	for e in entities:
+		var lid := str(e.data.get("light", ""))
+		if e.kind == "lamp" and lights.has(lid) and lost.has(str(e.data.get("id", ""))):
+			lost.erase(str(e.data.get("id", "")))
+			(lights[lid] as PointLight2D).enabled = true
+			_wake[lid] = [-0.8, false]
+
+
+func _switch_light(lid: String, on: bool, animate: bool = true) -> void:
+	if not lights.has(lid):
+		return
+	var pl: PointLight2D = lights[lid]
+	if on == (bool(_wake[lid][1]) if _wake.has(lid) else pl.enabled):
+		return
+	if animate:
+		_wake[lid] = [0.0, on]
+	else:
+		pl.enabled = on
+
+
+## x is the brightness and y is the size of a light, t seconds into flickering on or out.
+static func _wake_state(t: float, on: bool) -> Vector2:
+	if t < 0.0:
+		return Vector2.ONE
+	if on:
+		if t < 0.08:
+			return Vector2(0.5, 0.5)
+		if t >= 0.3 and t < 0.4:
+			return Vector2(0.7, 0.62)
+		if t < 0.65:
+			return Vector2.ZERO
+		return Vector2(1.0, 0.45 + 0.55 * ease_out_back((t - 0.65) / (WAKE_ON - 0.65)))
+	if t >= 0.1 and t < 0.24:
+		return Vector2(0.6, 0.8)
+	if t >= 0.4:
+		return Vector2(0.35, 0.5)
+	return Vector2.ZERO
+
+
+static func ease_out_back(p: float) -> float:
+	var q := clampf(p, 0.0, 1.0) - 1.0
+	return 1.0 + 2.7 * q * q * q + 1.7 * q * q
+
+
+func cells_of(tile_name: String) -> Array[Vector2i]:
+	return tiles.get_used_cells_by_id(0, _tile_index[tile_name]) if _tile_index.has(tile_name) else []
+
+
+## The pixels of one tile's art that have this palette colour, as offsets inside the tile.
+func tile_pixels(tile_name: String, color_name: String) -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	if _tile_index.has(tile_name):
+		var img := (tiles.tile_set.get_source(0) as TileSetAtlasSource).texture.get_image()
+		var c := Game.color(color_name)
+		for y in TILE:
+			for x in TILE:
+				if img.get_pixelv(_tile_index[tile_name] * TILE + Vector2i(x, y)).is_equal_approx(c):
+					out.append(Vector2i(x, y))
+	return out
+
+
+func lamp_posts() -> Dictionary:
+	return _lamp_posts
+
+
+func window_dip() -> bool:
+	return sin(_time * 9.0) * sin(_time * 1.3) > 0.85
 
 
 func _build_overlay() -> void:
@@ -351,7 +485,28 @@ func _process(delta: float) -> void:
 	_time += delta
 	for lid: String in lights:
 		var pl: PointLight2D = lights[lid]
-		pl.energy = float(_light_base[lid]) * (1.0 + 0.02 * sin(_time * 7.0 + pl.position.x) * sin(_time * 2.3))
+		var state := Vector2.ONE
+		if _wake.has(lid):
+			var w: Array = _wake[lid]
+			w[0] = float(w[0]) + delta
+			if float(w[0]) >= (WAKE_ON if w[1] else WAKE_OFF):
+				pl.enabled = w[1]
+				_wake.erase(lid)
+			else:
+				state = _wake_state(w[0], w[1])
+				pl.enabled = state.x > 0.0
+		if lid in _window_lights and window_dip():
+			state.x *= 0.9
+		pl.energy = float(_light_base[lid]) * state.x * (1.0 + 0.02 * sin(_time * 7.0 + pl.position.x) * sin(_time * 2.3))
+		pl.texture_scale = float(_light_scale[lid]) * state.y
+		if _glows.has(lid):
+			var glow: Sprite2D = _glows[lid]
+			glow.visible = pl.enabled
+			glow.scale = Vector2.ONE * state.y
+			glow.modulate.a = GLOW_ALPHA * pl.energy
+	if follower:
+		follower.scared = entities.any(func(e: Entity) -> bool:
+			return e.active and e.kind == "encounter" and not Game.has_flag("friend_" + str(e.data.get("worker", ""))) and e.position.distance_to(follower.position) < 3.0 * TILE)
 	for post: Sprite2D in _lamp_posts:
 		post.frame = 1 if (_lamp_posts[post] as PointLight2D).enabled else 0
 	_update_camera()
@@ -404,15 +559,14 @@ func _refresh(at_build: bool = false) -> void:
 		var ok := Game.cond_ok(e.data)
 		if e.kind == "encounter":
 			ok = ok and _present(e)
-			if lights.has(str(e.data.get("light", ""))):
-				(lights[e.data["light"]] as PointLight2D).enabled = ok
+			_switch_light(str(e.data.get("light", "")), ok, not at_build)
 		if e.kind == "trigger" and bool(e.data.get("once", false)):
 			var flag := str(e.data.get("flag", ""))
 			ok = ok and not e.fired and (flag == "" or not Game.has_flag(flag))
 		if e.active != ok:
 			e.set_active(ok)
-		if e.kind == "lamp" and lights.has(str(e.data.get("light", ""))):
-			(lights[e.data["light"]] as PointLight2D).enabled = Game.has_flag("lamp_" + str(e.data.get("id", "")))
+		if e.kind == "lamp":
+			_switch_light(str(e.data.get("light", "")), Game.has_flag("lamp_" + str(e.data.get("id", ""))), not at_build)
 	var wants_follower := Game.has_flag("wick_joined") and bool(data.get("companion", false))
 	if wants_follower and follower == null:
 		var start := player.position - player.facing * float(Game.tuning.get("follow_distance", 24))
@@ -441,8 +595,7 @@ func _on_flags_changed(_name: String) -> void:
 
 
 func _on_light_changed(lid: String, on: bool) -> void:
-	if lights.has(lid):
-		(lights[lid] as PointLight2D).enabled = on
+	_switch_light(lid, on)
 
 
 func _on_room_command(cmd: Dictionary) -> void:

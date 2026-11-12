@@ -3,6 +3,7 @@ extends Entity
 ## Wick after he joins: walks the player's trail a fixed distance behind. Talk to him for hints.
 
 var distance: float = 24.0
+var scared: bool = false
 var _trail: Array[Vector2] = []
 
 
@@ -48,4 +49,4 @@ func _process(delta: float) -> void:
 	super(delta)
 	var t := Time.get_ticks_msec()
 	if sprite:
-		sprite.position.x = float(t / 50 % 2) if Game.has_flag("many_gone") and t % 2400 < 700 else 0.0
+		sprite.position.x = float(t / 50 % 2) if scared or (Game.has_flag("many_gone") and t % 2400 < 700) else 0.0

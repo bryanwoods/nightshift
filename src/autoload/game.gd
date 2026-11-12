@@ -261,6 +261,7 @@ func start_night(new_game: bool) -> void:
 		flags.clear()
 		items.clear()
 		seen.clear()
+		last_forgotten = {}
 		hours = 0
 		for k: String in tally:
 			tally[k] = 0
