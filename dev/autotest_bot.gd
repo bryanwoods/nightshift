@@ -504,9 +504,9 @@ func _input_battle() -> void:
 	await _press_for("move_left", 0.4)
 	_expect(b._arena.token.x < -10.0, "arrow keys move the flashlight token in the arena")
 	DialogueRunner.autoplay = true
+	var minute := NightClock.minute
 	NightClock.add(60)
-	await _until(func() -> bool: return _on(Game.LAMPS), 15.0)
-	_expect(not Game.has_flag("friend_unbaker") and not Game.has_flag("enemy_unbaker"), "3:00 mid-fight abandons it with no flag")
+	_expect(NightClock.minute == minute and not Game.night_over, "the clock does not move in a fight")
 
 
 ## Screenshots of every room, Wick at his lamp tutorial, every Curfew pattern and the first pattern of
@@ -638,7 +638,7 @@ func _rewind_route() -> void:
 	await _tap("rewind")
 	await get_tree().physics_frame
 	_expect(Game.rewind_charges == 2, "rewind spends a charge, %d left" % Game.rewind_charges)
-	_expect(NightClock.minute == minute + 1, "rewind costs a minute")
+	_expect(NightClock.minute == minute, "rewind costs no minutes")
 	_expect(b._pattern.t < t_before - 0.5, "rewind rolls the pattern back (%.2f -> %.2f)" % [t_before, b._pattern.t])
 	await _tap("rewind")
 	await _tap("rewind")

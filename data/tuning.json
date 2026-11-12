@@ -38,5 +38,6 @@
   "music_tension": [ { "minute": 45, "pitch": 1.03 }, { "minute": 55, "pitch": 1.06 } ],
   "clock_pulse_minute": 55,
   "dark_music_pitch": 0.8,
-  "warm_light": true
+  "warm_light": true,
+  "battle_clock": false
 }

@@ -14,9 +14,9 @@ Tadzio and Bryan design the game. Claude Code builds it from [SPEC.md](SPEC.md).
 
 ## How it plays
 
-- **Minutes are the currency.** The clock is always on the screen. Doors, fight
-  rounds and rewinds cost minutes. At 3:00 the night ends, and Tadzio wakes up
-  in bed.
+- **Minutes are the currency.** The clock is always on the screen. Doors, lamps
+  and forms cost minutes. The clock stops while you are in a fight. At 3:00 the
+  night ends, and Tadzio wakes up in bed.
 - **Every worker is a job.** In a fight, you dodge the attacks. Help the worker
   with the job, and you make a friend. Hustle the worker, and you make an enemy.
 - **Wick is your only friend at first.** Wick is an anxious moth lamplighter.

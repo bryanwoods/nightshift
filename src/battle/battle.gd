@@ -83,6 +83,7 @@ var _bubble_text: Label
 var _stats: Dictionary = {"turns": 0, "hits": 0, "damage": 0, "rewinds": 0, "blocked": 0, "actions": [], "hustle": []}
 var _start_msec: int = 0
 var _start_minute: int = 0
+var _clock: bool = false
 var _prompt: Label
 var _wipe: ColorRect
 
@@ -94,7 +95,8 @@ func start(id: String) -> void:
 		finished.emit.call_deferred("abandoned")
 		return
 	worker = d
-	if not bool(worker.get("clock", true)):
+	_clock = bool(worker.get("clock", Game.tuning.get("battle_clock", false)))
+	if not _clock:
 		NightClock.paused = true
 	patience_max = maxi(1, int(worker.get("patience", 10)))
 	patience = patience_max
@@ -146,7 +148,7 @@ func _loop() -> void:
 	_stats["seconds"] = snappedf((Time.get_ticks_msec() - _start_msec) / 1000.0, 0.1)
 	_stats["awake_left"] = awake
 	Game.playtest("battle_end", _stats)
-	if not bool(worker.get("clock", true)):
+	if not _clock:
 		NightClock.paused = false
 	if not Game.night_over:
 		await _wipe_out()
