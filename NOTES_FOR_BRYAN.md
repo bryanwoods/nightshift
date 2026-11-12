@@ -3,6 +3,22 @@
 Things I decided without you, ranked by how much they change the game.
 Each one is easy to undo. The full list of small decisions is in DEV.md, Decisions.
 
+## Round 3 (2026-11-11): polish, check these first
+
+Tadzio picked five of the six polish ideas. Idea 5 (hits and rewind in a fight) is not built.
+No rule, cost or sprite changed.
+
+1. **Warm light has a switch.** `warm_light` in `data/tuning.json`. Set it to `false` and every room looks as it did before. Only lamp-coloured lights get the warm glow. Moonlight through a window only gets the dithered edge.
+2. **Wick shivers near a worker who will fight.** That is any worker at their post, within 3 tiles, who is not a friend. I chose the rule. The spec does not say when Wick is scared.
+3. **A forgotten lamp flickers out in front of you.** The first time you enter its room on the next night, it is lit for a moment and then goes out. This only happens after Continue in the same session. After a restart, the lamp is just dark.
+4. **The clock shows the cost.** A "-2" flies from Tadzio to the clock and the changed digits roll. The clock number changes when the cost lands, about half a second after the minutes are spent. At 3:00 it changes at once.
+5. **Every character has a shadow, also indoors.** It points away from the nearest lit light. A worker's own lantern does not count for that worker.
+6. **The clock stops in every fight (you asked for this).** `battle_clock` in `data/tuning.json` is `false`. Rounds, Help, Wick's turns and rewinds now cost no minutes, and 3:00 cannot end a fight. Two things follow. Help no longer costs more than Hustle, so only the fight itself decides between them. And the bot now reaches the square at 2:24 (Help) or 2:28 (Hustle), not 2:34, so the night has about 10 spare minutes. The costs are still in `tuning.json` if you turn the switch back on.
+7. **The Kept and Forgotten screen has fixed rows.** Each worker has a coloured square: green for friend, red for angry, grey for gone. The words "a friend" and "not a friend" are now the legend words "friend" and "angry". A column holds 8 rows. A longer list shows the item count, then "and N more".
+8. **The fountain does not run.** I built it, then read the square: "The fountain is off. The water is perfectly still, like it's listening." So I took the moving water out.
+9. **The Help and Hustle hints lost "Slow" and "Fast".** With the clock stopped in a fight, neither word was true.
+10. **The `rewind` bot route fails, and it failed before this round.** "On a dark turn Wick lights the arena" fails on the commit before these changes too. All other routes pass.
+
 ## Round 2 (2026-11-04): check these first
 
 1. **The round before this one was skipped.** Its brief (readability, realtime clock, Wick tutorial, crafted opening, Un-Baker rework) never reached me. The realtime clock does not exist; the clock still moves only on actions.

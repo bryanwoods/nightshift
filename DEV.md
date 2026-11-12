@@ -64,7 +64,7 @@ and the hours carry. `tour` (with `shots=DIR` and a window) takes screenshots of
 room, every Curfew pattern, Pockets, the spare-or-finish choice and a finish. `clock` runs out the time on
 Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
 Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
-hold-to-light, the battle menu, Hustle timing, and 3:00 in the middle of a fight. `rewind`
+hold-to-light, the battle menu, Hustle timing, and the clock standing still in a fight. `rewind`
 presses the watch in the Curfew fight. `alley` checks the secret alley. `encounters` spares the Un-Baker, helps the Window Washer, finishes the Puddle Keeper, saves,
 and checks all three the next night. `forget` checks the save model: an unsaved friend is
 forgotten at the end of the night, and a friend saved at a lamp is kept.
@@ -372,6 +372,22 @@ charges, Hustle timing, text speed, music tension and the arena size.
 `show_choice_rewards` shows the hours on "Let them go" and "Clock them out" (`TODO(Tadzio)`:
 keep them or hide them). Door minutes can
 also be set per door (`minutes`). Street-to-street doors cost 3.
+
+`battle_clock` is `false`: the clock stops for the whole of every fight, so rounds, Help and
+rewinds cost no minutes and 3:00 cannot end a fight. Set it to `true` to charge the `costs`
+again. A worker file can still set its own `clock`.
+
+`warm_light` turns on the warm lamp light: each pool is drawn at its real size with dithered
+band edges, and a lamp-coloured glow is added on top. Set it to `false` for the plain bands
+of `light_radial.png`.
+
+## Small motion
+
+`src/overworld/room_fx.gd` draws the things that move by themselves: shadows, puddle ripples
+and reflections, the flicker of lit shop windows, moths at lit lamps and dust
+in the flashlight beam. It finds puddles and lit shop windows by tile name, so a
+new room gets them with no extra data. A light that turns on or off in a room flickers first
+(`Room._switch_light`). The clock shows each cost as a number that flies to it (`ClockHUD`).
 
 ## Art and sound
 
