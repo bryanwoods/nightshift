@@ -1,8 +1,10 @@
 # Nightshift
 
-![Tadzio on Main Street at 1:59, with the Window Washer and the Night Postman](docs/street_main.png)
+<p align="center">
+  <img src="docs/art/shirt_crew.png" width="480" alt="The Nightshift crew under the moon, with the words One hour. Every night. Make it count.">
+</p>
 
-Nightshift is a top-down pixel RPG for Godot 4.
+Nightshift is a top-down pixel RPG for Godot 4.7.
 
 Every night from 2:00 to 3:00, the town has a second shift. The workers of the
 Nightshift put the day back together. They relight the lamps, return lost things
@@ -12,6 +14,23 @@ named Tadzio wakes up at 1:59.
 This repo holds a vertical slice: one full night, about 15 minutes of play.
 Tadzio and Bryan design the game. Claude Code builds it from [SPEC.md](SPEC.md).
 
+![Main Street at 2:00, with lamps lit and workers at their posts](docs/street_main.png)
+
+| | |
+|---|---|
+| ![Tadzio in the bedroom at 1:59](docs/screenshots/bedroom.png) | ![Wick meets Tadzio on Maple Street](docs/screenshots/wick.png) |
+| ![The town square under the clock tower](docs/screenshots/square.png) | ![Curfew sends sheep over fences in a fight](docs/screenshots/curfew_fight.png) |
+
+## The art
+
+Every sprite, tile and portrait is pixel art, stored as text in `assets/px/`.
+The rooms have warm lamp light, soft shadows and small bits of motion.
+
+![Portraits of Tadzio, Wick, Curfew, the Un-Baker, the Window Washer, the Puddle Keeper, the Night Postman and the Foreman](docs/screenshots/cast.png)
+
+See [all the art on one page](docs/art/gallery.png). The shirt design and the
+concept art are in [docs/art](docs/art).
+
 ## How it plays
 
 - **Minutes are the currency.** The clock is always on the screen. Doors, lamps
@@ -20,7 +39,7 @@ Tadzio and Bryan design the game. Claude Code builds it from [SPEC.md](SPEC.md).
 - **Every worker is a job.** In a fight, you dodge the attacks. Help the worker
   with the job, and you make a friend. Hustle the worker, and you make an enemy.
 - **Wick is your only friend at first.** Wick is an anxious moth lamplighter.
-  He cannot fight. He can light the arena and give you more time.
+  He cannot fight. He can light the arena, take the first hit or warm you up.
 - **The town forgets.** Only the things that you save at a lamp stay to the
   next night.
 
@@ -28,7 +47,7 @@ Nobody dies. If you lose a fight, you fall asleep.
 
 ## Play it
 
-1. Install Godot 4.4 or newer. On macOS, use `brew install --cask godot`.
+1. Install Godot 4.7 or newer. On macOS, use `brew install --cask godot`.
 2. Open `project.godot` in Godot and push F5. Or, from a shell:
 
    ```sh
