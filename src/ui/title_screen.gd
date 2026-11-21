@@ -40,7 +40,7 @@ func _ready() -> void:
 	_menu.cancelled.connect(_on_cancel)
 	_show_main()
 	RenderingServer.set_default_clear_color(Game.color("ink"))
-	AudioBus.play_music("house_hum")
+	AudioBus.play_music("main_theme")
 	Game.fade_from(0.4)
 
 

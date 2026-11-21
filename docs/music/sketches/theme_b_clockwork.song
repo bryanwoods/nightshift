@@ -1,0 +1,34 @@
+# Main theme sketch B: "Clockwork". Mysterious and moving forward, like the hour ticking.
+# D minor with a ticking arpeggio under everything. The melody pushes ahead of the beat
+# (the F in bar 1 lands early), climbs to one high A in bar 5, and the A7 in bar 8 pulls
+# back to the start.
+tempo 100
+meter 4/4
+grid 8
+key D minor
+form A A2
+
+voice lead  inst=pulse duty=0.5 duty2=0.25 sweep=0.25 tone=6000 vol=0.38 vib=12 echo=0.25 echotime=0.75 rel=0.1 role=melody pan=-0.1
+voice low   inst=flute vol=0.30 vib=10 pan=0.2 rev=0.3
+voice bass  inst=tri vol=0.62 gate=0.55 role=bass
+voice tick  inst=pulse duty=0.125 auto=arp:updown lo=69 hi=88 vol=0.10 tone=5000 rel=0.03 gate=0.5 pan=0.35 echo=0.25 echotime=0.5
+voice pad   inst=pad auto=chords lo=50 hi=69 vol=0.20 tone=1100 rev=0.4
+voice kit   inst=drums vol=0.34
+
+master room=1.6 wet=0.4 loud=-17
+
+section A
+chords | Dm9 | Bbmaj7 | Fmaj7 | C6 | Dm9 | Bbmaj7 | Gm7 | A7sus4 A7 |
+lead   | A4 . D5 . E5 F5 . E5 | D5 . . . . . A4 C5 | C5 . A4 . F5 . E5 C5 | E5 . . . . . C5 D5 | E5 . . . F5 . A5 . | . . . . G5 . F5 . | D5 . . . F5 . E5 D5 | E5 . . . C#5 . . . |
+bass   | D2 D3 D2 D3 D2 D3 C3 A2 | Bb1 Bb2 Bb1 Bb2 Bb1 Bb2 A2 F2 | F2 F3 F2 F3 F2 F3 A2 C3 | C2 C3 C2 C3 C2 C3 E2 C#2 | D2 D3 D2 D3 D2 D3 C3 A2 | Bb1 Bb2 Bb1 Bb2 Bb1 Bb2 A2 F2 | G1 G2 G1 G2 G1 G2 F2 D2 | A1 A2 A1 A2 A1 A2 G2 E2 |
+tick   | auto |
+kit    | h - h - h - h - |
+
+section A2
+chords | Dm9 | Bbmaj7 | Fmaj7 | C6 | Dm9 | Bbmaj7 | Gm7 | A7sus4 A7 |
+lead   | A4 . D5 . E5 F5 . E5 | D5 . . . . . A4 C5 | C5 . A4 . F5 . E5 C5 | E5 . . . . . C5 D5 | E5 . . . F5 . A5 . | . . . . G5 . F5 . | D5 . . . F5 . E5 D5 | E5 . . . C#5 . . . |
+low    | @lead-12 |
+bass   | D2 D3 D2 D3 D2 D3 C3 A2 | Bb1 Bb2 Bb1 Bb2 Bb1 Bb2 A2 F2 | F2 F3 F2 F3 F2 F3 A2 C3 | C2 C3 C2 C3 C2 C3 E2 C#2 | D2 D3 D2 D3 D2 D3 C3 A2 | Bb1 Bb2 Bb1 Bb2 Bb1 Bb2 A2 F2 | G1 G2 G1 G2 G1 G2 F2 D2 | A1 A2 A1 A2 A1 A2 G2 E2 |
+tick   | auto |
+pad    | auto |
+kit    | k - h k s - h h |

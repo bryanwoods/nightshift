@@ -1,0 +1,14 @@
+# The old street song's exact notes, played through the new synthesizer.
+tempo 84
+meter 4/4
+grid 4
+key D minor
+form X X
+
+voice lead inst=pulse duty=0.25 vol=0.42 role=melody vib=12 echo=0.28 rel=0.15 pan=-0.1
+voice bass inst=tri vol=0.75 role=bass gate=0.8
+
+section X
+chords | Dm | C | Bb | A | Dm | C | Bb | A |
+lead   | F4 . E4 D4 | A4 . . - | G4 F4 E4 C4 | D4 . . - | F4 A4 C5 . | Bb4 A4 G4 . | E4 . C#4 . | A3 . - - |
+bass   | D2 A2 F2 A2 | C2 G2 E2 G2 | Bb1 F2 D2 F2 | A1 E2 C#2 E2 | D2 A2 F2 A2 | C2 G2 E2 G2 | Bb1 F2 D2 F2 | A1 E2 C#2 E2 |

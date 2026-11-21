@@ -1,0 +1,30 @@
+# Main theme sketch C: "One Hour Lullaby". Tender and dreamy, a waltz on a music box.
+# F major in 3/4. Bar 4 borrows B-flat minor (the D-flat is the ache), then the tune
+# rises to one high G in bar 7 and leans on F over C7 before it settles back.
+tempo 84
+meter 3/4
+grid 6
+key F major
+form A A2
+
+voice lead  inst=bell vol=0.50 ring=1.4 role=melody pan=-0.05 rev=0.3
+voice oca   inst=flute vol=0.30 vib=12 pan=0.15 rev=0.35
+voice bass  inst=tri vol=0.55 gate=0.9 role=bass
+voice keys  inst=epiano auto=comp pattern=--x.x. lo=55 hi=72 size=3 vol=0.28 pan=0.2 rev=0.3
+voice pad   inst=pad auto=chords lo=53 hi=72 vol=0.16 rev=0.5 att=0.6
+
+master room=2.4 wet=0.5 loud=-18
+
+section A
+chords | Fmaj7 | Am7 | Bbmaj7 | Bbm6 | Fmaj7/A | Dm7 | Gm7 | C7 |
+lead   | A4 . C5 . F5 E5 | E5 . . . D5 C5 | D5 . . . Bb4 D5 | Db5 . . . . . | C5 . . . A4 C5 | F5 . . . E5 D5 | Bb4 . D5 . G5 F5 | F5! . . . E5 . |
+bass   | F2 . . . . . | A2 . . . . . | Bb1 . . . . . | Bb1 . . . . . | A1 . . . . . | D2 . . . . . | G1 . . . . . | C2 . . . . . |
+keys   | auto |
+
+section A2
+chords | Fmaj7 | Am7 | Bbmaj7 | Bbm6 | Fmaj7/A | Dm7 | Gm7 | C7 |
+lead   | A4 . C5 . F5 E5 | E5 . . . D5 C5 | D5 . . . Bb4 D5 | Db5 . . . . . | C5 . . . A4 C5 | F5 . . . E5 D5 | Bb4 . D5 . G5 F5 | F5! . . . E5 . |
+oca    | @lead-12 |
+bass   | F2 . . . . . | A2 . . . . . | Bb1 . . . . . | Bb1 . . . . . | A1 . . . . . | D2 . . . . . | G1 . . . . . | C2 . . . . . |
+keys   | auto |
+pad    | auto |

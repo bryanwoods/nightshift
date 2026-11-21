@@ -1,0 +1,86 @@
+# Nightshift main theme: "Lamplight", with "One Hour Lullaby" as its heart.
+# Music box opening, the tune alone, the tune with the band, a waltz in F, the big return.
+# G minor is the hinge: the sad chord in D major is also the door into F major.
+tempo 88
+meter 4/4
+grid 8
+key D major
+form Intro A1 A2 B1 B2 A3 Outro
+
+voice lead  inst=pulse duty=0.33 tone=3100 att=0.012 vol=0.45 vib=14 echo=0.22 echotime=0.75 rel=0.18 role=melody pan=-0.08 shape=0.12 human=0.003
+voice harm  inst=pulse duty=0.5 tone=2300 att=0.012 vol=0.15 vib=9 rel=0.15 pan=0.34 role=melody human=0.004
+voice box   inst=bell vol=0.46 ring=1.4 role=melody pan=-0.05 rev=0.32 shape=0.1 human=0.004
+voice oca   inst=flute vol=0.36 vib=13 pan=0.12 rev=0.35 role=melody shape=0.12
+voice bell  inst=bell vol=0.15 pan=0.26 rev=0.38 role=melody
+voice bass  inst=bass vol=0.76 gate=0.95 role=bass human=0.004
+voice keys  inst=epiano vol=0.20 pan=0.2 rev=0.3 human=0.004
+voice waltz inst=epiano auto=comp pattern=--x.x. lo=55 hi=72 size=3 vol=0.26 pan=0.2 rev=0.3
+voice pad   inst=pad auto=chords lo=50 hi=76 vol=0.18 rev=0.45
+voice arp   inst=pulse duty=0.125 auto=arp:up lo=62 hi=81 vol=0.075 pan=0.46 tone=4000 rel=0.05 gate=0.6 echo=0.3 echotime=0.5
+voice kit   inst=drums vol=0.30
+
+master room=2.2 wet=0.46 loud=-17
+
+section Intro
+dyn    | .42 | .48 | .54 | .60 |
+chords | Dmaj7 | Gmaj7 | Dmaj7 | A7sus4 |
+box    | F#5 . A5 . D6 . . . | B5 . . . . . - - | F#5 . A5 . C#6 . . . | D6 . . . . . - - |
+bass   | D2 . . . . . . . | G2 . . . . . . . | D2 . . . . . . . | A1 . . . . . . . |
+pad    | auto |
+
+section A1
+dyn    | .62 | .66 | .70 | .72 | .70 | .78 | .74 | .78 |
+chords | Dmaj7 | F#m7 | Gmaj7 | Gm6 | Bm7 | Em9 | Gmaj7 | A7sus4 A7 |
+lead   | F#4 . A4 . D5 . . C#5 | . . . . E5 . D5 C#5 | B4 . . A4 B4 . D5 . | D5 . . . Bb4 . A4 . | B4 . D5 . F#5 . . . | G5 . . . F#5 . E5 . | D5 . . . . . B4 C#5 | D5 . . . C#5 . . . |
+bell   | - - - - - - - - | - - A5 C#6 E6 . - - | - - - - - - - - | - G5 Bb5 D6 - - - - | - - - - - - - - | - - - - - - - - | - - B5 D6 F#6 . - - | - - - - E6 . C#6 . |
+bass   | D2 . . . A2 . E2 . | F#2 . . . C#3 . A2 . | G2 . . . D3 . B2 . | G2 . . . D3 . A2 . | B1 . . . D2 . F#2 . | E2 . . . B2 . G2 . | G2 . . . D3 . B2 . | A2 . . . A1 . C#2 . |
+keys   | A3 D4 F#4 A4 C#5 A4 F#4 D4 | A3 C#4 E4 A4 C#5 A4 E4 C#4 | B3 D4 F#4 B4 D5 B4 F#4 D4 | Bb3 D4 E4 G4 Bb4 G4 E4 D4 | B3 D4 F#4 A4 D5 A4 F#4 D4 | B3 D4 F#4 G4 B4 G4 F#4 D4 | B3 D4 F#4 B4 D5 B4 F#4 D4 | A3 D4 E4 G4 A3 C#4 E4 G4 |
+pad    | auto |
+
+section A2 rit=1:0.84
+dyn    | .84 | .86 | .90 | .92 | .92 | 1.0 | .90 | .76 |
+chords | Dmaj7 | F#m7 | Gmaj7 | Gm6 | Bm7 | Em9 | Gm7 | C7sus4 C7 |
+lead   | F#4 . A4 . D5 . . C#5 | . . . . E5 . F#5 E5 | D5 . . B4 D5 . E5 F#5 | G5 . . . E5 . D5 . | B4 . D5 . F#5 . A5^ . | B5> . . . G5 . F#5 E5 | D5 . . . . . Bb4 C5 | F5 . . . E5 . . . |
+harm   | D4 . F#4 . F#4 . . A4 | . . . . C#5 . D5 C#5 | B4 . . G4 B4 . B4 D5 | D5 . . . Bb4 . . . | F#4 . B4 . D5 . . . | G5 . . . E5 . D5 . | Bb4 . . . . . G4 A4 | C5 . . . Bb4 . . . |
+bell   | @lead+12 |
+bass   | D2 . . . A2 . E2 . | F#2 . . . C#3 . A2 . | G2 . . . D3 . B2 . | G2 . . . D3 . A2 . | B1 . . . D2 . F#2 . | E2 . . . B2 . G2 . | G2 . . . D3 . Bb2 . | C3 . . . C2 . E2 . |
+keys   | A3 D4 F#4 A4 C#5 A4 F#4 D4 | A3 C#4 E4 A4 C#5 A4 E4 C#4 | B3 D4 F#4 B4 D5 B4 F#4 D4 | Bb3 D4 E4 G4 Bb4 G4 E4 D4 | B3 D4 F#4 A4 D5 A4 F#4 D4 | B3 D4 F#4 G4 B4 G4 F#4 D4 | Bb3 D4 F4 G4 Bb4 G4 F4 D4 | C4 F4 G4 Bb4 C4 E4 G4 Bb4 |
+pad    | auto |
+arp    | auto |
+kit    | k - h - s - h h | k - h k s - h h | k - h - s - h h | k - h k s - h h | k - h - s - h h | k - h k s - h h | k - h - s - s,s s | k - - - s s,s t t,t |
+
+section B1 meter=3/4 grid=6 tempo=78
+dyn    | .50 | .54 | .58 | .62 | .56 | .60 | .66 | .62 |
+chords | Fmaj7 | Am7 | Bbmaj7 | Bbm6 | Fmaj7/A | Dm7 | Gm7 | C7 |
+box    | A4 . C5 . F5 E5 | E5 . . . D5 C5 | D5 . . . Bb4 D5 | Db5 . . . . . | C5 . . . A4 C5 | F5 . . . E5 D5 | Bb4 . D5 . G5 F5 | F5! . . . E5 . |
+bass   | F2 . . . C3 . | A2 . . . E2 . | Bb1 . . . F2 . | Bb1 . . . Db2 . | A1 . . . C2 . | D2 . . . A2 . | G1 . . . D2 . | C2 . . . G2 . |
+waltz  | auto |
+pad    | auto |
+
+section B2 meter=3/4 grid=6 tempo=78 rit=1:0.82
+dyn    | .66 | .70 | .76 | .78 | .84 | .90 | .86 | .80 |
+chords | Dm7 | Gm7 | C7 | Fmaj7 | Bbmaj7 | Gm6 | Em7b5 | A7 |
+oca    | D5 . F5 . A5 G5 | G5 . . . F5 D5 | E5 . G5 . Bb5 A5 | A5 . . . . . | F5 . A5 . D6 C6 | Bb5 . . . G5 E5 | G5 . . . E5 D5 | E5 . C#5 . A4 . |
+bell   | @oca+12 |
+bass   | D2 . . . F2 . | G2 . . . D2 . | C2 . . . G2 . | F2 . . . C3 . | Bb1 . . . F2 . | G1 . . . Bb1 . | E2 . . . Bb2 . | A1 . . . C#2 . |
+waltz  | auto |
+pad    | auto |
+
+section A3
+dyn    | .92 | .94 | .96 | .98 | .98 | 1.08 | 1.0 | .92 |
+chords | Dmaj7 | F#m7 | Gmaj7 | Gm6 | Bm7 | Em9 | Gmaj7 A7 | Dadd9 |
+lead   | F#4 . A4 . D5 . . C#5 | . . . . E5,F#5 E5 F#5 E5 | D5 . . B4 D5 . E5 F#5 | G5 . . . E5 . D5 . | B4 . D5 . F#5 . A5^ . | B5> . . . G5 . F#5 E5 | D5 . . . E5 . F#5 G5 | F#5 . . . D5 . . . |
+harm   | D4 . F#4 . F#4 . . A4 | . . . . C#5 . D5 C#5 | B4 . . G4 B4 . B4 D5 | D5 . . . Bb4 . . . | F#4 . B4 . D5 . . . | G5 . . . E5 . D5 . | B4 . . . C#5 . D5 E5 | D5 . . . A4 . . . |
+bell   | @lead+12 |
+bass   | D2 . . . A2 . E2 . | F#2 . . . C#3 . A2 . | G2 . . . D3 . B2 . | G2 . . . D3 . A2 . | B1 . . . D2 . F#2 . | E2 . . . B2 . G2 . | B2 . . . A2 . A1 . | D2 . A2 . D3 . . . |
+keys   | A3 D4 F#4 A4 C#5 A4 F#4 D4 | A3 C#4 E4 A4 C#5 A4 E4 C#4 | B3 D4 F#4 B4 D5 B4 F#4 D4 | Bb3 D4 E4 G4 Bb4 G4 E4 D4 | B3 D4 F#4 A4 D5 A4 F#4 D4 | B3 D4 F#4 G4 B4 G4 F#4 D4 | B3 D4 F#4 B4 A3 C#4 E4 G4 | A3 D4 F#4 A4 B4 A4 F#4 E4 |
+pad    | auto |
+arp    | auto |
+kit    | ko - h - s - h h | k - h k s - h h | k - h - s - h h | k - h k s - h h | k - h - s - h h | ko - h k s - h h | k - h k s s,s t t,t | ko - - - - - - - |
+
+section Outro rit=2:0.86
+dyn    | .74 | .62 | .52 | .44 |
+chords | Gmaj7 | Gm6 | Dmaj7 | A7sus4 |
+box    | D6 . B5 . G5 . . . | Bb5 . G5 . E5 . . . | F#5 . A5 . D6 . . . | . . . . . . - - |
+bass   | G2 . . . . . . . | G2 . . . . . . . | D2 . . . . . . . | A1 . . . . . . . |
+pad    | auto |

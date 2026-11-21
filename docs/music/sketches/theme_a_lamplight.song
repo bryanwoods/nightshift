@@ -1,0 +1,35 @@
+# Main theme sketch A: "Lamplight". Warm and hopeful, a little bittersweet.
+# D major. The G minor chord in bar 4 is borrowed from D minor: the lump-in-the-throat moment.
+# The melody climbs from the lamp-lighting arpeggio in bar 1 to one high G in bar 6.
+tempo 88
+meter 4/4
+grid 8
+key D major
+form A A2
+
+voice lead  inst=pulse duty=0.25 tone=5200 vol=0.42 vib=14 echo=0.22 echotime=0.75 rel=0.18 role=melody pan=-0.08
+voice bell  inst=bell vol=0.16 pan=0.25 rev=0.35
+voice bass  inst=tri vol=0.72 gate=0.85 role=bass
+voice keys  inst=epiano auto=arp:broken rate=2 lo=54 hi=74 vol=0.30 pan=0.2 rev=0.3
+voice pad   inst=pad auto=chords lo=50 hi=76 vol=0.20 rev=0.4
+voice arp   inst=pulse duty=0.125 auto=arp:up lo=62 hi=81 vol=0.09 pan=0.45 tone=4000 rel=0.05 gate=0.6 echo=0.3 echotime=0.5
+voice kit   inst=drums vol=0.32
+
+master room=2.0 wet=0.45 loud=-17
+
+section A
+chords | Dmaj7 | F#m7 | Gmaj7 | Gm6 | Bm7 | Em9 | Gmaj7 | A7sus4 A7 |
+lead   | F#4 . A4 . D5 . . C#5 | . . . . E5 . D5 C#5 | B4 . . A4 B4 . D5 . | D5 . . . Bb4 . A4 . | B4 . D5 . F#5 . . . | G5 . . . F#5 . E5 . | D5 . . . . . B4 C#5 | D5 . . . C#5 . . . |
+bass   | D2 . . . A2 . E2 . | F#2 . . . C#3 . A2 . | G2 . . . D3 . B2 . | G2 . . . D3 . A2 . | B1 . . . D2 . F#2 . | E2 . . . B2 . G2 . | G2 . . . D3 . B2 . | A2 . . . A1 . C#2 . |
+keys   | auto |
+pad    | auto |
+
+section A2
+chords | Dmaj7 | F#m7 | Gmaj7 | Gm6 | Bm7 | Em9 | Gmaj7 | A7sus4 A7 |
+lead   | F#4 . A4 . D5 . . C#5 | . . . . E5 . D5 C#5 | B4 . . A4 B4 . D5 . | D5 . . . Bb4 . A4 . | B4 . D5 . F#5 . . . | G5 . . . F#5 . E5 . | D5 . . . . . B4 C#5 | D5 . . . C#5 . . . |
+bell   | @lead+12 |
+bass   | D2 . . . A2 . E2 . | F#2 . . . C#3 . A2 . | G2 . . . D3 . B2 . | G2 . . . D3 . A2 . | B1 . . . D2 . F#2 . | E2 . . . B2 . G2 . | G2 . . . D3 . B2 . | A2 . . . A1 . C#2 . |
+keys   | auto |
+pad    | auto |
+arp    | auto |
+kit    | k - h - s - h h |
