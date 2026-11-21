@@ -14,8 +14,8 @@
 ..kmmqmmmmqAmk..
 ..kmmmmmmmAAmk..
 ..krmmmmAmmAjk..
-..krmrrjjjjmjk..
-..kjrmmkkmmjjk..
+..krmjjjjjjmjk..
+..kjrjjDDjjjjk..
 ..krrjjjjjjjjk..
 ...krjjjjjjjk...
 ....krjjjjjk....
@@ -52,8 +52,8 @@
 ..kmmqmmmmqAmk..
 ..kmmmmmmmAAmk..
 ..krmmmmAmmAjk..
-..krmrrjjjjmjk..
-..kjrmmkkmmjjk..
+..krmjjjjjjmjk..
+..kjrjjDDjjjjk..
 ..krrjjjjjjjjk..
 ...krjjjjjjjk...
 ....krjjjjjk....
