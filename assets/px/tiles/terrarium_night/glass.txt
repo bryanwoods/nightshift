@@ -1,0 +1,21 @@
+# glass 16x16
+# The glass wall of the terrarium, seen from inside.
+# rules: viewpoint, walls
+
+@tile
+fsssssssssssssss
+fsssssssssssssss
+fsssssssssssssss
+fsssssssmmssssss
+fssssssmmsssssss
+fsssssmmssssssss
+fssssmmsssssssfs
+fsssmmsssssssfss
+fsssssssssssfsss
+fssssssssssfssss
+fsssssssssfsssss
+fssssssssfssssss
+fsssssssfsssssss
+fssssssfssssssss
+fsssssfsssssssss
+fssssfssssssssss

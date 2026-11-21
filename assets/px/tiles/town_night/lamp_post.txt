@@ -1,22 +1,21 @@
 # lamp_post 16x16
-# item: outdoor props (art review 2)
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint
-# Only the sidewalk and the collision. assets/px/sprites/lamp_post.txt draws the 16x32 post on top.
 
 @tile
-sssssssssssssssd
-sfsssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-dddddddddddddddd
+fffffffffffffffd
+fssssssssssssssd
+fssssssssssssssd
+fssssssssdsssssd
+fsssdssssssssssd
+fssssssssssssssd
+fsfssssssssdsssd
+fsssssfssssssssd
+fssssssssssssssd
+fssssssssdssdssd
+fsssssssssdssssd
+fssdssssssdssssd
+fssssssssssdsfsd
+fssssssdsssssssd
+fssssssssssssvnd
+ddddddddddddvidn

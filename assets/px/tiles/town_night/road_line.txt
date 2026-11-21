@@ -1,21 +1,21 @@
 # road_line 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-dddddddddddddddd
-ddddsddddddddndd
-dddddddddddddddd
-dndddddddddsdddd
-dddddddddddddddd
-dddddddndddddddd
+dddddndddddddddd
+dsdddddddddddddd
+snddsdddddddnndd
+ndddnsdddddddddd
+dddddndddddddddd
 ddddddddddddddsd
-ddmmmmmmmmmmmmdd
-ddmmmmmmmmmmmmdd
-dddddddddndddddd
+ddddddddddddddnd
+ddfmmmmmmmmmmmnd
+ddmmmmmmmmmmmmnd
+ddnnnnnnnnnnnnsd
+ddddddddndddddnd
 dddddddddddddddd
-ddddnddddddddddd
-ddddddddddddsddd
-dddddddddddddddd
-ddddddsddddddddd
-dddddddddddddddn
+dsdndddddddddddd
+dndddddddddddddd
+sdddddddddsdddsd
+nddddsdddnndddnd

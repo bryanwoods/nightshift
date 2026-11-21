@@ -1,0 +1,15 @@
+# seed_big 10x10
+# item: projectiles
+# Ten seeds squeezed into one. It drops to the floor of the box, and the tree grows from it.
+
+@sprite
+...kkkk...
+..kyyook..
+.kymyoook.
+kyyyyooook
+kyyyoooook
+kyyoooooek
+kyoooooook
+.kooooook.
+..kooook..
+...kkkk...

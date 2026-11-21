@@ -1,0 +1,21 @@
+# mushroom_sleep 16x16
+# A mushroom with its cap shut. Hold Confirm next to it to wake it. Solid.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwvvvvdvvvvvv
+dvvvvdvkkvvvvvvv
+vvvvvkkddkkvvvvv
+vvvvkdsssddkvvvv
+vvvkdsssssddkvvv
+vvvkdssssdddkvvv
+vvvkddddddddkvvv
+vvvvkkmmmmkkvwvv
+vvvvvkmmmfkvvvvv
+vvvvvkmmmfkvvvvv
+vvvnvkmmffkvvvvd
+dvvvdkmmffkvvvvv
+vvvvnkkkkkknnvvv
+vvvvnnnnnnnvvvvv
+vvvvvvwvdvvvnvvd

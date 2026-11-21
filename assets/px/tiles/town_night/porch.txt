@@ -1,20 +1,20 @@
 # porch 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
 kkkkkkkkkkkkkkkk
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
+ssssssssssssssss
+ddddnddddddddddd
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
+ssssssssssssssss
+dnddddddddddddds
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
-dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
+ssssssssssssssss
+sdddddddddnddndd
+nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
+ssssssssssssssss
 dddddddddddddddd
-dddddddddddddddd
-dddddddddddddddd
+nnnnnnnnnnnnnnnn

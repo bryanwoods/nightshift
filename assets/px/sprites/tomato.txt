@@ -1,0 +1,11 @@
+# tomato 8x8
+
+@sprite
+........
+...ww...
+..khwk..
+.khhhhk.
+.khmhhk.
+.khhhhk.
+..khhk..
+...kk...

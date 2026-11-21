@@ -1,0 +1,11 @@
+# egg 8x8
+
+@sprite
+........
+...kk...
+..kmmk..
+.kmmmmk.
+.kmmmmk.
+.kmmfmk.
+..kffk..
+...kk...

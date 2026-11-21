@@ -1,20 +1,20 @@
 # bed_foot 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
-ndssssssssssssdn
-ndssssssssssssdn
-ndssssssssssssdn
-kdssssssssssssdk
-ndssssssssssssdn
-ndssmmssfsssfsdn
-ndssssssssssssdn
-kdssssssssssssdk
-ndssssssssssssdn
-ndssssssssssssdn
-ndssssssssssssdn
-kdssssssssssssdk
-ndssssssssssssdn
-nssssssssssssssn
-nssssssssssssssn
-kssssssssssssssk
+ksfsssssssssddnk
+ksfsssusssssddnk
+ksfsssssssssddnk
+ksfffffffffsddnk
+ksfdddddddddndnk
+ksfsisssssssddnk
+ksfsssssssssddnk
+ksfsssssEsssddnk
+ksfsssssssssddnk
+ksfssssssssuddnk
+ksddddddddddddnk
+ksnnnnnnnnnnnnnk
+kmfffffffffffffk
+ksddddddddddddnk
+ksddddddddddddnk
+kkkkkkkkkkkkkkkk

@@ -1,5 +1,5 @@
 extends Pattern
-## Tadzio stands still in the middle and turns his flashlight with the arrows. Shadows come
+## Tadzio stands still in the middle and turns their flashlight with the arrows. Shadows come
 ## straight in from the four sides. The beam melts a shadow; one that reaches him hits.
 ## Params: count, speed, sprite, accel (how much faster the last shadow is than the first),
 ## ramp (how much faster each later round of the fight is).

@@ -30,13 +30,13 @@ Repo name
 nightshift
 Premise, tone and pillars
 Every night from 2:00 to 3:00 the town has a second shift. The Nightshift puts the day back together: relights the lamps, returns lost things, winds the clocks, takes yesterday’s bread back. Nobody awake has ever seen them, until a kid named Tadzio wakes up at 1:59 and can.
-The hour ends at 3:00 no matter what, and Tadzio wakes up in bed. What he learned, who he befriended, and what’s in his pockets carry over. The hour resets; the kid doesn’t.
+The hour ends at 3:00 no matter what, and Tadzio wakes up in bed. What they learned, who they befriended, and what’s in their pockets carry over. The hour resets; the kid doesn’t.
 The long game (not built in the slice, but everything should leave room for it): the hour is getting shorter. Someone is eating the minutes. If the hour disappears, the town stops resetting and mornings start going wrong. The town clock in the square is stopped at 2:00; that is the first clue, and the slice shows it without explaining it.
 Tone: quiet, funny, a little eerie, never scary. Think a sleepy town at 2 AM where the fridge is humming a tune. Workers are tired, decent, overworked, and suspicious of a kid who shouldn’t be awake. Humor comes from mundane jobs done with total seriousness. Sincere moments land because the world is small and specific.
 Design pillars
 1. Minutes are the currency. A clock is always on screen. Moving between streets, every battle round, and every rewind spends minutes. Players trade night for outcomes.
 2. Every worker is a job, and every job is a puzzle. You can hustle a worker (fight) or help them finish their task (the peaceful route). Helping is slower and makes a friend. Hustling is faster and makes an enemy.
-3. One kid, one friend. Tadzio is alone in a sleeping town. Wick, an anxious moth lamplighter, is his only partner. Wick can’t fight, but he can light the arena and buy time.
+3. One kid, one friend. Tadzio is alone in a sleeping town. Wick, an anxious moth lamplighter, is their only partner. Wick can’t fight, but he can light the arena and buy time.
 4. Everything is a data file. Rooms, dialogue, workers, job postings. If Tadzio can describe it, it can be added in an afternoon.
 5. The game knows it’s unfinished. The Help Wanted board in the Depot is a real in-game object that lists future content. Postings are written by the designers, including Tadzio.
 What we borrow and what we don’t. Borrow: top-down pixel overworld, inspect-everything text, dodge-the-pattern battles with a non-violent resolution, characters who talk to the player. Don’t borrow: the heart soul, the white battle box, FIGHT/ACT/MERCY labels, black-and-neon palette, any character design or line from Toby Fox’s games. Original names, original mechanics, original look.
@@ -570,8 +570,8 @@ Maple Street and his cart stands there with nobody pushing it.
 
 The first time a worker is finished, Wick says a line in the fight. When two or more
 workers are gone (the flag `many_gone`), Wick says quieter lines at the Depot and at
-Curfew. The Foreman names every missing worker when Tadzio enters the Depot and when he
-talks to the Foreman. All of these lines are placeholders with `TODO(Tadzio)` markers.
+Curfew. The Foreman names every missing worker when Tadzio enters the Depot and when they
+talk to the Foreman. All of these lines are placeholders with `TODO(Tadzio)` markers.
 
 ## Encounters
 
@@ -594,7 +594,7 @@ The slice has four encounters. The practice dummy stands in the backyard; a figh
 comes before 2:00, so it costs no minutes. On the way to Curfew there are three: the
 Un-Baker on Maple Street, the Window Washer on Main Street, and the Puddle Keeper outside
 the Depot. The Window Washer washes the reflections out of windows so sleepers do not see
-themselves; when the Window Washer is gone, a shop window shows Tadzio his own face. The
+themselves; when the Window Washer is gone, a shop window shows Tadzio their own face. The
 Puddle Keeper keeps the night's puddles from drying before morning; when the Puddle Keeper
 is gone, the puddles are dry. Both are placeholders for Tadzio to rename or replace, and their files are small on
 purpose so they work as examples.
@@ -695,7 +695,7 @@ On the dark route:
 - Workers at their posts are afraid of Tadzio, and their approach lines change.
 - Wick shivers while he follows Tadzio. After the fight that starts the route, he says
   once that everyone is hiding from them.
-- At Curfew, Tadzio walks toward the danger and says a dark line. On the other routes, he
-  takes a step back.
+- At Curfew, Tadzio walks toward the danger and says a dark line. On the other routes, they
+  take a step back.
 
 All of these lines are placeholders with `TODO(Tadzio)` markers.

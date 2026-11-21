@@ -1,21 +1,21 @@
 # cobble 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-sssssdsssssssdss
-sssssdsssssssdss
-sssssdsssssssdss
+dfffsddddfffsddd
+ssssssddssssssdd
+dsssnddddsssnddd
+dddddddvdddddddd
+sddddfffsddddfff
+ssddssssssddssss
+nddddsssnddddsss
 dddddddddddddddd
-ssdssssssdssssss
-ssdssssssdssssss
-ssdssssssdssssss
-dddddddddddddddd
-sssssdsssssssdss
-sssssdsssssssdss
-sssssdsssssssdss
-dddddddddddddddd
-ssdssssssdssssss
-ssdssssssdssssss
-ssdssssssdssssss
-dddddddddddddddd
+dfffsddddfffsddd
+ssssssddssssssdd
+dsssnddddsssnddd
+dddddddddddvdddd
+sddddfffsddddfff
+ssddssssssddssss
+nddddsssnddddsss
+dddvdddddddddddd

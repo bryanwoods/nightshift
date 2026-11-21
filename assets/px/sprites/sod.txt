@@ -1,0 +1,13 @@
+# sod 8x8
+# item: projectiles
+# A clump of moss and dirt. It bursts where it lands.
+
+@sprite
+........
+..kkkk..
+.kwvwwk.
+kvwwvwvk
+korrrook
+krroorrk
+.kkrrkk.
+...kk...

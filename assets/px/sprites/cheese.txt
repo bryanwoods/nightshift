@@ -1,0 +1,11 @@
+# cheese 8x8
+
+@sprite
+........
+.....kk.
+...kklk.
+.kklllk.
+kllolllk
+klllllok
+kkkkkkkk
+........

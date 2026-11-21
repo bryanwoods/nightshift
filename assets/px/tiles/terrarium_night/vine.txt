@@ -1,0 +1,21 @@
+# vine 16x16
+# A wall of vines with one pale flower. Solid until its mushroom wakes.
+# rules: viewpoint, walls
+
+@tile
+kkvvkwwkdvkkvkwk
+wwkkwwkwkkwwkwwk
+kwwwwkkwwwwkwwkv
+vkkwwkskkwwwwkdk
+kkdkwwkkmmkwwkkw
+wwkkkwwkmmkkwwww
+kwwwkkwwkkwwkkwk
+vkkwwkkwwwwkdkwk
+kddkwwwkkwwkkwwk
+wkkwwkwwkkwwwwkv
+wwwwkdkwwkkkwwkk
+kkwwkkkwwwkdkwww
+dkkwwwwkkwwkkwkk
+kwkkkwwkdkwwwwkv
+wwwknkwwkkkwwkkk
+kkkvvkkwwkvkkvkw

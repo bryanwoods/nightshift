@@ -1,20 +1,20 @@
 # window 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
 kkkkkkkkkkkkkkkk
-dndddndddndddndd
-dndssssssssssndd
-dndsnnnsnnnnsndd
-dndsnnnsnnmnsndd
-dndsnnnsnnmnsndd
-dndssssssssssndd
-dndsnnnsnnnnsndd
-dndsnnnsnnnnsndd
-dndsnnnsnnnnsndd
-dndsnnnsnnnnsndd
-dndssssssssssndd
-dndddndddndddndd
+dfffffffffffffnd
+dfsssssssssssnnd
+dfsdddnsknnnnnnd
+dfsddnnsknmmnnnd
+dfsdnfnsknnmfnnd
+dfsnnnnsknmmnnnd
+dfsssssfsssssnnd
+dfskkkkkkkkkknnd
+dfsnnnnsknnnnnnd
+dfsnfnnsknfnnnnd
+dfsnnnnsknnnnnnd
+dfnnnnnnnnnnnnnd
+fmmmmmmmmmmmmmmm
 ssssssssssssssss
-dddddddddddddddd
-dddddddddddddddd
+nnnnnnnnnnnnnnnn

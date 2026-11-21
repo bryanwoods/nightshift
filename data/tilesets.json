@@ -38,6 +38,14 @@
       "tiles": ["wall", "wall_face", "concrete", "floor_line", "board", "bin", "timecards", "desk_big",
                 "shelf", "crate", "locker", "door", "rug", "window", "lantern"],
       "solid": ["wall", "wall_face", "board", "bin", "timecards", "desk_big", "shelf", "crate", "locker", "window", "lantern"]
+    },
+    "terrarium_night": {
+      "png": "res://assets/tiles/terrarium_night.png",
+      "tiles": ["glass", "glass_face", "glass_gap", "moss", "soil", "sprout", "puddle", "fern",
+                "pebble", "mushroom", "log", "cap", "mushroom_sleep", "vine", "flower_pink", "flower_blue",
+                "flower_gold", "mushroom_pink", "mushroom_violet", "bloom", "lily"],
+      "solid": ["glass", "glass_face", "fern", "pebble", "mushroom", "log", "cap", "mushroom_sleep", "vine",
+                "mushroom_pink", "mushroom_violet", "bloom"]
     }
   }
 }

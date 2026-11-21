@@ -1,0 +1,54 @@
+# jar_keeper 16x32
+# The town sheet: jar_keeper_battle at half size.
+# Painted: lit from the top left, rounded forms, a cool rim on the shadow side, cast shadows under heads and brims.
+# rules: viewpoint, outline, characters
+
+@down_0
+................
+.....kkkkkk.....
+.....kyyyyk.....
+.....kooook.....
+.....kooook.....
+...kkkkkkkkkk...
+...kffffffffk...
+..kkkkkkkkkkkk..
+..kmffffssssmk..
+..kmfmffsssdmk..
+..kmmdffsssdmk..
+..kmkkffsskkmk..
+..kmmmkfskmmmk..
+..kmkmffsmkdmk..
+..kfmmffsmmdfk..
+..kfddfssdddfk..
+.kkfsffkksddfkk.
+kfkfsffsssddfkfk
+kfkfssfsssddfkfk
+kfkfswfsswddfkfk
+.kkfsswswdddfkk.
+..kfssswsdddfk..
+..kfssswsdddfk..
+..kfssswsdddfk..
+..kdsssdddnnnk..
+..kdossddnonnk..
+..kdnddonnnnnk..
+..kndodnnnnnnk..
+..kkkkkkkkkkkk..
+...knnk..knnk...
+...kkkk..kkkk...
+................
+
+@down_1 = down_0
+@down_2 = down_0
+@down_3 = down_0
+@up_0 = down_0
+@up_1 = down_0
+@up_2 = down_0
+@up_3 = down_0
+@left_0 = down_0
+@left_1 = down_0
+@left_2 = down_0
+@left_3 = down_0
+@right_0 = down_0
+@right_1 = down_0
+@right_2 = down_0
+@right_3 = down_0

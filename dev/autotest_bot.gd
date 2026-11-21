@@ -53,6 +53,8 @@ func _run() -> void:
 		return
 	if route == "alley":
 		await _alley_route()
+	if route == "terrarium":
+		await _terrarium_route()
 		return
 	await _shot("01_bedroom")
 	_expect(NightClock.text() == "1:59", "clock reads 1:59 in the bedroom, got " + NightClock.text())
@@ -388,6 +390,55 @@ func _alley_route() -> void:
 	_finish()
 
 
+## The hidden terrarium behind the Depot wall: no way back until the Jar Keeper's fight is over,
+## then the crack in the glass opens and leads back to the Depot.
+func _terrarium_route() -> void:
+	Game.set_flag("met_wick")
+	Game.set_flag("wick_joined")
+	NightClock.set_minute(0)
+	Game.go_to_room("depot_exterior", "west", 0)
+	await _room("depot_exterior")
+	await _walk(15, 3)
+	_cur_room().player.face(Vector2.UP)
+	await _tap("menu")
+	await _wait(0.2)
+	await _shot("depot_gap")
+	Input.action_press("move_up")
+	await _until(func() -> bool: return Game.room_id == "terrarium", 5.0)
+	Input.action_release("move_up")
+	await _room("terrarium")
+	await _idle()
+	await _shot("terrarium_start")
+	var r := _cur_room()
+	var crack := Vector2i(44, 1)
+	_expect(r.tiles.get_cell_atlas_coords(crack) == r._tile_index["glass_face"], "the way out is solid glass before the fight")
+	var gates: Array[Vector2i] = [Vector2i(16, 18), Vector2i(22, 12), Vector2i(31, 4)]
+	var sleepers: Array[Vector2i] = [Vector2i(2, 14), Vector2i(44, 26), Vector2i(3, 4)]
+	for i in 3:
+		_expect(r.tiles.get_cell_atlas_coords(gates[i]) == r._tile_index["vine"], "vine gate %d is shut" % (i + 1))
+		await _walk(sleepers[i].x + 1, sleepers[i].y)
+		await _hold_at(sleepers[i].x, sleepers[i].y)
+		await _idle()
+		_expect(r.tiles.get_cell_atlas_coords(gates[i]) == r._tile_index["moss"] and r.lights["wake_%d" % (i + 1)].enabled, "waking mushroom %d opens gate %d" % [i + 1, i + 1])
+	await _shot("terrarium_gate")
+	DialogueRunner.autoplay_fight = "help"
+	await _walk(44, 5)
+	await _until(func() -> bool: return Game.in_battle, 15.0)
+	await _wait(3.0)
+	await _shot("jar_keeper")
+	await _until(func() -> bool: return not Game.in_battle, 180.0)
+	await _idle()
+	_expect(Game.has_flag("friend_jar_keeper") and "drop_of_dew" in Game.items, "helped the Jar Keeper and got the drop of dew")
+	_expect(Game.has_flag("terrarium_open") and r.tiles.get_cell_atlas_coords(crack) == r._tile_index["glass_gap"], "after the fight the crack in the glass opens")
+	await _shot("terrarium_open")
+	await _walk(44, 2)
+	Input.action_press("move_up")
+	await _until(func() -> bool: return Game.room_id == "depot_exterior", 5.0)
+	Input.action_release("move_up")
+	_expect(Game.room_id == "depot_exterior", "the crack leads back to the Depot")
+	_finish()
+
+
 func _night_two() -> void:
 	_note("--- night 2 (Continue) ---")
 	Game.start_night(false)
@@ -441,7 +492,7 @@ func _input_route() -> void:
 	await _wait(0.4)
 	_expect(not DialogueRunner.is_active(), "the line closes and does not open again")
 	await _press_for("move_down", 1.5)
-	_expect(int(r.player.position.y / 16) == 7, "the bottom wall stops Tadzio on row 7, he is on row %d" % int(r.player.position.y / 16))
+	_expect(int(r.player.position.y / 16) == 7, "the bottom wall stops Tadzio on row 7, they are on row %d" % int(r.player.position.y / 16))
 	Input.action_press("move_right")
 	await _until(func() -> bool: return r.player.position.x >= 5 * 16 + 7, 5.0)
 	Input.action_release("move_right")

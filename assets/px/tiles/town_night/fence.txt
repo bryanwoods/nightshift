@@ -1,21 +1,21 @@
 # fence 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-sfsssfsssfsssfss
-fffsfffsfffsfffs
-fffsfffsfffsfffs
-fffsfffsfffsfffs
-ffffffffffffffff
-dddddddddddddddd
-fffsfffsfffsfffs
-fffsfffsfffsfffs
-fffsfffsfffsfffs
-fffsfffsfffsfffs
-ffffffffffffffff
-dddddddddddddddd
-fffsfffsfffsfffs
-dddsdddsdddsddds
-dddsdddsdddsddds
 ssssssssssssssss
+ffssffssffssffss
+ffssffssffssffss
+ffssffssffssfsss
+ssssssssssssssss
+dddddddddddddddd
+ffsfffsfffsfffsf
+ffssffssffssffss
+ffssffssffssfsss
+ffssffssffssffss
+ssssssssssssssss
+dddddddddddddddd
+sssfsssfsssfsssf
+dddfdddfdddfdddf
+dddfdddfdddfdddf
+fffsfffsfffsfffs

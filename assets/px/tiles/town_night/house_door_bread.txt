@@ -1,22 +1,21 @@
 # house_door_bread 16x16
-# item: doors (art review 2)
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls, doors, warm
-# The Un-Baker is gone, so a 6x4 warm loaf waits on the step.
 
 @tile
 ffffffffffffffff
-ffffffffffffffff
-dddffffffffffddd
-dddfnnnnnnnnfddd
-nnnfnkkkkkknfnnn
-dddfnknnnnknfddd
-dddfnknnnnknfddd
-nnnfnkkkkkknfnnn
-dddfnnnnnnnnfddd
-dddfnnnnnllnfddd
-nnnfnnnnnllnfnnn
-dddfnkkkkkknfddd
-dddfnkllllknfddd
-nnnfkoloolokfnnn
-dddfkooooookfddd
+sssffffffffffsss
+dddfsssssssssddd
+nnnsnkkkkkknsnnn
+nnnskkkkkkkdsnnn
+sssskkddddkdssss
+nnnskkdkkkkdsnnn
+nnnskkkkkkkdsnnn
+ssssnddddddnssss
+nnnsnnnnnllnsnnn
+nnnsnkkkkllnsnnn
+sssskkkkkkkdssss
+nnnskkllllkdsnnn
+nnnskyloolyksnnn
+sssskyrrrrrkssss
 kkkkkkkkkkkkkkkk

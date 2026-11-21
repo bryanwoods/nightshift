@@ -1,0 +1,13 @@
+# gnat 8x8
+# item: projectiles
+# A fungus gnat from the terrarium. It drifts after you.
+
+@sprite
+.ff..ff.
+fmmffmmf
+.fmkkmf.
+..kkkk..
+.kkwwkk.
+..kkkk..
+.k.kk.k.
+........

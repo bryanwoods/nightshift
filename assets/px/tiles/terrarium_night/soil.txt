@@ -1,0 +1,21 @@
+# soil 16x16
+# A bare soil path.
+# rules: viewpoint, walls
+
+@tile
+nnknnnnnnnnnnndn
+ndnnnnnnnnnndnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nndnnnnnnnnnnnnn
+nnndnnnnnnnnnnnd
+nnnnnnndnnnnnnnn
+nnnnnnnnnknnnnnn
+nnnnnnnnnnknnnnn
+nnnnnnnnnnnnnnnd
+nnnnnnnnnnnnnndn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnknnnnnnnnnnnnn
+nnnnnddnkdnnnndn
+nnnnnnnnnnnnnnnn

@@ -1,21 +1,21 @@
 # shop_wall 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
 ffffffffffffffff
-ffffffffffffffff
-dddddddndddddddd
-dddddddndddddddd
+ssssssssssssssss
+ddddddnnsddddddd
+nnnnnnnnsnnnnnnn
 nnnnnnnnnnnnnnnn
-dddndddddddndddd
-dddndddddddndddd
+sssnsssssssnssss
+nnnnsnnnnnnnsnnn
 nnnnnnnnnnnnnnnn
-dddddddndddddddd
-dddddddndddddddd
+sssssssnssssssss
+nnnnnnnnsnnnnnnn
 nnnnnnnnnnnnnnnn
-dddndddddddndddd
-dddndddddddndddd
+sssnsssssssnssss
+nnnnsnnnnnnnsnnn
 nnnnnnnnnnnnnnnn
-dddddddndddddddd
+ssssssskssssssss
 kkkkkkkkkkkkkkkk

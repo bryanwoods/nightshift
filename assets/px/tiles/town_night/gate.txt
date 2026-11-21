@@ -1,21 +1,21 @@
 # gate 16x16
-# item: doors (art review 1)
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls, doors, warm
 
 @tile
 ffffffffffffffff
-ffffffffffffffff
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdslkkkkkkkkkkdf
-fdslkkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
-fdsskkkkkkkkkkdf
+fssssssssssssssf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdflkkkkkkkkkksf
+sdflkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf
+sdfdkkkkkkkkkksf

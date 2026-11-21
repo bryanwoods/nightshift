@@ -1,0 +1,11 @@
+# seed 6x6
+# item: projectiles
+# A seed the Jar Keeper plants. It flies in and plants itself on the floor of the box.
+
+@sprite
+..kk..
+.kyok.
+kyyook
+kyoook
+.kook.
+..kk..

@@ -1,8 +1,11 @@
 extends Node
 ## Fights one worker with no room around it. Confirm after the result fights again.
-## Run: godot res://dev/test_battle.tscn -- worker=unbaker [wick] [watch]
+## Run: godot res://dev/test_battle.tscn -- worker=unbaker [wick] [watch] [pattern=fork]
+## pattern= swaps the worker's attacks for that one pattern (with the worker's own numbers for it,
+## if it has it), then a harder round of it.
 
 var _worker: String = "unbaker"
+var _pattern: String = ""
 var _info: Label
 var _done: bool = false
 
@@ -11,6 +14,8 @@ func _ready() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("worker="):
 			_worker = a.trim_prefix("worker=")
+		elif a.begins_with("pattern="):
+			_pattern = a.trim_prefix("pattern=")
 		elif a == "wick":
 			Game.set_flag("wick_joined")
 		elif a == "watch":
@@ -48,6 +53,10 @@ func _on_battle_requested(id: String) -> void:
 		b.queue_free()
 		Game.battle_finished.emit(r))
 	b.start(id)
+	if _pattern != "":
+		var own: Array = (b.worker.get("patterns", []) as Array).filter(func(p: Dictionary) -> bool: return p.get("type") == _pattern)
+		var first: Dictionary = own[0] if not own.is_empty() else {"type": _pattern, "duration": 8}
+		b.worker["patterns"] = [first, first.merged({"extra": 1, "ramp": 0.3}, true)]
 
 
 func _process(_delta: float) -> void:

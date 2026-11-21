@@ -1,0 +1,11 @@
+# burnt 8x8
+
+@sprite
+........
+.kkkkkk.
+kssssssk
+ksdssesk
+kssssssk
+ksesdssk
+kssssssk
+.kkkkkk.

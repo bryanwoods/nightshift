@@ -1,0 +1,21 @@
+# moss 16x16
+# The terrarium floor: damp moss.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwvvvvdvvvvvv
+dvvvvdvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+vvvvdvdvvvvvvvvv
+vvvvvvvvvvvvvwvv
+vvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+vvvnvvvvvvvvvvvd
+dvvvdvvvvvvvvvvv
+vvvvvvvvvvvvnvvv
+vvvvnvvvvvvvvvvv
+vvvvvvwvdvvvnvvd

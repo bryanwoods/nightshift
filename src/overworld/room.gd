@@ -184,7 +184,8 @@ func _add_light(l: Dictionary) -> void:
 	_light_scale[lid] = pl.texture_scale
 	if _tile_index.has("shop_window_lit") and tiles.get_cell_atlas_coords(Vector2i(pl.position / TILE)) == _tile_index["shop_window_lit"]:
 		_window_lights.append(lid)
-	if warm and str(l.get("color", "lamp")) == "lamp":
+	var lamp := str(l.get("color", "lamp")) == "lamp"
+	if warm and (lamp or bool(l.get("glow", false))):
 		if _glow_clip == null:
 			_glow_clip = Control.new()
 			_glow_clip.size = Vector2(grid) * TILE
@@ -194,7 +195,7 @@ func _add_light(l: Dictionary) -> void:
 		var glow := Sprite2D.new()
 		glow.texture = light_texture(radius, true)
 		glow.position = pl.position
-		glow.modulate = Color(pl.color.r, pl.color.g, pl.color.b * 0.2, 0.0)
+		glow.modulate = Color(pl.color.r, pl.color.g, pl.color.b * (0.2 if lamp else 1.0), 0.0)
 		var m := CanvasItemMaterial.new()
 		m.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 		m.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED

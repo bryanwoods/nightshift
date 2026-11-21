@@ -1,7 +1,7 @@
 extends Pattern
-## Tadzio moves along the bottom of the box, and rows of blocks come down toward him. Hold
-## confirm to charge, then let go: Tadzio dashes up and breaks every block he touches. A
-## longer charge dashes farther. On the way back down to his row, blocks hit him again.
+## Tadzio moves along the bottom of the box, and rows of blocks come down toward them. Hold
+## confirm to charge, then let go: Tadzio dashes up and breaks every block they touch. A
+## longer charge dashes farther. On the way back down to their row, blocks hit them again.
 ## Params: rows, speed, block (px), gaps (open blocks in each row), accel, ramp, color.
 
 const DASH_SPEED := 300.0

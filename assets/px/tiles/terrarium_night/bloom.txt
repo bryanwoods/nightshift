@@ -1,0 +1,21 @@
+# bloom 16x16
+# A bush in flower. Solid.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvkkvvvvvvv
+vvkkwvkwwkvvkkvv
+dkwwpdkwwkvpwwkv
+vkwpmpkwwkpmpwkv
+vvkwpwkwwkwpwkvv
+kkdkwwwwwwwwkdkk
+kwwkkwwpwwwkkwwk
+kwwwwkpmpwkwwwwk
+vkswwwwpwwwwwskv
+vvkpsswwwwsspkvv
+vkpmpkswwskpmpkv
+kwwpsskwwksspwwk
+kssskkksskvkkssk
+vkkkvvksskvvnkkv
+vvvvnvksskvvvvvv
+vvvvvvwkkvvvnvvd

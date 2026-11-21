@@ -1,21 +1,21 @@
 # roof 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-nnnnnnnnnnnnnnnn
-ndnnnnnndnnnnnnn
-nnnnnnnnnnnnnnnn
+dsssssssdsssssss
+nsddidddnsdddddd
+nddvvnddnddddddd
 kkkkkkkkkkkkkkkk
-nnnndnnnnnnndnnn
-nnnnnnnnnnnnnnnn
-nnnnnnnnnnnnnnnn
+ssssdsssssssdsss
+ddddnsddddddnsdd
+ddddnddddnddnddd
 kkkkkkkkkkkkkkkk
-ndnnnnnndnnnnnnn
-nnnnnnnnnnnnnnnn
-nnnnnnnnnnnnnnnn
+dsssssssdsssssss
+nsddddddnsddiddd
+nddddnddnddvvddd
 kkkkkkkkkkkkkkkk
-nnnndnnnnnnndnnn
-nnnnnnnnnnnnnnnn
-nnnnnnnnnnnnnnnn
+ssssdsssssssdsss
+ddddnsddddddnsdd
+ddddnddddnddnddd
 kkkkkkkkkkkkkkkk

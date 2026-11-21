@@ -1,0 +1,21 @@
+# mushroom_violet 16x16
+# A glowing mushroom. Solid, and it carries a light.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwkkkkkkvvvvv
+dvvkkppppppkkvvv
+vvkppmmppppppkvv
+vkpppmmpppmmppkv
+vkppppppppmmppkv
+vkpffppppppppfkv
+vkffffffffffffkv
+vvkkkkmmmmkkkkvv
+vvvvvkmmmmkvvvvv
+vvvvvkmmmfkvvvvv
+vvvnvkmmmfkvvvvd
+dvvvdkmmffkvvvvv
+vvvvnkkkkkknnvvv
+vvvvnnnnnnnvvvvv
+vvvvvvwvdvvvnvvd

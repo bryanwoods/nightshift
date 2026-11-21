@@ -1,0 +1,21 @@
+# glass_gap 16x16
+# A crack in the glass, wide enough to squeeze through. The way out.
+# rules: viewpoint, walls
+
+@tile
+fssssskkssssssss
+fsssskkkksssssss
+fsssskkkkkssssss
+fssskkkkkkssssss
+fssskkkkkkksssss
+fsskkkkkkkksssss
+fsskkkkkkkksssfs
+fsskkkkllkkksfss
+ffkkkkkkkkkkffff
+kkkkkkkkkkkkkkkk
+ddkkkkkkkkkkkddd
+ddkkkkkkkkkkkdnd
+nnkkkkkkkkkkknnn
+ndkkkkkkkkkkkdnn
+nnnnnnnnnnnnnnnn
+kkssssssssssskkk

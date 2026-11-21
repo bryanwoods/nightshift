@@ -1,0 +1,21 @@
+# glass_face 16x16
+# The bottom of the glass wall, with the soil line behind it.
+# rules: viewpoint, walls
+
+@tile
+fsssssssssssssss
+fsssssssssssssss
+fsssssssssssssss
+fsssssssmmssssss
+fssssssmmsssssss
+fsssssmmssssssss
+fssssmmsssssssfs
+fsssmmsssssssfss
+ffffffffffffffff
+kkkkkkkkkkkkkkkk
+dddnddddddnddddd
+ddddddndddddddnd
+nnnnnnnnnnnnnnnn
+ndnnnnnkknnnndnn
+nnnnknnnnnnnnnnn
+kkkkkkkkkkkkkkkk

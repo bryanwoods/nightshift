@@ -1,21 +1,21 @@
 # grass 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-ssssssssssssssss
-sssdssssssssssss
-ssdsdsssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssdsss
-sssssssssssdsdss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
+dddsssssssssssss
+sssssssisssssfss
+ssssssfsfsdsfdfs
+ssfsssdddsssddus
+sfsfssssssssfsss
+sdddsssssssfsfss
+sssssFdssssdddss
+sssssvssssssssss
+ssssssdsssisssss
+ssssissssfsfssss
+sssfsfsssdddssss
+sssdddssssssssss
+sssssssssssEdsis
+sssssssfsssvsfsf
+sfssssfsfssssddd
+fdfsssdddsssssss

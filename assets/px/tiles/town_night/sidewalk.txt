@@ -1,21 +1,21 @@
 # sidewalk 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-sssssssssssssssd
-sfsssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-sssssssssssssssd
-dddddddddddddddd
+fffffffffffffffd
+fssssssssssssssd
+fssssssssssssssd
+fssssssssdsssssd
+fsssdssssssssssd
+fssssssssssssssd
+fsfssssssssdsssd
+fsssssfssssssssd
+fssssssssssssssd
+fssssssssdssdssd
+fsssssssssdssssd
+fssdssssssdssssd
+fssssssssssdsfsd
+fssssssdsssssssd
+fssssssssssssvnd
+ddddddddddddvidn

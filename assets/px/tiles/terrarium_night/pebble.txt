@@ -1,0 +1,21 @@
+# pebble 16x16
+# A pebble the size of a boulder. Solid.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwvvvvdvvvvvv
+dvvvkkkkkkvvvvvv
+vvvkffffffkkvvvv
+vvkfmmfffffskvvv
+vvkfmmffffsskvvv
+vkfffffffsssskvv
+vkffffffssssskvv
+vkfffffsssssskvv
+vkffssssssssdkvv
+vkssssssssssdkvv
+vvkssssssssdkvvd
+dvkkdddddddkkvvv
+vvvnkkkkkkknnvvv
+vvvvnnnnnnnvvvvv
+vvvvvvwvdvvvnvvd

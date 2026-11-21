@@ -60,6 +60,7 @@ var _item_cursor: int = -1
 var _root: Control
 var _arena: Arena
 var _worker_sprite: Sprite2D
+var _pose: String = ""
 var _glow: Sprite2D
 var _worker_base: Vector2
 var _shake: float = 0.0
@@ -437,6 +438,21 @@ func _go_still() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 
+## Swaps the worker's sheet to <sprite>_<pose>.png while a pattern asks for it, if that sheet
+## exists. The pose sheet has as many frames as the idle sheet.
+func _set_pose(name: String) -> void:
+	if name == _pose:
+		return
+	var base := "res://assets/sprites/%s_battle.png" % str(worker.get("sprite", worker_id))
+	var path := "res://assets/sprites/%s_%s.png" % [str(worker.get("sprite", worker_id)), name] if name != "" else base
+	if not ResourceLoader.exists(path):
+		return
+	_pose = name
+	var tex: Texture2D = load(path)
+	_worker_sprite.texture = tex
+	_worker_sprite.offset = Vector2(-tex.get_width() / 2.0 / _idle_frames, -tex.get_height())
+
+
 func _gain(n: int) -> void:
 	if n <= 0:
 		return
@@ -501,7 +517,7 @@ func _physics_process(delta: float) -> void:
 	if _pattern.rail:
 		v.y = 0.0
 	var lim := Vector2.ZERO if _pattern.locked else _arena.size / 2.0 - Vector2(TOKEN_R + 1, TOKEN_R + 1)
-	_arena.token = (_arena.token + v * float(Game.tuning.get("token_speed", 90)) * dt).clamp(-lim, lim)
+	_arena.token = (_arena.token + (v * float(Game.tuning.get("token_speed", 90)) + _pattern.pull) * dt).clamp(-lim, lim)
 	if _pattern.rail:
 		_arena.token.y = _pattern.token_start().y - _pattern.lift
 	if Input.is_action_just_pressed("rewind"):
@@ -616,7 +632,8 @@ func _on_hour_ended() -> void:
 func _process(delta: float) -> void:
 	if _worker_sprite:
 		_anim_t += delta * 1.5
-		_worker_sprite.frame = int(_anim_t) % _idle_frames if _idle_frames > 1 else 0
+		_set_pose(_pattern.pose if _dodging and _pattern else "")
+		_worker_sprite.frame = int(_anim_t * (2.0 if _pose != "" else 1.0)) % _idle_frames if _idle_frames > 1 else 0
 		_shake = maxf(0.0, _shake - delta)
 		_worker_sprite.position = _worker_base + (Vector2(randf_range(-2, 2), 0).round() if _shake > 0.0 else Vector2.ZERO)
 	if _arena:

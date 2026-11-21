@@ -24,6 +24,15 @@
       "speed": 70,
       "from": "both",
       "color": "straw"
+    },
+    {
+      "type": "fork",
+      "duration": 7,
+      "count": 5
+    },
+    {
+      "type": "catch",
+      "duration": 8
     }
   ],
   "task": {

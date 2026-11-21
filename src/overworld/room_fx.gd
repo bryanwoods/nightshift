@@ -1,8 +1,8 @@
 class_name RoomFx
 extends Node2D
 ## Small motion that a room draws in code. Below the actors: shadows, puddle ripples and
-## reflections, the flicker of lit shop windows. Above them: moths at lit lamps
-## and dust in the flashlight beam.
+## reflections, the flicker of lit shop windows. Above them: moths at lit lamps,
+## fireflies and dust in the flashlight beam.
 
 const MOTH_FROM: Array[Vector2] = [Vector2(-90, 10), Vector2(80, -20), Vector2(-20, -60)]
 
@@ -42,6 +42,7 @@ func _draw() -> void:
 	var t := _t
 	if above:
 		_draw_moths(t)
+		_draw_fireflies(t)
 		_draw_dust(t)
 		return
 	var actors := _actors()
@@ -138,6 +139,19 @@ func _draw_mirror(sprite: Sprite2D, feet: Vector2, o: Vector2, t: float) -> void
 			var c := img.get_pixelv(frame + Vector2i(i, size.y - 3 - j * 3))
 			if c.a > 0.5:
 				_px(at, Color(c, 0.6))
+
+
+## The room's `fireflies` count: each one drifts around its own spot and blinks.
+func _draw_fireflies(t: float) -> void:
+	var size := Vector2(room.grid) * Room.TILE
+	for i in int(room.data.get("fireflies", 0)):
+		var home := Vector2(fposmod(i * 197.3, size.x - 32.0), fposmod(i * 113.7, size.y - 48.0)) + Vector2(16, 32)
+		var p := (home + Vector2(sin(t * 0.5 + i * 1.7) * 14.0, cos(t * 0.37 + i * 2.3) * 9.0)).round()
+		var blink := sin(t * 1.3 + i * 4.1)
+		if blink > 0.0:
+			_px(p, Color(Game.color("lamp"), blink))
+			for d: Vector2 in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+				_px(p + d, Color(Game.color("lamp"), blink * 0.25))
 
 
 ## Three moths for each lamp post. They fly in when its light comes on and leave when it goes out.

@@ -1,21 +1,21 @@
 # hedge 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
-ssffssssffsssffs
-sfddfssfddfsfddf
-fddddffddddfdddd
-dddndddddndddddd
-ddddddnddddddndd
-dndddddddddddddd
-ddddnddddnddddnd
-dddddddddddddddd
-nddddddnddddnddd
-ddddnddddddddddd
-dddddddddnddddnd
-ndddddnddddddddd
-dddddddddddndddd
+nvvvvnnsvvvvnnvv
+vsvvvsvvvvvvvEvv
+vsvFssvvvsvvvvnv
+vvvvvvnnnvnnvvns
+vvvnvvvnnxnvvvsn
+dvnddvvnvndddnvd
+nnndvdnsvnndnndd
+nvdddnFnsndnvndn
+vdsddvdnndddnnnn
+dddddsnndnvEndnd
+dvnnnnnnnvnddnnd
+ndndndddddddnnnv
+dddnnnnvndnnddnd
 nnnnnnnnnnnnnnnn
 kkkkkkkkkkkkkkkk
 kkkkkkkkkkkkkkkk

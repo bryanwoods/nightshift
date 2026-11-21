@@ -1,0 +1,21 @@
+# sprout 16x16
+# A seedling. You can walk over it.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwvvvvdvvvvvv
+dvvvvdvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+vvvvvwvvvvwvvvvv
+vvvvvwwvvwwvvvvv
+vvvvvvwwwwvvvvvv
+vvvvdvdwwvvvvvvv
+vvvvvvvwsvvvvwvv
+vvvvvvvwsvvvvvvv
+vvvvvvksskvvvvvv
+vvvnvvvkkvvvvvvd
+dvvvdvvvvvvvvvvv
+vvvvvvvvvvvvnvvv
+vvvvnvvvvvvvvvvv
+vvvvvvwvdvvvnvvd

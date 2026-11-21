@@ -1,20 +1,20 @@
 # punch_clock 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
-ndndndndndndndnd
-ndndndndndndndnd
-ndnffffffffffdnd
-ndnffffkkffffdnd
-ndnfffkmmkfffdnd
-ndnffkmmmmkffdnd
-ndnffkmmmmkffdnd
-ndnfffkmmkfffdnd
-ndnffffkkffffdnd
-ndnffffffffffdnd
-ndnffkkkkkkffdnd
-ndnffkkkkkkffdnd
-ndnffffffffffdnd
-ndnffffffffffdnd
-ndndndndndndndnd
-ndndndndndndndnd
+nsnsnsnsnsnsnsns
+nsnsnsnsnsnsnsns
+nsnffffssfffsnns
+nsnfffskksffsnns
+nsnffskmmksfsnns
+nsnfskmmmmkfsnns
+nsnfskmmmmkfsnns
+nsnffskmmkffsnns
+nsnfffskkfffsnns
+nsnffssssssfsnns
+nsnfskkkkkkfsnns
+nsnfskkkkkkfsnns
+nsnfffffffffsnns
+nsnssssssssssnns
+nsnsnsnsnsnsnsns
+nsnsnsnsnsnsnsns

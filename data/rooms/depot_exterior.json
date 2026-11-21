@@ -22,9 +22,10 @@
     { "x": 4, "y": 3, "tile": "sidewalk", "if_gone": "puddle_keeper" },
     { "x": 8, "y": 3, "tile": "sidewalk", "if_gone": "puddle_keeper" }
   ],
-  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "side": [11, 2, "down"] },
+  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "side": [11, 2, "down"], "terrarium": [15, 2, "down"] },
   "entities": [
     { "type": "door", "x": 0, "y": 2, "h": 6, "to": "street_main", "spawn": "east", "minutes": 3 },
+    { "type": "false_wall", "x": 15, "y": 1, "tile": "alley_gap", "to": "terrarium", "spawn": "secret", "minutes": 1 },
     { "type": "door", "x": 11, "y": 1, "to": "depot_interior", "spawn": "side", "if_flag": "tonight_side_door_open" },
     { "type": "inspect", "x": 11, "y": 1, "dialogue": "depot_side_door", "unless_flag": "tonight_side_door_open" },
     { "type": "inspect", "x": 9, "y": 1, "dialogue": "depot_punch_clock" },

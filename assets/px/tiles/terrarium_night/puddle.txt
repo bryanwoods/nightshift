@@ -1,0 +1,21 @@
+# puddle 16x16
+# Pond water. You can wade through it.
+# rules: viewpoint, walls
+
+@tile
+nnnnnnnnnnnnnnnn
+nnnnnnsnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnqqnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnqmnnnnnnnnn
+nnnnnnnnnqqqnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnsnn
+nnnnqqnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnqqnnn
+nsnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn

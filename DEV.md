@@ -52,11 +52,11 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 
 | Scene | What it tests | Args |
 |---|---|---|
-| `test_room.tscn` | One room, clock running | `room=street_maple` |
+| `test_room.tscn` | One room, clock running | `room=street_maple`, `spawn=alley`, `flags=a,b`, `items=a,b` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
 | `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
 | `gallery.tscn` | Every sprite, tile and portrait at 4x, labeled with its text file; a characters page with each frame and portrait size; saves `screens/gallery_<page>.png` | |
-| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget\|finish\|encounters\|alley\|tour`, `shots=/some/dir` |
+| `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget\|finish\|encounters\|alley\|terrarium\|tour`, `shots=/some/dir` |
 
 Routes: `help` and `hustle` play the whole night each way. `finish` checks a finished worker
 across a save: his post is empty, the bread is on the steps, Wick and the Foreman notice,
@@ -65,7 +65,7 @@ room, every Curfew pattern, Pockets, the spare-or-finish choice and a finish. `c
 Maple Street. `asleep` falls asleep in the Un-Baker fight. `night2` plays Night 1, presses
 Continue and plays Night 2. `input` uses real key presses for walls, interact, doors,
 hold-to-light, the battle menu, Hustle timing, and the clock standing still in a fight. `rewind`
-presses the watch in the Curfew fight. `alley` checks the secret alley. `encounters` spares the Un-Baker, helps the Window Washer, finishes the Puddle Keeper, saves,
+presses the watch in the Curfew fight. `alley` checks the secret alley. `terrarium` checks the hidden terrarium behind the Depot wall: no way out before the Jar Keeper's fight, and the crack in the glass after it. `encounters` spares the Un-Baker, helps the Window Washer, finishes the Puddle Keeper, saves,
 and checks all three the next night. `forget` checks the save model: an unsaved friend is
 forgotten at the end of the night, and a friend saved at a lamp is kept.
 
@@ -115,7 +115,7 @@ tile name in `legend`; the tile names come from `data/tilesets.json`.
 
 | Field | Meaning |
 |---|---|
-| `tileset` | `home_night`, `home_morning`, `town_night` or `depot_night` |
+| `tileset` | `home_night`, `home_morning`, `town_night`, `depot_night` or `terrarium_night` |
 | `spawns` | name → `[x, y]` or `[x, y, "up"]`. Needs `default` |
 | `entities` | see below |
 | `lights` | `{id, x, y, radius, on, color?, energy?}`; `color` is a palette name |
@@ -237,7 +237,7 @@ fight), `idle_frames`, `music`, `rewind_tutorial`,
 beside the worker. The bubble never waits for a key. A task step can also have a `bubble`
 (a dialogue id); it replaces the turn line after that step. A Hustle hit uses the next
 `hustle_lines` line as the bubble, so give three or four. Keep step lines to one or two short lines: the fight should keep moving.
-A pattern can also take `arena`, `damage`, `duration` and `prompt` (a ui.json text key that
+A pattern script can set `pose`: while it runs, the worker shows the sheet `<sprite>_<pose>.png` (same frame count as the idle sheet) if it exists. A pattern can also take `arena`, `damage`, `duration` and `prompt` (a ui.json text key that
 shows over the arena when the pattern starts).
 
 Pattern types and their params:
@@ -249,6 +249,11 @@ Pattern types and their params:
 | `ring` | `rings`, `speed`, `gap_angle`, `color` |
 | `flash` | `rows`, `speed`, `block` (px), `gaps`, `accel`, `ramp`, `color`. The token moves only left and right along the bottom. Rows of blocks come down, each with `gaps` open blocks. Hold confirm to charge, then let go: the token dashes up and breaks every block it touches. A longer charge dashes farther, and 0.6 s reaches the top. On the way back down, blocks hit again |
 | `cloud` | `waves`, `blades`. A pink cloud covers the box, so only the token shows. It thins away and leaves cloud blades, which glint, then glide along arcs and hurt only while they glide. Each later wave has one more blade |
+| `catch` | `count`, `speed`, `sprites`, `burnt`, `miss_damage`, `ramp`. Tadzio walks along the bottom with a plate on their head. Food from `sprites` falls and must be caught: food that reaches the floor costs `miss_damage`. `burnt` is the chance that a piece is burnt toast, which hurts when caught. Caught food stacks on the plate |
+| `fork` | `count`, `warn`, `stick` (seconds), `extra`, `aim`. The box is drawn as a plate. A big "!" and a dark spot mark where each fork lands, and after `warn` the fork stabs down there from the top and stays for `stick`. The tines and the handle hurt. `aim` puts the first fork of each stab on the token, and `extra` adds forks at random spots |
+| `shovel` | `count`, `flight` (seconds), `peak` (px), `pieces`, `spread` (px/s), `life` (seconds), `aim`, `sprites`. The worker turns away (its `<sprite>_dig` sheet) and shovels. Clumps fly in from the left with a shadow under them, burst where they land, and the crumbs slide out and stop. Only what is on the ground hurts. `aim` lands every other clump on the token |
+| `grass` | `volleys`, `warn`, `stay` (seconds), `pull` (px/s), `reach` (share of the box), `gap` (px), `sides` (`down`, `left`, `right`, `up`, in order). The worker waves (its `<sprite>_wave` sheet) and an alarm plays. The token is pulled toward one wall while grass tips poke out of it, then the blades shoot in. One stretch of the wall stays bare |
+| `seeds` | `seeds`, `hang` and `fly` (seconds), `drops`, `speed`, `slant` (the rain), `branches`. Give it about 11 seconds. Seeds stand in a ring around the box, then close in on the middle and squeeze into one big seed that drops to the floor. Slanted rain crosses the whole box, like the Puddle Keeper's. Then one tree grows from the seed, and its branches blink, then climb out to the walls at different heights, on alternate sides |
 | `sheep` | `count`, `speed`, `fences`, `sprite`. Fences stand on the bottom of the box and do not hurt. Sheep run in from the left and hop every fence, each hop either just over the fence or up to the top of the box |
 | `staff` | `count`, `speed`, `sprite`, `lanes`, `sequence`, `period`. A music staff swings over the box like a pendulum and hurts on touch. It drops the next note of `sequence` when it passes over that lane, with the lane's pitch |
 | `shine` | `count`, `speed`, `sprite`, `accel`, `ramp`. The token stays in the middle, and the arrows turn the flashlight up, down, left or right. Shadows come straight in from the four sides, and the beam melts them. Give it a square `arena` |
@@ -496,7 +501,7 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - The punch card is always on the nightstand in the morning, also after falling asleep.
 - `end_night` in the morning opens the Night End card; at night it rings 3:00.
 - The palette has two extra night colors, `straw` and `honey`, for Tadzio's dirty-blonde hair. With only the spec's ten colors, the hair read as ginger.
-- Tadzio's sprite and portraits are drawn from a photo: long straight hair parted in the middle, light eyes, a small closed smile. The pajamas copy his white-and-teal colorblock shirt. The pajama pattern is still `TODO(Tadzio)`.
+- Tadzio's sprite and portraits are drawn from a photo: long straight hair parted to one side with a small swoop of bangs, dark jade eyes (`moss`), a small closed smile. The pajamas are soft aqua (`seafoam`) with white sparks (`froth`), and the pants are dusk with mint sparks (`mint`). Tadzio picked them from a page of 8 patterns.
 - Wick counts as a friend (`friend_wick`) once he joins, so the Night End card lists him.
 - Before a dark turn, the battle menu cursor moves to Wick and the warning says "Ask Wick!". In the first playtest, the player chose Hustle on the dark turn and lost 15 of 20 Awake.
 - The crate beside the Depot side door opens the lost-and-found. In the first playtest, the player inspected that crate and missed the bin one tile away, so they never got the watch.
@@ -514,11 +519,11 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Art review 3: a key name in text, such as `{rewind}`, shows the gamepad button from `pad_keys` in `data/ui.json` while a controller is connected.
 - Art review 3: Wick is not in the backyard. Tadzio meets him on Street Maple (SPEC.md, Night 1 step 5). The small light that bobs past the backyard gate is his flame. The tour saves `screens/tour_wick_tutorial.png`.
 - Playtest 2026-11-07: the one with no job is the secret boss, and its fight took 20 seconds. A fight ends at the last Help with no dodge after it, so 3 questions meant 2 dodges. Now it asks 6 questions, 5 with a wrong answer that costs a round, and it has 5 harder patterns of 7 to 8 seconds, `hit_damage` 4 and `patience` 50. The longer fight would use up the minutes that the night needs for Curfew, so the night clock stops during this fight (`"clock": false`).
-- Playtest 2026-11-07: Curfew's third attack is a pink cloud that covers the box, then breaks into cloud blades that glide along arcs (`cloud`). The token draws over the cloud, so Tadzio always sees where he is.
+- Playtest 2026-11-07: Curfew's third attack is a pink cloud that covers the box, then breaks into cloud blades that glide along arcs (`cloud`). The token draws over the cloud, so Tadzio always sees where they are.
 - Playtest 2026-11-07: Curfew's ring is now counting sheep (`sheep`): fences on the bottom of the box, and sheep that hop each fence low or high.
 - Playtest 2026-11-07: Curfew's opener is a music staff that swings over the box and drops its notes (`staff`), in place of the note rain. The notes keep the lanes and pitches of `sequence`, so the lullaby step still has the same right answer.
 - Playtest 2026-11-07: Curfew is redrawn cuter: a round heap of dark, soft patchwork quilts with a big cream face, line eyes, diagonal blush and a striped nightcap with a pom-pom, in place of the two pillows. Its town sheet and portraits come from the same art. The "Fluff the pillow" help step keeps its words.
-- Playtest 2026-11-07: the round 1 town sheets of the workers did not look like their battle sheets. Each town sheet is now its battle sheet at half size (16x32, the Un-Baker with his cart 24x32, Curfew 32x40), with the face drawn again by hand. The battle sheet at full size was tried first, but it made the workers twice as tall as Tadzio and Wick. The Un-Baker, Window Washer and Puddle Keeper portraits are the heads of their battle sheets. Curfew keeps its portraits. Curfew starts off screen and rolls in (`move` with `enter`). The bedroom drawing shows somebody Tadzio used to like, and he can leave it up or tear it down (`drawing_torn`).
+- Playtest 2026-11-07: the round 1 town sheets of the workers did not look like their battle sheets. Each town sheet is now its battle sheet at half size (16x32, the Un-Baker with his cart 24x32, Curfew 32x40), with the face drawn again by hand. The battle sheet at full size was tried first, but it made the workers twice as tall as Tadzio and Wick. The Un-Baker, Window Washer and Puddle Keeper portraits are the heads of their battle sheets. Curfew keeps its portraits. Curfew starts off screen and rolls in (`move` with `enter`). The bedroom drawing shows somebody Tadzio used to like, and they can leave it up or tear it down (`drawing_torn`).
 - Playtest 2026-11-06: the dark route (SPEC.md, Round 4) starts on the `many_gone` flag that Round 2 already sets, so there is no new counter. `"dark": true` is set on each line in the data, not on all narration, so Tadzio picks which lines turn red. The tour saves `screens/tour_dark_route.png`.
 - Playtest 2026-11-05: Wick takes his own turn after Tadzio's once he has joined: Light, Hold or Warm (+3 Awake, `wick_warm_awake` in tuning.json, 1 minute). Tadzio's menu is Help, Hustle, Stall and Pockets. Wick's choice shows as a short line in the arena, not a textbox, so a fight does not slow down.
 - Playtest 2026-11-05: a Hustle hit says the next of the worker's `hustle_lines`, so the line is new each hit.
@@ -529,7 +534,7 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Round 2: the practice dummy stands in the backyard, so practice comes before 2:00 and costs no minutes.
 - Round 2: the Un-Baker stands at his post from the start of the night, with his cart and a lantern. He no longer walks in.
 - Round 2: the flashlight starts off every night, and the bedroom names its key once. Without this, the check "a player who never turns it on never finds the alley" could not hold.
-- Round 2: a false wall stays open while Tadzio stands in it, so the gap cannot close on him.
+- Round 2: a false wall stays open while Tadzio stands in it, so the gap cannot close on them.
 - Round 2: the key to nothing comes from every outcome of the alley fight ("a strange reward either way").
 - Round 3: `--screens` opens a window. Godot's headless mode has no renderer, so it cannot take a screenshot.
 - Round 3: the screenshot loop came before the art (Item 4 before Item 3), because each art group ends with a new gallery.

@@ -1,0 +1,21 @@
+# log 16x16
+# A twig as thick as a log. Solid.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwvvvvdvvvvvv
+dvvvvdvvvvvvvvvv
+vkkkkkkkkkkkkkkv
+kyyyyyyyyyyyykmk
+kyoooyyyyooyykmk
+koooooooooookmmk
+kooyyoooooookmmk
+kooooooyyoookmmk
+koooooooooookmok
+knoooonnooonkook
+vkkkkkkkkkkkkkkd
+dvnnnnnnnnnnnnvv
+vvvvvvvvvvvvnvvv
+vvvvnvvvvvvvvvvv
+vvvvvvwvdvvvnvvd

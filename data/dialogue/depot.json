@@ -139,13 +139,13 @@
         {
           "speaker": "wick",
           "portrait": "wick_panic",
-          "text": "He's okay! He held the light on Maple! He's a natural! Kind of!",
+          "text": "They're okay! They held the light on Maple! They're a natural! Kind of!",
           "unless_flag": "many_gone"
         },
         {
           "speaker": "wick",
           "portrait": "wick_sad",
-          "text": "He's with me.",
+          "text": "They're with me.",
           "if_flag": "many_gone"
         },
         {

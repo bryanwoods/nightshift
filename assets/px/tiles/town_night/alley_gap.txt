@@ -1,21 +1,21 @@
 # alley_gap 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls, doors
 
 @tile
-fffkkkkkkkkkkfff
-fffkkkkkkkkkkfff
-dddkkkkkkkkkkddd
-dddkkkkkkkkkkddd
-nnnkkkkkkkkkknnn
-dddkkkkkkkkkkddd
-dddkkkkkkkkkkddd
-nnnkkkkkkkkkknnn
-dddkkkkkkkkkkddd
-dddkkkkkkkkkkddd
-nnnkkkkllkkkknnn
-dddkkkkkkkkkkddd
-dddnnnnnnnnnnddd
+ffskkkkkkkkkkfff
+ssskkkkkkkkkksss
+ddnkkkkkkkkkksdd
+nnnkkkkkkkkkksnn
+nnkkkkkkkkkkkdnn
+ssskkkkkkkkkksss
+nnnkkkkkkkkkksnn
+nnkkkkkkkkkkkdnn
+ssskkkkkkkkkksss
+nnnkkkkkkkkkksnn
+nnkkkkkllkkkkdnn
+ssskkkkkkkkkksss
+nnnddddddddddsnn
 nnnnnnnnnnnnnnnn
-dddnnnnnnnnnnddd
-kkksssssssssskkk
+sssnnnnnnnnnnsss
+kkkffffffffffkkk

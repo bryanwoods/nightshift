@@ -4,7 +4,7 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE }
+enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE, FORK, GRASS, TREE }
 
 const LANE_DROP := 600.0
 const SHINE_REACH := 30.0
@@ -12,6 +12,15 @@ const SHINE_HALF_ANGLE := 0.61
 const CHARGE_FULL := 0.6
 const BLADE_HOLD := 1.5
 const BLADE_GLIDE := 1.2
+const FORK_DROP := 0.12
+const FORK_LIFT := 0.25
+const FORK_TINES := 10.0
+const GRASS_RISE := 0.08
+const GRASS_FALL := 0.15
+const TRUNK_GROW := 0.8
+const BRANCH_WARN := 0.6
+const BRANCH_GROW := 1.0
+const BRANCH_THICK := 5.0
 
 
 class Bullet:
@@ -20,14 +29,15 @@ class Bullet:
 	var vel: Vector2 = Vector2.ZERO
 	var tex: String = ""
 	## Sprite: hit radius. Ring: current radius. Lane: age, scaled by grow (its pace).
-	## Blade: age in seconds.
+	## Blade and fork: age in seconds.
 	## Block, staff and fence: half the height.
 	var radius: float = 3.0
 	## Bar, lane, block, staff and fence: width. Ring: thickness. Blade: radius of its arc.
 	var width: float = 6.0
 	## Bar: y of the gap. Ring: angle of the gap. Lane: strike time. Blade: start angle.
+	## Fork: seconds it stays stuck in the plate.
 	var gap_center: float = 0.0
-	## Bar: gap in px. Ring: gap in radians. Lane: warning time. Blade: signed sweep.
+	## Bar: gap in px. Ring: gap in radians. Lane and fork: warning time. Blade: signed sweep.
 	var gap: float = 0.0
 	var grow: float = 0.0
 	## Drift: turn rate. Lane: angle of the beam. Staff and blade: their tilt.
@@ -35,6 +45,10 @@ class Bullet:
 	var alive: bool = true
 	## Blade: center of its arc.
 	var anchor: Vector2 = Vector2.ZERO
+	## Sprite: how high above its shadow it flies. It cannot hit while it is up.
+	var height: float = 0.0
+	## Tree: one [height above the foot, side (-1 or 1), delay] for each branch.
+	var parts: PackedFloat32Array = []
 
 	func copy() -> Bullet:
 		var b := Bullet.new()
@@ -50,6 +64,8 @@ class Bullet:
 		b.steer = steer
 		b.alive = alive
 		b.anchor = anchor
+		b.height = height
+		b.parts = parts.duplicate()
 		return b
 
 
@@ -63,6 +79,15 @@ var bullets: Array[Bullet] = []
 var half: Vector2 = Vector2(60, 40)
 var damage: int = 2
 var dark: bool = false
+## True: the box is drawn as a plate.
+var plate: bool = false
+## True: the token is Tadzio with a plate on their head. Stack is what they have caught on it.
+var catcher: bool = false
+var stack: Array[String] = []
+## Pushes the token this many px/s, every step.
+var pull: Vector2 = Vector2.ZERO
+## The worker's pose during this pattern: a sheet named <sprite>_<pose>, or "" for idle.
+var pose: String = ""
 ## How thick the cloud over the box is, from 0 to 1.
 var fog: float = 0.0
 ## The dodge round of the fight, from 0.
@@ -150,6 +175,12 @@ func _gone(b: Bullet) -> bool:
 			return false
 		Kind.BLADE:
 			return b.radius > BLADE_HOLD + BLADE_GLIDE + 0.15
+		Kind.FORK:
+			return b.radius > b.gap + FORK_DROP + b.gap_center + FORK_LIFT
+		Kind.GRASS:
+			return b.radius > b.gap + GRASS_RISE + b.gap_center + GRASS_FALL
+		Kind.TREE:
+			return b.radius > b.gap
 	return b.pos.y > half.y + 10 or b.pos.y < -half.y - 14 or absf(b.pos.x) > half.x + 14
 
 
@@ -173,6 +204,8 @@ func would_hit(token: Vector2, r: float, lookahead: float) -> bool:
 
 
 func _hits(b: Bullet, p: Vector2, r: float) -> bool:
+	if b.height > 3.0:
+		return false
 	match b.kind:
 		Kind.BAR:
 			return absf(p.x - b.pos.x) < b.width / 2.0 + r and absf(p.y - b.gap_center) > b.gap / 2.0 - r
@@ -188,6 +221,28 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 		Kind.BLADE:
 			var tip := (p - b.pos).rotated(-b.steer)
 			return b.radius >= BLADE_HOLD and absf(tip.x) < 9.0 + r and absf(tip.y) < 2.5 + r
+		Kind.FORK:
+			var tip := fork_tip(b)
+			var reach := b.width / 2.0 if p.y > tip - FORK_TINES - r else 2.0
+			return p.y < tip + r and absf(p.x - b.pos.x) < reach + r
+		Kind.GRASS:
+			if b.radius < b.gap:
+				return false
+			var into := (p - b.pos).rotated(-b.steer)
+			return absf(into.y) < b.width / 2.0 + r and into.x < grass_length(b) + r
+		Kind.TREE:
+			var top := b.pos.y - trunk_length(b)
+			if absf(p.x - b.pos.x) < 4.0 + r and p.y > top - r:
+				return true
+			if trunk_length(b) > 0.85 * b.gap_center and p.distance_to(Vector2(b.pos.x, top - 12.0)) < 12.0 + r:
+				return true
+			for i in b.parts.size() / 3:
+				var reach := branch_reach(b, i)
+				var y := b.pos.y - b.parts[i * 3]
+				var side := b.parts[i * 3 + 1]
+				if reach > 0.0 and absf(p.y - y) < BRANCH_THICK / 2.0 + r and (p.x - b.pos.x) * side > -r and (p.x - b.pos.x) * side < reach + r:
+					return true
+			return false
 		Kind.STAFF:
 			var local := (p - b.pos).rotated(-b.steer)
 			return absf(local.x) < b.width / 2.0 + r and absf(local.y) < b.radius + r
@@ -201,6 +256,46 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 ## How far into the box a lane has struck, or -INF while it still hovers outside.
 func lane_reach(b: Bullet) -> float:
 	return (b.radius - b.gap) * LANE_DROP if b.radius >= b.gap else -INF
+
+
+## The y of a fork's tips, or -INF while its "!" still warns. It drops from above the box,
+## stays stuck, then lifts out.
+func fork_tip(b: Bullet) -> float:
+	var age := b.radius - b.gap
+	if age < 0.0:
+		return -INF
+	var top := -half.y - FORK_TINES - 2.0
+	if age < FORK_DROP:
+		return lerpf(top, b.pos.y, age / FORK_DROP)
+	return lerpf(b.pos.y, top, clampf((age - FORK_DROP - b.gap_center) / FORK_LIFT, 0.0, 1.0))
+
+
+## How far a grass blade reaches in from its wall: a short tip while it warns, then the full
+## length (anchor.x) while it is up, then back down.
+func grass_length(b: Bullet) -> float:
+	var age := b.radius - b.gap
+	if age < 0.0:
+		return 4.0
+	var full := b.anchor.x
+	if age < GRASS_RISE:
+		return full * age / GRASS_RISE
+	return full * (1.0 - clampf((age - GRASS_RISE - b.gap_center) / GRASS_FALL, 0.0, 1.0))
+
+
+## A tree grows a trunk gap_center tall from pos, then each branch in parts waits its delay,
+## blinks for BRANCH_WARN and climbs out to the wall of the box. It is gone at age gap.
+func trunk_length(b: Bullet) -> float:
+	return b.gap_center * ease(clampf(b.radius / TRUNK_GROW, 0.0, 1.0), 0.6)
+
+
+## How far branch i reaches from the trunk: below 0 while it waits, -0.5 while it blinks.
+func branch_reach(b: Bullet, i: int) -> float:
+	var age := b.radius - TRUNK_GROW - b.parts[i * 3 + 2] - BRANCH_WARN
+	if age < -BRANCH_WARN:
+		return -1.0
+	if age < 0.0:
+		return -0.5
+	return half.x * minf(age / BRANCH_GROW, 1.0)
 
 
 func snapshot() -> Dictionary:

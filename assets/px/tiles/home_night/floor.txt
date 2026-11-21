@@ -1,21 +1,20 @@
 # floor 16x16
-# item: tiles
-# rules: viewpoint, walls
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
+sssfssfsfsdfssss
 ssssssssssdsssss
-ssssssssssdsssss
-ssssssssssssssss
+ssssddddssdsssss
 dddddddddddddddd
+sssdfsssssssssss
+sssdsssfssssssss
 sssdssssssssssss
-sssdssssssssssss
-ssssssssssssssss
 dddddddddddddddd
+sssssssssfssdfss
+ssssssssssssdsfs
 ssssssssssssdsss
-ssssssssssssdsss
-ssssssssssssssss
 dddddddddddddddd
+ssssfssdfssfssss
+sssssssdsssddsss
 sssssssdssssssss
-sssssssdssssssss
-ssssssssssssssss
 dddddddddddddddd

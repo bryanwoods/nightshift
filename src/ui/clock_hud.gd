@@ -70,7 +70,7 @@ func _on_minute(minute: int) -> void:
 		_flying.append([spent, _source(), 0.0, NightClock.text()])
 
 
-## Above Tadzio's head while he walks the town. Under the clock in a fight or a menu.
+## Above Tadzio's head while they walk the town. Under the clock in a fight or a menu.
 func _source() -> Vector2:
 	var room: Room = get_parent().get("room")
 	if room == null or room.player == null or Game.in_battle or Game.busy:

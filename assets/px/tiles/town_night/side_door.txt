@@ -1,21 +1,21 @@
 # side_door 16x16
-# item: doors (art review 1)
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls, doors, warm
 
 @tile
 ffffffffffffffff
-ffffffffffffffff
-dndffffffffffndn
-dndfsskkkkkkfndn
-dndfsskkkkkkfndn
-dndfsskkkkkkfndn
-dndfsskkkkkkfndn
-dddfsskkkkkkfddd
-dndfslkkkkkkfndn
-dndfslkkkkkkfndn
-dndfsskkkkkkfndn
-dndfsskkkkkkfndn
-dndfsskkkkkkfndn
-dndfsskkkkkkfndn
-nnnfsskkkkkkfnnn
+sssffffffffffsss
+nnsfsssssssssnsn
+nnsssdkkkkkksnsn
+nnsssdkkkkkksnsn
+nnsssdkkkkkksnsn
+nnsssdkkkkkksnsn
+dsdssdkkkkkkssds
+nnssslkkkkkksnsn
+nnssslkkkkkksnsn
+nnsssdkkkkkksnsn
+nnsssdkkkkkksnsn
+nnsssdkkkkkksnsn
+nnsssdkkkkkksnsn
+kkksddkkkkkkskkk
 kkkkkkkkkkkkkkkk

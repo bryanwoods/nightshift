@@ -1,0 +1,161 @@
+{
+  "id": "jar_keeper",
+  "todo": "TODO(Tadzio): name, look and lines are placeholders. Who is this and why does it keep things in?",
+  "name": "The Jar Keeper",
+  "job": "Keeps everything inside the glass",
+  "sprite": "jar_keeper",
+  "patience": 30,
+  "hours": 10,
+  "hit_damage": 3,
+  "clock": false,
+  "patterns": [
+    {
+      "type": "rain",
+      "duration": 6,
+      "count": 14,
+      "speed": 70,
+      "wobble": 16,
+      "sprite": "drop"
+    },
+    {
+      "type": "shovel",
+      "duration": 8,
+      "count": 9,
+      "arena": [
+        112,
+        76
+      ]
+    },
+    {
+      "type": "grass",
+      "duration": 8,
+      "volleys": 4,
+      "arena": [
+        108,
+        72
+      ]
+    },
+    {
+      "type": "seeds",
+      "duration": 11,
+      "arena": [
+        112,
+        76
+      ]
+    },
+    {
+      "type": "sweep",
+      "duration": 6,
+      "bars": 3,
+      "gap_px": 24,
+      "speed": 66,
+      "from": "both",
+      "color": "wake",
+      "arena": [
+        108,
+        72
+      ]
+    },
+    {
+      "type": "drift",
+      "duration": 7,
+      "count": 7,
+      "speed": 40,
+      "turn_rate": 1.5,
+      "sprite": "gnat",
+      "arena": [
+        96,
+        64
+      ]
+    },
+    {
+      "type": "ring",
+      "duration": 6,
+      "rings": 3,
+      "speed": 40,
+      "gap_angle": 60,
+      "color": "wake",
+      "arena": [
+        80,
+        64
+      ]
+    },
+    {
+      "type": "strike",
+      "duration": 7,
+      "volleys": 6,
+      "lanes": 2,
+      "warn": 0.9,
+      "strike": 0.35,
+      "width": 8,
+      "aim": true,
+      "color": "wake",
+      "arena": [
+        64,
+        64
+      ]
+    }
+  ],
+  "task": {
+    "title": "Open the lid",
+    "steps": [
+      {
+        "label": "Ask why the lid is on",
+        "line": "jar_help_1"
+      },
+      {
+        "label": "Poke air holes",
+        "line": "jar_help_2",
+        "choice": {
+          "prompt": "Where do the holes go?",
+          "options": [
+            "In the lid.",
+            "In the glass.",
+            "In the moss."
+          ],
+          "correct": 0,
+          "wrong_line": "jar_help_wrong"
+        }
+      },
+      {
+        "label": "Water the big fern",
+        "line": "jar_help_3"
+      },
+      {
+        "label": "Say what a garden needs",
+        "line": "jar_help_4",
+        "choice": {
+          "prompt": "A garden needs...",
+          "options": [
+            "A lock.",
+            "Someone to visit.",
+            "More glass."
+          ],
+          "correct": 1,
+          "wrong_line": "jar_help_wrong"
+        }
+      }
+    ]
+  },
+  "hustle_lines": [
+    "jar_hustle",
+    "jar_hustle_2",
+    "jar_hustle_3"
+  ],
+  "turn_lines": [
+    "jar_turn_1",
+    "jar_turn_2",
+    "jar_turn_3",
+    "jar_turn_4"
+  ],
+  "dialogue": {
+    "intro": "jar_keeper_intro",
+    "satisfied": "jar_keeper_satisfied",
+    "spared": "jar_keeper_spared"
+  },
+  "rewards": {
+    "satisfied": {
+      "item": "drop_of_dew"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# dirt 8x8
+# item: projectiles
+# A clump of dirt the Jar Keeper shovels into the box. It bursts where it lands.
+
+@sprite
+........
+..kkkk..
+.krrook.
+krooorrk
+korrrook
+krroorrk
+.kkrrkk.
+...kk...

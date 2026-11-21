@@ -115,6 +115,11 @@ def sfx():
     make("door", 0.15, lambda b: (noise(b, 0, 0.05, 0.3, decay=60), tone(b, 0, 0.12, 160, "sine", 0.3, glide=120)))
     make("block", 0.2, lambda b: tone(b, 0, 0.2, note_hz("E5"), "tri", 0.4, release=0.15))
     make("gone", 1.2, lambda b: tone(b, 0, 1.2, note_hz("C3"), "tri", 0.4, attack=0.02, release=0.8))
+    make("alert", 0.45, lambda b: ([tone(b, i * 0.04, 0.04, note_hz(n), "square", 0.25, duty=0.25) for i, n in enumerate(("C6", "E6", "G6"))],
+                                  [tone(b, 0.12 + i * 0.03, 0.03, note_hz("C7" if i % 2 == 0 else "G6"), "square", 0.25 * (1 - i / 11),
+                                        duty=0.25, release=0.01) for i in range(10)]))
+    make("rustle", 0.25, lambda b: (noise(b, 0, 0.25, 0.35, decay=14, seed=5),
+                                   tone(b, 0, 0.2, 300, "tri", 0.3, glide=900, release=0.1)))
     make("step_ok", 0.25, lambda b: (tone(b, 0, 0.1, note_hz("E5"), "tri", 0.3), tone(b, 0.1, 0.15, note_hz("A5"), "tri", 0.3)))
 
 

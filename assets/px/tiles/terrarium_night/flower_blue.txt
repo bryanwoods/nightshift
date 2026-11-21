@@ -1,0 +1,21 @@
+# flower_blue 16x16
+# Small flowers in the moss. You can walk over them.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvqwvvvvdvvvvvv
+dvqmqdvvvvqvvvvv
+vvvqvvvvvqmqvvvv
+vvvwvvvvvvqvvvvv
+vvvwvvvvvvwvvvvv
+vvvvvvvvvvvvvvvv
+vvvvdvqvvvvvvvvv
+vvvvvqmqvvvvvwvv
+vvvvvvqvvvvvvqvv
+vvvvvvwvvvvvqmqv
+vvvnvvvvvvvvvqvd
+dvvvdvvvvvvvvwvv
+vvvvvvvvvvvvnvvv
+vvvvnvvvvvvvvvvv
+vvvvvvwvdvvvnvvd

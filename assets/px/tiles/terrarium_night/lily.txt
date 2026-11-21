@@ -1,0 +1,21 @@
+# lily 16x16
+# A lily pad with a flower, on pond water. You can wade past it.
+# rules: viewpoint, walls
+
+@tile
+nnnnnnnnnnnnnnnn
+nnnnnnsnnnnnnnnn
+nnnnkkkkkknnnnnn
+nnqkwwwwwvknnnnn
+nnkwwwwwvvvknnnn
+nnkwwwhwwvvknnnn
+nnkwwhlhkkvknnnn
+nnkwwwhkknknnnnn
+nnkvwwwwvknnqnnn
+nnnkvvvvvknnqqnn
+nnnnkkkkknnnnnnn
+nnnnnnnnnnnnnnnn
+nqqnnnnnnnnnnnnn
+nnnnnnnnnnnqqnnn
+nsnnnnnnnnnsnnnn
+nnnnnnnnnnnnnnnn

@@ -1,0 +1,21 @@
+# flower_gold 16x16
+# Small flowers in the moss. You can walk over them.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvlwvvvvdvvvvvv
+dvleldvvvvlvvvvv
+vvvlvvvvvlelvvvv
+vvvwvvvvvvlvvvvv
+vvvwvvvvvvwvvvvv
+vvvvvvvvvvvvvvvv
+vvvvdvlvvvvvvvvv
+vvvvvlelvvvvvwvv
+vvvvvvlvvvvvvlvv
+vvvvvvwvvvvvlelv
+vvvnvvvvvvvvvlvd
+dvvvdvvvvvvvvwvv
+vvvvvvvvvvvvnvvv
+vvvvnvvvvvvvvvvv
+vvvvvvwvdvvvnvvd

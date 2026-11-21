@@ -1,21 +1,21 @@
 # depot_wall 16x16
-# item: tiles
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
 
 @tile
 ffffffffffffffff
-ffffffffffffffff
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-dddddddddddddddd
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-dndndndndndndndn
-nnnnnnnnnnnnnnnn
+ssssssssssssssss
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+dsdsdsdsdsdsdsds
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+nnsnsnsnsnsnsnsn
+kkkkkkkkkkkkkkkk
 kkkkkkkkkkkkkkkk

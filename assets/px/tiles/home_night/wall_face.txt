@@ -1,21 +1,20 @@
 # wall_face 16x16
-# item: tiles
-# rules: viewpoint, walls
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
 ffffffffffffffff
-ffffffffffffffff
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
-ddndddnddddnddnd
+sffsffsffsffsffs
 nnnnnnnnnnnnnnnn
-nddddddddddddddn
-nddddddddddddddn
+snnnsnnnsnnnsnnn
+ssdnsddnssdnsddn
+sddnsddnsdnnsddn
+sddnsddnsddnsddn
+sdnnsddnsddnsddn
+sddnsddnsddnsddn
+sddnsddnsddnsddn
+sddnsddnsddnsddn
+sddnsddnsddnsddn
+nnnnnnnnnnnnnnnn
+fsssfsssfsssfsss
+dddddddddddddddd
 kkkkkkkkkkkkkkkk

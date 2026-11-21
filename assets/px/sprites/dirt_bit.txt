@@ -1,0 +1,10 @@
+# dirt_bit 5x5
+# item: projectiles
+# A crumb of dirt from a burst clump. It slides, then stops.
+
+@sprite
+.....
+.kkk.
+kork.
+krrk.
+.kk..

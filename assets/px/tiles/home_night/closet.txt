@@ -1,20 +1,20 @@
 # closet 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
 kkkkkkkkkkkkkkkk
-dddddddkdddddddd
-dddddddkdddddddd
-dddddddkdddddddd
-dddddddkdddddddd
-dddddddkdddddddd
-dddddddkdddddddd
-dddddddkdddddddd
-ddddddlkdldddddd
-ddddddlkdldddddd
-dddddddkdddddddd
-dddddddkdddddddd
-dddddddkdddddddd
-sddddddkddddddds
-dddddddkdddddddd
-dddddddkdddddddd
+ssssssskssssssss
+sddddddksddddddd
+sdnnnndksdnnnnnd
+sdnndsdksdnnddsd
+sdnddsdksdndddsd
+sdnddsdksdndddsd
+sdssssdksdsssssd
+sdddddlklddddddd
+sdnnnnlkldnnnnnd
+sdnndsdksdnnddsd
+sdnddsdksdndddsd
+sdnddsdksdndddsd
+sdnddsdksdndddsd
+sdssssdksdsssssd
+sddddddksddddddd

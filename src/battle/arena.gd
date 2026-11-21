@@ -23,7 +23,7 @@ var _c: Dictionary = {}
 
 
 func _ready() -> void:
-	for n in ["ink", "night", "dusk", "moon", "ember", "hush", "wake", "lamp"]:
+	for n in ["ink", "night", "dusk", "slate", "fog", "moon", "ember", "hush", "wake", "lamp", "moss", "honey"]:
 		_c[n] = Game.color(n)
 	_box = StyleBoxFlat.new()
 	_box.bg_color = _c["ink"]
@@ -83,6 +83,12 @@ func _draw_layer() -> void:
 	var half := size / 2.0
 	var dark := pattern != null and pattern.dark
 	_layer.draw_rect(Rect2(-half, size), _c["ink"] if dark else _c["night"])
+	if pattern and pattern.plate:
+		var rim := (half - Vector2.ONE) * minf(1.0, pattern.t / 0.4)
+		_ellipse(Vector2.ZERO, rim, _c["fog"])
+		_ellipse(Vector2.ZERO, rim - Vector2(4, 4), _c["slate"])
+		_ellipse(Vector2.ZERO, rim * 0.62, _c["dusk"])
+		_ellipse(Vector2.ZERO, rim * 0.62 - Vector2(1.5, 1.5), _c["slate"])
 	if pattern and pattern.locked:
 		var f := pattern.facing * Pattern.SHINE_REACH
 		_layer.draw_colored_polygon(PackedVector2Array([token, token + f.rotated(Pattern.SHINE_HALF_ANGLE), token + f.rotated(-Pattern.SHINE_HALF_ANGLE)]), Color(_c["moon"], 0.3))
@@ -100,7 +106,17 @@ func _draw_layer() -> void:
 		for i in 9:
 			var at := Vector2(sin(i * 2.4 + pattern.t * 0.7) * half.x * 0.8, cos(i * 1.7 + pattern.t * 0.5) * half.y * 0.7)
 			_layer.draw_circle(at, 12.0 + 4.0 * sin(i + pattern.t), Color(_c["moon"], 0.35 * pattern.fog))
-	if token_visible:
+	if token_visible and pattern and pattern.catcher:
+		var at := token.round()
+		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:
+			_layer.draw_texture_rect_region(_texture("tadzio"), Rect2(at + Vector2(-8, -1), Vector2(16, 32)), Rect2(0, 0, 16, 32))
+		_layer.draw_rect(Rect2(at + Vector2(-5, 0), Vector2(10, 1)), _c["fog"])
+		_layer.draw_rect(Rect2(at + Vector2(-10, -2), Vector2(20, 2)), _c["moon"])
+		var shown := pattern.stack.slice(-8)
+		for i in shown.size():
+			var sway := roundf(sin(pattern.t * 5.0 + i) * minf(2.0, i * 0.4))
+			_layer.draw_texture(_texture(shown[i]), at + Vector2(-4 + sway, -10 - i * 5))
+	elif token_visible:
 		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(1, 1, 1, 0.9))
 		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:
 			_layer.draw_texture(_token, (token - Vector2(3, 3)).round())
@@ -158,6 +174,21 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_rect(Rect2(x, top, 2, b.radius * 2.0), wood)
 			for y in [top + 2.0, top + 6.0]:
 				_layer.draw_rect(Rect2(left - 2.0, y, b.width + 4.0, 1), wood)
+		Pattern.Kind.FORK:
+			var tip := pattern.fork_tip(b)
+			if tip == -INF:
+				_ellipse(b.pos, Vector2(3, 1.5) + Vector2(5, 2) * b.radius / b.gap, Color(_c["ink"], 0.5))
+				if fmod(b.radius, 0.2) < 0.14:
+					var font := _clip.get_theme_default_font()
+					var at := b.pos + Vector2(-font.get_string_size("!", HORIZONTAL_ALIGNMENT_LEFT, -1, 32).x / 2.0, -6)
+					_layer.draw_string_outline(font, at, "!", HORIZONTAL_ALIGNMENT_LEFT, -1, 32, 4, _c["ink"])
+					_layer.draw_string(font, at, "!", HORIZONTAL_ALIGNMENT_LEFT, -1, 32, _c["ember"])
+			else:
+				var neck := tip - Pattern.FORK_TINES
+				for x: float in [-5.0, -1.0, 3.0]:
+					_layer.draw_rect(Rect2(b.pos.x + x, neck, 2, Pattern.FORK_TINES), _c["moon"])
+				_layer.draw_rect(Rect2(b.pos.x - 5, neck - 3, 10, 3), _c["moon"])
+				_layer.draw_rect(Rect2(b.pos.x - 2, -half.y, 4, maxf(0.0, neck - 3 + half.y)), _c["fog"])
 		Pattern.Kind.BLOCK:
 			_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 + 0.5, b.pos.y - b.radius, b.width - 1.0, b.radius * 2.0), col)
 		Pattern.Kind.LANE:
@@ -166,10 +197,68 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_line(b.pos, b.pos + d * size.length(), Color(col, 0.25), 1.0)
 			else:
 				_layer.draw_line(b.pos, b.pos + d * pattern.lane_reach(b), col, b.width)
+		Pattern.Kind.GRASS:
+			var warning := b.radius < b.gap
+			if warning and int(b.radius * 10.0) % 2 == 1:
+				return
+			var d := Vector2.from_angle(b.steer)
+			var n := d.orthogonal()
+			var length := pattern.grass_length(b)
+			var lean := float(int(absf(b.pos.x * 7.0 + b.pos.y * 13.0)) % 5 - 2)
+			for k: int in [0, 2, 1]:
+				var h: float = length * [0.75, 1.0, 0.6][k]
+				var bend: float = (lean + (k - 1) * 1.5) * h / 14.0
+				var base := b.pos + n * (k - 1) * 2.0
+				var tip: Vector2 = base + d * h + n * bend
+				var mid: Vector2 = base + d * h * 0.55 + n * bend * 0.3
+				var blade := PackedVector2Array([base - n * 1.8, mid - n * 1.2, tip, mid + n * 1.2, base + n * 1.8])
+				_layer.draw_colored_polygon(blade, _c["moss"] if k != 1 else (Color(_c["wake"], 0.7) if warning else _c["wake"]))
+			_layer.draw_rect(Rect2(b.pos - n.abs() * b.width / 2.0 - d.abs(), n.abs() * b.width + d.abs() * 2.0), _c["moss"])
+		Pattern.Kind.TREE:
+			var foot := b.pos.y + 2.0
+			var length := pattern.trunk_length(b)
+			var trunk := _texture("tree_trunk")
+			var shown := minf(length + 2.0, trunk.get_height())
+			_layer.draw_texture_rect_region(trunk, Rect2(b.pos.x - 9, foot - shown, 18, shown), Rect2(0, trunk.get_height() - shown, 18, shown))
+			var branch := _texture("tree_branch")
+			for i in b.parts.size() / 3:
+				var reach := pattern.branch_reach(b, i)
+				var y := b.pos.y - b.parts[i * 3]
+				var side := b.parts[i * 3 + 1]
+				if reach == -0.5:
+					if int(b.radius * 8.0) % 2 == 0:
+						_layer.draw_line(Vector2(b.pos.x, y), Vector2(b.pos.x + side * half.x, y), Color(_c["honey"], 0.5), 1.0)
+					continue
+				reach = minf(reach, 54.0)
+				if reach < 1.0:
+					continue
+				if side > 0.0:
+					_layer.draw_texture_rect_region(branch, Rect2(b.pos.x + 2, y - 8, reach, 16), Rect2(0, 0, reach, 16))
+				else:
+					_layer.draw_texture_rect_region(branch, Rect2(b.pos.x - 2 - reach, y - 8, reach, 16), Rect2(112 - reach, 0, reach, 16))
+			var grown := (length / b.gap_center - 0.7) / 0.3
+			if grown > 0.0:
+				var crown := _texture("tree_crown")
+				var tall := ceilf(crown.get_height() * minf(grown, 1.0))
+				var top := foot - length - 2.0
+				_layer.draw_texture_rect_region(crown, Rect2(b.pos.x - 20, top + 3 - tall, 40, tall), Rect2(0, crown.get_height() - tall, 40, tall))
 		_:
 			var tex := _texture(b.tex)
 			if tex:
-				_layer.draw_texture(tex, (b.pos - tex.get_size() / 2.0).round())
+				if b.height > 0.0:
+					_ellipse(b.pos.round() + Vector2(0, 2), Vector2(5, 2.5) * (1.0 - b.height / 80.0), Color(_c["slate"], 0.9))
+				if b.gap < 0.0 and b.gap_center > -b.gap - 0.3 and int(b.gap_center * 12.0) % 2 == 0:
+					return
+				_layer.draw_texture(tex, (b.pos - Vector2(0, b.height) - tex.get_size() / 2.0).round())
+
+
+func _ellipse(at: Vector2, r: Vector2, c: Color) -> void:
+	if r.x <= 0.5 or r.y <= 0.5:
+		return
+	var points := PackedVector2Array()
+	for i in 40:
+		points.append(at + Vector2.from_angle(i / 40.0 * TAU) * r)
+	_layer.draw_colored_polygon(points, c)
 
 
 func _texture(name: String) -> Texture2D:

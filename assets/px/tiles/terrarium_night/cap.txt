@@ -1,0 +1,21 @@
+# cap 16x16
+# A bottle cap someone dropped in. Solid.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvvdvvvvvvv
+vvvvwvvvvdvvvvvv
+dvvkkkkkkkkkkvvv
+vvkfsfsfsfsfskvv
+vkfssssssssssfkv
+vksfmmfffffffskv
+vkfsmmffffffsfkv
+vksffffhhffffskv
+vkfsffhhhhffsfkv
+vksfffhhhhfffskv
+vkfsfffhhfffsfkv
+vksffffffffffskd
+dkfssssssssssfkv
+vvkfsfsfsfsfskvv
+vvvkkkkkkkkkkvvv
+vvvvnnnnnnnnnvvd

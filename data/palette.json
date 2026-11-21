@@ -13,7 +13,20 @@
     "hush": { "hex": "#e05a6d", "letter": "h" },
     "wake": { "hex": "#6cd4a8", "letter": "w" },
     "straw": { "hex": "#d9b46c", "letter": "y" },
-    "honey": { "hex": "#a9824a", "letter": "o" }
+    "honey": { "hex": "#a9824a", "letter": "o" },
+    "moss": { "hex": "#2f6f5c", "letter": "v" },
+    "violet": { "hex": "#a070e8", "letter": "p" },
+    "aqua": { "hex": "#58c8e8", "letter": "q" },
+    "seafoam": { "hex": "#9ad4e4", "letter": "u" },
+    "froth": { "hex": "#e6f4ee", "letter": "x" },
+    "mint": { "hex": "#a8dcc4", "letter": "i" },
+    "walnut": { "hex": "#4f3628", "letter": "j" },
+    "peach": { "hex": "#e2cbb6", "letter": "A" },
+    "rosewood": { "hex": "#c4a89c", "letter": "B" },
+    "rust": { "hex": "#c9521e", "letter": "C" },
+    "clay": { "hex": "#7d3322", "letter": "D" },
+    "lilac": { "hex": "#b4a4d8", "letter": "E" },
+    "blossom": { "hex": "#e8a2b2", "letter": "F" }
   },
   "morning": {
     "cream": { "hex": "#fff4dc", "letter": "c" },

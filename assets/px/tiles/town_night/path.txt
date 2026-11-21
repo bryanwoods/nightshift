@@ -1,22 +1,21 @@
 # path 16x16
-# item: outdoor props (art review 2)
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 # rules: viewpoint, walls
-# Stepping stones from the back door to the gate. A one-pixel dusk edge under each stone.
 
 @tile
 ssssssssssssssss
 ssssssssssssssss
+sssssssssssdssfs
 ssssssssssssssss
+sssssssfffssssss
+sssfsssfffffssss
+sssfffffffffssss
+sssffffffsfffsss
+sddfffffssffsdfs
+ssfssffffffssfss
+ssdddssssssddffs
+sssffddddddffsss
+sdsssffffffsssss
 ssssssssssssssss
-sssssffffffsssss
-sssffssffffffsss
-sssffffffffffsss
-ssffffffffffffss
-ssdffffffsfffdss
-sssffffffffffsss
-sssddffffffddsss
-sssssddddddsssss
-ssssssssssssssss
-ssssssssssssssss
-ssssssssssssssss
+ssfssssssssssssd
 ssssssssssssssss

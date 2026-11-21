@@ -1,0 +1,21 @@
+# fern 16x16
+# A fern as tall as Tadzio. Solid.
+# rules: viewpoint, walls
+
+@tile
+vvvvvvvkkvvvvvvv
+vvkkwvkwwkvvkkvv
+dkwwkdkwwkvkwwkv
+vkwwwkkwwkkwwwkv
+vvkwwwkwwkwwwkvv
+kkdkwwwwwwwwkdkk
+kwwkkwwwwwwkkwwk
+kwwwwkwwwwkwwwwk
+vkswwwwwwwwwwskv
+vvkksswwwwsskkvv
+vkwwkkswwskkwwkv
+kwwwsskwwksswwwk
+kssskkksskvkkssk
+vkkkvvksskvvnkkv
+vvvvnvksskvvvvvv
+vvvvvvwkkvvvnvvd

@@ -1,39 +1,40 @@
 # window_washer 16x32
 # The town sheet: window_washer_battle at half size, with the face drawn again by hand (playtest 2026-11-07).
+# Painted: lit from the top left, rounded forms, a cool rim on the shadow side, cast shadows under heads and brims.
 # rules: viewpoint, outline, characters
 
 @down_0
 ..........kkkkkk
-.........kmmmmmk
-......kk.kmmmmmk
-.....kwwkwkkkokk
-....kwwwwwwakok.
-...kwwwwwwwkkok.
-...kwwwwwwwwkok.
-....kmwwmmkkkok.
-....kmmmmmk.kok.
-....kmkmkmk.kok.
-....kmmmmmk.kok.
+.........kmmmmAk
+......kk.kmmmmAk
+.....kiikwkkkykk
+....kiiiwwvakyk.
+...kwiiwwwvkkyk.
+...kwwiwwvvvkyk.
+....kmwwmAkkkyk.
+....kmmmmAk.kok.
+....kmkmkAk.kok.
+....kmmmmAk.kok.
 ....kmddmk..kok.
 .kkksnffsnkkkok.
-ksssnnsssnsssok.
-kffssnsssnsssok.
-kssfnnfffnfssok.
-ksssnnnnnnsssok.
-kffssndddnssmmk.
-kssfnndddnffmmk.
-ksssnnnnnnsskok.
-kssssnnnnnsskok.
-kmmfnnnnnnffkok.
-kwwwnnnnnnskkok.
-kwwwnnnnnnk.kok.
-.kkknnnnnnk.kok.
-...knnnnnnk.kok.
-...knnnnnnk.kok.
-...knnnnnnk.kok.
-...knnnnnnk.kok.
-...knnnnnnk.kok.
-...knnnnnnnkkok.
+ksssdssssnfffok.
+kffssssssnfffok.
+kssfdsfffnfssok.
+ksssdssddnsssok.
+kffsssdddnssmmk.
+kssfdsdddnffmmk.
+ksssdssdnnsskyk.
+kssssdddnnsskyk.
+kmmfddddnnffkyk.
+kwwwddddnnskkyk.
+kwwwddddndk.kok.
+.kkkddddndk.kok.
+...kddddndk.kok.
+...kdddnndk.kok.
+...knddnndk.kok.
+...knddnndk.kok.
+...knddnndk.kok.
+...knddnnndkkok.
 ...kkkkkkkk..k..
 
 @down_1 = down_0

@@ -1,0 +1,274 @@
+{
+  "id": "terrarium",
+  "todo": "TODO(Tadzio): every line here is a placeholder. Rename, rewrite or replace.",
+  "dialogues": {
+    "terrarium_enter": {
+      "lines": [
+        {
+          "cmd": "light",
+          "id": "wake_1",
+          "on": true,
+          "if_flag": "terra_gate_1"
+        },
+        {
+          "cmd": "light",
+          "id": "wake_2",
+          "on": true,
+          "if_flag": "terra_gate_2"
+        },
+        {
+          "cmd": "light",
+          "id": "wake_3",
+          "on": true,
+          "if_flag": "terra_gate_3"
+        },
+        {
+          "cmd": "if_flag",
+          "flag": "terrarium_seen",
+          "goto": ""
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "terrarium_seen"
+        },
+        {
+          "text": "The gap closes behind you. Where the wall was, there is only glass."
+        },
+        {
+          "text": "The moss is up to your ankles. The ferns are as tall as trees."
+        },
+        {
+          "speaker": "wick",
+          "text": "A terrarium. Somebody keeps a whole garden in a jar. And now us.",
+          "if_flag": "wick_joined"
+        }
+      ]
+    },
+    "terrarium_cap": {
+      "lines": [
+        {
+          "text": "A bottle cap as big as a table. Somebody dropped it in from above."
+        }
+      ]
+    },
+    "terrarium_mushroom": {
+      "lines": [
+        {
+          "text": "A mushroom. It glows a little, like a night light."
+        }
+      ]
+    },
+    "jar_keeper_approach": {
+      "lines": [
+        {
+          "text": "A jar is standing in front of the only crack in the glass. It has feet."
+        },
+        {
+          "speaker": "jar_keeper",
+          "text": "Nothing leaves. That is the job. Things go in the glass and they stay in the glass."
+        }
+      ]
+    },
+    "jar_keeper_intro": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "Lid on!"
+        }
+      ]
+    },
+    "jar_help_1": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "If the lid comes off, everything dries up and blows away. So. Lid on. Always."
+        }
+      ]
+    },
+    "jar_help_2": {
+      "lines": [
+        {
+          "text": "You poke three small holes. A little night air comes in. Nothing blows away."
+        }
+      ]
+    },
+    "jar_help_3": {
+      "lines": [
+        {
+          "text": "You water the big fern. It leans toward the holes."
+        }
+      ]
+    },
+    "jar_help_4": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "...Someone to visit. Nobody ever said that part."
+        }
+      ]
+    },
+    "jar_help_wrong": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "No! That lets everything out!"
+        },
+        {
+          "text": "The glass slides a little closer."
+        }
+      ]
+    },
+    "jar_hustle": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "Stop pushing! You'll crack something!"
+        }
+      ]
+    },
+    "jar_hustle_2": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "Back in the moss! In!"
+        }
+      ]
+    },
+    "jar_hustle_3": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "I am sealed tight! Tight!"
+        }
+      ]
+    },
+    "jar_turn_1": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "Stay."
+        }
+      ]
+    },
+    "jar_turn_2": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "The glass is closer now."
+        }
+      ]
+    },
+    "jar_turn_3": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "Closer."
+        }
+      ]
+    },
+    "jar_turn_4": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "There. Snug."
+        }
+      ]
+    },
+    "jar_keeper_satisfied": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "Holes in the lid. Visitors. Fine. You may go out. Come back in sometimes."
+        },
+        {
+          "text": "You got a drop of dew."
+        }
+      ]
+    },
+    "jar_keeper_spared": {
+      "lines": [
+        {
+          "speaker": "jar_keeper",
+          "text": "You... you leaked."
+        },
+        {
+          "text": "The Jar Keeper rolls away into the ferns."
+        }
+      ]
+    },
+    "jar_keeper_after": {
+      "lines": [
+        {
+          "cmd": "set_flag",
+          "flag": "terrarium_open"
+        },
+        {
+          "text": "The crack in the glass is open. Night air comes through."
+        }
+      ]
+    },
+    "terrarium_vines": {
+      "lines": [
+        {
+          "text": "A wall of vines, pulled tight. One pale flower is shut, like it is sleeping."
+        },
+        {
+          "text": "Something in this part of the garden is asleep too."
+        }
+      ]
+    },
+    "terrarium_wake_1": {
+      "lines": [
+        {
+          "text": "The mushroom opens its cap and glows."
+        },
+        {
+          "text": "Somewhere close, vines let go with a long creak."
+        }
+      ]
+    },
+    "terrarium_wake_2": {
+      "lines": [
+        {
+          "text": "The mushroom opens its cap and glows."
+        },
+        {
+          "text": "Far behind you, more vines let go."
+        }
+      ]
+    },
+    "terrarium_wake_3": {
+      "lines": [
+        {
+          "text": "The mushroom opens its cap and glows."
+        },
+        {
+          "text": "The last vines let go. Something heavy turns to look."
+        }
+      ]
+    },
+    "terrarium_treasure": {
+      "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "terrarium_dew",
+          "goto": "terrarium_cap"
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "terrarium_dew"
+        },
+        {
+          "text": "A bottle cap, tucked away where nobody looks. There is a drop of dew under it."
+        },
+        {
+          "cmd": "give_item",
+          "item": "drop_of_dew"
+        },
+        {
+          "text": "You got a drop of dew."
+        }
+      ]
+    }
+  }
+}

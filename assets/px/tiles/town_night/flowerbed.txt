@@ -1,20 +1,20 @@
 # flowerbed 16x16
-# Converted from the round 1 placeholder art. Redraw it as text in round 3.
+# Shaded like the tree: light from the top left, lit edges up and left, shadow down and right.
 
 @tile
 kkkkkkkkkkkkkkkk
-knnnnnnnnnnnnnnk
-knnnnnnnnnnnnnnk
-knnnnnnnlnnnnnnk
-knnhnnnnnnnnnnnk
-knnnnnnnnnnnnnnk
-knnnnnnnnnnnmnnk
-knnnnnnnnnnnnnnk
-knnnnnnnnnnnnnnk
-knnnnnnnnnnnnnnk
-knnnnhnnnnnnnnnk
-knnnnnnnnnlnnnnk
-knnnnnnnnnnnnnnk
-knnnnnnnnnnnnnnk
-knnnnnnnnnnnnnnk
+kddddddddddddddk
+kdnnnnnnnnnnnnkk
+kdnnFnnnlnnnndkk
+kdnFxFnnnnEnnnkk
+kdnnFnnnnExEnnkk
+kdnninnnvnEnmnkk
+kdnvndknnivnnnkk
+kdninnEnnnnnvnkk
+kdnnnExEnnnFnnkk
+kdnnnhEnnnFxFnkk
+kdnnnninknlFnnkk
+kdnnvnnnnvnvnnkk
+kdnnnnnnknnnnnkk
+kdkkkkkkkkkkkkkk
 kkkkkkkkkkkkkkkk
