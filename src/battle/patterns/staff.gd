@@ -6,6 +6,8 @@ extends Pattern
 
 const LENGTH := 76.0
 const PIVOT_UP := 50.0
+## G, C and E above the C5 "note" sound: the hook of curfew_theme.
+const LANE_PITCH: Array[float] = [0.7492, 1.0, 1.2599]
 
 
 func _init_pattern() -> void:
@@ -47,4 +49,4 @@ func step(dt: float, token: Vector2) -> void:
 		n.vel = Vector2(0, float(params.get("speed", 50)))
 		bullets.append(n)
 		spawned += 1
-		AudioBus.sfx("note", 0.75 + 0.25 * lane, -6.0)
+		AudioBus.sfx("note", LANE_PITCH[mini(lane, 2)] * AudioBus.music_pitch(), -6.0)

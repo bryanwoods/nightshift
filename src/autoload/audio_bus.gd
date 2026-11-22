@@ -39,6 +39,10 @@ func current() -> String:
 	return _current
 
 
+func music_pitch() -> float:
+	return _pitch
+
+
 func play_music(track: String, fade: float = 1.0) -> void:
 	if track == _current:
 		return
