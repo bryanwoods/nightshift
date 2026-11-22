@@ -163,6 +163,21 @@ def i_guitar(m, held, o, prev):
     return 0.55 * y * e
 
 
+def i_hum(m, held, o, prev):
+    """A closed-mouth electric hum, the fridge's voice: round, slowly drifting."""
+    rel = float(o.get("rel", 0.25))
+    n = _len(held, rel)
+    t = np.arange(n) / SR
+    fr = freq_path(n, hz(m), hz(prev) if prev else None, 0.08, float(o.get("vib", 4)), 4.4, 0.25)
+    fr = fr * 2 ** (float(o.get("drift", 3)) * np.sin(2 * np.pi * 0.13 * t + m) / 1200)
+    ph = _phase(fr)
+    y = (np.sin(2 * np.pi * ph) + 0.32 * np.sin(4 * np.pi * ph) + 0.12 * np.sin(6 * np.pi * ph)
+         + 0.05 * np.sin(8 * np.pi * ph))
+    flutter = 1 + 0.05 * np.sin(2 * np.pi * 0.42 * t + m)
+    e = env_adsr(n, int(held * SR), float(o.get("att", 0.09)), 0.5, 0.92, rel)
+    return 0.5 * y * flutter * e
+
+
 def i_epiano(m, held, o, prev):
     """A warm FM electric piano: soft bell-like attack that mellows."""
     rel = float(o.get("rel", 0.25))
@@ -239,7 +254,7 @@ def i_drums(token, o):
     return sum(np.pad(a, (0, L - len(a))) for a in out)
 
 
-INSTRUMENTS = {"pulse": i_pulse, "tri": i_tri, "bass": i_bass, "guitar": i_guitar, "epiano": i_epiano, "bell": i_bell, "pad": i_pad, "flute": i_flute}
+INSTRUMENTS = {"pulse": i_pulse, "tri": i_tri, "bass": i_bass, "hum": i_hum, "guitar": i_guitar, "epiano": i_epiano, "bell": i_bell, "pad": i_pad, "flute": i_flute}
 
 
 # ---------------------------------------------------------------- mixing

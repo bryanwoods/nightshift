@@ -1,0 +1,41 @@
+# The house at 1:59. "It knows a song. You have never heard the fridge know a song."
+# The fridge hums Lamplight's first four notes. A music box slowly learns them from it.
+# A low D never stops, like a fridge that never turns off. Every chord here contains D.
+tempo 60
+meter 4/4
+grid 8
+key D major
+form Fridge A B
+
+voice fridge inst=hum vol=0.34 att=0.09 rel=0.35 vib=5 gate=0.96 role=melody pan=-0.12 rev=0.32 human=0.008
+voice box    inst=bell vol=0.30 ring=2.2 decay=1.6 role=melody pan=0.2 rev=0.42 shape=0.08 human=0.008
+voice oca    inst=flute vol=0.25 vib=10 att=0.07 rel=0.3 role=melody pan=-0.05 rev=0.4 shape=0.1 human=0.008
+voice drone  inst=hum auto=drone note=38 rate=32 vol=0.25 att=1.6 rel=1.6 vib=0 gate=1.04 role=bass rev=0.15
+voice keys   inst=epiano auto=arp:broken rate=4 lo=55 hi=72 vol=0.14 pan=0.26 rev=0.4 decay=0.8 rel=0.6 human=0.01
+voice pad    inst=pad auto=chords lo=50 hi=72 vol=0.09 tone=850 att=1.2 rel=1.2 rev=0.5
+
+master room=2.8 wet=0.5 loud=-21
+
+section Fridge
+dyn    | .70 | .68 | .72 | .68 |
+chords | Dmaj7 | Dmaj7 | Gmaj7 | A7sus4 |
+fridge | F#3 . A3 . D4 . C#4 . | . . . . - - - - | F#3 . A3 . D4 . . . | . . . . - - - - |
+drone  | auto |
+
+section A
+dyn    | .74 | .76 | .78 | .74 | .78 | .82 | .86 | .78 |
+chords | Dmaj7 | Bm9 | Gmaj7 | A7sus4 | Dmaj7 | Bm9 | Em9 | A7sus4 |
+fridge | F#3 . A3 . D4 . C#4 . | . . . . - - - - | F#3 . A3 . D4 . . . | . . . . - - - - | F#3 . A3 . D4 . C#4 . | . . . . - - - - | G3 . B3 . E4 . D4 . | . . . . - - - - |
+box    | - - - - - - - - | F#5 . A5 . D6 . C#6 . | B5 . . . . . - - | A5 . . . . . - - | - - - - - - - - | F#5 . A5 . D6 . E6 . | F#6 . . . E6 . D6 . | D6 . . . . . - - |
+drone  | auto |
+keys   | auto |
+pad    | auto |
+
+section B
+dyn    | .80 | .78 | .84 | .78 | .84 | .90 | .82 | .70 |
+chords | Gmaj7 | Dmaj7 | Gm6 | Dmaj7 | Bm9 | Em9 | Gm6 | A7sus4 |
+oca    | B4 . . A4 B4 . D5 . | D5 . . . . . - - | D5 . . . Bb4 . A4 . | A4 . . . F#4 . . - | B4 . D5 . F#5 . . . | G5 . . . F#5 . E5 . | D5 . . . . . Bb4 . | A4 . . . . . - - |
+box    | - - - - - - - - | - - - - - A5 D6 F#6 | - - - - - - - - | - - - - - - A5 D6 | - - - - - - - - | - - - - - - - - | - - - - - - - - | - - - - - - - - |
+drone  | auto |
+keys   | auto |
+pad    | auto |
