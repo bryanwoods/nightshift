@@ -1,0 +1,54 @@
+# Street melody sketch. Stroll: a playful, off-the-beat tune with little skips, like walking with your hands in your pockets.
+# Street: a slow walk under the lamps. The main theme, half-remembered.
+# Section A plays the Lamplight opening over B minor chords, so it feels familiar but darker.
+# Section B lets the real tune through in D major, then A2 turns it upward and walks home.
+tempo 76
+meter 4/4
+grid 8
+swing 0.14
+key B minor
+form Walk A B A2
+
+voice lead  inst=pulse duty=0.33 tone=2900 att=0.014 vol=0.36 vib=13 echo=0.24 echotime=0.75 rel=0.2 role=melody pan=-0.1 shape=0.1 human=0.004
+voice oca   inst=flute vol=0.34 vib=13 pan=0.08 rev=0.36 role=melody shape=0.12 human=0.004
+voice bell  inst=bell vol=0.13 pan=0.3 rev=0.42 role=melody
+voice bass  inst=bass vol=0.70 gate=0.82 role=bass human=0.005
+voice keys  inst=epiano auto=comp pattern=--x---x- lo=57 hi=74 size=3 vol=0.17 pan=0.22 rev=0.32 gate=0.8
+voice pad   inst=pad auto=chords lo=50 hi=74 vol=0.13 tone=1100 rev=0.45 att=0.5
+voice kit   inst=drums vol=0.15 human=0.003
+
+master room=2.3 wet=0.48 loud=-19
+
+section Walk
+dyn    | .58 | .62 | .64 | .68 |
+chords | Bm9 | Gmaj7 | Em9 | F#7sus4 F#7 |
+bell   | - - F#5 . A5 . D6 . | . . . . - - - - | - - E5 . B5 . E6 . | . . . . . . - - |
+bass   | B1 . D2 . F#2 . A2 . | G2 . F#2 . E2 . D2 . | E2 . G2 . B2 . G2 . | F#2 . E2 . C#2 . Bb1 . |
+keys   | auto |
+kit    | h_ - h h_ h_ - h - |
+
+section A
+dyn    | .70 | .68 | .72 | .70 | .74 | .78 | .74 | .72 |
+chords | Bm9 | Gmaj7 | Em9 | F#7sus4 F#7 | Bm9 | Gmaj7 | Em9 | A7sus4 A7 |
+lead   | B4 - D5 F#5 . E5 D5 - | B4 . - G4 B4 - D5 . | E5 - G5 F#5 . E5 D5 - | C#5 . - B4 . A#4 - - | F#4 - A4 B4 . A4 F#4 - | G4 . - B4 . D5 E5 - | F#5 . E5 D5 . B4 G4 - | A4 . - D5 . C#5 A4 - |
+bass   | B1 . C#2 . D2 . E2 . | G2 . F#2 . E2 . B1 . | E2 . F#2 . B2 . E2 . | F#2 . E2 . C#2 . Bb1 . | B1 . C#2 . D2 . E2 . | G2 . F#2 . E2 . D2 . | E2 . G2 . B2 . E2 . | A1 . D2 . C#2 . E2 . |
+keys   | auto |
+kit    | h_ - h h_ h_ - h - |
+
+section B
+dyn    | .78 | .80 | .84 | .86 | .84 | .92 | .86 | .78 |
+chords | Dmaj7 | F#m7 | Gmaj7 | Gm6 | Bm7 | Em9 | Gmaj7 | F#7sus4 F#7 |
+oca    | F#4 - A4 C#5 . D5 A4 - | C#5 . - E5 . C#5 A4 - | B4 - D5 F#5 . E5 D5 - | Bb4 . - D5 . E5 D5 - | B4 - D5 A5 . F#5 D5 - | G5 . - F#5 . E5 B4 - | D5 - B4 G4 . A4 B4 - | C#5 . - B4 . A#4 F#4 - |
+bass   | D2 . F#2 . A2 . E2 . | F#2 . A2 . C#3 . A2 . | G2 . B2 . D3 . B2 . | G2 . E2 . D2 . C2 . | B1 . F#2 . D2 . Eb2 . | E2 . G2 . D3 . B2 . | G2 . A2 . B2 . G2 . | F#2 . E2 . C#2 . Bb1 . |
+keys   | auto |
+pad    | auto |
+kit    | k_ - h h_ h_ - h - |
+
+section A2
+dyn    | .78 | .76 | .78 | .74 | .70 | .68 | .64 | .60 |
+chords | Bm9 | Gmaj7 | Em9 | F#7sus4 F#7 | Bm9 | Em9 | Gmaj7 | F#7sus4 F#7 |
+lead   | D5 - F#5 A5 . G5 F#5 - | D5 . - B4 . G4 B4 - | E5 - G5 B5 . A5 G5 - | F#5 . - E5 . C#5 A#4 - | B4 . - D5 . C#5 B4 - | G4 - B4 E5 . D5 B4 - | D5 . - B4 . A4 G4 - | F#4 . . . - - - - |
+bass   | B1 . D2 . F#2 . A2 . | G2 . F#2 . E2 . D2 . | E2 . F#2 . B2 . E2 . | F#2 . E2 . C#2 . E2 . | B1 . D2 . F#2 . D2 . | E2 . G2 . B2 . A2 . | G2 . F#2 . E2 . B1 . | F#2 . E2 . C#2 . Bb1 . |
+keys   | auto |
+pad    | auto |
+kit    | k_ - h h_ h_ - h - |

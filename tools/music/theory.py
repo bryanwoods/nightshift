@@ -21,6 +21,47 @@ def _fits(note_midi, chord):
     return chord is None or chord.root < 0 or note_midi % 12 in chord.pcs
 
 
+LAMPLIGHT = [66, 69, 74, 73, 76, 74, 73, 71, 69, 71, 74, 74, 70, 69, 71, 74, 78, 79, 78, 76, 74, 71, 73, 74, 73]
+COPY_RUN = 6
+
+
+def _steps(pitches):
+    return [b - a for a, b in zip(pitches, pitches[1:])]
+
+
+def copied_run(pitches):
+    """The longest stretch of melody moves shared with Lamplight, in any key."""
+    x, y = _steps(pitches), _steps(LAMPLIGHT)
+    best, prev = 0, [0] * (len(y) + 1)
+    for a in x:
+        cur = [0] * (len(y) + 1)
+        for j, b in enumerate(y, 1):
+            if a == b:
+                cur[j] = prev[j - 1] + 1
+                best = max(best, cur[j])
+        prev = cur
+    return best
+
+
+def dna_count(pitches):
+    """How often the theme's shape appears: two moves one way, then a small step back."""
+    n = 0
+    for a, b, c, d in zip(pitches, pitches[1:], pitches[2:], pitches[3:]):
+        if (a < b < c and 1 <= c - d <= 2) or (a > b > c and 1 <= d - c <= 2):
+            n += 1
+    return n
+
+
+def kinship(song):
+    """Each (voice, longest copied run, shape count) among the melody voices."""
+    out = []
+    for v in song.voices.values():
+        if v.opts.get("role") == "melody" and v.notes:
+            p = [n.midi for n in sorted(v.notes, key=lambda n: (n.step, n.off))]
+            out.append((v.name, copied_run(p), dna_count(p)))
+    return out
+
+
 def check(song):
     errors, hints = [], []
     mel = [v for v in song.voices.values() if v.opts.get("role") == "melody"]
@@ -31,6 +72,13 @@ def check(song):
             _outer_voices(song, v, b, hints)
     for b in bas:
         _bass(song, b, errors)
+    if song.name != "main_theme":
+        kin = kinship(song)
+        for name_, run, _dna in kin:
+            if run >= COPY_RUN:
+                hints.append(f"{song.name} {name_}: copies {run + 1} notes of Lamplight in a row")
+        if kin and not any(d for *_, d in kin):
+            hints.append(f"{song.name}: no melody uses the theme's shape")
     return errors, hints
 
 
