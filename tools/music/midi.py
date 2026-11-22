@@ -1,7 +1,7 @@
 """Write a Song as a standard MIDI file, so it opens in GarageBand, and read one back."""
 import struct
 
-PROGRAM = {"pulse": 80, "tri": 38, "bass": 33, "epiano": 4, "bell": 8, "pad": 89, "flute": 79}
+PROGRAM = {"pulse": 80, "tri": 38, "bass": 33, "guitar": 29, "epiano": 4, "bell": 8, "pad": 89, "flute": 79}
 DRUM_KEY = {"k": 36, "s": 38, "h": 42, "o": 46, "c": 39, "t": 45}
 TPQ = 480
 

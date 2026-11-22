@@ -2,6 +2,7 @@
   "id": "no_job",
   "todo": "TODO(Tadzio): who is this? Name, look, and what it wants. The game never explains it. Its questions and right answers are placeholders.",
   "name": "the one with no job",
+  "music": "battle_loop",
   "job": "",
   "name_tag": false,
   "sprite": "no_job",

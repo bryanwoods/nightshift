@@ -491,7 +491,7 @@ Choices the spec left open, and choices that bend it. Each is one line so it is 
 - Hold spots are a new entity type (`hold`). The lamp tutorial is the first one. After Wick joins, some dark lamps are optional hold spots (+2 min each). This is how a thorough player reaches Curfew near 2:40.
 - Street-to-street doors cost 3 minutes. Indoor doors cost 1.
 - Battle pacing follows Deltarune's rhythm: one short line, then the dodge. Worker quips are speech bubbles that do not wait for a key. Dodge phases are 4.5 to 5 seconds (spec: 6 to 7) with faster projectiles. The menu box widens to a text panel between dodges.
-- The Un-Baker fight has its own `battle_loop` music. Curfew keeps the lullaby.
+- Every fight plays `battle_loop`. Curfew keeps the lullaby.
 - A help action that finishes the task ends the fight at once. There is no dodge phase or round tick after it.
 - Hustle with no press in the sweep does 0 damage.
 - Rings start the token near the bottom of the arena, because a ring grows from the center.

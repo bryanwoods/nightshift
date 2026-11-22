@@ -200,6 +200,8 @@ def music():
     songs["battle_loop"] = battle
     ffmpeg = shutil.which("ffmpeg")
     for name, buf in songs.items():
+        if (out / "src" / f"{name}.song").exists():
+            continue
         wav = out / f"{name}.wav"
         save_wav(wav, buf)
         if ffmpeg:

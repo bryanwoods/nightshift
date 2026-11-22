@@ -2,6 +2,7 @@
   "id": "dummy",
   "todo": "TODO(Tadzio): what is the practice dummy, and who left it in the yard?",
   "name": "The practice dummy",
+  "music": "battle_loop",
   "job": "Stands there. Takes it.",
   "sprite": "dummy",
   "patience": 8,

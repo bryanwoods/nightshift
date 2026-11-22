@@ -2,6 +2,7 @@
   "id": "puddle_keeper",
   "todo": "TODO(Tadzio): rename or replace this worker. It is a placeholder and an example.",
   "name": "The Puddle Keeper",
+  "music": "battle_loop",
   "job": "Keeps the puddles wet till morning",
   "sprite": "puddle_keeper",
   "patience": 18,

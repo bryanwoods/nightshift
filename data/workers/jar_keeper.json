@@ -2,6 +2,7 @@
   "id": "jar_keeper",
   "todo": "TODO(Tadzio): name, look and lines are placeholders. Who is this and why does it keep things in?",
   "name": "The Jar Keeper",
+  "music": "battle_loop",
   "job": "Keeps everything inside the glass",
   "sprite": "jar_keeper",
   "patience": 30,

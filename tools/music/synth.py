@@ -138,6 +138,31 @@ def i_bass(m, held, o, prev):
     return (0.62 * body + 0.34 * edge) * e
 
 
+def i_guitar(m, held, o, prev):
+    """An overdriven electric guitar through a small amp. Distortion runs at 4x the
+    sample rate, because at 1x its overtones fold back as out-of-tune noise."""
+    rel = float(o.get("rel", 0.07))
+    n = _len(held, rel)
+    t = np.arange(n) / SR
+    fr = freq_path(n, hz(m), hz(prev) if prev else None, float(o.get("slide", 0.07)),
+                   float(o.get("vib", 22)), float(o.get("vibrate", 5.6)), float(o.get("vibdelay", 0.2)))
+    fr = fr * 2 ** ((float(o.get("fine", 0)) - float(o.get("scoop", 22)) * np.exp(-t * 45)) / 1200)
+    string = saw(fr) + 0.45 * pulse(fr * 2 ** (3 / 1200), 0.42)
+    if o.get("power"):
+        string = string + 0.9 * saw(fr * 1.5)
+    pick = lowpass(RNG.standard_normal(n), 3500) * np.exp(-t * 260) * 0.5
+    x = highpass(string * (0.72 + 0.28 * np.exp(-t * 7)) + pick, 170)
+    over = signal.resample_poly(x, 4, 1)
+    over = np.tanh(over * float(o.get("drive", 2.6)))
+    y = signal.resample_poly(over, 1, 4)[:n]
+    y = lowpass(highpass(y, float(o.get("hp", 120))), float(o.get("tone", 3000)), 3)
+    b, a = signal.iirpeak(float(o.get("mid", 1250)) / (SR / 2), 1.3)
+    y = y + 0.55 * signal.lfilter(b, a, y)
+    e = env_adsr(n, int(held * SR), float(o.get("att", 0.003)), float(o.get("dec", 0.5)),
+                 float(o.get("sus", 0.78)), rel)
+    return 0.55 * y * e
+
+
 def i_epiano(m, held, o, prev):
     """A warm FM electric piano: soft bell-like attack that mellows."""
     rel = float(o.get("rel", 0.25))
@@ -214,7 +239,7 @@ def i_drums(token, o):
     return sum(np.pad(a, (0, L - len(a))) for a in out)
 
 
-INSTRUMENTS = {"pulse": i_pulse, "tri": i_tri, "bass": i_bass, "epiano": i_epiano, "bell": i_bell, "pad": i_pad, "flute": i_flute}
+INSTRUMENTS = {"pulse": i_pulse, "tri": i_tri, "bass": i_bass, "guitar": i_guitar, "epiano": i_epiano, "bell": i_bell, "pad": i_pad, "flute": i_flute}
 
 
 # ---------------------------------------------------------------- mixing

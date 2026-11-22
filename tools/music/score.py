@@ -28,7 +28,7 @@ Drum letters: k kick, s snare, h hat, o open hat, c clap, t tom.
 Two whole-line shortcuts:
     bell | @lead+12 |   copies the lead's notes in this section, an octave up
     pad  | auto |       plays the voice's auto part (auto=chords, arp:up, arp:broken,
-                        comp with pattern=--x.x., root) over this section's chords
+                        comp with pattern=--x.x. (g = two quick hits), roots=1 for root notes only, root) over this section's chords
 """
 import bisect
 import re
@@ -384,11 +384,17 @@ def _auto_parts(song):
                     v.notes.append(Note(st, rate, seq[i % len(seq)]))
             elif kind == "comp":
                 pat = str(v.opts.get("pattern", "x" * song.bar_of(s).grid))
+                if v.opts.get("roots"):
+                    notes = [lo + (c.root - lo) % 12]
                 hit = None
                 for i in range(n):
                     ch = pat[(s + i - song.bar_of(s).start) % len(pat)]
                     if ch == "x":
                         hit = [Note(s + i, 1, m) for m in notes]
+                        v.notes.extend(hit)
+                    elif ch == "g":
+                        v.notes.extend(Note(s + i, 1, m, cut=0.5) for m in notes)
+                        hit = [Note(s + i, 1, m, off=0.5) for m in notes]
                         v.notes.extend(hit)
                     elif ch == "." and hit:
                         for h in hit:

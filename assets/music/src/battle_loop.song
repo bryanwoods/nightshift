@@ -1,0 +1,80 @@
+# Fight song: Lamplight's opening notes chopped into a quick, cheeky riff.
+# B minor, same home as the street song. The riff lands just ahead of the beat.
+# The middle section brightens, then Lamplight's sad G minor chord turns it back.
+tempo 150
+meter 4/4
+grid 8
+key B minor
+form Turn A A2 B Solo
+
+voice lead  inst=guitar vol=0.31 drive=12 tone=3500 mid=1550 dec=1.0 sus=0.92 vib=34 scoop=45 echo=0.24 echotime=0.75 rev=0.28 gate=0.98 role=melody pan=-0.04 shape=0.07 human=0.003
+voice harm  inst=guitar vol=0.17 drive=10 tone=3100 mid=1350 dec=1.0 sus=0.9 vib=24 scoop=34 rev=0.28 gate=0.96 role=melody pan=0.28 human=0.005
+voice solo  inst=guitar vol=0.33 drive=14 tone=3900 mid=1700 dec=1.2 sus=0.94 vib=44 vibdelay=0.12 scoop=30 slide=0.05 rel=0.09 echo=0.28 echotime=0.75 rev=0.32 gate=0.98 role=melody pan=0.02 shape=0.05 human=0.002
+voice bell  inst=bell vol=0.10 ring=0.7 decay=4 pan=0.26 rev=0.25
+voice bass  inst=bass vol=0.74 gate=0.66 pluck=20 dec=0.16 sus=0.45 tone=1800 role=bass human=0.002
+voice keys  inst=epiano auto=comp pattern=x..x..x. lo=57 hi=74 size=3 vol=0.05 pan=0.22 rev=0.2 gate=0.7 decay=3
+voice rhy   inst=guitar auto=comp roots=1 power=1 pattern=xgx.xgx. lo=35 hi=46 drive=16 tone=2300 mid=760 hp=75 dec=0.06 sus=0.34 vib=0 scoop=0 rel=0.025 gate=0.62 rev=0.05 vol=0.42 pan=-0.62 human=0.003
+voice rhy2  inst=guitar auto=comp roots=1 power=1 pattern=xgx.xgx. lo=35 hi=46 drive=16 tone=2300 mid=760 hp=75 dec=0.06 sus=0.34 vib=0 scoop=0 rel=0.025 gate=0.62 rev=0.05 vol=0.42 pan=0.62 fine=7 human=0.004
+voice arp   inst=pulse duty=0.25 auto=arp:updown lo=62 hi=81 vol=0.055 pan=0.46 tone=2600 att=0.006 rel=0.04 gate=0.55 echo=0.22 echotime=0.5
+voice pad   inst=pad auto=chords lo=50 hi=71 vol=0.03 tone=1000 rev=0.35 att=0.2 rel=0.3
+voice kit   inst=drums vol=0.38
+
+master room=1.3 wet=0.34 loud=-18
+
+section Turn
+dyn    | .78 | .82 | .86 | .92 |
+chords | Bm7 | Gmaj7 | Em7 | F#7 |
+lead   | F#4 . A4 D5 . - - - | G4 . B4 D5 . - - - | G4 . B4 E5 . - - - | F#5 . E5 C#5 . A#4 C#5 . |
+bass   | B1 . B2 B1 . B1 A2 F#2 | G1 . G2 G1 . G1 F#2 D2 | E2 . E3 E2 . E2 D3 B2 | F#1 . F#2 F#1 . C#2 E2 C#2 |
+keys   | auto |
+rhy    | auto |
+rhy2   | auto |
+kit    | k - h h k - h h | k - h h k - h h | k - h h k k h h | k h s h s,s s t t,t |
+
+section A
+dyn    | .90 | .88 | .92 | .90 | .92 | .92 | .96 | .98 |
+chords | Bm7 | Gmaj7 | D | A7sus4 A7 | Bm7 | Gmaj7 | Em7 | F#7sus4 F#7 |
+lead   | F#4 . A4 D5 . C#5 B4 . | D5 . . B4 . G4 A4 B4 | A4 . D5 F#5 . E5 D5 . | E5 . . D5 . C#5 . - | F#4 . A4 D5 . F#5 E5 . | D5 . . G5 . F#5 D5 . | E5 . . G5 . B5> A5 . | F#5 . . E5 . C#5 A#4 . |
+bass   | B1 . B2 B1 . B1 A2 F#2 | G1 . G2 G1 . G1 F#2 D2 | D2 . D3 D2 . D2 C#3 A2 | A1 . A2 A1 C#2 . E2 G2 | B1 . B2 B1 . B1 D3 F#2 | G1 . G2 G1 . G1 F#2 D2 | E2 . E3 E2 . E2 D3 B2 | F#1 . F#2 F#1 A#1 . C#2 E2 |
+keys   | auto |
+rhy    | auto |
+rhy2   | auto |
+pad    | auto |
+kit    | k h s h k k s h | k h s h k k s h | k h s h k k s h | k h s h k k s,s h | k h s h k k s h | k h s h k k s h | k h s h k k s h | k h s h s,s s t t,t |
+
+section A2
+dyn    | .96 | .94 | .98 | .96 | .98 | .98 | 1.04 | 1.0 |
+chords | Bm7 | Gmaj7 | D | A7sus4 A7 | Bm7 | Gmaj7 | Em7 | F#7sus4 F#7 |
+lead   | F#4 . A4 D5 . C#5 B4 . | D5 . . B4 . G4 A4 B4 | A4 . D5 F#5 . E5 D5 . | E5 . . D5 . C#5 . - | F#4 . A4 D5 . F#5 E5 . | D5 . . G5 . F#5 D5 . | E5 . . G5 . B5> A5 . | F#5 . . E5 . C#5 A#4 . |
+harm   | D4 . F#4 A4 . A4 F#4 . | B4 . . G4 . D4 F#4 G4 | F#4 . A4 D5 . C#5 A4 . | A4 . . G4 . E4 . - | D4 . F#4 A4 . D5 B4 . | B4 . . D5 . D5 B4 . | B4 . . E5 . G5 E5 . | C#5 . . B4 . A#4 F#4 . |
+bass   | B1 . B2 B1 . B1 A2 F#2 | G1 . G2 G1 . G1 F#2 D2 | D2 . D3 D2 . D2 C#3 A2 | A1 . A2 A1 C#2 . E2 G2 | B1 . B2 B1 . B1 D3 F#2 | G1 . G2 G1 . G1 F#2 D2 | E2 . E3 E2 . E2 D3 B2 | F#1 . F#2 F#1 A#1 . C#2 E2 |
+keys   | auto |
+rhy    | auto |
+rhy2   | auto |
+pad    | auto |
+arp    | auto |
+kit    | ko k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k s,s k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k s,s s t,t t,t |
+
+section B
+dyn    | .86 | .90 | .88 | .84 | .90 | .96 | 1.0 | .94 |
+chords | Gmaj7 | A7 | F#m7 | Bm7 | Em7 | A7 | Gm6 | F#7 |
+lead   | B4 . D5 . G5 . F#5 D5 | E5 . . . C#5 . A4 C#5 | A4 . C#5 . F#5 . E5 C#5 | D5 . . . B4 . . - | G4 . B4 . E5 . D5 B4 | C#5 . E5 . G5 . F#5 E5 | D5 . . Bb4 . D5 G5 . | F#5 . E5 C#5 . A#4 C#5 . |
+bell   | @lead+12 |
+bass   | G1 . G2 G1 . G1 D2 G#1 | A1 . A2 A1 . A1 G2 E2 | F#1 . F#2 F#1 . F#1 E2 A#1 | B1 . B2 B1 . B1 A2 F#2 | E2 . E3 E2 . E2 G2 B2 | A1 . A2 A1 . A1 G2 B1 | G1 . G2 G1 . Bb1 D2 G2 | F#1 . F#2 F#1 . C#2 E2 C#2 |
+keys   | auto |
+rhy    | auto |
+rhy2   | auto |
+pad    | auto |
+arp    | auto |
+kit    | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k s,s k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k s,s s t,t t,t |
+
+section Solo
+dyn    | .92 | .92 | .94 | .94 | .96 | .96 | .98 | 1.0 | 1.0 | 1.0 | 1.02 | 1.0 | 1.04 | 1.06 | 1.08 | 1.1 |
+chords | Bm7 | Gmaj7 | Em7 | F#7 | Bm7 | Gmaj7 | Em7 | F#7 | Gmaj7 | A7 | F#m7 | Bm7 | Em7 | A7 | Gm6 | F#7 |
+solo   | F#5 . . A5 B5^ . . . | . . A5 B5 D6^ . B5 . | E6^ . . . D6 . B5 A5 | F#5 . . . E5,F#5 A#5 C#6 . | B5 A5,B5 D6 B5 A5 F#5 A5 B5 | D6,B5 A5 B5,D6 F#6^ . . E6 D6 | E6 . D6,B5 A5 G5 A5,B5 D6 E6 | F#6> . . E6 C#6 . A#5 F#5 | G5,A5 B5,D6 G6^ . F#6 . D6,B5 A5,G5 | E5,G5 A5,C#6 E6,G6 A6^ G6 . E6 C#6 | F#6 . E6,C#6 A5 C#6,E6 F#6 A6 F#6 | D6 . B5,A5 F#5 B5 . . - | E5,G5,B5 D6,E6,G6 B6^ A6 G6 . E6 D6 | C#6,E6,G6 A6,G6,E6 C#6,E6,G6 A6 C#7^> . . A6 | Bb6 . G6,E6 D6 Bb5 . D6 E6 | F#6> . . . . . E6 C#6 |
+bass   | B1 . B2 B1 . B1 A2 F#2 | G1 . G2 G1 . G1 F#2 D2 | E2 . E3 E2 . E2 D3 B2 | F#1 . F#2 F#1 . C#2 E2 C#2 | B1 . B2 B1 . B1 D3 F#2 | G1 . G2 G1 . G1 F#2 D2 | E2 . E3 E2 . E2 D3 B2 | F#1 . F#2 F#1 A#1 . C#2 E2 | G1 . G2 G1 . G1 D2 G#1 | A1 . A2 A1 . A1 G2 E2 | F#1 . F#2 F#1 . F#1 E2 A#1 | B1 . B2 B1 . B1 A2 F#2 | E2 . E3 E2 . E2 G2 B2 | A1 . A2 A1 . A1 G2 B1 | G1 . G2 G1 . Bb1 D2 G2 | F#1 . F#2 F#1 . C#2 E2 C#2 |
+keys   | auto |
+rhy    | auto |
+rhy2   | auto |
+pad    | auto |
+kit    | ko k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k s,s k | ko k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k s,s s t,t t,t | ko k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k s,s k | ko k sh k kh k sh k | kh k sh k kh k sh k | kh k sh k kh k s,s s | ko k s,s s s,s t,t t,t t,t |
