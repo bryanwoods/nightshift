@@ -1,0 +1,66 @@
+# The depot: Lamplight clocked in. The tune is stiff, in E minor, and counted in sevens
+# (2+2+3), so it never quite settles. The punch clock is in the drums.
+# For eight bars the beat relaxes to 4/4 and the real tune gets out in G major.
+# The eighth note never changes speed, so the machine can grab it straight back.
+tempo 208
+meter 7/8
+grid 7
+key E minor
+form Clock A A2 Free Back
+
+voice lead  inst=pulse duty=0.33 tone=2800 att=0.008 vol=0.34 gate=0.62 rel=0.05 echo=0.16 echotime=3 role=melody pan=-0.1 shape=0.06
+voice harm  inst=pulse duty=0.5 tone=2200 att=0.008 vol=0.13 gate=0.6 rel=0.05 pan=0.34 role=melody
+voice oca   inst=flute vol=0.36 vib=14 att=0.04 rel=0.18 role=melody pan=0.03 rev=0.38 shape=0.1 human=0.006
+voice bass  inst=bass vol=0.66 gate=0.6 pluck=20 dec=0.14 sus=0.4 role=bass
+voice fbass inst=bass vol=0.68 gate=0.9 role=bass human=0.005
+voice keys  inst=epiano auto=comp pattern=x.x.x.. lo=55 hi=72 size=3 vol=0.15 pan=0.22 rev=0.18 gate=0.55 decay=3
+voice warm  inst=epiano auto=arp:broken rate=2 lo=55 hi=74 vol=0.2 pan=0.2 rev=0.34 human=0.005
+voice arp   inst=pulse duty=0.25 auto=arp:up lo=64 hi=83 vol=0.05 pan=0.44 tone=2500 att=0.006 rel=0.03 gate=0.45
+voice pad   inst=pad auto=chords lo=50 hi=72 vol=0.1 tone=950 att=0.25 rel=0.4 rev=0.42
+voice kit   inst=drums vol=0.25
+
+master room=1.5 wet=0.34 loud=-18
+
+section Clock
+dyn    | .72 | .74 | .78 | .82 |
+chords | Em | Em | C | B7 |
+bass   | E2 E3 E2 E3 E2 E3 B2 | E2 E3 E2 E3 E2 E3 B2 | C2 C3 C2 C3 C2 C3 G2 | B1 B2 B1 B2 B1 B2 F#2 |
+keys   | auto |
+kit    | kp - m - m - m | k - m - m - m | kp - m - m - m | k - s - s s t |
+
+section A
+dyn    | .84 | .84 | .86 | .86 | .88 | .90 | .90 | .88 |
+chords | Em | C | Am | B7 | Em | C | Am7 | B7 |
+lead   | G4 . B4 . E5 . D#5 | E5 . . . C5 . B4 | C5 . A4 . E4 . - | F#5 . D#5 . B4 . - | G4 . B4 . E5 . G5 | G5 . . . E5 . C5 | A4 . C5 . E5 . D5 | D#5 . . . B4 . - |
+bass   | E2 E3 E2 E3 E2 E3 B2 | C2 C3 C2 C3 C2 C3 G2 | A1 A2 A1 A2 A1 A2 E2 | B1 B2 B1 B2 B1 B2 F#2 | E2 E3 E2 E3 E2 E3 B2 | C2 C3 C2 C3 C2 C3 G2 | A1 A2 A1 A2 A1 A2 E2 | B1 B2 B1 B2 B1 B2 F#2 |
+keys   | auto |
+pad    | auto |
+kit    | kp m s m k m s | k m s m k m s | k m s m k m s | k m s m k s t | kp m s m k m s | k m s m k m s | k m s m k m s | k m s m s s t |
+
+section A2
+dyn    | .92 | .92 | .94 | .94 | .96 | .98 | .98 | .96 |
+chords | Em | C | Am | B7 | Em | C | Am7 | B7 |
+lead   | G4 . B4 . E5 . D#5 | E5 . . . C5 . B4 | C5 . A4 . E4 . - | F#5 . D#5 . B4 . - | G4 . B4 . E5 . G5 | G5 . . . E5 . C5 | A4 . C5 . E5 . D5 | D#5 . . . B4 . - |
+harm   | E4 . G4 . B4 . B4 | C5 . . . G4 . G4 | A4 . E4 . C4 . - | D#4 . F#4 . D#4 . - | E4 . G4 . B4 . E5 | E5 . . . C5 . G4 | E4 . A4 . C5 . B4 | B4 . . . F#4 . - |
+bass   | E2 E3 E2 E3 E2 E3 B2 | C2 C3 C2 C3 C2 C3 G2 | A1 A2 A1 A2 A1 A2 E2 | B1 B2 B1 B2 B1 B2 F#2 | E2 E3 E2 E3 E2 E3 B2 | C2 C3 C2 C3 C2 C3 G2 | A1 A2 A1 A2 A1 A2 E2 | B1 B2 B1 B2 B1 B2 F#2 |
+keys   | auto |
+arp    | auto |
+pad    | auto |
+kit    | kp m sh m kh m s | kh m sh m kh m s | kh m sh m kh m s | kh m sh m k s t | kp m sh m kh m s | kh m sh m kh m s | kh m sh m kh m s | kh m s s s,s t t,t |
+
+section Free meter=4/4 grid=8 tempo=104
+dyn    | .68 | .72 | .76 | .78 | .82 | .92 | .86 | .80 |
+chords | Gmaj7 | Bm7 | Cmaj7 | Cm6 | Em7 | Am9 | Cmaj7 | D7sus4 D7 |
+oca    | B4 . D5 . G5 . . F#5 | . . . . A5 . G5 F#5 | E5 . . D5 E5 . G5 . | G5 . . . Eb5 . D5 . | E5 . G5 . B5 . . . | C6 . . . B5 . A5 . | G5 . . . . . E5 F#5 | G5 . . . F#5 . . . |
+fbass  | G2 . D3 . B2 . A2 . | B2 . F#2 . D3 . A2 . | C3 . G2 . B2 . G2 . | C3 . G2 . C3 . B2 . | E2 . B2 . G2 . F#2 . | A2 . E2 . C3 . B2 . | C3 . G2 . E2 . F#2 . | D2 . A2 . F#2 . C3 . |
+warm   | auto |
+pad    | auto |
+kit    | k_ - h_ - h_ - h_ - |
+
+section Back
+dyn    | .90 | .88 | .84 | .78 |
+chords | Em | C | Am | B7 |
+lead   | G4 . B4 . E5 . D#5 | E5 . . . - - - | A4 . C5 . E5 . - | D#5 . . . B4 . - |
+bass   | E2 E3 E2 E3 E2 E3 B2 | C2 C3 C2 C3 C2 C3 G2 | A1 A2 A1 A2 A1 A2 E2 | B1 B2 B1 B2 B1 B2 F#2 |
+keys   | auto |
+kit    | kp m s m k m s | k m s m k m s | k m s m k m s | k - s - s s t |

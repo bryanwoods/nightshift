@@ -244,6 +244,16 @@ def i_drums(token, o):
             n = int((0.05 if ch == "h" else 0.25) * SR); t = np.arange(n) / SR
             nz = highpass(np.repeat(RNG.uniform(-1, 1, n // 2 + 1), 2)[:n], 6000)
             out.append(nz * np.exp(-t * (70 if ch == "h" else 12)) * 0.5)
+        elif ch == "m":
+            n = int(0.14 * SR); t = np.arange(n) / SR
+            y = sum(g * np.sin(2 * np.pi * f * t) for f, g in ((523, 1.0), (811, 0.6), (1197, 0.35)))
+            out.append(y * np.exp(-t * 38) * 0.3)
+        elif ch == "p":
+            n = int(0.4 * SR); t = np.arange(n) / SR
+            thud = np.sin(2 * np.pi * np.cumsum(85 + 130 * np.exp(-t * 50)) / SR) * np.exp(-t * 24)
+            click = RNG.standard_normal(n) * np.exp(-t * 240)
+            ding = np.sin(2 * np.pi * 1318.5 * t) * np.exp(-t * 9)
+            out.append(0.7 * thud + 0.28 * click + 0.16 * ding)
         elif ch == "t":
             n = int(0.3 * SR); t = np.arange(n) / SR
             f = 90 + 60 * np.exp(-t * 15)

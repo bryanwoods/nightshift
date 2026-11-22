@@ -23,7 +23,8 @@ A comma splits one step evenly, for quick runs and drum fills: "E5,F#5" or "s,s"
 A section can change the feel:  section B meter=3/4 grid=6 tempo=78 rit=1:0.85
 (rit slows the last 1 bar to 0.85 of the tempo). Every section keeps the same number
 of steps per beat. A "dyn" line sets loudness per bar and glides between bars.
-Drum letters: k kick, s snare, h hat, o open hat, c clap, t tom.
+Drum letters: k kick, s snare, h hat, o open hat, c clap, t tom, m metal clank,
+p punch clock.
 
 Two whole-line shortcuts:
     bell | @lead+12 |   copies the lead's notes in this section, an octave up
@@ -47,7 +48,7 @@ QUAL = {
     "maj7#11": (0, 4, 7, 11, 18), "m11": (0, 3, 7, 10, 14, 17), "13": (0, 4, 7, 10, 14, 21),
     "7b9": (0, 4, 7, 10, 13), "7#9": (0, 4, 7, 10, 15), "maj13": (0, 4, 7, 11, 14, 21),
 }
-DRUMS = set("kshoct")
+DRUMS = set("kshoctmp")
 NOTE_RE = re.compile(r"^([A-G])([#b]?)(-?\d)([>^!_]*)$")
 CHORD_RE = re.compile(r"^([A-G])([#b]?)([^/]*)(?:/([A-G][#b]?))?$")
 

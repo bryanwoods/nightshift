@@ -2,7 +2,7 @@
 import struct
 
 PROGRAM = {"pulse": 80, "tri": 38, "bass": 33, "hum": 52, "guitar": 29, "epiano": 4, "bell": 8, "pad": 89, "flute": 79}
-DRUM_KEY = {"k": 36, "s": 38, "h": 42, "o": 46, "c": 39, "t": 45}
+DRUM_KEY = {"k": 36, "s": 38, "h": 42, "o": 46, "c": 39, "t": 45, "m": 56, "p": 75}
 TPQ = 480
 
 
