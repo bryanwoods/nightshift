@@ -6,10 +6,10 @@
       "tiles": ["wall", "wall_face", "floor", "rug", "bed_head", "bed_foot", "desk", "clock_radio",
                 "window", "drawing", "closet", "door", "door_closed", "stairs", "counter", "stove",
                 "fridge", "table", "chair", "tile_floor", "nightstand", "nightstand_card", "plant", "shelf",
-                "railing", "sink", "drawing_torn"],
+                "railing", "sink", "drawing_torn", "arcade_moon"],
       "solid": ["wall", "wall_face", "bed_head", "bed_foot", "desk", "clock_radio", "window", "drawing",
                 "closet", "door_closed", "counter", "stove", "fridge", "table", "chair", "nightstand",
-                "nightstand_card", "plant", "shelf", "railing", "sink", "drawing_torn"]
+                "nightstand_card", "plant", "shelf", "railing", "sink", "drawing_torn", "arcade_moon"]
     },
     "home_morning": {
       "png": "res://assets/tiles/home_morning.png",
@@ -27,17 +27,17 @@
                 "hedge", "tree", "fence", "gate", "lamp_post", "mailbox", "bench", "shop_wall",
                 "shop_window_lit", "shop_window", "bakery_door", "bakery_sign", "cobble", "tower", "tower_face", "fountain",
                 "depot_wall", "rolling_door", "side_door", "side_door_closed", "punch_clock", "crate", "flowerbed", "ladder_broken",
-                "path", "back_door", "porch", "house_door_bread", "bread_cart", "puddle", "alley_gap", "notice_board", "ivy_gap"],
+                "path", "back_door", "porch", "house_door_bread", "bread_cart", "puddle", "alley_gap", "notice_board", "ivy_gap", "pj_stack", "mirror", "cat_bed", "arcade_maze", "arcade_catch", "arcade_cat"],
       "solid": ["roof", "house_wall", "house_window", "house_door", "hedge", "tree", "fence", "lamp_post",
                 "mailbox", "bench", "shop_wall", "shop_window_lit", "shop_window", "bakery_door", "bakery_sign",
                 "tower", "tower_face", "fountain", "depot_wall", "rolling_door", "side_door_closed", "punch_clock",
-                "crate", "flowerbed", "house_door_bread", "bread_cart", "notice_board"]
+                "crate", "flowerbed", "house_door_bread", "bread_cart", "notice_board", "pj_stack", "mirror", "cat_bed", "arcade_maze", "arcade_catch", "arcade_cat"]
     },
     "depot_night": {
       "png": "res://assets/tiles/depot_night.png",
       "tiles": ["wall", "wall_face", "concrete", "floor_line", "board", "bin", "timecards", "desk_big",
-                "shelf", "crate", "locker", "door", "rug", "window", "lantern"],
-      "solid": ["wall", "wall_face", "board", "bin", "timecards", "desk_big", "shelf", "crate", "locker", "window", "lantern"]
+                "shelf", "crate", "locker", "door", "rug", "window", "lantern", "arcade_hop"],
+      "solid": ["wall", "wall_face", "board", "bin", "timecards", "desk_big", "shelf", "crate", "locker", "window", "lantern", "arcade_hop"]
     },
     "terrarium_night": {
       "png": "res://assets/tiles/terrarium_night.png",

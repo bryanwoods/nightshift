@@ -16,6 +16,7 @@ const TITLE := "res://src/ui/title_screen.tscn"
 const NIGHT_END := "res://src/ui/night_end_screen.tscn"
 const LAMPS := "res://src/ui/lamps_screen.tscn"
 const BOARD := "res://src/ui/help_wanted_board.gd"
+const ARCADE := "res://src/ui/arcade.gd"
 const TONIGHT := "tonight_"
 const FIRST_ROOM := "bedroom"
 const MORNING_ROOM := "bedroom_morning"
@@ -439,6 +440,17 @@ func open_help_wanted() -> void:
 	var board: CanvasLayer = load(BOARD).new()
 	get_tree().current_scene.add_child(board)
 	await board.tree_exited
+	overlay_open = false
+
+
+func open_arcade(game: String) -> void:
+	if DialogueRunner.autoplay:
+		return
+	overlay_open = true
+	var cabinet: CanvasLayer = load(ARCADE).new()
+	cabinet.game_id = game
+	get_tree().current_scene.add_child(cabinet)
+	await cabinet.tree_exited
 	overlay_open = false
 
 

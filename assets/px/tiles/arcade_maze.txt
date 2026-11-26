@@ -1,0 +1,21 @@
+# arcade_maze 16x16
+# The Moth Maze arcade machine. The sign on top glows like a lamp.
+# rules: viewpoint, walls
+
+@tile
+..kkkkkkkkkkkk..
+..kllllllllllk..
+..kjjjjjjjjjjk..
+..kjkkkkkkkkjk..
+..kjknnnnnnkjk..
+..kjknlnnnnkjk..
+..kjknnnnpnkjk..
+..kjknnlnnnkjk..
+..kjkkkkkkkkjk..
+.kjjjjjjjjjjjjk.
+.kjsssssssssssk.
+.kjsksssshswssk.
+.kjsfssssssssjk.
+..kjjjjjjjjjjk..
+..kjjjjddjjjjk..
+..kkkkkkkkkkkk..

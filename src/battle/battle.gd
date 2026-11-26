@@ -489,6 +489,8 @@ func _dodge_phase() -> void:
 	_arena.pattern = _pattern
 	_arena.lit = _lit
 	_arena.token = _pattern.token_start()
+	_arena.token_tint = Game.color(str(_pajamas()["token"])) if _pajamas().has("token") else Color.WHITE
+	_time_scale = 1.0
 	if _pattern.params.has("prompt"):
 		_show_prompt(Game.text(str(_pattern.params["prompt"])), 1.5)
 	else:
@@ -497,7 +499,6 @@ func _dodge_phase() -> void:
 	_invuln = 0.0
 	_since_hit = 99.0
 	_history.clear()
-	_time_scale = 1.0
 	_dodging = true
 	await _phase_done
 	_dodging = false
@@ -594,6 +595,8 @@ func _pajama_turn() -> void:
 			pick = "heal" if randf() < 0.5 else ""
 		"moon":
 			pick = ["heal", "guard", "sting", ""][randi() % 4]
+		"midnight":
+			pick = "slow" if randf() < 0.35 else ""
 	match pick:
 		"heal":
 			awake = mini(awake_max, awake + 2)
@@ -601,6 +604,8 @@ func _pajama_turn() -> void:
 			_hold = true
 		"sting":
 			awake = maxi(1, awake - 1)
+		"slow":
+			_time_scale = 0.7
 	if pick != "":
 		_refresh_meters()
 		_show_prompt(Game.text("pj_" + Game.outfit() + "_" + pick), 1.2)

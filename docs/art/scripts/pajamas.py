@@ -11,6 +11,7 @@ PAJAMAS = {
     "frog": ({"x": "i", "u": "w", "f": "v"}, {"s": "w", "d": "v", "n": "k", "i": "i"}, "frog green"),
     "moon": ({"x": "E", "u": "p", "f": "d"}, {"s": "p", "d": "d", "n": "n", "i": "E"}, "moon purple"),
     "cloud": ({"x": "t", "u": "m", "f": "f"}, {"s": "m", "d": "f", "n": "s", "i": "t"}, "fluffy cloud white"),
+    "midnight": ({"x": "s", "u": "d", "f": "n"}, {"s": "d", "d": "n", "n": "k", "i": "s"}, "midnight black, tiny-clock"),
 }
 
 
@@ -26,7 +27,7 @@ def dress(lines, shirt, pants, stars):
             line = "".join(pal.get(c, c) for c in line)
             if stars and frame_row in (15, 19, 23):
                 i = (frame_row * 3) % 5 + 5
-                if line[i] in "ly":
+                if line[i] in "lyd":
                     line = line[:i] + "m" + line[i + 1:]
         out.append(line)
         frame_row += 1
@@ -36,7 +37,7 @@ def dress(lines, shirt, pants, stars):
 def main():
     lines = SRC.read_text().split("\n")
     for name, (shirt, pants, about) in PAJAMAS.items():
-        body = dress(lines[1:], shirt, pants, name == "star")
+        body = dress(lines[1:], shirt, pants, name in ("star", "midnight"))
         head = [f"# tadzio_{name} 16x32", f"# Tadzio in {about} pajamas. Drawn by docs/art/scripts/pajamas.py from tadzio.txt."]
         Path(f"assets/px/sprites/tadzio_{name}.txt").write_text("\n".join(head + [l for l in body if not l.startswith("# tadzio ")]))
     print(f"wrote {len(PAJAMAS)} pajamas")

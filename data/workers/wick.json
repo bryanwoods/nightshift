@@ -16,9 +16,9 @@
     { "type": "wax", "duration": 6.5, "wax": 0.32, "fire": 0.3, "ooze": 2.0, "warn": 2.0, "burn": 2.5, "drips": 7 },
     { "type": "hearts", "duration": 7.5, "count": 6, "spin": 0.3, "crack": 2.6, "stagger": 0.35, "warn": 0.5, "shards": 7, "speed": 60, "colors": ["pink", "violet", "aqua", "gold", "mint", "red"], "arena": [200, 136] },
     { "type": "spin", "duration": 8, "spin": 0.11, "rows": 2, "shots": 12, "speed": 45, "arena": [100, 100] },
-    { "type": "ring", "duration": 5.5, "rings": 3, "speed": 34, "gap_angle": 55 },
-    { "type": "rain", "duration": 6, "count": 16, "speed": 52, "slant": 22, "sprite": "drop" },
-    { "type": "dark", "duration": 6, "inner": { "type": "drift", "count": 5, "speed": 28, "turn_rate": 1.1 } }
+    { "type": "ring", "duration": 5.5, "rings": 3, "speed": 34, "gap_angle": 55, "color": "ember" },
+    { "type": "rain", "duration": 6, "count": 16, "speed": 52, "slant": 22, "sprite": "wax_glob" },
+    { "type": "dark", "duration": 6, "inner": { "type": "drift", "count": 5, "speed": 28, "turn_rate": 1.1, "sprite": "fireball" } }
   ],
   "task": {
     "title": "Make it right",

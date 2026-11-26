@@ -12,7 +12,7 @@ const DIR := "res://data/dialogue/"
 const COMMANDS: PackedStringArray = [
 	"set_flag", "clear_flag", "if_flag", "goto", "clock_add", "clock_set", "battle", "give_item",
 	"light", "move", "face", "shake", "wait", "music", "sfx", "end_night", "help_wanted", "save",
-	"take_item", "wear",
+	"take_item", "wear", "arcade",
 ]
 
 var dialogues: Dictionary = {}
@@ -227,6 +227,9 @@ func _command(line: Dictionary) -> bool:
 		"help_wanted":
 			textbox.hide_box()
 			await Game.open_help_wanted()
+		"arcade":
+			textbox.hide_box()
+			await Game.open_arcade(str(line.get("game", "")))
 		"save":
 			SaveManager.commit()
 	return gen != _gen

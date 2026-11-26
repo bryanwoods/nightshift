@@ -22,12 +22,60 @@
         { "speaker": "tadzio", "text": "Same time tomorrow. Right." }
       ]
     },
+    "radio_old": {
+      "lines": [
+        { "cmd": "clear_flag", "flag": "pick_street_remembering" },
+        { "cmd": "clear_flag", "flag": "pick_street_stroll" },
+        { "cmd": "clear_flag", "flag": "pick_street_lantern" },
+        { "cmd": "sfx", "name": "blip" },
+        { "text": "Click. The street will play the old song tonight." }
+      ]
+    },
+    "radio_remembering": {
+      "lines": [
+        { "cmd": "clear_flag", "flag": "pick_street_stroll" },
+        { "cmd": "clear_flag", "flag": "pick_street_lantern" },
+        { "cmd": "set_flag", "flag": "pick_street_remembering" },
+        { "cmd": "sfx", "name": "blip" },
+        { "text": "Click. The street will play Remembering tonight." }
+      ]
+    },
+    "radio_stroll": {
+      "lines": [
+        { "cmd": "clear_flag", "flag": "pick_street_remembering" },
+        { "cmd": "clear_flag", "flag": "pick_street_lantern" },
+        { "cmd": "set_flag", "flag": "pick_street_stroll" },
+        { "cmd": "sfx", "name": "blip" },
+        { "text": "Click. The street will play Stroll tonight." }
+      ]
+    },
+    "radio_lantern": {
+      "lines": [
+        { "cmd": "clear_flag", "flag": "pick_street_remembering" },
+        { "cmd": "clear_flag", "flag": "pick_street_stroll" },
+        { "cmd": "set_flag", "flag": "pick_street_lantern" },
+        { "cmd": "sfx", "name": "blip" },
+        { "text": "Click. The street will play Lantern tonight." }
+      ]
+    },
     "bedroom_clock": {
       "seen_variant": "bedroom_clock_2",
-      "lines": [ { "text": "1:59. The little dots between the numbers are not even blinking." } ]
+      "lines": [ { "text": "1:59. The little dots between the numbers are not even blinking." },
+        { "text": "The clock radio has a little dial for the street song.", "choices": [
+        { "text": "The old street song.", "goto": "radio_old" },
+        { "text": "Remembering. Wandering and wistful.", "goto": "radio_remembering" },
+        { "text": "Stroll. Playful and bouncy.", "goto": "radio_stroll" },
+        { "text": "Lantern. Slow and dreamy.", "goto": "radio_lantern" },
+        { "text": "Leave it." } ] } ]
     },
     "bedroom_clock_2": {
-      "lines": [ { "text": "Still 1:59. You could have a staring contest with it. It would win." } ]
+      "lines": [ { "text": "Still 1:59. You could have a staring contest with it. It would win." },
+        { "text": "The clock radio has a little dial for the street song.", "choices": [
+        { "text": "The old street song.", "goto": "radio_old" },
+        { "text": "Remembering. Wandering and wistful.", "goto": "radio_remembering" },
+        { "text": "Stroll. Playful and bouncy.", "goto": "radio_stroll" },
+        { "text": "Lantern. Slow and dreamy.", "goto": "radio_lantern" },
+        { "text": "Leave it." } ] } ]
     },
     "bedroom_desk": {
       "lines": [ { "text": "Your desk. Homework you finished. Homework you said you finished." } ]

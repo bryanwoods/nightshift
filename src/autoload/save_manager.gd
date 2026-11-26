@@ -21,6 +21,7 @@ func _ready() -> void:
 		var s: Variant = JSON.parse_string(FileAccess.get_file_as_string(SETTINGS_PATH))
 		if s is Dictionary:
 			settings.merge(s, true)
+	settings["fullscreen"] = false
 
 
 func has_save() -> bool:

@@ -104,10 +104,24 @@
     },
     "square_clock": {
       "seen_variant": "square_clock_2",
-      "lines": [ { "text": "The clock tower. Its hands point at 2:00. They have pointed at 2:00 all night." } ]
+      "lines": [ { "cmd": "if_flag", "flag": "wearing_moon", "goto": "square_clock_midnight", "unless_item": "pj_midnight" }, { "text": "The clock tower. Its hands point at 2:00. They have pointed at 2:00 all night." } ]
     },
     "square_clock_2": {
-      "lines": [ { "text": "Still 2:00. Up there, it is always two." } ]
+      "lines": [ { "cmd": "if_flag", "flag": "wearing_moon", "goto": "square_clock_midnight", "unless_item": "pj_midnight" }, { "text": "Still 2:00. Up there, it is always two." } ]
+    },
+    "square_clock_midnight": {
+      "lines": [
+        { "text": "The moon on your pajamas starts to glow." },
+        { "text": "Up on the tower, the hands of the big clock spin backward. Faster. Faster." },
+        { "cmd": "shake", "strength": 2, "seconds": 0.6 },
+        { "cmd": "sfx", "name": "tick" },
+        { "text": "Something drops off the clock face and lands at your feet." },
+        { "text": "A pair of pajamas, black as midnight, covered in tiny clocks." },
+        { "cmd": "give_item", "item": "pj_midnight" },
+        { "cmd": "wear", "outfit": "midnight" },
+        { "cmd": "sfx", "name": "rustle" },
+        { "text": "You put them on. Every tiny clock says 2:00." }
+      ]
     },
     "square_fountain": {
       "lines": [ { "text": "The fountain is off. The water is perfectly still, like it's listening." } ]

@@ -3,12 +3,12 @@
   "todo": "TODO(Tadzio): what is in this alley? Keep it unexplained in the game.",
   "tileset": "town_night",
   "legend": {
-    "R": "roof", "S": "shop_wall", ".": "cobble", "L": "lamp_post", "c": "crate", "g": "alley_gap"
+    "R": "roof", "S": "shop_wall", ".": "cobble", "L": "lamp_post", "c": "crate", "g": "alley_gap", "A": "arcade_maze"
   },
   "layout": [
     "RRRRRRRR",
     "SSSSSSSS",
-    "S..c...S",
+    "S..c..AS",
     "S.L....S",
     "S......S",
     "S.....cS",
@@ -22,7 +22,8 @@
       "approach": "no_job_approach",
       "after": { "satisfied": "no_job_key", "spared": "no_job_key", "finished": "no_job_key" } },
     { "type": "inspect", "x": 3, "y": 2, "dialogue": "alley_crate" },
-    { "type": "inspect", "x": 6, "y": 5, "dialogue": "alley_crate" }
+    { "type": "inspect", "x": 6, "y": 5, "dialogue": "alley_crate" },
+    { "type": "inspect", "x": 6, "y": 2, "dialogue": "arcade_maze" }
   ],
   "lights": [
     { "id": "alley_lamp", "x": 2, "y": 3, "radius": 40, "on": false }

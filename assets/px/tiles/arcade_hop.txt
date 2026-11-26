@@ -1,0 +1,21 @@
+# arcade_hop 16x16
+# The Puddle Hop arcade machine. The sign on top glows like a lamp.
+# rules: viewpoint, walls
+
+@tile
+..kkkkkkkkkkkk..
+..kllllllllllk..
+..kjjjjjjjjjjk..
+..kjkkkkkkkkjk..
+..kjkqqqqqqkjk..
+..kjkqmqqqqkjk..
+..kjkqqqqxqkjk..
+..kjkqqkqqqkjk..
+..kjkkkkkkkkjk..
+.kjjjjjjjjjjjjk.
+.kjsssssssssssk.
+.kjsksssshswssk.
+.kjsfssssssssjk.
+..kjjjjjjjjjjk..
+..kjjjjddjjjjk..
+..kkkkkkkkkkkk..

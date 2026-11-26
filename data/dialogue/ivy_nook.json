@@ -104,6 +104,10 @@
           "text": "Cloud pajamas: +10 Awake. Sometimes a hit only does 1."
         },
         {
+          "text": "Midnight pajamas: ...the tag is blank.",
+          "if_item": "pj_midnight"
+        },
+        {
           "speaker": "no_job",
           "text": "Do you believe the tags?"
         }
@@ -135,6 +139,11 @@
               "goto": "nook_wear_cloud"
             },
             {
+              "text": "Midnight pajamas.",
+              "if_item": "pj_midnight",
+              "goto": "nook_wear_midnight"
+            },
+            {
               "text": "Never mind."
             }
           ]
@@ -156,6 +165,10 @@
           "outfit": "star"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You hand over the squeaky cloth. No Job hands you a folded pair of pajamas."
         },
         {
@@ -163,7 +176,11 @@
         },
         {
           "speaker": "no_job",
-          "text": "Do they fit?"
+          "text": "Do stars sleep?"
+        },
+        {
+          "speaker": "no_job",
+          "text": "These ones do."
         },
         {
           "cmd": "sfx",
@@ -186,6 +203,10 @@
           "outfit": "frog"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You hand over the jar of puddle. No Job hands you a folded pair of pajamas."
         },
         {
@@ -193,7 +214,11 @@
         },
         {
           "speaker": "no_job",
-          "text": "Do they fit?"
+          "text": "What does a frog dream about?"
+        },
+        {
+          "speaker": "no_job",
+          "text": "Ask the puddle."
         },
         {
           "cmd": "sfx",
@@ -216,6 +241,10 @@
           "outfit": "moon"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You hand over the drop of dew. No Job hands you a folded pair of pajamas."
         },
         {
@@ -223,7 +252,11 @@
         },
         {
           "speaker": "no_job",
-          "text": "Do they fit?"
+          "text": "Who owned these before you?"
+        },
+        {
+          "speaker": "no_job",
+          "text": "The moon. Do not tell it."
         },
         {
           "cmd": "sfx",
@@ -246,6 +279,10 @@
           "outfit": "cloud"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You hand over the heel of bread. No Job hands you a folded pair of pajamas."
         },
         {
@@ -253,7 +290,11 @@
         },
         {
           "speaker": "no_job",
-          "text": "Do they fit?"
+          "text": "Can you sleep standing up?"
+        },
+        {
+          "speaker": "no_job",
+          "text": "Now you can."
         },
         {
           "cmd": "sfx",
@@ -275,6 +316,10 @@
           "outfit": "star"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You change into the star pajamas behind the hedge."
         }
       ]
@@ -284,6 +329,10 @@
         {
           "cmd": "wear",
           "outfit": "frog"
+        },
+        {
+          "cmd": "sfx",
+          "name": "rustle"
         },
         {
           "text": "You change into the frog pajamas behind the hedge."
@@ -297,6 +346,10 @@
           "outfit": "moon"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You change into the moon pajamas behind the hedge."
         }
       ]
@@ -306,6 +359,10 @@
         {
           "cmd": "wear",
           "outfit": "cloud"
+        },
+        {
+          "cmd": "sfx",
+          "name": "rustle"
         },
         {
           "text": "You change into the cloud pajamas behind the hedge."
@@ -378,6 +435,10 @@
           "outfit": "star"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You take the star pajamas off the rack and change behind the hedge."
         },
         {
@@ -395,6 +456,10 @@
         {
           "cmd": "wear",
           "outfit": "frog"
+        },
+        {
+          "cmd": "sfx",
+          "name": "rustle"
         },
         {
           "text": "You take the frog pajamas off the rack and change behind the hedge."
@@ -416,6 +481,10 @@
           "outfit": "moon"
         },
         {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
           "text": "You take the moon pajamas off the rack and change behind the hedge."
         },
         {
@@ -433,6 +502,10 @@
         {
           "cmd": "wear",
           "outfit": "cloud"
+        },
+        {
+          "cmd": "sfx",
+          "name": "rustle"
         },
         {
           "text": "You take the cloud pajamas off the rack and change behind the hedge."
@@ -501,6 +574,87 @@
         },
         {
           "text": "You got a mug of cocoa! In a fight, it gives +12 Awake."
+        }
+      ]
+    },
+    "nook_wear_midnight": {
+      "lines": [
+        {
+          "cmd": "wear",
+          "outfit": "midnight"
+        },
+        {
+          "cmd": "sfx",
+          "name": "rustle"
+        },
+        {
+          "text": "You change into the midnight pajamas behind the hedge."
+        }
+      ]
+    },
+    "nook_mirror": {
+      "lines": [
+        {
+          "text": "A tall mirror. Tadzio looks back, in plain clothes.",
+          "unless_flag": [
+            "wearing_star",
+            "wearing_frog",
+            "wearing_moon",
+            "wearing_cloud",
+            "wearing_midnight"
+          ]
+        },
+        {
+          "text": "A tall mirror. Tadzio looks back, covered in tiny gold stars.",
+          "if_flag": "wearing_star"
+        },
+        {
+          "text": "A tall mirror. A very green Tadzio looks back. Ribbit.",
+          "if_flag": "wearing_frog"
+        },
+        {
+          "text": "A tall mirror. The moon on your pajamas winks at you.",
+          "if_flag": "wearing_moon"
+        },
+        {
+          "text": "A tall mirror. Tadzio looks back, fluffy as a cloud.",
+          "if_flag": "wearing_cloud"
+        },
+        {
+          "text": "A tall mirror. In it, every tiny clock on your pajamas says 2:00.",
+          "if_flag": "wearing_midnight"
+        }
+      ]
+    },
+    "nook_cat": {
+      "seen_variant": "nook_cat_2",
+      "lines": [
+        {
+          "text": "A cat is asleep on a folded pair of purple pajamas."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Is the cat for sale?",
+          "unless_gone": "no_job"
+        },
+        {
+          "speaker": "no_job",
+          "text": "No.",
+          "unless_gone": "no_job"
+        }
+      ]
+    },
+    "nook_cat_2": {
+      "lines": [
+        {
+          "text": "The cat is still asleep. One ear twitches when you get close."
+        }
+      ]
+    },
+    "nook_stack": {
+      "lines": [
+        {
+          "text": "Pajamas, folded into perfect little squares. Who folds this well?"
         }
       ]
     }

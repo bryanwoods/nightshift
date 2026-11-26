@@ -1,0 +1,21 @@
+# pj_stack 16x16
+# Folded pajamas stacked on a crate in No Job's shop: gold, green, purple, white.
+# rules: viewpoint, walls
+
+@tile
+................
+...kkkkkkkkkk...
+...kmmmmmmmmk...
+...kfmmfmmmfk...
+...kkkkkkkkkk...
+..kEppppppppEk..
+..kpppEppppppk..
+..kkkkkkkkkkkk..
+..kiwwwwwwwwik..
+..kwwwiwwwwwwk..
+..kkkkkkkkkkkk..
+..klllmllllllk..
+..kylllllmllyk..
+.kkkkkkkkkkkkkk.
+.kooyoooyoooyok.
+.kkkkkkkkkkkkkk.

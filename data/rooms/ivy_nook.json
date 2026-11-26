@@ -2,22 +2,27 @@
   "id": "ivy_nook",
   "todo": "TODO(Tadzio): what else is in No Job's pajama shop?",
   "tileset": "town_night",
-  "legend": { "h": "hedge", "~": "grass", "c": "crate", "f": "flowerbed", "L": "lamp_post", "g": "ivy_gap" },
+  "legend": { "h": "hedge", "~": "grass", "c": "crate", "f": "flowerbed", "L": "lamp_post", "g": "ivy_gap", "P": "pj_stack", "M": "mirror", "Z": "cat_bed", "A": "arcade_cat" },
   "layout": [
     "hhhhhhhhhh",
-    "hfcccccffh",
-    "h~~~~~~~Lh",
+    "hPcccccPPh",
+    "hM~~~~~~Lh",
     "h~~~~~~~~h",
-    "h~~~~~~~~h",
-    "h~~~~~~~~h",
+    "hA~~~~~~~h",
+    "h~~~~~~~Zh",
     "hhhhghhhhh"
   ],
   "spawns": { "default": [4, 5, "up"], "backyard": [4, 5, "up"] },
   "companion": true,
   "entities": [
+    { "type": "inspect", "x": 1, "y": 4, "dialogue": "arcade_cat" },
     { "type": "door", "x": 4, "y": 6, "to": "backyard", "spawn": "ivy", "minutes": 1 },
     { "type": "npc", "id": "no_job", "sprite": "no_job", "x": 4, "y": 2, "facing": "down", "dialogue": "nook_shop", "unless_gone": "no_job" },
     { "type": "inspect", "x": 4, "y": 1, "dialogue": "nook_counter" },
+    { "type": "inspect", "x": 1, "y": 2, "dialogue": "nook_mirror" },
+    { "type": "inspect", "x": 8, "y": 5, "dialogue": "nook_cat" },
+    { "type": "inspect", "x": 7, "y": 1, "w": 2, "dialogue": "nook_stack" },
+    { "type": "inspect", "x": 1, "y": 1, "dialogue": "nook_stack" },
     { "type": "inspect", "x": 6, "y": 1, "dialogue": "nook_take", "if_gone": "no_job" }
   ],
   "lights": [

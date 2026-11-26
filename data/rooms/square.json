@@ -4,13 +4,13 @@
   "legend": {
     "R": "roof", "H": "house_wall", "S": "shop_wall", "w": "house_window", "o": "shop_window",
     "t": "tower", "f": "tower_face", ".": "cobble", "F": "fountain", "b": "bench", "L": "lamp_post",
-    "h": "hedge", "p": "flowerbed", "e": "sidewalk"
+    "h": "hedge", "p": "flowerbed", "e": "sidewalk", "A": "arcade_catch"
   },
   "layout": [
     "RRRRRRRRtttRRRRRRRRR",
     "HwHHoSSStttSSSoHHwHH",
     "eeeeeeeetfteeeeeeeee",
-    "eL................Le",
+    "eL...............ALe",
     "e..................e",
     "e....b.......b.....e",
     "e........F.........e",
@@ -22,6 +22,7 @@
   ],
   "spawns": { "default": [1, 6, "right"], "west": [1, 6, "right"] },
   "entities": [
+    { "type": "inspect", "x": 17, "y": 3, "dialogue": "arcade_catch" },
     { "type": "door", "x": 0, "y": 3, "h": 7, "to": "depot_interior", "spawn": "east", "minutes": 3 },
     { "type": "trigger", "x": 3, "y": 3, "h": 8, "once": true, "flag": "tonight_curfew_seen", "dialogue": "square_curfew", "unless_gone": "curfew" },
     { "type": "npc", "id": "curfew", "sprite": "curfew", "x": 17, "y": 6, "facing": "left", "idle_frames": 2, "dialogue": "curfew_after", "if_flag": "tonight_curfew_here", "unless_flag": "enemy_curfew", "unless_gone": "curfew" },

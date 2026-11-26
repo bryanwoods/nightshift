@@ -1,0 +1,35 @@
+{
+  "id": "arcade",
+  "dialogues": {
+    "arcade_maze": {
+      "lines": [
+        { "text": "An old arcade machine. MOTH MAZE. Someone left a coin in the slot.", "choices": [{ "text": "Play", "goto": "arcade_maze_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_maze_play": { "lines": [{ "cmd": "arcade", "game": "maze" }] },
+    "arcade_hop": {
+      "lines": [
+        { "text": "An arcade machine wedged by the lockers. PUDDLE HOP. The workers play it on break.", "choices": [{ "text": "Play", "goto": "arcade_hop_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_hop_play": { "lines": [{ "cmd": "arcade", "game": "hop" }] },
+    "arcade_catch": {
+      "lines": [
+        { "text": "An arcade machine under the lamp. STAR CATCH. It is warm to touch.", "choices": [{ "text": "Play", "goto": "arcade_catch_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_catch_play": { "lines": [{ "cmd": "arcade", "game": "catch" }] },
+    "arcade_cat": {
+      "lines": [
+        { "text": "A tiny arcade machine in the ivy. LONG CAT. The cat watches the screen.", "choices": [{ "text": "Play", "goto": "arcade_cat_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_cat_play": { "lines": [{ "cmd": "arcade", "game": "cat" }] },
+    "arcade_moon": {
+      "lines": [
+        { "text": "Your own arcade machine. MOON BOUNCE. You got it for your birthday.", "choices": [{ "text": "Play", "goto": "arcade_moon_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_moon_play": { "lines": [{ "cmd": "arcade", "game": "moon" }] }
+  }
+}

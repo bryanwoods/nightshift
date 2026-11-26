@@ -52,6 +52,9 @@ func _pitch_for(track: String) -> float:
 
 
 func play_music(track: String, fade: float = 1.0) -> void:
+	for pick: String in Game.tuning.get("music_picks", {}).get(track, []):
+		if Game.has_flag("pick_" + pick):
+			track = pick
 	if track == _current:
 		return
 	_current = track

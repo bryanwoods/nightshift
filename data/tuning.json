@@ -39,6 +39,7 @@
   "clock_pulse_minute": 55,
   "dark_music_pitch": 0.8,
   "dark_music_skip": ["wick_theme"],
+  "music_picks": { "street_loop": ["street_remembering", "street_stroll", "street_lantern"] },
   "all_gone_workers": ["no_job", "puddle_keeper", "unbaker", "window_washer", "jar_keeper"],
   "warm_light": true,
   "battle_clock": false

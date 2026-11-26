@@ -1,0 +1,21 @@
+# mirror 16x16
+# A tall standing mirror in No Job's shop. The glass catches the lamp.
+# rules: viewpoint, walls
+
+@tile
+.....kkkkkk.....
+....kooooook....
+...koksssskok...
+...koksmmsskok..
+...kokssmsssko..
+...koksssssskok.
+...koksssssskok.
+...koksssfsskok.
+...kokssssfskok.
+...koksssssskok.
+...kokkkkkkkkok.
+...kooooooooook.
+....kkkkokkkkk..
+.......kok......
+.....kkooookk...
+.....kkkkkkkk...

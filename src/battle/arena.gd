@@ -12,6 +12,7 @@ var hustle_t: float = -1.0
 var hustle_zone: float = 0.22
 var hit_flash: float = 0.0
 var rewind_flash: float = 0.0
+var token_tint: Color = Color.WHITE
 
 var _clip: Control
 var _layer: Node2D
@@ -117,9 +118,9 @@ func _draw_layer() -> void:
 			var sway := roundf(sin(pattern.t * 5.0 + i) * minf(2.0, i * 0.4))
 			_layer.draw_texture(_texture(shown[i]), at + Vector2(-4 + sway, -10 - i * 5))
 	elif token_visible:
-		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(1, 1, 1, 0.9))
+		_layer.draw_texture(_glow, (token - _glow.get_size() / 2.0).round(), Color(token_tint, 0.9))
 		if invuln <= 0.0 or fmod(invuln, 0.1) < 0.05:
-			_layer.draw_texture(_token, (token - Vector2(3, 3)).round())
+			_layer.draw_texture(_token, (token - Vector2(3, 3)).round(), token_tint)
 	if hustle_t >= 0.0:
 		var w := minf(100.0, size.x - 16.0)
 		var zw := w * hustle_zone
@@ -292,6 +293,8 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_texture_rect_region(crown, Rect2(b.pos.x - 20, top + 3 - tall, 40, tall), Rect2(0, crown.get_height() - tall, 40, tall))
 		_:
 			var tex := _texture(b.tex)
+			if b.tex.begins_with("heart_crack") and pattern.t - b.gap_center < 0.15:
+				_layer.draw_circle(b.pos, 4.0 + 50.0 * (pattern.t - b.gap_center), Color(_c["moon"], 0.7))
 			if tex:
 				if b.height > 0.0:
 					_ellipse(b.pos.round() + Vector2(0, 2), Vector2(5, 2.5) * (1.0 - b.height / 80.0), Color(_c["slate"], 0.9))
