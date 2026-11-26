@@ -54,7 +54,7 @@ Run one with `Godot --path . res://dev/<scene>.tscn -- <args>`.
 |---|---|---|
 | `test_room.tscn` | One room, clock running | `room=street_maple`, `spawn=alley`, `flags=a,b`, `items=a,b` |
 | `test_dialogue.tscn` | One dialogue on a blank screen; shows flags after | `dialogue=wick_intro` |
-| `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch` |
+| `test_battle.tscn` | One fight with no room | `worker=unbaker`, `wick`, `watch`, `wear=cloud` |
 | `gallery.tscn` | Every sprite, tile and portrait at 4x, labeled with its text file; a characters page with each frame and portrait size; saves `screens/gallery_<page>.png` | |
 | `autotest.tscn` | A bot plays Night 1 and checks clock, flags, rooms | `route=help\|hustle\|clock\|asleep\|night2\|input\|rewind\|forget\|finish\|encounters\|alley\|terrarium\|tour`, `shots=/some/dir` |
 

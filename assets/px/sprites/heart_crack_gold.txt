@@ -1,0 +1,15 @@
+# heart_crack_gold 11x10
+# item: projectiles
+# Wick's gold heart, cracked.
+
+@sprite
+..kk...kk..
+.kmlk.kllk.
+kmlllklllek
+kllllklllek
+klllkllleek
+.klllkllek.
+..klkllek..
+...kklek...
+....kkk....
+.....k.....

@@ -202,6 +202,19 @@ def i_bell(m, held, o, prev):
     return 0.45 * y * np.exp(-t * float(o.get("decay", 2.2))) * np.clip(t / 0.002, 0, 1)
 
 
+def i_vibes(m, held, o, prev):
+    """Vibraphone: soft mallet on a metal bar, bars tuned 1:4:10, with the motor's slow wobble."""
+    rel = float(o.get("rel", 0.6))
+    n = int((held + float(o.get("ring", 2.4))) * SR)
+    t = np.arange(n) / SR
+    f = hz(m)
+    y = (np.sin(2 * np.pi * f * t) + 0.22 * np.sin(2 * np.pi * f * 4 * t) * np.exp(-t * 5)
+         + 0.05 * np.sin(2 * np.pi * f * 10 * t) * np.exp(-t * 18))
+    trem = 1.0 - float(o.get("trem", 0.35)) * (0.5 + 0.5 * np.sin(2 * np.pi * float(o.get("rate", 5.2)) * t))
+    damp = np.where(t < held, 1.0, np.exp(-(t - held) / rel * 3))
+    return 0.5 * y * trem * damp * np.exp(-t * float(o.get("decay", 0.9))) * np.clip(t / 0.004, 0, 1)
+
+
 def i_pad(m, held, o, prev):
     """Soft detuned strings / pad, filtered warm."""
     rel = float(o.get("rel", 0.6))
@@ -264,7 +277,7 @@ def i_drums(token, o):
     return sum(np.pad(a, (0, L - len(a))) for a in out)
 
 
-INSTRUMENTS = {"pulse": i_pulse, "tri": i_tri, "bass": i_bass, "hum": i_hum, "guitar": i_guitar, "epiano": i_epiano, "bell": i_bell, "pad": i_pad, "flute": i_flute}
+INSTRUMENTS = {"pulse": i_pulse, "tri": i_tri, "bass": i_bass, "hum": i_hum, "guitar": i_guitar, "epiano": i_epiano, "bell": i_bell, "vibes": i_vibes, "pad": i_pad, "flute": i_flute}
 
 
 # ---------------------------------------------------------------- mixing

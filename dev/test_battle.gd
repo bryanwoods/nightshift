@@ -20,6 +20,8 @@ func _ready() -> void:
 			Game.set_flag("wick_joined")
 		elif a == "watch":
 			Game.set_flag("has_watch")
+		elif a.begins_with("wear="):
+			Game.wear(a.trim_prefix("wear="))
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	_info = Label.new()

@@ -30,6 +30,102 @@
         { "speaker": "wick", "portrait": "wick_sad", "text": "That watch. In a fight, if something's about to hit you, press {rewind}. Don't ask me how I know.", "if_flag": "has_watch" },
         { "speaker": "wick", "text": "Curfew's slow. Watch the notes when it sings. They fall in an order.", "if_flag": "has_watch" }
       ]
+    },
+    "wick_battle_intro": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_panic", "text": "The Un-Baker. The Window Washer. The Puddle Keeper. All of them." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "I lit the way for you. Every lamp." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "I am here not just because of us." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "I'm here because this isn't just me." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "You will kill them all, won't you?" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "All their hopes..." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "All of their dreams..." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "That's why I fight." }
+      ]
+    },
+    "wick_help_1": {
+      "lines": [
+        { "text": "You put the flashlight down on the cobbles." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "...why?" }
+      ]
+    },
+    "wick_help_2": {
+      "lines": [
+        { "speaker": "tadzio", "text": "The Un-Baker. The Window Washer. The Puddle Keeper. The Jar Keeper. No Job." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "You remember them." }
+      ]
+    },
+    "wick_help_3": {
+      "lines": [
+        { "speaker": "tadzio", "text": "I'm sorry, Wick." },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "Sorry doesn't bring them back." }
+      ]
+    },
+    "wick_turn_1": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_panic", "text": "You don't get my light anymore!" }
+      ]
+    },
+    "wick_turn_2": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "I thought you were my friend." }
+      ]
+    },
+    "wick_turn_3": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "Every lamp we lit... was it just so you could see them?" }
+      ]
+    },
+    "wick_turn_4": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "Please. Just go home." }
+      ]
+    },
+    "wick_flavor_1": {
+      "lines": [
+        { "text": "Wick's flame flickers blue." }
+      ]
+    },
+    "wick_flavor_2": {
+      "lines": [
+        { "text": "Hot wax drips onto the cobbles." }
+      ]
+    },
+    "wick_flavor_3": {
+      "lines": [
+        { "text": "The square gets a little darker." }
+      ]
+    },
+    "wick_hustle": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_panic", "text": "Ow! That's... that's what you did to them." }
+      ]
+    },
+    "wick_hustle_2": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_panic", "text": "I'm not scared of you!" }
+      ]
+    },
+    "wick_hustle_3": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "I'm... a little scared of you." }
+      ]
+    },
+    "wick_hustle_4": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "My flame is so small now..." }
+      ]
+    },
+    "wick_satisfied": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "...I believe you. I don't want to. But I do." }
+      ]
+    },
+    "wick_spared": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "You... let me go?" },
+        { "speaker": "wick", "portrait": "wick_sad", "text": "..." }
+      ]
     }
   }
 }

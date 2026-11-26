@@ -3,6 +3,8 @@ extends Pattern
 ## Params: volleys, lanes (lines in each volley), warn and strike (seconds), width (px),
 ## aim (true: the first line of each volley crosses the token), accel (how much faster the
 ## last volley is than the first), ramp (how much faster each later round of the fight is).
+## circle (true: the lines cross the middle like spokes, fired one after another around the
+## wheel, stagger seconds apart, and each volley turns the wheel by spin degrees).
 
 var _token: Vector2
 
@@ -30,6 +32,10 @@ func _spawn() -> void:
 			b.radius = 0.0
 			b.steer = rng.randf_range(0.0, TAU)
 			var p := _token if i == 0 and bool(params.get("aim", true)) else Vector2(rng.randf_range(-half.x, half.x), rng.randf_range(-half.y, half.y))
+			if bool(params.get("circle", false)):
+				b.steer = deg_to_rad(float(params.get("spin", 20)) * spawned) + PI * i / int(params.get("lanes", 3))
+				b.gap += float(params.get("stagger", 0.1)) * i
+				p = Vector2.ZERO
 			b.pos = _entry(p.clamp(-half, half), Vector2.from_angle(b.steer))
 			bullets.append(b)
 		spawned += 1

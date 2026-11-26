@@ -4,7 +4,7 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE, FORK, GRASS, TREE }
+enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE, FORK, GRASS, TREE, GOO, BLAZE, SPIKES }
 
 const LANE_DROP := 600.0
 const SHINE_REACH := 30.0
@@ -21,6 +21,10 @@ const TRUNK_GROW := 0.8
 const BRANCH_WARN := 0.6
 const BRANCH_GROW := 1.0
 const BRANCH_THICK := 5.0
+const GOO_RECEDE := 0.6
+const BLAZE_RISE := 0.25
+const BLAZE_FALL := 0.3
+const SPIKE_DEPTH := 11.0
 
 
 class Bullet:
@@ -99,6 +103,8 @@ var facing: Vector2 = Vector2.UP
 ## dash has carried it. Charge is how long confirm has been held.
 var rail: bool = false
 var lift: float = 0.0
+## How far the box is turned, in radians. Bullets and the token live in the turned box.
+var turn: float = 0.0
 var charge: float = 0.0
 var rng := RandomNumberGenerator.new()
 
@@ -181,6 +187,12 @@ func _gone(b: Bullet) -> bool:
 			return b.radius > b.gap + GRASS_RISE + b.gap_center + GRASS_FALL
 		Kind.TREE:
 			return b.radius > b.gap
+		Kind.GOO:
+			return b.radius > b.gap + b.gap_center + GOO_RECEDE
+		Kind.BLAZE:
+			return b.radius > b.gap + BLAZE_RISE + b.gap_center + BLAZE_FALL
+		Kind.SPIKES:
+			return false
 	return b.pos.y > half.y + 10 or b.pos.y < -half.y - 14 or absf(b.pos.x) > half.x + 14
 
 
@@ -243,6 +255,15 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 				if reach > 0.0 and absf(p.y - y) < BRANCH_THICK / 2.0 + r and (p.x - b.pos.x) * side > -r and (p.x - b.pos.x) * side < reach + r:
 					return true
 			return false
+		Kind.GOO:
+			return p.y - r < goo_edge(b, p.x)
+		Kind.BLAZE:
+			return b.radius >= b.gap and p.y + r > blaze_edge(b, p.x)
+		Kind.SPIKES:
+			var side := Vector2.from_angle(b.steer)
+			var along := absf(side.dot(half))
+			var a := p.dot(side.orthogonal())
+			return p.dot(side) + r > along - SPIKE_DEPTH * minf(1.0, b.radius / 0.5) and a > b.gap - r and a < b.gap_center + r
 		Kind.STAFF:
 			var local := (p - b.pos).rotated(-b.steer)
 			return absf(local.x) < b.width / 2.0 + r and absf(local.y) < b.radius + r
@@ -296,6 +317,37 @@ func branch_reach(b: Bullet, i: int) -> float:
 	if age < 0.0:
 		return -0.5
 	return half.x * minf(age / BRANCH_GROW, 1.0)
+
+
+## The bottom of a sheet of goo at x. It oozes down width px over gap seconds, with drips
+## from parts ([x, length, phase] each) that stretch and wobble, stays for gap_center, then
+## pulls back up.
+func goo_edge(b: Bullet, x: float) -> float:
+	var age := b.radius
+	var level := ease(clampf(age / b.gap, 0.0, 1.0), 0.5)
+	if age > b.gap + b.gap_center:
+		level = 1.0 - clampf((age - b.gap - b.gap_center) / GOO_RECEDE, 0.0, 1.0)
+	var drip := 0.0
+	for i in b.parts.size() / 3:
+		var d := absf(x - b.parts[i * 3])
+		if d < 3.0:
+			drip = maxf(drip, goo_drip(b, i) * sqrt(1.0 - d * d / 9.0))
+	return -half.y + level * (b.width + 1.5 * sin(x * 0.25 + age * 1.3) + drip)
+
+
+func goo_drip(b: Bullet, i: int) -> float:
+	return b.parts[i * 3 + 1] * (0.6 + 0.4 * sin(b.radius * 2.0 + b.parts[i * 3 + 2]))
+
+
+## The top of a wall of fire at x. After gap seconds of warning it leaps up to width px,
+## its tongues licking up and down, burns for gap_center, then drops.
+func blaze_edge(b: Bullet, x: float) -> float:
+	var age := b.radius - b.gap
+	if age < 0.0:
+		return half.y
+	var level := clampf(age / BLAZE_RISE, 0.0, 1.0) * (1.0 - clampf((age - BLAZE_RISE - b.gap_center) / BLAZE_FALL, 0.0, 1.0))
+	var lick := 0.28 * sin(x * 0.17 + b.radius * 7.0) + 0.16 * sin(x * 0.41 - b.radius * 10.0) + 0.05 * sin(x * 1.1 + b.radius * 15.0)
+	return half.y - level * b.width * (1.0 + lick)
 
 
 func snapshot() -> Dictionary:

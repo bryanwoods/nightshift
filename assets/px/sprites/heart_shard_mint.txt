@@ -1,0 +1,12 @@
+# heart_shard_mint 7x7
+# item: projectiles
+# Wick's mint heart splinter.
+
+@sprite
+...kk..
+..kiik.
+.kiiwk.
+kiiwk..
+kiwk...
+.kk....
+.......

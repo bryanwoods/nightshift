@@ -1,0 +1,19 @@
+# fireball 10x14
+# item: projectiles
+# A ball of fire from Wick, falling with its flames trailing up behind it.
+
+@sprite
+...k..k...
+..khkkhk..
+..kheehk..
+.kheelehk.
+.khelllek.
+kheellleek
+kheellleek
+kelllmllek
+kellmmmlek
+kellmmmlek
+kellllllek
+.keellllk.
+..keeeek..
+...kkkk...

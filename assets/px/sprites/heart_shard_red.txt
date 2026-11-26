@@ -1,0 +1,12 @@
+# heart_shard_red 7x7
+# item: projectiles
+# Wick's red heart splinter.
+
+@sprite
+...kk..
+..khhk.
+.khhDk.
+khhDk..
+khDk...
+.kk....
+.......

@@ -7,6 +7,7 @@
         { "text": "The town square. Above it, the clock tower." },
         { "cmd": "face", "entity": "player", "dir": "up" },
         { "text": "The big clock says 2:00." },
+        { "cmd": "if_flag", "flag": "all_gone", "goto": "square_wick" },
         { "speaker": "wick", "text": "That's... not right. That clock is never wrong. It's THE clock.", "unless_flag": "many_gone" },
         { "speaker": "wick", "portrait": "wick_sad", "text": "..." },
         { "cmd": "music", "track": "curfew_theme" },
@@ -24,6 +25,41 @@
         { "cmd": "battle", "worker": "curfew" },
         { "cmd": "if_flag", "flag": "friend_curfew", "goto": "square_end_help" },
         { "cmd": "if_flag", "flag": "gone_curfew", "goto": "square_end_gone", "else": "square_end_hustle" }
+      ]
+    },
+    "square_wick": {
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "..." },
+        { "cmd": "move", "entity": "wick", "dx": 4, "dy": 0, "speed": 40 },
+        { "cmd": "face", "entity": "wick", "dir": "left" },
+        { "cmd": "face", "entity": "player", "dir": "right" },
+        { "text": "Wick floats out in front of you. His little flame is shaking." },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "I... I won't let you!" },
+        { "speaker": "wick", "portrait": "wick_panic", "text": "Stop taking innocent souls!" },
+        { "cmd": "shake", "strength": 3, "seconds": 0.8 },
+        { "text": "Wick's face twists. His head bursts into flames, and red horns curl up out of the fire." },
+        { "text": "Hot wax drips down his staff." },
+        { "cmd": "music", "track": "wick_theme" },
+        { "cmd": "battle", "worker": "wick" },
+        { "cmd": "clear_flag", "flag": "wick_joined" },
+        { "cmd": "if_flag", "flag": "gone_wick", "goto": "square_wick_gone", "else": "square_wick_spared" }
+      ]
+    },
+    "square_wick_spared": {
+      "todo": "TODO(Tadzio): what happens when you spare Wick.",
+      "lines": [
+        { "speaker": "wick", "portrait": "wick_sad", "text": "I'm not your light anymore, Tadzio." },
+        { "text": "Wick drifts away across the square. The light goes with it." },
+        { "cmd": "wait", "seconds": 1.0 },
+        { "cmd": "clock_set", "minute": 60 }
+      ]
+    },
+    "square_wick_gone": {
+      "todo": "TODO(Tadzio): what happens when Wick is gone too.",
+      "lines": [
+        { "text": "There is no light left in the square." },
+        { "cmd": "wait", "seconds": 1.5 },
+        { "cmd": "clock_set", "minute": 60 }
       ]
     },
     "square_end_help": {

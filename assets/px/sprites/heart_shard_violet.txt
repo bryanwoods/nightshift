@@ -1,0 +1,12 @@
+# heart_shard_violet 7x7
+# item: projectiles
+# Wick's violet heart splinter.
+
+@sprite
+...kk..
+..kEEk.
+.kEEpk.
+kEEpk..
+kEpk...
+.kk....
+.......

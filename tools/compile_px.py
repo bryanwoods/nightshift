@@ -14,6 +14,7 @@ A file:
 
 Blank lines between frames are fine. Where each file goes:
     assets/px/sprites/<name>.txt     -> assets/sprites/<name>.png (frames 4 across, in file order)
+    assets/px/sprites/<folder>/<name>.txt the same; folders only sort the text files
     assets/px/portraits/<name>.txt   -> assets/portraits/<name>_<frame>.png (one file a frame)
     assets/px/tiles/<tileset>/<tile>.txt, else assets/px/tiles/<tile>.txt
                                      -> assets/tiles/<tileset>.png (8 across, data/tilesets.json order)
@@ -178,7 +179,7 @@ def main():
     colors = palette()
     errors, out = [], {}
     tiles, sprites = {}, {}
-    for path in sorted((PX / "sprites").glob("*.txt")):
+    for path in sorted((PX / "sprites").rglob("*.txt")):
         r = read(path, colors, errors)
         if r and r[2]:
             out[ROOT / f"assets/sprites/{r[0]}.png"] = sheet(r[2], *r[1], across=4)

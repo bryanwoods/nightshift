@@ -18,7 +18,8 @@ var _anim_t: float = 0.0
 func _ready() -> void:
 	speed = float(Game.tuning.get("player_speed", 60))
 	sprite = Sprite2D.new()
-	sprite.texture = load("res://assets/sprites/tadzio.png")
+	_dress()
+	Game.flag_set.connect(func(_f: String) -> void: _dress())
 	sprite.hframes = 4
 	sprite.vframes = 4
 	sprite.centered = false
@@ -98,3 +99,9 @@ func _update_flashlight() -> void:
 		return
 	flashlight.enabled = Game.flashlight and room != null and bool(room.data.get("flashlight", true))
 	flashlight.rotation = facing.angle()
+
+
+## Tadzio's sheet, or the one for the pajamas they have on.
+func _dress() -> void:
+	var path := "res://assets/sprites/tadzio_%s.png" % Game.outfit()
+	sprite.texture = load(path if ResourceLoader.exists(path) else "res://assets/sprites/tadzio.png")

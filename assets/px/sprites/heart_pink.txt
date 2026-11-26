@@ -1,0 +1,15 @@
+# heart_pink 11x10
+# item: projectiles
+# Wick's pink heart.
+
+@sprite
+..kk...kk..
+.kmFk.kFFk.
+kmFFFkFFFhk
+kFFFFFFFFhk
+kFFFFFFFhhk
+.kFFFFFFhk.
+..kFFFFhk..
+...kFFhk...
+....khk....
+.....k.....

@@ -168,8 +168,15 @@ func clear_flag(name: String) -> void:
 		flag_cleared.emit(name)
 
 
-## if_flag / unless_flag take flag names; if_gone / unless_gone take worker ids.
+## if_flag / unless_flag take flag names; if_gone / unless_gone take worker ids;
+## if_item / unless_item take item ids.
 func cond_ok(d: Dictionary) -> bool:
+	for it in _names(d.get("if_item", [])):
+		if not it in items:
+			return false
+	for it in _names(d.get("unless_item", [])):
+		if it in items:
+			return false
 	for f in _names(d.get("if_flag", [])) + _names(d.get("if_gone", [])).map(func(w: String) -> String: return "gone_" + w):
 		if not has_flag(f):
 			return false
@@ -188,6 +195,22 @@ func _names(v: Variant) -> Array:
 func give_item(item: String) -> void:
 	if item != "" and not item in items:
 		items.append(item)
+
+
+func take_item(item: String) -> void:
+	items.erase(item)
+
+
+## The pajamas Tadzio has on, as the id after "pj_", or "".
+func outfit() -> String:
+	var on := _flag_names("wearing_")
+	return on[0] if not on.is_empty() else ""
+
+
+func wear(id: String) -> void:
+	for f in _flag_names("wearing_"):
+		clear_flag("wearing_" + f)
+	set_flag("wearing_" + id)
 
 
 func item_name(item: String) -> String:

@@ -16,7 +16,7 @@
     "~~~~~~~~~~~~~F",
     "hhhhhhhhhhhhhh"
   ],
-  "spawns": { "default": [2, 3, "down"], "house": [2, 3, "down"], "gate": [12, 4, "left"] },
+  "spawns": { "default": [2, 3, "down"], "house": [2, 3, "down"], "gate": [12, 4, "left"], "ivy": [7, 7, "up"] },
   "entities": [
     { "type": "door", "x": 2, "y": 1, "to": "kitchen", "spawn": "backyard" },
     { "type": "inspect", "x": 1, "y": 6, "dialogue": "backyard_crate" },
@@ -25,6 +25,7 @@
     { "type": "trigger", "x": 8, "y": 2, "h": 6, "once": true, "flag": "tonight_gate_light", "dialogue": "backyard_light" },
     { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "dialogue": "gate_chime", "unless_flag": "tonight_gate" },
     { "type": "door", "x": 13, "y": 4, "to": "street_maple", "spawn": "gate", "if_flag": "tonight_gate" },
+    { "type": "false_wall", "x": 7, "y": 8, "tile": "ivy_gap", "to": "ivy_nook", "spawn": "backyard", "minutes": 1, "dialogue": "nook_key", "if_item": "key_to_nothing" },
     { "type": "encounter", "worker": "dummy", "x": 5, "y": 6, "facing": "down", "respawn": "nightly", "radius": 1,
       "approach": "dummy_approach", "chat": "dummy_chat" }
   ],

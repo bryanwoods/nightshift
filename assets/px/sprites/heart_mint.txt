@@ -1,0 +1,15 @@
+# heart_mint 11x10
+# item: projectiles
+# Wick's mint heart.
+
+@sprite
+..kk...kk..
+.kmik.kiik.
+kmiiikiiiwk
+kiiiiiiiiwk
+kiiiiiiiwwk
+.kiiiiiiwk.
+..kiiiiwk..
+...kiiwk...
+....kwk....
+.....k.....

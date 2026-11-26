@@ -281,7 +281,9 @@
         },
         {
           "text": "One slot at the end has no name on it."
-        }
+        },
+        { "text": "There's a blank timecard in it. No Job wanted one. You take it.", "if_flag": "nook_quest", "unless_flag": "nook_quest_done", "unless_item": "blank_timecard" },
+        { "cmd": "give_item", "item": "blank_timecard", "if_flag": "nook_quest", "unless_flag": "nook_quest_done" }
       ]
     },
     "depot_lockers": {

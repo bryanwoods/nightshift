@@ -12,7 +12,7 @@ var _current: String = ""
 var _pool: Array[AudioStreamPlayer] = []
 var _next: int = 0
 var _cache: Dictionary = {}
-var _pitch: float = 1.0
+var _tension: float = 1.0
 
 
 func _ready() -> void:
@@ -40,7 +40,15 @@ func current() -> String:
 
 
 func music_pitch() -> float:
-	return _pitch
+	return _pitch_for(_current)
+
+
+## The clock's tension, slowed further once many workers are gone, unless the track is
+## listed in dark_music_skip.
+func _pitch_for(track: String) -> float:
+	if Game.has_flag("many_gone") and not track in Game.tuning.get("dark_music_skip", []):
+		return _tension * float(Game.tuning.get("dark_music_pitch", 1.0))
+	return _tension
 
 
 func play_music(track: String, fade: float = 1.0) -> void:
@@ -61,7 +69,7 @@ func play_music(track: String, fade: float = 1.0) -> void:
 		return
 	new.stream = stream
 	new.volume_db = SILENT_DB
-	new.pitch_scale = _pitch
+	new.pitch_scale = _pitch_for(track)
 	new.play()
 	create_tween().tween_property(new, "volume_db", 0.0, fade)
 
@@ -120,8 +128,6 @@ func _on_minute(minute: int) -> void:
 	for step: Dictionary in Game.tuning.get("music_tension", []):
 		if minute >= int(step.get("minute", 99)):
 			pitch = float(step.get("pitch", 1.0))
-	if Game.has_flag("many_gone"):
-		pitch *= float(Game.tuning.get("dark_music_pitch", 1.0))
-	_pitch = pitch
+	_tension = pitch
 	for p in _music:
-		p.pitch_scale = pitch
+		p.pitch_scale = music_pitch()

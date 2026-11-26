@@ -12,6 +12,7 @@ const DIR := "res://data/dialogue/"
 const COMMANDS: PackedStringArray = [
 	"set_flag", "clear_flag", "if_flag", "goto", "clock_add", "clock_set", "battle", "give_item",
 	"light", "move", "face", "shake", "wait", "music", "sfx", "end_night", "help_wanted", "save",
+	"take_item", "wear",
 ]
 
 var dialogues: Dictionary = {}
@@ -199,6 +200,10 @@ func _command(line: Dictionary) -> bool:
 			await Game.start_battle(str(line.get("worker", "")))
 		"give_item":
 			Game.give_item(str(line.get("item", "")))
+		"take_item":
+			Game.take_item(str(line.get("item", "")))
+		"wear":
+			Game.wear(str(line.get("outfit", "")))
 		"light":
 			Game.set_light(str(line.get("id", "")), bool(line.get("on", true)))
 		"move":

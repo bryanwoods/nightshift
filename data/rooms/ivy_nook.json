@@ -1,0 +1,29 @@
+{
+  "id": "ivy_nook",
+  "todo": "TODO(Tadzio): what else is in No Job's pajama shop?",
+  "tileset": "town_night",
+  "legend": { "h": "hedge", "~": "grass", "c": "crate", "f": "flowerbed", "L": "lamp_post", "g": "ivy_gap" },
+  "layout": [
+    "hhhhhhhhhh",
+    "hfcccccffh",
+    "h~~~~~~~Lh",
+    "h~~~~~~~~h",
+    "h~~~~~~~~h",
+    "h~~~~~~~~h",
+    "hhhhghhhhh"
+  ],
+  "spawns": { "default": [4, 5, "up"], "backyard": [4, 5, "up"] },
+  "companion": true,
+  "entities": [
+    { "type": "door", "x": 4, "y": 6, "to": "backyard", "spawn": "ivy", "minutes": 1 },
+    { "type": "npc", "id": "no_job", "sprite": "no_job", "x": 4, "y": 2, "facing": "down", "dialogue": "nook_shop", "unless_gone": "no_job" },
+    { "type": "inspect", "x": 4, "y": 1, "dialogue": "nook_counter" },
+    { "type": "inspect", "x": 6, "y": 1, "dialogue": "nook_take", "if_gone": "no_job" }
+  ],
+  "lights": [
+    { "id": "nook_lamp", "x": 8, "y": 2, "radius": 50, "color": "lamp", "on": true },
+    { "id": "nook_glow", "x": 4, "y": 3, "radius": 40, "color": "violet", "energy": 0.5, "on": true }
+  ],
+  "ambient": 0.9,
+  "music": "house_hum"
+}

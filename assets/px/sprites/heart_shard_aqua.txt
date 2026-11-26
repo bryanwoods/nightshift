@@ -1,0 +1,12 @@
+# heart_shard_aqua 7x7
+# item: projectiles
+# Wick's aqua heart splinter.
+
+@sprite
+...kk..
+..kuuk.
+.kuuqk.
+kuuqk..
+kuqk...
+.kk....
+.......

@@ -27,7 +27,10 @@ func _ready() -> void:
 	for c in CHARACTERS:
 		for sheet in [c, c + "_battle"]:
 			if ResourceLoader.exists("res://assets/sprites/%s.png" % sheet):
-				var size := FileAccess.get_file_as_string("res://assets/px/sprites/%s.txt" % sheet).get_slice("\n", 0).get_slice(" ", 2)
+				var txt := "res://assets/px/sprites/%s.txt" % sheet
+				if not FileAccess.file_exists(txt):
+					txt = "res://assets/px/sprites/%s_animations/%s.txt" % [c, sheet]
+				var size := FileAccess.get_file_as_string(txt).get_slice("\n", 0).get_slice(" ", 2)
 				var at := AtlasTexture.new()
 				at.atlas = load("res://assets/sprites/%s.png" % sheet)
 				at.region = Rect2(0, 0, size.get_slice("x", 0).to_int(), size.get_slice("x", 1).to_int())

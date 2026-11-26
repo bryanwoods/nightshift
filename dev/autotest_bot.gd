@@ -275,7 +275,7 @@ func _finish_route() -> void:
 	await _idle()
 	r = _cur_room()
 	_expect(Game.has_flag("many_gone") and Game.has_flag("wick_saw_many"), "two gone: the dark route starts and Wick speaks")
-	_expect(AudioBus._pitch < 1.0, "the music plays slower on the dark route")
+	_expect(AudioBus.music_pitch() < 1.0, "the music plays slower on the dark route")
 	_expect(not r.entity_by_id("postman").active and r.entity_by_id("mailbag").active, "the Postman ran and left his mailbag")
 	_expect(DialogueRunner._uneven("Who's still up?") == "WhO's StIlL uP?", "dark lines alternate upper and lower case")
 	_finish()

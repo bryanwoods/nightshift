@@ -73,6 +73,12 @@
     "shine_prompt": "Turn the light!",
     "catch_prompt": "Catch the food! Not the burnt toast!",
     "flash_prompt": "Hold {confirm}, let go to dash!",
+    "pj_lucky": "Your star pajamas twinkle. Missed!",
+    "pj_cushion": "The cloud pajamas puff up. Only 1!",
+    "pj_frog_heal": "You feel froggy. +2 Awake.",
+    "pj_moon_heal": "The moon smiles. +2 Awake.",
+    "pj_moon_guard": "The moon hides you. The next hit slides off.",
+    "pj_moon_sting": "The moon frowns. -1 Awake.",
     "rewind_prompt": "Press {rewind} to wind the watch back!",
 
     "lamps_title": "What the lamps remember",

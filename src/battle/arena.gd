@@ -23,7 +23,7 @@ var _c: Dictionary = {}
 
 
 func _ready() -> void:
-	for n in ["ink", "night", "dusk", "slate", "fog", "moon", "ember", "hush", "wake", "lamp", "moss", "honey"]:
+	for n in ["ink", "night", "dusk", "slate", "fog", "moon", "ember", "hush", "wake", "lamp", "moss", "honey", "peach", "rosewood", "violet", "aqua", "seafoam", "froth"]:
 		_c[n] = Game.color(n)
 	_box = StyleBoxFlat.new()
 	_box.bg_color = _c["ink"]
@@ -204,6 +204,8 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 			var d := Vector2.from_angle(b.steer)
 			var n := d.orthogonal()
 			var length := pattern.grass_length(b)
+			var dark_c := Game.color(str(pattern.params.get("blade_dark", "moss")))
+			var light_c := Game.color(str(pattern.params.get("blade", "wake")))
 			var lean := float(int(absf(b.pos.x * 7.0 + b.pos.y * 13.0)) % 5 - 2)
 			for k: int in [0, 2, 1]:
 				var h: float = length * [0.75, 1.0, 0.6][k]
@@ -212,8 +214,54 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				var tip: Vector2 = base + d * h + n * bend
 				var mid: Vector2 = base + d * h * 0.55 + n * bend * 0.3
 				var blade := PackedVector2Array([base - n * 1.8, mid - n * 1.2, tip, mid + n * 1.2, base + n * 1.8])
-				_layer.draw_colored_polygon(blade, _c["moss"] if k != 1 else (Color(_c["wake"], 0.7) if warning else _c["wake"]))
-			_layer.draw_rect(Rect2(b.pos - n.abs() * b.width / 2.0 - d.abs(), n.abs() * b.width + d.abs() * 2.0), _c["moss"])
+				_layer.draw_colored_polygon(blade, dark_c if k != 1 else (Color(light_c, 0.7) if warning else light_c))
+			_layer.draw_rect(Rect2(b.pos - n.abs() * b.width / 2.0 - d.abs(), n.abs() * b.width + d.abs() * 2.0), dark_c)
+		Pattern.Kind.GOO:
+			for x in range(int(-half.x), int(half.x)):
+				var e := pattern.goo_edge(b, x + 0.5)
+				if e <= -half.y:
+					continue
+				_layer.draw_rect(Rect2(x, -half.y, 1, e + half.y), _c["moon"])
+				_layer.draw_rect(Rect2(x, e - 3.0, 1, 2), _c["peach"])
+				_layer.draw_rect(Rect2(x, e - 1.0, 1, 1), _c["rosewood"])
+				var shine := -half.y + (e + half.y) * (0.45 + 0.12 * sin(x * 0.2 + b.radius * 1.7))
+				_layer.draw_rect(Rect2(x, shine, 1, 1), _c["froth"])
+			for i in b.parts.size() / 3:
+				var dx := b.parts[i * 3]
+				var tip := pattern.goo_edge(b, dx)
+				if tip > -half.y + 3.0:
+					_layer.draw_circle(Vector2(dx, tip - 1.0), 2.5, _c["rosewood"])
+					_layer.draw_circle(Vector2(dx, tip - 1.5), 2.0, _c["peach"])
+					_layer.draw_circle(Vector2(dx - 0.5, tip - 2.5), 1.0, _c["moon"])
+		Pattern.Kind.BLAZE:
+			if b.radius < b.gap:
+				if int(b.radius * 8.0) % 2 == 0:
+					for x in range(int(-half.x), int(half.x)):
+						var h := 2.0 + 2.0 * absf(sin(x * 0.7 + b.radius * 10.0))
+						_layer.draw_rect(Rect2(x, half.y - h, 1, h), _c["violet"])
+				return
+			for x in range(int(-half.x), int(half.x)):
+				var e := pattern.blaze_edge(b, x + 0.5)
+				var h := half.y - e
+				if h <= 0.0:
+					continue
+				_layer.draw_rect(Rect2(x, e, 1, h), _c["violet"])
+				for band: Array in [[0.22, 0.0, "aqua"], [0.5, 1.7, "seafoam"], [0.78, 3.1, "froth"]]:
+					var f: float = band[0] + 0.1 * sin(x * 0.29 - b.radius * 9.0 + band[1])
+					_layer.draw_rect(Rect2(x, e + h * f, 1, h * (1.0 - f)), _c[band[2]])
+				if sin(x * 2.7 + b.radius * 20.0) > 0.93:
+					_layer.draw_rect(Rect2(x, e - 2.0 - 5.0 * fmod(b.radius * 3.0 + x * 0.37, 1.0), 1, 1), _c["violet"])
+		Pattern.Kind.SPIKES:
+			var side := Vector2.from_angle(b.steer)
+			var along := side.orthogonal()
+			var wall := side * absf(side.dot(half))
+			var depth := Pattern.SPIKE_DEPTH * minf(1.0, b.radius / 0.5)
+			var a := b.gap
+			while a + 8.0 <= b.gap_center + 0.01:
+				var tri := PackedVector2Array([wall + along * a, wall + along * (a + 8.0), wall + along * (a + 4.0) - side * depth])
+				_layer.draw_colored_polygon(tri, _c["moon"])
+				_layer.draw_polyline(PackedVector2Array([tri[0], tri[2], tri[1]]), _c["rosewood"], 1.0)
+				a += 8.0
 		Pattern.Kind.TREE:
 			var foot := b.pos.y + 2.0
 			var length := pattern.trunk_length(b)

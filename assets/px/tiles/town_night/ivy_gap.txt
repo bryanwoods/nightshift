@@ -1,0 +1,21 @@
+# ivy_gap 16x16
+# A gap in the hedge, half hidden behind hanging ivy and moss. Only the flashlight shows it.
+# rules: viewpoint, walls, doors
+
+@tile
+nvvvwvvkkvvwvvnv
+vsvvwkkkkkkwvEvv
+vvwvkkvkkwkkwvnv
+vvwkkkwkkwkkkvns
+dvvkkkwkkkkwkkvn
+dvnkkkkkkkkwkkvd
+nnvkkwkkkkkkkknd
+nvdkkwkkkkkkkkdn
+vdskkkkkkwkkkkdn
+dddkkkllkwkkkknd
+dvnkkklmkkkkkknd
+ndvkkkkkkkkkkknv
+ddvwkkkkkkkkkvnd
+nnvvwvkkkkvwvvnn
+vvvwvvwvvwvvwvvv
+kkkkkkkkkkkkkkkk

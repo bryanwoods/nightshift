@@ -1,0 +1,11 @@
+# wax_glob 6x6
+# item: projectiles
+# A glob of hot wax thrown out when one of Wick's fireballs bursts.
+
+@sprite
+.kkkk.
+kmmmAk
+kmmAAk
+kmAABk
+.kABk.
+..kk..

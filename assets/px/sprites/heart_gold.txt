@@ -1,0 +1,15 @@
+# heart_gold 11x10
+# item: projectiles
+# Wick's gold heart.
+
+@sprite
+..kk...kk..
+.kmlk.kllk.
+kmlllklllek
+kllllllllek
+kllllllleek
+.kllllllek.
+..kllllek..
+...kllek...
+....kek....
+.....k.....

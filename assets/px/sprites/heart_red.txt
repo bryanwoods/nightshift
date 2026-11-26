@@ -1,0 +1,15 @@
+# heart_red 11x10
+# item: projectiles
+# Wick's red heart.
+
+@sprite
+..kk...kk..
+.kmhk.khhk.
+kmhhhkhhhDk
+khhhhhhhhDk
+khhhhhhhDDk
+.khhhhhhDk.
+..khhhhDk..
+...khhDk...
+....kDk....
+.....k.....

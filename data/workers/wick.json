@@ -1,0 +1,39 @@
+{
+  "id": "wick",
+  "todo": "TODO(Tadzio): Wick's scariest attack, and what happens after you spare Wick.",
+  "name": "Wick",
+  "job": "Your light. Not anymore.",
+  "sprite": "wick",
+  "portrait": "wick",
+  "idle_frames": 4,
+  "music": "wick_theme",
+  "patience": 75,
+  "hours": 0,
+  "hit_damage": 3,
+  "patterns": [
+    { "type": "fireball", "duration": 6.5, "count": 7, "speed": 60, "globs": 8, "burst": 45, "gravity": 70 },
+    { "type": "strike", "duration": 7, "volleys": 5, "lanes": 6, "circle": true, "spin": 17, "stagger": 0.09, "warn": 0.6, "strike": 0.3, "width": 5, "accel": 0.4 },
+    { "type": "wax", "duration": 6.5, "wax": 0.32, "fire": 0.3, "ooze": 2.0, "warn": 2.0, "burn": 2.5, "drips": 7 },
+    { "type": "hearts", "duration": 7.5, "count": 6, "spin": 0.3, "crack": 2.6, "stagger": 0.35, "warn": 0.5, "shards": 7, "speed": 60, "colors": ["pink", "violet", "aqua", "gold", "mint", "red"], "arena": [200, 136] },
+    { "type": "spin", "duration": 8, "spin": 0.11, "rows": 2, "shots": 12, "speed": 45, "arena": [100, 100] },
+    { "type": "ring", "duration": 5.5, "rings": 3, "speed": 34, "gap_angle": 55 },
+    { "type": "rain", "duration": 6, "count": 16, "speed": 52, "slant": 22, "sprite": "drop" },
+    { "type": "dark", "duration": 6, "inner": { "type": "drift", "count": 5, "speed": 28, "turn_rate": 1.1 } }
+  ],
+  "task": {
+    "title": "Make it right",
+    "steps": [
+      { "label": "Put the flashlight down", "line": "wick_help_1" },
+      { "label": "Say their names", "line": "wick_help_2" },
+      { "label": "Say sorry", "line": "wick_help_3" }
+    ]
+  },
+  "turn_lines": ["wick_turn_1", "wick_turn_2", "wick_turn_3", "wick_turn_4"],
+  "flavor": ["wick_flavor_1", "wick_flavor_2", "wick_flavor_3"],
+  "hustle_lines": ["wick_hustle", "wick_hustle_2", "wick_hustle_3", "wick_hustle_4"],
+  "dialogue": {
+    "intro": "wick_battle_intro",
+    "satisfied": "wick_satisfied",
+    "spared": "wick_spared"
+  }
+}

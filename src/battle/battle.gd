@@ -102,10 +102,11 @@ func start(id: String) -> void:
 	patience_max = maxi(1, int(worker.get("patience", 10)))
 	patience = patience_max
 	awake_max = int(Game.tuning.get("awake_start", 20)) + (Game.shift_level() - 1) * int(Game.tuning.get("level_awake", 4))
+	awake_max += int(_pajamas().get("awake_bonus", 0))
 	awake = awake_max
 	var dflt: Array = Game.tuning.get("arena_default", [120, 80])
 	base_arena = Pattern.arena_for(worker, Vector2(float(dflt[0]), float(dflt[1])))
-	_idle_frames = 2
+	_idle_frames = int(worker.get("idle_frames", 2))
 	Game.rewind_charges = int(Game.tuning.get("rewind_charges", 3))
 	Game.charges_changed.emit()
 	_build()
@@ -132,7 +133,7 @@ func _loop() -> void:
 		var resolved: bool = await _act(action)
 		if over or resolved:
 			break
-		if Game.has_flag("wick_joined"):
+		if Game.has_flag("wick_joined") and worker_id != "wick":
 			await _act(await _wick_phase())
 			if over:
 				break
@@ -388,6 +389,8 @@ func _resolve(outcome: String) -> void:
 			Game.set_flag("gone_" + worker_id)
 			if Game.gone().size() >= 2:
 				Game.set_flag("many_gone")
+			if Game.tuning.get("all_gone_workers", []).all(func(w: String) -> bool: return w in Game.gone()):
+				Game.set_flag("all_gone")
 			Game.tally["finished_count"] += 1
 			_gain(int(worker.get("hours", 0)))
 			await DialogueRunner.run("battle_finished")
@@ -488,6 +491,8 @@ func _dodge_phase() -> void:
 	_arena.token = _pattern.token_start()
 	if _pattern.params.has("prompt"):
 		_show_prompt(Game.text(str(_pattern.params["prompt"])), 1.5)
+	else:
+		_pajama_turn()
 	_arena.token_visible = true
 	_invuln = 0.0
 	_since_hit = 99.0
@@ -513,7 +518,7 @@ func _physics_process(delta: float) -> void:
 	if not _dodging or over:
 		return
 	var dt := delta * _time_scale
-	var v := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var v := Input.get_vector("move_left", "move_right", "move_up", "move_down").rotated(-_pattern.turn)
 	if _pattern.rail:
 		v.y = 0.0
 	var lim := Vector2.ZERO if _pattern.locked else _arena.size / 2.0 - Vector2(TOKEN_R + 1, TOKEN_R + 1)
@@ -550,6 +555,17 @@ func _take_hit(dmg: int) -> void:
 		_stats["blocked"] += 1
 		_show_prompt(Game.text("wick_blocked"), 1.0)
 		return
+	match str(_pajamas().get("effect", "")):
+		"lucky":
+			if randf() < 0.25:
+				_invuln = invuln
+				AudioBus.sfx("chime")
+				_show_prompt(Game.text("pj_lucky"), 1.0)
+				return
+		"cushion":
+			if randf() < 0.35:
+				dmg = 1
+				_show_prompt(Game.text("pj_cushion"), 1.0)
 	if _stall:
 		dmg = ceili(dmg / 2.0)
 	awake = maxi(0, awake - dmg)
@@ -564,6 +580,30 @@ func _take_hit(dmg: int) -> void:
 	_refresh_meters()
 	if _tutorial_on:
 		_end_tutorial()
+
+
+func _pajamas() -> Dictionary:
+	return Game.item_info.get("pj_" + Game.outfit(), {}) if Game.outfit() != "" else {}
+
+
+## At the start of each dodge round, the pajamas may do something.
+func _pajama_turn() -> void:
+	var pick := ""
+	match str(_pajamas().get("effect", "")):
+		"froggy":
+			pick = "heal" if randf() < 0.5 else ""
+		"moon":
+			pick = ["heal", "guard", "sting", ""][randi() % 4]
+	match pick:
+		"heal":
+			awake = mini(awake_max, awake + 2)
+		"guard":
+			_hold = true
+		"sting":
+			awake = maxi(1, awake - 1)
+	if pick != "":
+		_refresh_meters()
+		_show_prompt(Game.text("pj_" + Game.outfit() + "_" + pick), 1.2)
 
 
 func _try_rewind() -> void:
@@ -639,6 +679,7 @@ func _process(delta: float) -> void:
 	if _arena:
 		_arena_shake = maxf(0.0, _arena_shake - delta)
 		_arena.position = ARENA_CENTER + (Vector2(randf_range(-2, 2), randf_range(-2, 2)).round() if _arena_shake > 0.0 else Vector2.ZERO)
+		_arena.rotation = _pattern.turn if _dodging and _pattern else 0.0
 		_menu_bar.visible = not DialogueRunner.showing() and not _bubble.visible
 	if _bubble_t >= 0.0:
 		_type_bubble(delta)

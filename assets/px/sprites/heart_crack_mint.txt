@@ -1,0 +1,15 @@
+# heart_crack_mint 11x10
+# item: projectiles
+# Wick's mint heart, cracked.
+
+@sprite
+..kk...kk..
+.kmik.kiik.
+kmiiikiiiwk
+kiiiikiiiwk
+kiiikiiiwwk
+.kiiikiiwk.
+..kikiiwk..
+...kkiwk...
+....kkk....
+.....k.....

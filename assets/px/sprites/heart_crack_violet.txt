@@ -1,0 +1,15 @@
+# heart_crack_violet 11x10
+# item: projectiles
+# Wick's violet heart, cracked.
+
+@sprite
+..kk...kk..
+.kmEk.kEEk.
+kmEEEkEEEpk
+kEEEEkEEEpk
+kEEEkEEEppk
+.kEEEkEEpk.
+..kEkEEpk..
+...kkEpk...
+....kkk....
+.....k.....

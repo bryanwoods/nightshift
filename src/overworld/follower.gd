@@ -4,6 +4,8 @@ extends Entity
 
 var distance: float = 24.0
 var scared: bool = false
+## True once a dialogue has walked him somewhere: he stays there instead of following.
+var stay: bool = false
 var _trail: Array[Vector2] = []
 
 
@@ -19,6 +21,8 @@ func setup_follower(sheet: String, talk: String, start: Vector2, player_pos: Vec
 
 
 func follow(p: Vector2) -> void:
+	if stay:
+		return
 	if _trail.is_empty() or _trail[-1].distance_to(p) >= 1.0:
 		_trail.append(p)
 	var need := distance

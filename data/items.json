@@ -7,6 +7,12 @@
     "drop_of_dew": { "name": "Drop of dew", "awake": 6, "effect": "+6 Awake", "use_text": "You drink the drop of dew. +6 Awake." },
     "pocket_watch": { "name": "Pocket watch" },
     "punch_card": { "name": "Punch card" },
-    "key_to_nothing": { "name": "A key to nothing" }
+    "key_to_nothing": { "name": "A key to nothing" },
+    "blank_timecard": { "name": "Blank timecard" },
+    "mug_of_cocoa": { "name": "Mug of cocoa", "awake": 12, "effect": "+12 Awake", "use_text": "You drink No Job's cocoa. It's still warm. +12 Awake." },
+    "pj_star": { "name": "Star pajamas", "awake_bonus": 4, "effect": "lucky", "about": "+4 Awake. Sometimes a hit misses you." },
+    "pj_frog": { "name": "Frog pajamas", "awake_bonus": 4, "effect": "froggy", "about": "+4 Awake. Sometimes you feel froggy and get 2 Awake back." },
+    "pj_moon": { "name": "Moon pajamas", "awake_bonus": 6, "effect": "moon", "about": "+6 Awake. Something random happens every round. Good or bad." },
+    "pj_cloud": { "name": "Cloud pajamas", "awake_bonus": 10, "effect": "cushion", "about": "+10 Awake. Sometimes a hit only does 1." }
   }
 }

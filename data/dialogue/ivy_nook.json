@@ -1,0 +1,508 @@
+{
+  "id": "ivy_nook",
+  "dialogues": {
+    "nook_shop": {
+      "todo": "TODO(Tadzio): more pajamas, and what No Job says about each one.",
+      "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "nook_met",
+          "goto": "nook_shop_again"
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "nook_met"
+        },
+        {
+          "speaker": "no_job",
+          "text": "You found me."
+        },
+        {
+          "speaker": "no_job",
+          "text": "I have no job. So I sell pajamas."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Is that a job?"
+        },
+        {
+          "cmd": "goto",
+          "goto": "nook_shop_again"
+        }
+      ]
+    },
+    "nook_shop_again": {
+      "lines": [
+        {
+          "speaker": "no_job",
+          "text": "What will you trade?"
+        },
+        {
+          "text": "Racks of pajamas hang from the hedge, folded into neat little squares.",
+          "choices": [
+            {
+              "text": "Star pajamas. Trade the squeaky cloth.",
+              "if_item": "squeaky_cloth",
+              "unless_item": "pj_star",
+              "goto": "nook_buy_star"
+            },
+            {
+              "text": "Frog pajamas. Trade the jar of puddle.",
+              "if_item": "jar_of_puddle",
+              "unless_item": "pj_frog",
+              "goto": "nook_buy_frog"
+            },
+            {
+              "text": "Moon pajamas. Trade the drop of dew.",
+              "if_item": "drop_of_dew",
+              "unless_item": "pj_moon",
+              "goto": "nook_buy_moon"
+            },
+            {
+              "text": "Cloud pajamas. Trade the heel of bread.",
+              "if_item": "heel_of_bread",
+              "unless_item": "pj_cloud",
+              "goto": "nook_buy_cloud"
+            },
+            {
+              "text": "Do you need anything?",
+              "unless_flag": "nook_quest",
+              "goto": "nook_favor"
+            },
+            {
+              "text": "Here's a timecard.",
+              "if_item": "blank_timecard",
+              "goto": "nook_favor_done"
+            },
+            {
+              "text": "Change pajamas.",
+              "goto": "nook_wardrobe"
+            },
+            {
+              "text": "What do they do?",
+              "goto": "nook_about"
+            },
+            {
+              "text": "Just looking."
+            }
+          ]
+        }
+      ]
+    },
+    "nook_about": {
+      "lines": [
+        {
+          "text": "Star pajamas: +4 Awake. Sometimes a hit misses you."
+        },
+        {
+          "text": "Frog pajamas: +4 Awake. Sometimes you feel froggy and get 2 Awake back."
+        },
+        {
+          "text": "Moon pajamas: +6 Awake. Something random happens every round. Good or bad."
+        },
+        {
+          "text": "Cloud pajamas: +10 Awake. Sometimes a hit only does 1."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Do you believe the tags?"
+        }
+      ]
+    },
+    "nook_wardrobe": {
+      "lines": [
+        {
+          "text": "Which pajamas?",
+          "choices": [
+            {
+              "text": "Star pajamas.",
+              "if_item": "pj_star",
+              "goto": "nook_wear_star"
+            },
+            {
+              "text": "Frog pajamas.",
+              "if_item": "pj_frog",
+              "goto": "nook_wear_frog"
+            },
+            {
+              "text": "Moon pajamas.",
+              "if_item": "pj_moon",
+              "goto": "nook_wear_moon"
+            },
+            {
+              "text": "Cloud pajamas.",
+              "if_item": "pj_cloud",
+              "goto": "nook_wear_cloud"
+            },
+            {
+              "text": "Never mind."
+            }
+          ]
+        }
+      ]
+    },
+    "nook_buy_star": {
+      "lines": [
+        {
+          "cmd": "take_item",
+          "item": "squeaky_cloth"
+        },
+        {
+          "cmd": "give_item",
+          "item": "pj_star"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "star"
+        },
+        {
+          "text": "You hand over the squeaky cloth. No Job hands you a folded pair of pajamas."
+        },
+        {
+          "text": "You change behind the hedge. They're gold, with little white stars."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Do they fit?"
+        },
+        {
+          "cmd": "sfx",
+          "name": "chime"
+        }
+      ]
+    },
+    "nook_buy_frog": {
+      "lines": [
+        {
+          "cmd": "take_item",
+          "item": "jar_of_puddle"
+        },
+        {
+          "cmd": "give_item",
+          "item": "pj_frog"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "frog"
+        },
+        {
+          "text": "You hand over the jar of puddle. No Job hands you a folded pair of pajamas."
+        },
+        {
+          "text": "You change behind the hedge. They're frog green. They smell a little like a pond."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Do they fit?"
+        },
+        {
+          "cmd": "sfx",
+          "name": "chime"
+        }
+      ]
+    },
+    "nook_buy_moon": {
+      "lines": [
+        {
+          "cmd": "take_item",
+          "item": "drop_of_dew"
+        },
+        {
+          "cmd": "give_item",
+          "item": "pj_moon"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "moon"
+        },
+        {
+          "text": "You hand over the drop of dew. No Job hands you a folded pair of pajamas."
+        },
+        {
+          "text": "You change behind the hedge. They're moon purple, and they feel strange."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Do they fit?"
+        },
+        {
+          "cmd": "sfx",
+          "name": "chime"
+        }
+      ]
+    },
+    "nook_buy_cloud": {
+      "lines": [
+        {
+          "cmd": "take_item",
+          "item": "heel_of_bread"
+        },
+        {
+          "cmd": "give_item",
+          "item": "pj_cloud"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "cloud"
+        },
+        {
+          "text": "You hand over the heel of bread. No Job hands you a folded pair of pajamas."
+        },
+        {
+          "text": "You change behind the hedge. They're white and very, very fluffy."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Do they fit?"
+        },
+        {
+          "cmd": "sfx",
+          "name": "chime"
+        }
+      ]
+    },
+    "nook_counter": {
+      "lines": [
+        {
+          "text": "A counter made of crates. A sign says: NO REFUNDS. NO JOBS."
+        }
+      ]
+    },
+    "nook_wear_star": {
+      "lines": [
+        {
+          "cmd": "wear",
+          "outfit": "star"
+        },
+        {
+          "text": "You change into the star pajamas behind the hedge."
+        }
+      ]
+    },
+    "nook_wear_frog": {
+      "lines": [
+        {
+          "cmd": "wear",
+          "outfit": "frog"
+        },
+        {
+          "text": "You change into the frog pajamas behind the hedge."
+        }
+      ]
+    },
+    "nook_wear_moon": {
+      "lines": [
+        {
+          "cmd": "wear",
+          "outfit": "moon"
+        },
+        {
+          "text": "You change into the moon pajamas behind the hedge."
+        }
+      ]
+    },
+    "nook_wear_cloud": {
+      "lines": [
+        {
+          "cmd": "wear",
+          "outfit": "cloud"
+        },
+        {
+          "text": "You change into the cloud pajamas behind the hedge."
+        }
+      ]
+    },
+    "nook_key": {
+      "lines": [
+        {
+          "cmd": "if_flag",
+          "flag": "nook_unlocked",
+          "goto": ""
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "nook_unlocked"
+        },
+        {
+          "text": "The key to nothing slides into the ivy. Something clicks."
+        },
+        {
+          "text": "It was a key to something after all."
+        }
+      ]
+    },
+    "nook_take": {
+      "lines": [
+        {
+          "text": "The racks are still full. Nobody is here to stop you.",
+          "choices": [
+            {
+              "text": "Take the star pajamas.",
+              "unless_item": "pj_star",
+              "goto": "nook_take_star"
+            },
+            {
+              "text": "Take the frog pajamas.",
+              "unless_item": "pj_frog",
+              "goto": "nook_take_frog"
+            },
+            {
+              "text": "Take the moon pajamas.",
+              "unless_item": "pj_moon",
+              "goto": "nook_take_moon"
+            },
+            {
+              "text": "Take the cloud pajamas.",
+              "unless_item": "pj_cloud",
+              "goto": "nook_take_cloud"
+            },
+            {
+              "text": "Change pajamas.",
+              "goto": "nook_wardrobe"
+            },
+            {
+              "text": "Leave them."
+            }
+          ]
+        }
+      ]
+    },
+    "nook_take_star": {
+      "lines": [
+        {
+          "cmd": "give_item",
+          "item": "pj_star"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "star"
+        },
+        {
+          "text": "You take the star pajamas off the rack and change behind the hedge."
+        },
+        {
+          "text": "Nobody says anything.",
+          "dark": true
+        }
+      ]
+    },
+    "nook_take_frog": {
+      "lines": [
+        {
+          "cmd": "give_item",
+          "item": "pj_frog"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "frog"
+        },
+        {
+          "text": "You take the frog pajamas off the rack and change behind the hedge."
+        },
+        {
+          "text": "Nobody says anything.",
+          "dark": true
+        }
+      ]
+    },
+    "nook_take_moon": {
+      "lines": [
+        {
+          "cmd": "give_item",
+          "item": "pj_moon"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "moon"
+        },
+        {
+          "text": "You take the moon pajamas off the rack and change behind the hedge."
+        },
+        {
+          "text": "Nobody says anything.",
+          "dark": true
+        }
+      ]
+    },
+    "nook_take_cloud": {
+      "lines": [
+        {
+          "cmd": "give_item",
+          "item": "pj_cloud"
+        },
+        {
+          "cmd": "wear",
+          "outfit": "cloud"
+        },
+        {
+          "text": "You take the cloud pajamas off the rack and change behind the hedge."
+        },
+        {
+          "text": "Nobody says anything.",
+          "dark": true
+        }
+      ]
+    },
+    "nook_favor": {
+      "lines": [
+        {
+          "speaker": "no_job",
+          "text": "Do I need anything?"
+        },
+        {
+          "speaker": "no_job",
+          "text": "Everyone at the Depot has a timecard."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Is there one for me?"
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "nook_quest"
+        },
+        {
+          "text": "No Job wants a blank timecard from the Depot."
+        }
+      ]
+    },
+    "nook_favor_done": {
+      "lines": [
+        {
+          "cmd": "take_item",
+          "item": "blank_timecard"
+        },
+        {
+          "cmd": "set_flag",
+          "flag": "nook_quest_done"
+        },
+        {
+          "speaker": "no_job",
+          "text": "Is this mine?"
+        },
+        {
+          "text": "No Job writes on it with one long finger: NO JOB."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Now I am on the list."
+        },
+        {
+          "speaker": "no_job",
+          "text": "Take this. It is warm."
+        },
+        {
+          "cmd": "give_item",
+          "item": "mug_of_cocoa"
+        },
+        {
+          "cmd": "sfx",
+          "name": "chime"
+        },
+        {
+          "text": "You got a mug of cocoa! In a fight, it gives +12 Awake."
+        }
+      ]
+    }
+  }
+}

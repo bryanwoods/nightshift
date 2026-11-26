@@ -1,0 +1,12 @@
+# heart_shard_gold 7x7
+# item: projectiles
+# Wick's gold heart splinter.
+
+@sprite
+...kk..
+..kllk.
+.kllek.
+kllek..
+klek...
+.kk....
+.......

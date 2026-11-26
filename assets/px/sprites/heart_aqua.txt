@@ -1,0 +1,15 @@
+# heart_aqua 11x10
+# item: projectiles
+# Wick's aqua heart.
+
+@sprite
+..kk...kk..
+.kmuk.kuuk.
+kmuuukuuuqk
+kuuuuuuuuqk
+kuuuuuuuqqk
+.kuuuuuuqk.
+..kuuuuqk..
+...kuuqk...
+....kqk....
+.....k.....
