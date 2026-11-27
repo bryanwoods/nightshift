@@ -1,0 +1,21 @@
+# pillar 16x16
+# A stone pillar. Crates can't go through it.
+# rules: viewpoint, walls
+
+@tile
+ddddkkkkkkkkdddd
+dnnkffffffffknnd
+dnnkfssssssfknnd
+dnnskssssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnnkfsssssknnnd
+dnnkffssssssknnd
+dnkffssssssssknd
+dnkdddddddddddkd
+dddkkkkkkkkkkddd

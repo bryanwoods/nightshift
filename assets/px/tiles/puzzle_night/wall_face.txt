@@ -1,0 +1,21 @@
+# wall_face 16x16
+# The puzzle room wall with a mint stripe.
+# rules: viewpoint, walls
+
+@tile
+dddddddddddddddd
+dsddddddsddddddd
+dddddddddddddddd
+vvvvvvvvvvvvvvvv
+iiiiiiiiiiiiiiii
+dddddddddddddddd
+ddddsdddddddsddd
+dddddddddddddddd
+dddddddddddddddd
+ddsddddddsdddddd
+dddddddddddddddd
+dddddddddddddddd
+dddddddddddddddd
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+kkkkkkkkkkkkkkkk

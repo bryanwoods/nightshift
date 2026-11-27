@@ -1,0 +1,21 @@
+# door 16x16
+# The arcade's glass front door. Street light comes through.
+# rules: viewpoint, walls, doors, warm
+
+@tile
+kkkkkkkkkkkkkkkk
+kssssssssssssssk
+ksnnnnnskkkkkksk
+ksnffnnsknnnnksk
+ksnfnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnlsllnnnksk
+ksnnnnlsllnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+kssssssssssssssk
+knnnnnnnnnnnnnnk
+kkkkkkkkkkkkkkkk

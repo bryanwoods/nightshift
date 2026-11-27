@@ -1,0 +1,21 @@
+# wall 16x16
+# The arcade's roof edge, dark with a violet trim.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+kkkkkkkkkkkkkkkk

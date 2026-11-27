@@ -1,0 +1,21 @@
+# chest 16x16
+# A golden treasure chest on the stand. It glows.
+# rules: viewpoint, walls, warm
+
+@tile
+dddddddddddddddd
+dnnkkkkkkkkkknnd
+dnkyyyyyyyyyyknd
+dnkyoooooooooykd
+dnkyoooooooooykd
+dnkkkkkllkkkkkkd
+dnkyyyykmlkyyykd
+dnkyoooklkoooykd
+dnkyoooooooooykd
+dnkkkkkkkkkkkkkd
+dnkffffffffffknd
+dnkssssssssssknd
+dnnkfssssssknnnd
+dnkffssssssssknd
+dnkddddddddddknd
+dddkkkkkkkkkkddd

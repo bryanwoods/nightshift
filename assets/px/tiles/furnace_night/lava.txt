@@ -1,0 +1,21 @@
+# lava 16x16
+# A pool of bubbling lava, glowing too bright to look at.
+# rules: viewpoint, warm
+
+@tile
+kkkkkkkkkkkkkkkk
+kDCCCCCCCCCCCCDk
+kCeeeeeeeeeeeeCk
+kCeelleeeeeeeeCk
+kCellyleeeelleCk
+kCeelleeeelylCCk
+kCeeeeeeeeelleCk
+kCeeeeelleeeeeCk
+kCelleelmleeeeCk
+kCeellelleeeeeCk
+kCeeeeeeeeelleCk
+kCeeeeeeeeeleeCk
+kCCeeeeeeeeeeCCk
+kDCCCCCCCCCCCCDk
+kDDDDDDDDDDDDDDk
+kkkkkkkkkkkkkkkk

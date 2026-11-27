@@ -12,7 +12,7 @@ const DIR := "res://data/dialogue/"
 const COMMANDS: PackedStringArray = [
 	"set_flag", "clear_flag", "if_flag", "goto", "clock_add", "clock_set", "battle", "give_item",
 	"light", "move", "face", "shake", "wait", "music", "sfx", "end_night", "help_wanted", "save",
-	"take_item", "wear", "arcade",
+	"take_item", "wear", "arcade", "reset_blocks",
 ]
 
 var dialogues: Dictionary = {}
@@ -212,7 +212,7 @@ func _command(line: Dictionary) -> bool:
 			var tiles := absf(float(line.get("dx", 0))) + absf(float(line.get("dy", 0)))
 			var speed := float(line.get("speed", Game.tuning.get("move_speed", 40)))
 			await get_tree().create_timer(tiles * 16.0 / speed + 0.05, false).timeout
-		"face", "shake":
+		"face", "shake", "reset_blocks":
 			room_command.emit(line)
 		"wait":
 			textbox.hide_box()

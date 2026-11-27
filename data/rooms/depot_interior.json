@@ -4,12 +4,12 @@
   "legend": {
     "#": "wall", "=": "wall_face", ".": "concrete", "_": "floor_line", "B": "board", "b": "bin",
     "T": "timecards", "K": "desk_big", "s": "shelf", "c": "crate", "l": "locker", "D": "door",
-    "r": "rug", "w": "window", "n": "lantern", "A": "arcade_hop"
+    "r": "rug", "w": "window", "n": "lantern"
   },
   "layout": [
     "######################",
     "#==TTT==BB=n=w===ll==#",
-    "#..................A.#",
+    "#....................#",
     "#....................D",
     "#.....KKKK...........D",
     "#....................#",
@@ -22,7 +22,6 @@
   ],
   "spawns": { "default": [1, 10, "up"], "side": [1, 10, "up"], "east": [20, 3, "left"] },
   "entities": [
-    { "type": "inspect", "x": 19, "y": 2, "dialogue": "arcade_hop" },
     { "type": "door", "x": 1, "y": 11, "to": "depot_exterior", "spawn": "side" },
     { "type": "door", "x": 21, "y": 3, "h": 2, "to": "square", "spawn": "west", "minutes": 3, "if_flag": "tonight_foreman_ok" },
     { "type": "trigger", "x": 20, "y": 3, "h": 2, "dialogue": "depot_exit_blocked", "unless_flag": "tonight_foreman_ok" },

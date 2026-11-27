@@ -2,11 +2,12 @@ class_name Entity
 extends Node2D
 ## One thing in a room: an npc, an inspect spot, a door, a trigger, a hold spot, a lamp, or an
 ## encounter (a worker at their post who fights when you come close), or a false wall (a wall
-## that opens inside the flashlight beam and leads to a secret room).
+## that opens inside the flashlight beam and leads to a secret room), or a block (a crate you
+## push one tile at a time).
 ## Positions in room files are tile coordinates. NPC positions are their feet.
 
 const ROWS := {"down": 0, "up": 1, "left": 2, "right": 3}
-const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp", "encounter", "false_wall"]
+const KINDS: PackedStringArray = ["npc", "inspect", "door", "trigger", "hold", "lamp", "encounter", "false_wall", "block"]
 
 var kind: String = ""
 var data: Dictionary = {}
@@ -43,6 +44,21 @@ func setup(d: Dictionary) -> void:
 		r.size = Vector2(maxf(12, frame_size.x - 4), 6)
 		shape.shape = r
 		shape.position = Vector2(0, -3)
+		body.add_child(shape)
+		add_child(body)
+	elif kind == "block":
+		position = tile * Room.TILE
+		sprite = Sprite2D.new()
+		sprite.texture = load("res://assets/sprites/%s.png" % str(d.get("sprite", "push_block")))
+		sprite.centered = false
+		sprite.offset = Vector2(0, 16 - sprite.texture.get_height())
+		add_child(sprite)
+		body = StaticBody2D.new()
+		var shape := CollisionShape2D.new()
+		var r := RectangleShape2D.new()
+		r.size = Vector2(16, 16)
+		shape.shape = r
+		shape.position = Vector2(8, 8)
 		body.add_child(shape)
 		add_child(body)
 	else:
@@ -127,7 +143,7 @@ func walk_to(target: Vector2, seconds: float) -> void:
 
 
 func _process(delta: float) -> void:
-	if sprite == null:
+	if sprite == null or kind == "block":
 		return
 	if moving:
 		_anim_t += delta * 8.0

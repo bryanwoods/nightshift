@@ -4,11 +4,11 @@
   "legend": {
     "R": "roof", "S": "shop_wall", "o": "shop_window", "O": "shop_window_lit", "N": "bakery_sign",
     "B": "bakery_door", ".": "sidewalk", ",": "road", "-": "road_line", "L": "lamp_post", "b": "bench",
-    "m": "mailbox", "h": "hedge"
+    "m": "mailbox", "h": "hedge", "A": "arcade_door"
   },
   "layout": [
     "RRRRRRRRRRRRRRRRRRRRRRRRRRRR",
-    "SoSSoSSoSSONBOSSoSSoSSSoSSoS",
+    "SoSSoSSASSONBOSSoSSoSSSoSSoS",
     "..L.....L....b....L.....L...",
     "............................",
     ",,,,,,,,,,,,,,,,,,,,,,,,,,,,",
@@ -17,8 +17,9 @@
     ".....L......m.......L.......",
     "hhhhhhhhhhhhhhhhhhhhhhhhhhhh"
   ],
-  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "east": [26, 4, "left"], "alley": [21, 2, "down"] },
+  "spawns": { "default": [1, 4, "right"], "west": [1, 4, "right"], "east": [26, 4, "left"], "alley": [21, 2, "down"], "arcade": [7, 2, "down"] },
   "entities": [
+    { "type": "door", "x": 7, "y": 1, "to": "arcade", "spawn": "street", "minutes": 1 },
     { "type": "door", "x": 0, "y": 2, "h": 6, "to": "street_maple", "spawn": "east", "minutes": 3 },
     { "type": "door", "x": 27, "y": 2, "h": 6, "to": "depot_exterior", "spawn": "west", "minutes": 3 },
     { "type": "false_wall", "x": 21, "y": 1, "tile": "alley_gap", "to": "alley_1", "spawn": "street", "minutes": 1 },

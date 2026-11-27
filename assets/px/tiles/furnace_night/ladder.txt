@@ -1,0 +1,21 @@
+# ladder 16x16
+# An iron ladder up to the alley. Moonlight leaks down from the hatch.
+# rules: viewpoint, walls, doors, warm
+
+@tile
+jjjkmmmmmmmmkjjj
+jjjkmmllllmmkjjj
+jjjksksssskskjjj
+jjjksffffffskjjj
+jjjksksssskskjjj
+jjjksjjjjjjskjjj
+jjjksksssskskjjj
+jjjksffffffskjjj
+jjjksksssskskjjj
+jjjksjjjjjjskjjj
+jjjksksssskskjjj
+jjjksffffffskjjj
+jjjksksssskskjjj
+jjjksjjjjjjskjjj
+DDDksDDDDDDskDDD
+kkkkkkkkkkkkkkkk

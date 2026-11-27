@@ -1,0 +1,21 @@
+# neon_moon 16x16
+# A neon crescent moon buzzing on the arcade wall.
+# rules: viewpoint, walls, warm
+
+@tile
+dddddddddddddddd
+dddddddllldddddd
+dddddlllmmlddddd
+ddddllmmdddddddd
+pppplmmppppppppp
+EEEElmmEEEEEEEEE
+ddddlmmddddddddd
+ddddllmmdddddddd
+dddddlllmmlddddd
+dddddddllldddddd
+qqqqqqqqqqqqqqqq
+uuuuuuuuuuuuuuuu
+dddddddddddddddd
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+kkkkkkkkkkkkkkkk

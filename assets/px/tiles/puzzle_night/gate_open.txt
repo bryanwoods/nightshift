@@ -1,0 +1,21 @@
+# gate_open 16x16
+# An open gate. The bars have slid into the walls.
+# rules: viewpoint
+
+@tile
+ksddddddddddddsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnsnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnsnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksnnnnnnnnnnnnsk
+ksddddddddddddsk

@@ -4,7 +4,7 @@ extends RefCounted
 ## checks hits and takes the snapshots that rewind restores. The pattern type in a worker
 ## file is the name of a script in this folder.
 
-enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE, FORK, GRASS, TREE, GOO, BLAZE, SPIKES }
+enum Kind { SPRITE, BAR, RING, LANE, BLOCK, STAFF, FENCE, BLADE, FORK, GRASS, TREE, GOO, BLAZE, SPIKES, FLARE }
 
 const LANE_DROP := 600.0
 const SHINE_REACH := 30.0
@@ -193,6 +193,8 @@ func _gone(b: Bullet) -> bool:
 			return b.radius > b.gap + BLAZE_RISE + b.gap_center + BLAZE_FALL
 		Kind.SPIKES:
 			return false
+		Kind.FLARE:
+			return b.radius > b.gap
 	return b.pos.y > half.y + 10 or b.pos.y < -half.y - 14 or absf(b.pos.x) > half.x + 14
 
 
@@ -264,6 +266,13 @@ func _hits(b: Bullet, p: Vector2, r: float) -> bool:
 			var along := absf(side.dot(half))
 			var a := p.dot(side.orthogonal())
 			return p.dot(side) + r > along - SPIKE_DEPTH * minf(1.0, b.radius / 0.5) and a > b.gap - r and a < b.gap_center + r
+		Kind.FLARE:
+			for dx: float in [-r, 0.0, r]:
+				var spans := flare_spans(b, p.x + dx)
+				for i in spans.size():
+					if p.y > spans[i].x - r and p.y < spans[i].y + r:
+						return true
+			return false
 		Kind.STAFF:
 			var local := (p - b.pos).rotated(-b.steer)
 			return absf(local.x) < b.width / 2.0 + r and absf(local.y) < b.radius + r
@@ -348,6 +357,38 @@ func blaze_edge(b: Bullet, x: float) -> float:
 	var level := clampf(age / BLAZE_RISE, 0.0, 1.0) * (1.0 - clampf((age - BLAZE_RISE - b.gap_center) / BLAZE_FALL, 0.0, 1.0))
 	var lick := 0.28 * sin(x * 0.17 + b.radius * 7.0) + 0.16 * sin(x * 0.41 - b.radius * 10.0) + 0.05 * sin(x * 1.1 + b.radius * 15.0)
 	return half.y - level * b.width * (1.0 + lick)
+
+
+## Where an engulfing fire burns in the column at x, as [top y, bottom y] spans. It floods the
+## box from the floor up to a thin strip at the top, then thins into two arms that run from the
+## bottom middle to the top corners, then lifts off the floor and out through the corners.
+## parts holds the times: warn, rise, hold, split, lift.
+func flare_spans(b: Bullet, x: float) -> PackedVector2Array:
+	var out := PackedVector2Array()
+	var a := b.radius - b.parts[0]
+	if a < 0.0:
+		return out
+	var rise := b.parts[1]
+	var hold := b.parts[2]
+	var split := clampf((a - rise - hold) / b.parts[3], 0.0, 1.0)
+	var lift := clampf((a - rise - hold - b.parts[3]) / b.parts[4], 0.0, 1.0)
+	var u := clampf(x / half.x, -1.0, 1.0)
+	var top := ease(clampf(a / rise, 0.0, 1.0), 0.5) * 0.8 + 0.2 * split * absf(u) * 1.2
+	top += 0.025 * sin(x * 0.3 - b.radius * 9.0)
+	var th := lerpf(1.25, 0.2, ease(split, 0.6)) if a > rise + hold else 2.0
+	th += 0.04 * sin(x * 0.45 + b.radius * 11.0)
+	var lo := lift * 1.1
+	var spans: Array = []
+	for s: float in [1.0, -1.0]:
+		var v0 := maxf(s * u - th, lo)
+		var v1 := minf(s * u + th, top)
+		if v1 > v0:
+			spans.append(Vector2(v0, v1))
+	if spans.size() == 2 and spans[1].x <= spans[0].y and spans[0].x <= spans[1].y:
+		spans = [Vector2(minf(spans[0].x, spans[1].x), maxf(spans[0].y, spans[1].y))]
+	for v: Vector2 in spans:
+		out.append(Vector2(half.y - v.y * half.y * 2.0, half.y - v.x * half.y * 2.0))
+	return out
 
 
 func snapshot() -> Dictionary:

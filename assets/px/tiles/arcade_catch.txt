@@ -1,21 +1,21 @@
 # arcade_catch 16x16
-# The Star Catch arcade machine. The sign on top glows like a lamp.
+# The Star Catch arcade machine. Its marquee lights glow.
 # rules: viewpoint, walls
 
 @tile
 ..kkkkkkkkkkkk..
-..kllllllllllk..
-..kjjjjjjjjjjk..
-..kjkkkkkkkkjk..
-..kjkddddddkjk..
-..kjkdlddddkjk..
-..kjkddddmdkjk..
-..kjkddydddkjk..
-..kjkkkkkkkkjk..
-.kjjjjjjjjjjjjk.
-.kjsssssssssssk.
-.kjsksssshswssk.
-.kjsfssssssssjk.
-..kjjjjjjjjjjk..
-..kjjjjddjjjjk..
-..kkkkkkkkkkkk..
+.kllllllllllllk.
+.klmlmlmlmlmllk.
+.kllllllllllllk.
+.klkkkkkkkkkklk.
+.klknlnnnnlnklk.
+.klknnnlnnnnklk.
+.klknnnnnhnnklk.
+.klknnnuuunnklk.
+.klkkkkkkkkkklk.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.

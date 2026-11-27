@@ -29,6 +29,7 @@ var player: Player
 var follower: Follower
 var camera: Camera2D
 var entities: Array[Entity] = []
+var pusher: PushBlocks
 var lights: Dictionary = {}
 var _lamp_posts: Dictionary = {}
 
@@ -76,6 +77,10 @@ func build(room_id: String, spawn_name: String) -> bool:
 	for l: Dictionary in data.get("lights", []):
 		_add_light(l)
 	_build_lamp_posts()
+	if entities.any(func(e: Entity) -> bool: return e.kind == "block"):
+		pusher = PushBlocks.new()
+		pusher.room = self
+		add_child(pusher)
 	player = Player.new()
 	player.room = self
 	actors.add_child(player)
@@ -625,6 +630,9 @@ func _on_room_command(cmd: Dictionary) -> void:
 				player.face({"up": Vector2.UP, "down": Vector2.DOWN, "left": Vector2.LEFT, "right": Vector2.RIGHT}.get(dir, Vector2.DOWN))
 			elif entity_by_id(eid):
 				entity_by_id(eid).face(dir)
+		"reset_blocks":
+			if pusher:
+				pusher.reset()
 		"shake":
 			_shake_amp = float(cmd.get("strength", 2))
 			_shake_t = float(cmd.get("seconds", 0.4))

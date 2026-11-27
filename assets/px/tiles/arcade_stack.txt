@@ -1,0 +1,21 @@
+# arcade_stack 16x16
+# The Pancake Stack arcade machine. Its marquee lights glow.
+# rules: viewpoint, walls
+
+@tile
+..kkkkkkkkkkkk..
+.kyyyyyyyyyyyyk.
+.kymlmlmlmlmlyk.
+.kyyyyyyyyyyyyk.
+.kykkkkkkkkkkyk.
+.kyknnnnnnnnkyk.
+.kyknnyyyynnkyk.
+.kyknnoooonnkyk.
+.kyknyyyyyynkyk.
+.kykkkkkkkkkkyk.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.

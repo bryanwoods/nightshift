@@ -1,0 +1,21 @@
+# pedestal 16x16
+# An empty stone stand.
+# rules: viewpoint, walls
+
+@tile
+dddddddddddddddd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnsnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnkkkkkkkkkknnd
+dnkffffffffffknd
+dnkssssssssssknd
+dnnkfssssssknnnd
+dnnkfssssssknnnd
+dnnkfssssssknnnd
+dnkffssssssssknd
+dnkddddddddddknd
+dddkkkkkkkkkkddd

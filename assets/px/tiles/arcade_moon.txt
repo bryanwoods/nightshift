@@ -1,21 +1,21 @@
 # arcade_moon 16x16
-# The Moon Bounce arcade machine. The sign on top glows like a lamp.
+# The Moon Bounce arcade machine. Its marquee lights glow.
 # rules: viewpoint, walls
 
 @tile
 ..kkkkkkkkkkkk..
-..kllllllllllk..
-..kjjjjjjjjjjk..
-..kjkkkkkkkkjk..
-..kjkddddddkjk..
-..kjkdmddddkjk..
-..kjkddddEdkjk..
-..kjkddFdddkjk..
-..kjkkkkkkkkjk..
-.kjjjjjjjjjjjjk.
-.kjsssssssssssk.
-.kjsksssshswssk.
-.kjsfssssssssjk.
-..kjjjjjjjjjjk..
-..kjjjjddjjjjk..
-..kkkkkkkkkkkk..
+.kEEEEEEEEEEEEk.
+.kEmlmlmlmlmlEk.
+.kEEEEEEEEEEEEk.
+.kEkkkkkkkkkkEk.
+.kEkFEqiFEqikEk.
+.kEknnnnnnnnkEk.
+.kEknnnmnnnnkEk.
+.kEknnxxxnnnkEk.
+.kEkkkkkkkkkkEk.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.

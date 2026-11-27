@@ -1,0 +1,21 @@
+# wall_face 16x16
+# The arcade wall with two neon stripes, violet and aqua.
+# rules: viewpoint, walls
+
+@tile
+dddddddddddddddd
+dsdddddddsdddddd
+dddddddddddddddd
+dddddddddddddddd
+pppppppppppppppp
+EEEEEEEEEEEEEEEE
+dddddddddddddddd
+dddddsdddddddsdd
+dddddddddddddddd
+dddddddddddddddd
+qqqqqqqqqqqqqqqq
+uuuuuuuuuuuuuuuu
+dddddddddddddddd
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+kkkkkkkkkkkkkkkk

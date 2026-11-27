@@ -1,0 +1,21 @@
+# floor 16x16
+# Dark floor tiles with thin grout lines.
+# rules: viewpoint
+
+@tile
+dddddddddddddddd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnsnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnsnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dddddddddddddddd

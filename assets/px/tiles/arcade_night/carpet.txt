@@ -1,0 +1,21 @@
+# carpet 16x16
+# Arcade carpet: dark blue with bright confetti squiggles.
+# rules: viewpoint
+
+@tile
+nnnnnnnnnnnnnnnn
+nnpnnnnnnnnnqnnn
+npppnnnnnnnnqqnn
+nnpnnnnlnnnnnnnn
+nnnnnnnlnnnnnnnn
+nnnnnnlnnnnnnFnn
+nnnnnnnnnnnnFnFn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnFnnnnnnnnnnnnn
+nFnFnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnlnnnnnnnnnn
+nnnnllnnnnnnnnnn
+nnnnnnnnnnnnnnnn

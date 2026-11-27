@@ -1,0 +1,12 @@
+# lava_bubble 8x8
+# A hot bubble the Lava Blob blows. It wanders toward you and pops.
+
+@sprite
+..kkkk..
+.kyleek.
+kylleeCk
+kleeeeCk
+keeeeeCk
+kCeeeCCk
+.kCCCCk.
+..kkkk..

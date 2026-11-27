@@ -1,0 +1,59 @@
+{
+  "id": "puzzle_room",
+  "todo": "TODO(Tadzio): more puzzles? Who built this room?",
+  "tileset": "puzzle_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", "C": "cord", ".": "floor", "P": "plate", "G": "gate",
+    "X": "pillar", "D": "door", "O": "pedestal"
+  },
+  "layout": [
+    "####################",
+    "#=C===#==C===#==C==#",
+    "#.....#......#....O#",
+    "#.....#.X..X.#.....#",
+    "#.....#......#..X..#",
+    "#.....#......#.....#",
+    "#.....G......G.X...#",
+    "#.....#.X..X.#.....#",
+    "#...P.#......#.....#",
+    "#.....#..P.P.#P.P.P#",
+    "#.....#......#.....#",
+    "###D################"
+  ],
+  "spawns": { "default": [3, 10, "up"], "arcade": [3, 10, "up"] },
+  "companion": true,
+  "overrides": [
+    { "x": 6, "y": 6, "tile": "gate_open", "if_flag": "puzzle_1" },
+    { "x": 13, "y": 6, "tile": "gate_open", "if_flag": "puzzle_2" },
+    { "x": 18, "y": 2, "tile": "chest", "if_flag": "puzzle_3", "unless_flag": "puzzle_prize" }
+  ],
+  "puzzles": [
+    { "plates": [[4, 8]], "flag": "puzzle_1", "dialogue": "puzzle_solved_1" },
+    { "plates": [[9, 9], [11, 9]], "flag": "puzzle_2", "dialogue": "puzzle_solved_2" },
+    { "plates": [[14, 9], [16, 9], [18, 9]], "flag": "puzzle_3", "dialogue": "puzzle_solved_3" }
+  ],
+  "entities": [
+    { "type": "door", "x": 3, "y": 11, "to": "arcade", "spawn": "puzzle", "minutes": 1 },
+    { "type": "trigger", "x": 1, "y": 9, "w": 5, "once": true, "flag": "puzzle_intro_seen", "dialogue": "puzzle_intro" },
+    { "type": "block", "x": 2, "y": 5 },
+    { "type": "block", "x": 9, "y": 4 },
+    { "type": "block", "x": 10, "y": 6 },
+    { "type": "block", "x": 15, "y": 3 },
+    { "type": "block", "x": 17, "y": 3 },
+    { "type": "block", "x": 17, "y": 6 },
+    { "type": "inspect", "x": 2, "y": 1, "dialogue": "puzzle_cord" },
+    { "type": "inspect", "x": 9, "y": 1, "dialogue": "puzzle_cord" },
+    { "type": "inspect", "x": 16, "y": 1, "dialogue": "puzzle_cord" },
+    { "type": "inspect", "x": 18, "y": 2, "dialogue": "puzzle_chest", "if_flag": "puzzle_3", "unless_flag": "puzzle_prize" },
+    { "type": "inspect", "x": 6, "y": 6, "dialogue": "puzzle_gate", "unless_flag": "puzzle_1" },
+    { "type": "inspect", "x": 13, "y": 6, "dialogue": "puzzle_gate", "unless_flag": "puzzle_2" }
+  ],
+  "lights": [
+    { "id": "puzzle_a", "x": 3, "y": 5, "radius": 50, "color": "mint", "energy": 0.6, "on": true },
+    { "id": "puzzle_b", "x": 9, "y": 5, "radius": 56, "color": "mint", "energy": 0.6, "on": true },
+    { "id": "puzzle_c", "x": 16, "y": 5, "radius": 50, "color": "mint", "energy": 0.6, "on": true },
+    { "id": "puzzle_chest", "x": 18, "y": 2, "radius": 30, "color": "lamp", "energy": 0.7, "on": true }
+  ],
+  "ambient": 0.9,
+  "music": "house_hum"
+}

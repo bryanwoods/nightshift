@@ -1,21 +1,21 @@
 # arcade_maze 16x16
-# The Moth Maze arcade machine. The sign on top glows like a lamp.
+# The Moth Maze arcade machine. Its marquee lights glow.
 # rules: viewpoint, walls
 
 @tile
 ..kkkkkkkkkkkk..
-..kllllllllllk..
-..kjjjjjjjjjjk..
-..kjkkkkkkkkjk..
-..kjknnnnnnkjk..
-..kjknlnnnnkjk..
-..kjknnnnpnkjk..
-..kjknnlnnnkjk..
-..kjkkkkkkkkjk..
-.kjjjjjjjjjjjjk.
-.kjsssssssssssk.
-.kjsksssshswssk.
-.kjsfssssssssjk.
-..kjjjjjjjjjjk..
-..kjjjjddjjjjk..
-..kkkkkkkkkkkk..
+.kppppppppppppk.
+.kpmlmlmlmlmlpk.
+.kppppppppppppk.
+.kpkkkkkkkkkkpk.
+.kpksssssssskpk.
+.kpklnlElnlhkpk.
+.kpksnssssnskpk.
+.kpknlnlnlnlkpk.
+.kpkkkkkkkkkkpk.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.

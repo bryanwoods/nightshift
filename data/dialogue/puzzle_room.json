@@ -1,0 +1,54 @@
+{
+  "id": "puzzle_room",
+  "todo": "TODO(Tadzio): every line here is a first try. Rewrite anything.",
+  "dialogues": {
+    "puzzle_intro": {
+      "lines": [
+        { "text": "A sign on the wall: PUSH EVERY CRATE ONTO A GLOWING PAD." },
+        { "text": "Walk into a crate to push it. If a crate gets stuck, pull a cord to start over." }
+      ]
+    },
+    "puzzle_cord": {
+      "lines": [
+        { "text": "A pull cord. A little sign says: STUCK? PULL ME.", "choices": [{ "text": "Pull it", "goto": "puzzle_cord_pull" }, { "text": "Leave it" }] }
+      ]
+    },
+    "puzzle_cord_pull": {
+      "lines": [
+        { "cmd": "sfx", "name": "rewind" },
+        { "cmd": "reset_blocks" },
+        { "text": "Clunk. Every crate slides back to where it started." }
+      ]
+    },
+    "puzzle_gate": {
+      "lines": [ { "text": "Iron bars with a glowing lock. The lock is shaped like a crate." } ]
+    },
+    "puzzle_solved_1": {
+      "lines": [
+        { "cmd": "shake", "strength": 1, "seconds": 0.3 },
+        { "text": "Click! The first gate slides open." }
+      ]
+    },
+    "puzzle_solved_2": {
+      "lines": [
+        { "cmd": "shake", "strength": 1, "seconds": 0.3 },
+        { "text": "Click, click! The second gate slides open." }
+      ]
+    },
+    "puzzle_solved_3": {
+      "lines": [
+        { "cmd": "shake", "strength": 2, "seconds": 0.5 },
+        { "text": "Click, click, CLICK! In the corner, a golden chest rises out of the stand." }
+      ]
+    },
+    "puzzle_chest": {
+      "lines": [
+        { "cmd": "sfx", "name": "chime" },
+        { "text": "You open the golden chest. Inside is a star cookie, still warm." },
+        { "cmd": "give_item", "item": "star_cookie" },
+        { "cmd": "set_flag", "flag": "puzzle_prize" },
+        { "text": "You got a star cookie." }
+      ]
+    }
+  }
+}

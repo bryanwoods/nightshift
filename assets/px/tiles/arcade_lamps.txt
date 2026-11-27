@@ -1,0 +1,21 @@
+# arcade_lamps 16x16
+# The Lamp Lighter arcade machine. Its marquee lights glow.
+# rules: viewpoint, walls
+
+@tile
+..kkkkkkkkkkkk..
+.keeeeeeeeeeeek.
+.kemlmlmlmlmlek.
+.keeeeeeeeeeeek.
+.kekkkkkkkkkkek.
+.keknlnnlnnnkek.
+.keknsnnsnknkek.
+.keknlnnknnlkek.
+.keknsnnsnnskek.
+.kekkkkkkkkkkek.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.

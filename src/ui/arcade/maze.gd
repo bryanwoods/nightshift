@@ -9,13 +9,13 @@ const MAP: PackedStringArray = [
 	"#...................#",
 	"#.##.#.#######.#.##.#",
 	"#....#....#....#....#",
-	"####.####...####.####",
+	"####.####.#.####.####",
 	"####.#...GGG...#.####",
 	"####.#.#######.#.####",
 	"#.........#.........#",
 	"#.##.####.#.####.##.#",
-	"#o.#.............#.o#",
-	"#..#.#.##.#.##.#.#..#",
+	"#o##.............##o#",
+	"#.##.#.##.#.##.#.##.#",
 	"#....#....#....#....#",
 	"#####################",
 ]
@@ -34,6 +34,7 @@ var moth: Dictionary
 var shadows: Array
 var scared: float
 var clock: float
+var chomp: bool
 
 
 func reset() -> void:
@@ -67,6 +68,10 @@ func step(dt: float) -> bool:
 	clock += dt
 	scared = maxf(0.0, scared - dt)
 	var d := pressed_dir()
+	if d == Vector2i.ZERO:
+		for a: String in DIRS:
+			if Input.is_action_pressed(a):
+				d = DIRS[a]
 	if d != Vector2i.ZERO:
 		moth.want = d
 	_move_moth(dt * 6.0)
@@ -84,17 +89,26 @@ func step(dt: float) -> bool:
 			if scared > 0.0:
 				s.eyes = true
 				score += 200
-				AudioBus.sfx("satisfied")
+				burst(_pos(s), SHADOW_COLORS[shadows.find(s)], 16, 70.0, 0.0)
+				popup(_pos(s), "200", "lamp")
+				jolt(2.0)
+				AudioBus.sfx("a_maze_eat")
 			else:
 				lives -= 1
-				AudioBus.sfx("hit")
+				burst(_pos(moth), "lilac", 24, 80.0, 40.0)
+				jolt(5.0)
+				blink("hush", 0.6)
+				AudioBus.sfx("a_maze_die")
 				if lives <= 0:
 					return false
 				_place()
+				freeze = 1.0
 				return true
 	if crumbs.is_empty():
 		level += 1
-		AudioBus.sfx("chime")
+		blink("moon", 0.8)
+		popup(Vector2(160, 90), "CLEAR!", "wake")
+		AudioBus.sfx("a_coin")
 		_fill()
 	return true
 
@@ -135,11 +149,14 @@ func _eat(c: Vector2i) -> void:
 	if crumbs[c]:
 		scared = SCARED_SECONDS
 		score += 50
-		AudioBus.sfx("flicker")
+		burst(ORIGIN + Vector2(c) * CELL + Vector2(5, 5), "lamp", 14, 50.0, 0.0)
+		blink("lamp", 0.3)
+		AudioBus.sfx("a_maze_power")
 	else:
 		score += 10
-		if score % 50 == 0:
-			AudioBus.sfx("tick", 1.4, -8.0)
+		burst(ORIGIN + Vector2(c) * CELL + Vector2(5, 5), "straw", 3, 25.0, 0.0)
+		chomp = not chomp
+		AudioBus.sfx("a_maze_chomp_a" if chomp else "a_maze_chomp_b", 1.0, -4.0)
 	crumbs.erase(c)
 
 
@@ -176,34 +193,58 @@ func _pos(m: Dictionary) -> Vector2:
 
 
 func draw(c: CanvasItem) -> void:
+	sky(c, col("night"), col("ink"), 0.0, 180.0)
+	stars(c, clock, 20, 170.0)
+	var size := Vector2(MAP[0].length(), MAP.size()) * CELL
+	c.draw_rect(Rect2(ORIGIN, size), col("ink"))
+	for layer: Array in [[3.0, col("violet", 0.18)], [2.0, col("slate")], [1.0, col("dusk")]]:
+		for y in MAP.size():
+			for x in MAP[y].length():
+				if MAP[y][x] == "#":
+					c.draw_rect(Rect2(ORIGIN + Vector2(x, y) * CELL, Vector2(CELL, CELL)).grow(layer[0]), layer[1])
 	for y in MAP.size():
 		for x in MAP[y].length():
-			var r := Rect2(ORIGIN + Vector2(x, y) * CELL, Vector2(CELL, CELL))
-			if MAP[y][x] == "#":
-				c.draw_rect(r.grow(-1), col("dusk"))
-				c.draw_rect(r.grow(-1), col("slate"))
+			if MAP[y][x] == "#" and y > 0 and _open(Vector2i(x, y - 1)):
+				c.draw_rect(Rect2(ORIGIN + Vector2(x * CELL - 1, y * CELL - 1), Vector2(CELL + 2, 1)), col("lilac", 0.5))
 	for cell: Vector2i in crumbs:
 		var p := ORIGIN + Vector2(cell) * CELL + Vector2(CELL, CELL) / 2.0
 		if crumbs[cell]:
-			c.draw_circle(p, 3.0 + sin(clock * 8.0), col("lamp"))
+			glow(c, p, 9.0 + sin(clock * 6.0) * 2.0, col("lamp"), 0.5)
+			c.draw_circle(p, 3.0 + sin(clock * 8.0) * 0.6, col("lamp"))
+			c.draw_circle(p + Vector2(-1, -1), 1.0, col("moon"))
 		else:
+			c.draw_rect(Rect2(p - Vector2(1.5, 1.5), Vector2(3, 3)), col("straw", 0.25))
 			c.draw_rect(Rect2(p - Vector2(1, 1), Vector2(2, 2)), col("straw"))
 	var mp := _pos(moth)
-	_moth(c, _pos(moth), 1.0)
+	if moth.dir != Vector2i.ZERO and rng.randf() < 0.3:
+		_parts.append({"pos": mp - Vector2(moth.dir) * 4.0, "vel": Vector2.ZERO, "life": 0.4, "max": 0.4, "color": col("lilac"), "size": 1.5, "gravity": 0.0})
+	glow(c, mp, 10.0, col("lilac"), 0.4)
+	_moth(c, mp, 1.0)
 	for i in shadows.size():
 		var s: Dictionary = shadows[i]
 		var p := _pos(s)
+		var look := (mp - p).normalized()
 		if not s.eyes:
 			var tint := SHADOW_COLORS[i]
 			if scared > 0.0:
-				tint = "fog" if scared > 2.0 or int(clock * 8.0) % 2 == 0 else "moon"
-			c.draw_circle(p + Vector2(0, sin(clock * 6.0 + i) * 0.8), 4.5, col(tint))
-			for k in 3:
-				c.draw_circle(p + Vector2(-3.0 + k * 3.0, 3.5 + sin(clock * 10.0 + k) * 0.7), 1.6, col(tint))
-		for side in [-1.5, 1.5]:
-			c.draw_rect(Rect2(p + Vector2(side - 0.5, -1.5), Vector2(1, 2)), col("ink" if not s.eyes and scared <= 0.0 else "moon"))
+				tint = "slate" if scared > 2.0 or int(clock * 8.0) % 2 == 0 else "moon"
+			glow(c, p, 9.0, col(tint), 0.3)
+			var bob := sin(clock * 6.0 + i) * 0.8
+			c.draw_circle(p + Vector2(0, bob - 0.5), 4.5, col(tint))
+			c.draw_rect(Rect2(p + Vector2(-4.5, bob - 0.5), Vector2(9, 3)), col(tint))
+			for k in 4:
+				c.draw_circle(p + Vector2(-3.4 + k * 2.3, 3.0 + bob + sin(clock * 12.0 + k * 1.7) * 0.8), 1.3, col(tint))
+			c.draw_circle(p + Vector2(-2, bob - 3), 1.0, Color(1, 1, 1, 0.35))
+			if scared > 0.0:
+				for k in 4:
+					c.draw_rect(Rect2(p + Vector2(-3 + k * 1.6, bob + 1.5 + (k % 2)), Vector2(1, 1)), col("ink"))
+		for side: float in [-1.6, 1.6]:
+			var e := p + Vector2(side, -1.0)
+			c.draw_rect(Rect2(e - Vector2(1, 1), Vector2(2, 2)), col("moon"))
+			if scared <= 0.0 or s.eyes:
+				c.draw_rect(Rect2(e + look * 0.8 - Vector2(0.5, 0.5), Vector2(1, 1)), col("ink"))
 	for i in lives:
-		_moth(c, Vector2(290 - i * 14, 8), 0.7)
+		_moth(c, Vector2(290 - i * 14, 9), 0.7)
 
 
 func _moth(c: CanvasItem, p: Vector2, size: float) -> void:

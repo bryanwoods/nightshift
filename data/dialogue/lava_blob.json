@@ -1,0 +1,70 @@
+{
+  "id": "lava_blob",
+  "todo": "TODO(Tadzio): every line here is a first try. Rewrite anything.",
+  "dialogues": {
+    "blob_approach": {
+      "lines": [
+        { "text": "Something big and orange bubbles in the middle of the room. It glorps." },
+        { "speaker": "lava_blob", "text": "Blorp! A visitor! Nobody comes down here.", "unless_flag": "many_gone" },
+        { "speaker": "lava_blob", "text": "I'm Kyle. I keep the furnace warm.", "unless_flag": "many_gone" },
+        { "speaker": "lava_blob", "text": "Don't touch me. I'm very hot. I'm also very busy.", "unless_flag": "many_gone" },
+        { "speaker": "lava_blob", "text": "I heard about you up there. Stay away from my furnace.", "if_flag": "many_gone" }
+      ]
+    },
+    "blob_approach_angry": {
+      "lines": [ { "speaker": "lava_blob", "text": "You again! The furnace nearly went out last time!" } ]
+    },
+    "blob_battle_intro": {
+      "lines": [ { "speaker": "lava_blob", "text": "Glorp! You're letting the cold in!" } ]
+    },
+    "blob_help_1": {
+      "lines": [ { "text": "You shovel coal into the furnace. The blob jiggles happily." } ]
+    },
+    "blob_help_2": {
+      "lines": [ { "text": "You open the old vent. Warm air rushes up to the town." } ]
+    },
+    "blob_help_3": {
+      "lines": [
+        { "text": "You pat the blob very quickly. It's warm, like a bath." },
+        { "speaker": "lava_blob", "text": "Blorp. Nobody ever pats me." }
+      ]
+    },
+    "blob_hustle": {
+      "lines": [ { "speaker": "lava_blob", "text": "Hot! Hot! Everything is hot!" } ]
+    },
+    "blob_hustle_2": {
+      "lines": [ { "speaker": "lava_blob", "text": "Stop running! You're making me bubble!" } ]
+    },
+    "blob_hustle_3": {
+      "lines": [ { "speaker": "lava_blob", "text": "Glorp! My drips are going everywhere!" } ]
+    },
+    "blob_hustle_4": {
+      "lines": [ { "speaker": "lava_blob", "text": "I'm melting! Wait. I'm always melting." } ]
+    },
+    "blob_satisfied": {
+      "lines": [
+        { "speaker": "lava_blob", "text": "The furnace is toasty. The whole town will be warm till morning. Blorp!" },
+        { "speaker": "lava_blob", "text": "Here. A pebble from the middle of me. It stays warm all night." },
+        { "text": "You got a warm pebble." }
+      ]
+    },
+    "blob_spared": {
+      "lines": [
+        { "speaker": "lava_blob", "text": "Fine. I'll keep the furnace warm by myself. Glorp." },
+        { "text": "Kyle oozes into the furnace and shuts the door." }
+      ]
+    },
+    "blob_chat": {
+      "lines": [ { "speaker": "lava_blob", "text": "Still toasty. Thanks for the pat. Blorp." } ]
+    },
+    "inspect_lava": {
+      "lines": [ { "text": "A pool of bubbling lava. A bubble pops and says blorp." } ]
+    },
+    "inspect_lava_small": {
+      "lines": [ { "text": "A small lava puddle. It's the blob's bath." } ]
+    },
+    "inspect_furnace_pipe": {
+      "lines": [ { "text": "An old copper pipe. It's warm, and it hums. It goes up to every house in town." } ]
+    }
+  }
+}

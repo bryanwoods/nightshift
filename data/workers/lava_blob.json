@@ -1,0 +1,35 @@
+{
+  "id": "lava_blob",
+  "todo": "TODO(Tadzio): Kyle's look and lines are a first try.",
+  "name": "Kyle",
+  "music": "battle_loop",
+  "job": "Keeps the furnace warm",
+  "sprite": "lava_blob",
+  "patience": 55,
+  "hours": 12,
+  "hit_damage": 3,
+  "patterns": [
+    { "type": "rain", "duration": 6, "count": 16, "speed": 70, "slant": 10, "wobble": 18, "sprite": "lava_drop" },
+    { "type": "bounce", "duration": 7, "count": 9, "speed": 52, "hop": 0.6, "gravity": 260, "sprite": "kyle_hop" },
+    { "type": "geyser", "duration": 7, "volleys": 6, "warn": 0.9, "strike": 0.5, "width": 10, "spits": 3, "glob": "lava_drop", "lava": true },
+    { "type": "drift", "duration": 7, "count": 9, "speed": 34, "turn_rate": 1.4, "sprite": "lava_bubble" },
+    { "type": "engulf", "duration": 6, "arena": [140, 100], "warn": 1.0, "rise": 1.0, "hold": 0.5, "split": 1.8, "lift": 1.0, "embers": 12, "glob": "lava_drop" }
+  ],
+  "task": {
+    "title": "Keep the furnace warm",
+    "steps": [
+      { "label": "Shovel in some coal", "line": "blob_help_1" },
+      { "label": "Open the vent", "line": "blob_help_2" },
+      { "label": "Pat the blob", "line": "blob_help_3" }
+    ]
+  },
+  "hustle_lines": ["blob_hustle", "blob_hustle_2", "blob_hustle_3", "blob_hustle_4"],
+  "dialogue": {
+    "intro": "blob_battle_intro",
+    "satisfied": "blob_satisfied",
+    "spared": "blob_spared"
+  },
+  "rewards": {
+    "satisfied": { "item": "warm_pebble" }
+  }
+}

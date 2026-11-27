@@ -1,0 +1,21 @@
+# claw 16x16
+# A claw machine full of plush toys. The claw has never won.
+# rules: viewpoint, walls, warm
+
+@tile
+.kkkkkkkkkkkkkk.
+.kmlmlmlmlmlmlk.
+.kkkkkkkkkkkkkk.
+.kuuuuuuuuuuuuk.
+.kunnnnfnnnnnuk.
+.kunnnnfnnnnnuk.
+.kunnnfffnnnnuk.
+.kunnnfnfnnnnuk.
+.kunnnnnnnnnnuk.
+.kuFFnqqnEEnwuk.
+.kuFhqqqEEpwwuk.
+.kkkkkkkkkkkkkk.
+.kppppppppppppk.
+.kpppkpphppqppk.
+.kppppppppppppk.
+.kkkkkkkkkkkkkk.

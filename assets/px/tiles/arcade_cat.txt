@@ -1,21 +1,21 @@
 # arcade_cat 16x16
-# The Long Cat arcade machine. The sign on top glows like a lamp.
+# The Long Cat arcade machine. Its marquee lights glow.
 # rules: viewpoint, walls
 
 @tile
 ..kkkkkkkkkkkk..
-..kllllllllllk..
-..kjjjjjjjjjjk..
-..kjkkkkkkkkjk..
-..kjkvvvvvvkjk..
-..kjkvovvvvkjk..
-..kjkvvvvqvkjk..
-..kjkvvyvvvkjk..
-..kjkkkkkkkkjk..
-.kjjjjjjjjjjjjk.
-.kjsssssssssssk.
-.kjsksssshswssk.
-.kjsfssssssssjk.
-..kjjjjjjjjjjk..
-..kjjjjddjjjjk..
-..kkkkkkkkkkkk..
+.kooooooooooook.
+.komlmlmlmlmlok.
+.kooooooooooook.
+.kokkkkkkkkkkok.
+.kokvvvvvvvvkok.
+.kokvqvvvvvvkok.
+.kokvvvooooykok.
+.kokvvvvvvvvkok.
+.kokkkkkkkkkkok.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.

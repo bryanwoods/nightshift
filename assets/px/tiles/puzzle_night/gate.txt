@@ -1,0 +1,21 @@
+# gate 16x16
+# Iron bars with a glowing lock. Solve the puzzle to open it.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+kssssssssssssssk
+ksfkfkfkfkfkfksk
+ksfkfkfkfkfkfksk
+ksfkfkfkfkfkfksk
+ksfkfkfkfkfkfksk
+ksssssskkssssssk
+ksfkfklmmlkfkfsk
+ksfkfkhllhkfkfsk
+ksssssskksssssss
+ksfkfkfkfkfkfksk
+ksfkfkfkfkfkfksk
+ksfkfkfkfkfkfksk
+ksfkfkfkfkfkfksk
+ksssssssssssssss
+kkkkkkkkkkkkkkkk

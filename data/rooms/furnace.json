@@ -1,0 +1,36 @@
+{
+  "id": "furnace",
+  "todo": "TODO(Tadzio): what else is down in the furnace room?",
+  "tileset": "furnace_night",
+  "legend": { "#": "rock", "=": "rock_face", ".": "stone", "~": "lava", "L": "ladder" },
+  "layout": [
+    "##############",
+    "#=L==========#",
+    "#............#",
+    "#..~~....~~..#",
+    "#..~~....~~..#",
+    "#............#",
+    "#.....~~.....#",
+    "#............#",
+    "##############"
+  ],
+  "spawns": { "default": [2, 2, "down"], "ladder": [2, 2, "down"] },
+  "companion": true,
+  "entities": [
+    { "type": "door", "x": 2, "y": 1, "to": "alley_1", "spawn": "furnace", "minutes": 1 },
+    { "type": "encounter", "worker": "lava_blob", "x": 7, "y": 4, "facing": "down", "respawn": "nightly", "radius": 2,
+      "approach": "blob_approach", "approach_enemy": "blob_approach_angry", "chat": "blob_chat" },
+    { "type": "inspect", "x": 3, "y": 3, "w": 2, "h": 2, "dialogue": "inspect_lava" },
+    { "type": "inspect", "x": 9, "y": 3, "w": 2, "h": 2, "dialogue": "inspect_lava" },
+    { "type": "inspect", "x": 6, "y": 6, "w": 2, "dialogue": "inspect_lava_small" },
+    { "type": "inspect", "x": 6, "y": 1, "w": 3, "dialogue": "inspect_furnace_pipe" }
+  ],
+  "lights": [
+    { "id": "furnace_pool_1", "x": 3, "y": 3, "radius": 50, "color": "ember", "energy": 0.8, "on": true },
+    { "id": "furnace_pool_2", "x": 10, "y": 3, "radius": 50, "color": "ember", "energy": 0.8, "on": true },
+    { "id": "furnace_pool_3", "x": 6, "y": 6, "radius": 40, "color": "lamp", "energy": 0.6, "on": true },
+    { "id": "furnace_hatch", "x": 2, "y": 2, "radius": 24, "color": "moon", "energy": 0.4, "on": true }
+  ],
+  "ambient": 0.9,
+  "music": "none"
+}

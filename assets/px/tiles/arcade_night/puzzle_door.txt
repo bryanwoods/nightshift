@@ -1,0 +1,21 @@
+# puzzle_door 16x16
+# A door in the arcade wall with a sign: PUZZLES. A mint light over it.
+# rules: viewpoint, walls, doors, warm
+
+@tile
+dddddddddddddddd
+dkkkkkkkkkkkkkkd
+dkwlmlwlmlwlmwkd
+dkkkkkkkkkkkkkkd
+pppkkkkkkkkkkppp
+EEksssssssssskEE
+ddksnnnnsnnnnskd
+ddksnvnnsnnnnskd
+ddksnnnnsnnnnskd
+qqksnnnlslnnnskq
+uuksnnnnsnnnnsku
+ddksnnnnsnnnnskd
+nnksnnnnsnnnnskn
+nnksnnnnsnnnnskn
+nnksssssssssssks
+kkkkkkkkkkkkkkkk

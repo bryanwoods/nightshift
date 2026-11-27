@@ -1,0 +1,21 @@
+# rock 16x16
+# The top of the furnace room's rough stone walls.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+kjjjkkjjjjkjjjjk
+jDjjjkjDjjjkjDjj
+jjjjkjjjjjkjjjjj
+kkjjjkkkjjjkkkjj
+jjkkjjjjkkjjjjkk
+jDjjjjDjjjjjDjjj
+jjjjkjjjjjjkjjjj
+kjjjjkkjjjjjkkjj
+jkkjjjjkkjjjjjkk
+jjjjDjjjjjDjjjjj
+jjjjjkjjjjjkjjjj
+kkjjjjkkjjjjkkjj
+jjkkjjjjkkjjjjkk
+jjjjjjjjjjjjjjjj
+kkkkkkkkkkkkkkkk

@@ -9,6 +9,8 @@
     "punch_card": { "name": "Punch card" },
     "key_to_nothing": { "name": "A key to nothing" },
     "blank_timecard": { "name": "Blank timecard" },
+    "warm_pebble": { "name": "Warm pebble", "awake": 10, "effect": "+10 Awake", "use_text": "You hold Kyle's pebble. Warmth runs up your arms. +10 Awake." },
+    "star_cookie": { "name": "Star cookie", "awake": 15, "effect": "+15 Awake", "use_text": "You eat the star cookie from the puzzle room. It tastes like winning. +15 Awake." },
     "mug_of_cocoa": { "name": "Mug of cocoa", "awake": 12, "effect": "+12 Awake", "use_text": "You drink No Job's cocoa. It's still warm. +12 Awake." },
     "pj_star": { "name": "Star pajamas", "awake_bonus": 4, "effect": "lucky", "token": "lamp", "about": "+4 Awake. Sometimes a hit misses you." },
     "pj_frog": { "name": "Frog pajamas", "awake_bonus": 4, "effect": "froggy", "token": "wake", "about": "+4 Awake. Sometimes you feel froggy and get 2 Awake back." },

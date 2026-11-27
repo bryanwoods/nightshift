@@ -1,0 +1,21 @@
+# hatch 16x16
+# An iron hatch in the alley floor. Orange light glows up through the grate.
+# rules: viewpoint, doors, warm
+
+@tile
+dfffsddddfffsddd
+skkkkkkkkkkkkkkd
+skssssssssssssks
+skskekekekekskdd
+skskekelekekskdd
+skssssssssssssks
+skskekelleekskdd
+skskeklylekeskdd
+skssssssssssssks
+skskekelekekskdd
+skskekekekekskdd
+skssssssssssssks
+skkkkkkkkkkkkkkd
+dddddddvdddddddd
+ssddssssssddssss
+nddddsssnddddsss

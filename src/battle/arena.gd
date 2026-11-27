@@ -24,7 +24,7 @@ var _c: Dictionary = {}
 
 
 func _ready() -> void:
-	for n in ["ink", "night", "dusk", "slate", "fog", "moon", "ember", "hush", "wake", "lamp", "moss", "honey", "peach", "rosewood", "violet", "aqua", "seafoam", "froth"]:
+	for n in ["ink", "night", "dusk", "slate", "fog", "moon", "ember", "hush", "wake", "lamp", "moss", "honey", "peach", "rosewood", "violet", "aqua", "seafoam", "froth", "rust", "clay", "straw", "blossom"]:
 		_c[n] = Game.color(n)
 	_box = StyleBoxFlat.new()
 	_box.bg_color = _c["ink"]
@@ -67,7 +67,7 @@ func _draw() -> void:
 		return
 	var col := Game.color(str(pattern.params.get("color", "moon")))
 	for b in pattern.bullets:
-		if b.kind == Pattern.Kind.LANE and b.radius < b.gap and (b.gap - b.radius > 0.25 or fmod(b.radius, 0.1) < 0.06):
+		if b.kind == Pattern.Kind.LANE and not pattern.params.get("lava", false) and b.radius < b.gap and (b.gap - b.radius > 0.25 or fmod(b.radius, 0.1) < 0.06):
 			var d := Vector2.from_angle(b.steer)
 			var at := b.pos - d * (10.0 + roundf(sin(b.radius * 9.0 + b.pos.x)))
 			draw_line(at - d * 5.0, at + d * 5.0, col, 2.0)
@@ -192,6 +192,22 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_rect(Rect2(b.pos.x - 2, -half.y, 4, maxf(0.0, neck - 3 + half.y)), _c["fog"])
 		Pattern.Kind.BLOCK:
 			_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 + 0.5, b.pos.y - b.radius, b.width - 1.0, b.radius * 2.0), col)
+		Pattern.Kind.LANE when pattern.params.get("lava", false):
+			var reach := pattern.lane_reach(b)
+			if b.radius < b.gap:
+				for k in 3:
+					var rise := fmod(b.radius * 2.0 + k * 0.33, 1.0)
+					_layer.draw_circle(b.pos + Vector2((k - 1) * 3.0, -2.0 - rise * 6.0), 1.0 + rise, Color(_c["ember"], 1.0 - rise))
+				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0, half.y - 2.0, b.width, 2.0), _c["rust"] if int(b.radius * 8.0) % 2 == 0 else _c["ember"])
+			else:
+				var top := maxf(-half.y, half.y - reach)
+				var fade := clampf((b.gap + b.gap_center - b.radius) / 0.15, 0.0, 1.0)
+				var w := b.width * fade
+				_layer.draw_rect(Rect2(b.pos.x - w / 2.0, top, w, half.y - top), _c["rust"])
+				_layer.draw_rect(Rect2(b.pos.x - w * 0.35, top, w * 0.7, half.y - top), _c["ember"])
+				_layer.draw_rect(Rect2(b.pos.x - w * 0.15, top, w * 0.3, half.y - top), _c["lamp"])
+				_layer.draw_circle(Vector2(b.pos.x, top + 2.0), w * 0.7, _c["ember"])
+				_layer.draw_circle(Vector2(b.pos.x - 1.0, top + 1.0), w * 0.35, _c["lamp"])
 		Pattern.Kind.LANE:
 			var d := Vector2.from_angle(b.steer)
 			if b.radius < b.gap:
@@ -218,40 +234,59 @@ func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 				_layer.draw_colored_polygon(blade, dark_c if k != 1 else (Color(light_c, 0.7) if warning else light_c))
 			_layer.draw_rect(Rect2(b.pos - n.abs() * b.width / 2.0 - d.abs(), n.abs() * b.width + d.abs() * 2.0), dark_c)
 		Pattern.Kind.GOO:
+			var gc: Array = pattern.params.get("goo", ["moon", "peach", "rosewood", "froth"])
 			for x in range(int(-half.x), int(half.x)):
 				var e := pattern.goo_edge(b, x + 0.5)
 				if e <= -half.y:
 					continue
-				_layer.draw_rect(Rect2(x, -half.y, 1, e + half.y), _c["moon"])
-				_layer.draw_rect(Rect2(x, e - 3.0, 1, 2), _c["peach"])
-				_layer.draw_rect(Rect2(x, e - 1.0, 1, 1), _c["rosewood"])
+				_layer.draw_rect(Rect2(x, -half.y, 1, e + half.y), _c[gc[0]])
+				_layer.draw_rect(Rect2(x, e - 3.0, 1, 2), _c[gc[1]])
+				_layer.draw_rect(Rect2(x, e - 1.0, 1, 1), _c[gc[2]])
 				var shine := -half.y + (e + half.y) * (0.45 + 0.12 * sin(x * 0.2 + b.radius * 1.7))
-				_layer.draw_rect(Rect2(x, shine, 1, 1), _c["froth"])
+				_layer.draw_rect(Rect2(x, shine, 1, 1), _c[gc[3]])
 			for i in b.parts.size() / 3:
 				var dx := b.parts[i * 3]
 				var tip := pattern.goo_edge(b, dx)
 				if tip > -half.y + 3.0:
-					_layer.draw_circle(Vector2(dx, tip - 1.0), 2.5, _c["rosewood"])
-					_layer.draw_circle(Vector2(dx, tip - 1.5), 2.0, _c["peach"])
-					_layer.draw_circle(Vector2(dx - 0.5, tip - 2.5), 1.0, _c["moon"])
+					_layer.draw_circle(Vector2(dx, tip - 1.0), 2.5, _c[gc[2]])
+					_layer.draw_circle(Vector2(dx, tip - 1.5), 2.0, _c[gc[1]])
+					_layer.draw_circle(Vector2(dx - 0.5, tip - 2.5), 1.0, _c[gc[0]])
 		Pattern.Kind.BLAZE:
+			var fc: Array = pattern.params.get("blaze", ["violet", "aqua", "seafoam", "froth"])
 			if b.radius < b.gap:
 				if int(b.radius * 8.0) % 2 == 0:
 					for x in range(int(-half.x), int(half.x)):
 						var h := 2.0 + 2.0 * absf(sin(x * 0.7 + b.radius * 10.0))
-						_layer.draw_rect(Rect2(x, half.y - h, 1, h), _c["violet"])
+						_layer.draw_rect(Rect2(x, half.y - h, 1, h), _c[fc[0]])
 				return
 			for x in range(int(-half.x), int(half.x)):
 				var e := pattern.blaze_edge(b, x + 0.5)
 				var h := half.y - e
 				if h <= 0.0:
 					continue
-				_layer.draw_rect(Rect2(x, e, 1, h), _c["violet"])
-				for band: Array in [[0.22, 0.0, "aqua"], [0.5, 1.7, "seafoam"], [0.78, 3.1, "froth"]]:
+				_layer.draw_rect(Rect2(x, e, 1, h), _c[fc[0]])
+				for band: Array in [[0.22, 0.0, fc[1]], [0.5, 1.7, fc[2]], [0.78, 3.1, fc[3]]]:
 					var f: float = band[0] + 0.1 * sin(x * 0.29 - b.radius * 9.0 + band[1])
 					_layer.draw_rect(Rect2(x, e + h * f, 1, h * (1.0 - f)), _c[band[2]])
 				if sin(x * 2.7 + b.radius * 20.0) > 0.93:
-					_layer.draw_rect(Rect2(x, e - 2.0 - 5.0 * fmod(b.radius * 3.0 + x * 0.37, 1.0), 1, 1), _c["violet"])
+					_layer.draw_rect(Rect2(x, e - 2.0 - 5.0 * fmod(b.radius * 3.0 + x * 0.37, 1.0), 1, 1), _c[fc[0]])
+		Pattern.Kind.FLARE:
+			if b.radius < b.parts[0]:
+				if int(b.radius * 8.0) % 2 == 0:
+					for x in range(int(-half.x), int(half.x)):
+						var h := (3.0 + 2.0 * sin(x * 0.6 + b.radius * 12.0)) * (1.0 - absf(x) / half.x)
+						_layer.draw_rect(Rect2(x, half.y - h, 1, h), _c["rust"])
+				return
+			for x in range(int(-half.x), int(half.x)):
+				for span: Vector2 in pattern.flare_spans(b, x + 0.5):
+					var h := span.y - span.x
+					_layer.draw_rect(Rect2(x, span.x, 1, h), _c["rust"])
+					for band: Array in [[0.12, "ember"], [0.3, "lamp"], [0.42, "straw"]]:
+						var inset: float = h * (band[0] + 0.04 * sin(x * 0.37 + b.radius * 13.0 + band[0] * 9.0))
+						if h - inset * 2.0 > 0.0:
+							_layer.draw_rect(Rect2(x, span.x + inset, 1, h - inset * 2.0), _c[band[1]])
+					if sin(x * 2.3 + b.radius * 17.0) > 0.9:
+						_layer.draw_rect(Rect2(x, span.x - 2.0 - 6.0 * fmod(b.radius * 2.5 + x * 0.31, 1.0), 1, 1), _c["lamp"])
 		Pattern.Kind.SPIKES:
 			var side := Vector2.from_angle(b.steer)
 			var along := side.orthogonal()

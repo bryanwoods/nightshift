@@ -1,0 +1,25 @@
+# push_block 16x20
+# A wooden crate with a mint star on it. Walk into it to push it.
+# rules: viewpoint, outline
+
+@sprite
+................
+................
+................
+................
+.kkkkkkkkkkkkkk.
+kyyyyyyyyyyyyyyk
+kojjjjjjjjjjjjok
+kojooooooooojjok
+kojoooowooooojok
+kojooowwwoooojok
+kojoooowooooojok
+kojoooooooooojok
+kojoooooooooojok
+kojjjjjjjjjjjjok
+kooooooooooooook
+kjjjjjjjjjjjjjjk
+kjjjjjjjjjjjjjjk
+.kkkkkkkkkkkkkk.
+..kkkkkkkkkkkk..
+................

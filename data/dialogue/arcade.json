@@ -3,33 +3,68 @@
   "dialogues": {
     "arcade_maze": {
       "lines": [
-        { "text": "An old arcade machine. MOTH MAZE. Someone left a coin in the slot.", "choices": [{ "text": "Play", "goto": "arcade_maze_play" }, { "text": "Not now" }] }
+        { "text": "MOTH MAZE. The moth on the marquee is wearing a tiny crown.", "choices": [{ "text": "Play", "goto": "arcade_maze_play" }, { "text": "Not now" }] }
       ]
     },
     "arcade_maze_play": { "lines": [{ "cmd": "arcade", "game": "maze" }] },
     "arcade_hop": {
       "lines": [
-        { "text": "An arcade machine wedged by the lockers. PUDDLE HOP. The workers play it on break.", "choices": [{ "text": "Play", "goto": "arcade_hop_play" }, { "text": "Not now" }] }
+        { "text": "PUDDLE HOP. Someone scratched TOP SCORE into the side.", "choices": [{ "text": "Play", "goto": "arcade_hop_play" }, { "text": "Not now" }] }
       ]
     },
     "arcade_hop_play": { "lines": [{ "cmd": "arcade", "game": "hop" }] },
     "arcade_catch": {
       "lines": [
-        { "text": "An arcade machine under the lamp. STAR CATCH. It is warm to touch.", "choices": [{ "text": "Play", "goto": "arcade_catch_play" }, { "text": "Not now" }] }
+        { "text": "STAR CATCH. Its screen glows like a jar of fireflies.", "choices": [{ "text": "Play", "goto": "arcade_catch_play" }, { "text": "Not now" }] }
       ]
     },
     "arcade_catch_play": { "lines": [{ "cmd": "arcade", "game": "catch" }] },
     "arcade_cat": {
       "lines": [
-        { "text": "A tiny arcade machine in the ivy. LONG CAT. The cat watches the screen.", "choices": [{ "text": "Play", "goto": "arcade_cat_play" }, { "text": "Not now" }] }
+        { "text": "LONG CAT. A real cat sleeps on top of it. It does not move.", "choices": [{ "text": "Play", "goto": "arcade_cat_play" }, { "text": "Not now" }] }
       ]
     },
     "arcade_cat_play": { "lines": [{ "cmd": "arcade", "game": "cat" }] },
     "arcade_moon": {
       "lines": [
-        { "text": "Your own arcade machine. MOON BOUNCE. You got it for your birthday.", "choices": [{ "text": "Play", "goto": "arcade_moon_play" }, { "text": "Not now" }] }
+        { "text": "MOON BOUNCE. The pillow on the screen looks very soft.", "choices": [{ "text": "Play", "goto": "arcade_moon_play" }, { "text": "Not now" }] }
       ]
     },
-    "arcade_moon_play": { "lines": [{ "cmd": "arcade", "game": "moon" }] }
+    "arcade_moon_play": { "lines": [{ "cmd": "arcade", "game": "moon" }] },
+    "arcade_stack": {
+      "lines": [
+        { "text": "PANCAKE STACK. It smells a little like syrup.", "choices": [{ "text": "Play", "goto": "arcade_stack_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_stack_play": { "lines": [{ "cmd": "arcade", "game": "stack" }] },
+    "arcade_lamps": {
+      "lines": [
+        { "text": "LAMP LIGHTER. Its sign never flickers.", "choices": [{ "text": "Play", "goto": "arcade_lamps_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_lamps_play": { "lines": [{ "cmd": "arcade", "game": "lamps" }] },
+    "arcade_flap": {
+      "lines": [
+        { "text": "FIREFLY FLAP. Real fireflies circle it.", "choices": [{ "text": "Play", "goto": "arcade_flap_play" }, { "text": "Not now" }] }
+      ]
+    },
+    "arcade_flap_play": { "lines": [{ "cmd": "arcade", "game": "flap" }] },
+    "arcade_counter": {
+      "lines": [
+        { "text": "The prize counter. Jars of candy, a rubber duck, and a plush moth with a crown." },
+        { "text": "Nobody is behind it. A sign says: PRIZES COMING SOON." }
+      ]
+    },
+    "arcade_claw": {
+      "lines": [
+        { "text": "A claw machine full of plush toys. The claw looks a little weak." },
+        { "text": "Nobody has ever won anything from it. You can tell." }
+      ]
+    },
+    "arcade_neon": {
+      "lines": [
+        { "text": "A neon moon. It hums one low note, all night long." }
+      ]
+    }
   }
 }

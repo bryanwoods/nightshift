@@ -1,0 +1,21 @@
+# arcade_door 16x16
+# The arcade's door on Main Street, under a buzzing neon sign.
+# rules: viewpoint, walls, doors, warm
+
+@tile
+ffffffffffffffff
+kkkkkkkkkkkkkkkk
+klmlplmlplmlplmk
+kkkkkkkkkkkkkkkk
+ssssssssssssssss
+nnkkkkkkkkkkkknn
+nnkssssssssssknn
+nnksppppsppppskn
+nnkspxppspqppskn
+nnksppppsppppskn
+nnksEEElslEEEskn
+nnksEEEEsEEqEskn
+nnksEEEEsEEEEskn
+nnksEEEEsEEEEskn
+nnkssssssssssknn
+nnkkkkkkkkkkkknn

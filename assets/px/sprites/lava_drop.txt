@@ -1,0 +1,12 @@
+# lava_drop 8x8
+# A drip of lava from the Lava Blob. It falls and glows.
+
+@sprite
+...kk...
+...kek..
+..kelk..
+..kylek.
+.keyleCk
+.kelleCk
+..kCCCk.
+...kk...

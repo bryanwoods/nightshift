@@ -1,0 +1,21 @@
+# wall 16x16
+# The puzzle room's wall tops, with a mint trim.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+nnnnnnnnnnnnnnnn
+nsnnnnnnnnnnnsnn
+nnnnnnnnnnnnnnnn
+nsnnnnnnnnnnnsnn
+nnnnnnnnnnnnnnnn
+nsnnnnnnnnnnnsnn
+nnnnnnnnnnnnnnnn
+nsnnnnnnnnnnnsnn
+nnnnnnnnnnnnnnnn
+nsnnnnnnnnnnnsnn
+nnnnnnnnnnnnnnnn
+nsnnnnnnnnnnnsnn
+nnnnnnnnnnnnnnnn
+iiiiiiiiiiiiiiii
+kkkkkkkkkkkkkkkk

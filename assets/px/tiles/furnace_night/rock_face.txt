@@ -1,0 +1,21 @@
+# rock_face 16x16
+# Stone wall with an old copper pipe running along it.
+# rules: viewpoint, walls
+
+@tile
+jjjjjjjjjjjjjjjj
+jDjjjkjjjjDjjjkj
+jjjjkjjjjjjjjkjj
+kkkkkkkkkkkkkkkk
+CCllCCCCCCCllCCC
+oCoCCCCoCCCCCoCC
+DDDDDDDDDDDDDDDD
+kkkkkkkkkkkkkkkk
+jjjkjjjjjDjjjjjj
+jDjjjjkjjjjjkjjj
+jjjjjjjjjjjjjjjj
+kjjjDjjjjkjjjjDj
+jjjjjjkjjjjjjjjj
+jjDjjjjjjjDjjjjj
+DDDDDDDDDDDDDDDD
+kkkkkkkkkkkkkkkk

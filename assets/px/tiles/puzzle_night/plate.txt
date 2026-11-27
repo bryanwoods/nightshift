@@ -1,0 +1,21 @@
+# plate 16x16
+# A glowing mint pad. Push a crate onto it.
+# rules: viewpoint
+
+@tile
+dddddddddddddddd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dnnwwwwwwwwwwnnd
+dnnwivvvivvvwnnd
+dnnwvvvivvviwnnd
+dnnwvvivvvivwnnd
+dnnwvivwwivvwnnd
+dnnwivvwwvvvwnnd
+dnnwvvvivvviwnnd
+dnnwvvivvvivwnnd
+dnnwvivvvivvwnnd
+dnnwwwwwwwwwwnnd
+dnnnnnnnnnnnnnnd
+dnnnnnnnnnnnnnnd
+dddddddddddddddd

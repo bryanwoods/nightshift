@@ -1,0 +1,21 @@
+# counter 16x16
+# The prize counter, with jars of candy and a stuffed moth on top.
+# rules: viewpoint, walls, warm
+
+@tile
+................
+..kk....kk...kk.
+.kFFk..kqqk.kEEk
+.kFhk..kuqk.kEpk
+.kFFk..kqqk.kEEk
+kjjjjjjjjjjjjjjk
+kooooooooooooook
+kjjjjjjjjjjjjjjk
+kjmlmlmlmlmlmljk
+kjjjjjjjjjjjjjjk
+kjkkkkkkkkkkkkjk
+kjkwkhklkqkFkpjk
+kjkkkkkkkkkkkkjk
+kjjjjjjjjjjjjjjk
+kjjjjjjjjjjjjjjk
+kkkkkkkkkkkkkkkk

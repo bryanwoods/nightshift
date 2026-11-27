@@ -1,0 +1,12 @@
+# kyle_hop 8x8
+# A tiny Kyle. Kyle throws little copies of himself that bounce across the box.
+
+@sprite
+........
+..kkkk..
+.kylleek
+kllkekek
+keeeeeCk
+keekkeCk
+kCCCCCCk
+.kkkkkk.

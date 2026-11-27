@@ -1,0 +1,21 @@
+# cord 16x16
+# A pull cord with a glowing handle. Pull it to put every crate back.
+# rules: viewpoint, walls, warm
+
+@tile
+dddddddddddddddd
+dsddddddsddddddd
+dddddddddddddddd
+vvvvvvvvvvvvvvvv
+iiiiiiiiiiiiiiii
+dddddddfdddddddd
+ddddsddfddddsddd
+dddddddfdddddddd
+dddddddfdddddddd
+ddsddddfdsdddddd
+dddddddfdddddddd
+ddddddkllkdddddd
+ddddddkmlkdddddd
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+kkkkkkkkkkkkkkkk

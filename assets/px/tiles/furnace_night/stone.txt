@@ -1,0 +1,21 @@
+# stone 16x16
+# Warm stone floor, cracked, with a little red glow in the cracks.
+# rules: viewpoint
+
+@tile
+DDDDDDjDDDDDDDDD
+DjjjjDjDjjjjjjDD
+DjjjjjDjjjjjjjjD
+DjjjjjjDjjjjjjjD
+jDjjjjjjDDjjjjDj
+jjDDjjjjjjDDDDjj
+jjjjDjjjjjjjjjjj
+jjjjjDDDjjjjjjjj
+DDjjjjjjDjjjjjDD
+jjDDjjjjjCjjjDjj
+jjjjDDjjjjCDDjjj
+jjjjjjDjjjjjjjjj
+DjjjjjjDjjjjjjjD
+jDjjjjjjDjjjjjDj
+jjDjjjjjjDDDDDjj
+jjjDDDDDDjjjjjjj

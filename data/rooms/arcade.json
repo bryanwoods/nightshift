@@ -1,0 +1,48 @@
+{
+  "id": "arcade",
+  "tileset": "arcade_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", "M": "neon_moon", ".": "carpet", "D": "door", "K": "counter", "C": "claw", "P": "puzzle_door",
+    "1": "arcade_maze", "2": "arcade_hop", "3": "arcade_catch", "4": "arcade_cat",
+    "5": "arcade_moon", "6": "arcade_stack", "7": "arcade_lamps", "8": "arcade_flap"
+  },
+  "layout": [
+    "################",
+    "#==M=====M===MP#",
+    "#.1.2.3.4..KKK.#",
+    "#..............#",
+    "#..............#",
+    "#.5.6.7.8....C.#",
+    "#..............#",
+    "#..............#",
+    "#######D########"
+  ],
+  "spawns": { "default": [7, 7, "up"], "street": [7, 7, "up"], "puzzle": [14, 2, "down"] },
+  "companion": true,
+  "entities": [
+    { "type": "door", "x": 7, "y": 8, "to": "street_main", "spawn": "arcade", "minutes": 1 },
+    { "type": "door", "x": 14, "y": 1, "to": "puzzle_room", "spawn": "arcade", "minutes": 1 },
+    { "type": "inspect", "x": 2, "y": 2, "dialogue": "arcade_maze" },
+    { "type": "inspect", "x": 4, "y": 2, "dialogue": "arcade_hop" },
+    { "type": "inspect", "x": 6, "y": 2, "dialogue": "arcade_catch" },
+    { "type": "inspect", "x": 8, "y": 2, "dialogue": "arcade_cat" },
+    { "type": "inspect", "x": 2, "y": 5, "dialogue": "arcade_moon" },
+    { "type": "inspect", "x": 4, "y": 5, "dialogue": "arcade_stack" },
+    { "type": "inspect", "x": 6, "y": 5, "dialogue": "arcade_lamps" },
+    { "type": "inspect", "x": 8, "y": 5, "dialogue": "arcade_flap" },
+    { "type": "inspect", "x": 11, "y": 2, "w": 3, "dialogue": "arcade_counter" },
+    { "type": "inspect", "x": 13, "y": 5, "dialogue": "arcade_claw" },
+    { "type": "inspect", "x": 3, "y": 1, "dialogue": "arcade_neon" },
+    { "type": "inspect", "x": 9, "y": 1, "dialogue": "arcade_neon" },
+    { "type": "inspect", "x": 13, "y": 1, "dialogue": "arcade_neon" }
+  ],
+  "lights": [
+    { "id": "arcade_row_1", "x": 4, "y": 3, "radius": 60, "color": "violet", "energy": 0.6, "on": true },
+    { "id": "arcade_row_2", "x": 6, "y": 6, "radius": 60, "color": "aqua", "energy": 0.6, "on": true },
+    { "id": "arcade_counter", "x": 12, "y": 3, "radius": 40, "color": "lamp", "energy": 0.7, "on": true },
+    { "id": "arcade_claw", "x": 13, "y": 6, "radius": 30, "color": "blossom", "energy": 0.6, "on": true },
+    { "id": "arcade_door", "x": 7, "y": 7, "radius": 30, "color": "moon", "energy": 0.5, "on": true }
+  ],
+  "ambient": 0.9,
+  "music": "street_stroll"
+}

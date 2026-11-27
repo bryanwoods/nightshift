@@ -1,0 +1,21 @@
+# arcade_flap 16x16
+# The Firefly Flap arcade machine. Its marquee lights glow.
+# rules: viewpoint, walls
+
+@tile
+..kkkkkkkkkkkk..
+.kwwwwwwwwwwwwk.
+.kwmlmlmlmlmlwk.
+.kwwwwwwwwwwwwk.
+.kwkkkkkkkkkkwk.
+.kwknvvnnnvvkwk.
+.kwknvvnnnnnkwk.
+.kwknnnnlnnnkwk.
+.kwknvvnnnvvkwk.
+.kwkkkkkkkkkkwk.
+kjjjjjjjjjjjjjjk
+kjssssssssssssjk
+kjsskssshswsqsjk
+kjsfssssssssssjk
+.kjjjjjookjjjjk.
+.kkkkkkkkkkkkkk.
