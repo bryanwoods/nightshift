@@ -27,7 +27,7 @@
                 "hedge", "tree", "fence", "gate", "lamp_post", "mailbox", "bench", "shop_wall",
                 "shop_window_lit", "shop_window", "bakery_door", "bakery_sign", "cobble", "tower", "tower_face", "fountain",
                 "depot_wall", "rolling_door", "side_door", "side_door_closed", "punch_clock", "crate", "flowerbed", "ladder_broken",
-                "path", "back_door", "porch", "house_door_bread", "bread_cart", "puddle", "alley_gap", "notice_board", "ivy_gap", "pj_stack", "mirror", "cat_bed", "arcade_door", "hatch"],
+                "path", "back_door", "porch", "house_door_bread", "bread_cart", "puddle", "alley_gap", "notice_board", "ivy_gap", "pj_stack", "mirror", "cat_bed", "arcade_door", "hatch", "grocery_door"],
       "solid": ["roof", "house_wall", "house_window", "house_door", "hedge", "tree", "fence", "lamp_post",
                 "mailbox", "bench", "shop_wall", "shop_window_lit", "shop_window", "bakery_door", "bakery_sign",
                 "tower", "tower_face", "fountain", "depot_wall", "rolling_door", "side_door_closed", "punch_clock",
@@ -53,6 +53,11 @@
       "png": "res://assets/tiles/puzzle_night.png",
       "tiles": ["wall", "wall_face", "cord", "floor", "plate", "gate", "gate_open", "pillar", "door", "pedestal", "chest"],
       "solid": ["wall", "wall_face", "cord", "gate", "pillar", "pedestal", "chest"]
+    },
+    "grocery_night": {
+      "png": "res://assets/tiles/grocery_night.png",
+      "tiles": ["wall", "wall_face", "sign", "floor", "shelf_cans", "shelf_fruit", "freezer", "counter", "door"],
+      "solid": ["wall", "wall_face", "sign", "shelf_cans", "shelf_fruit", "freezer", "counter"]
     },
     "terrarium_night": {
       "png": "res://assets/tiles/terrarium_night.png",

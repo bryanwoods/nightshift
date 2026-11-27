@@ -1,0 +1,21 @@
+# wall_face 16x16
+# Pale green store wall with a stripe.
+# rules: viewpoint, walls
+
+@tile
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiuiiiiiiiiuiii
+iiiiiiiiiiiiiiii
+vvvvvvvvvvvvvvvv
+wwwwwwwwwwwwwwww
+iiiiiiiiiiiiiiii
+iiiiiiuiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiui
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+vvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+kkkkkkkkkkkkkkkk

@@ -1,0 +1,12 @@
+# sticker 8x8
+# A bright price sticker from the Grocer's price gun.
+
+@sprite
+..kkkk..
+.kxlllk.
+kxlhhlyk
+klhlllyk
+kllhhlyk
+kllllhyk
+.kyhhyk.
+..kkkk..

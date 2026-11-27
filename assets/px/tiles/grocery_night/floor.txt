@@ -1,0 +1,21 @@
+# floor 16x16
+# Checkered store floor, white and pale blue.
+# rules: viewpoint
+
+@tile
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+xxxxxxxxuuuuuuuu
+uuuuuuuuxxxxxxxx
+uuuuuuuuxxxxxxxx
+uuuuuuuuxxxxxxxx
+uuuuuuuuxxxxxxxx
+uuuuuuuuxxxxxxxx
+uuuuuuuuxxxxxxxx
+uuuuuuuuxxxxxxxx
+ffffffffffffffff

@@ -1,0 +1,21 @@
+# sign 16x16
+# A lit sign on the wall: a carrot and an apple.
+# rules: viewpoint, walls, warm
+
+@tile
+iiiiiiiiiiiiiiii
+ikkkkkkkkkkkkkki
+ikmmmmmmmmmmmmki
+ikmlllmmmhhmmmki
+ikmmellmmhhhmmki
+ikmmmeemhhhhmmki
+ikmmmmemmhhmmmki
+ikmmmmmmmmmmmmki
+ikkkkkkkkkkkkkki
+iiiiiiiiiiiiiiui
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+iiiiiiiiiiiiiiii
+vvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvv
+kkkkkkkkkkkkkkkk

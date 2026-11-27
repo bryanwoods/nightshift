@@ -1,0 +1,21 @@
+# shelf_fruit 16x16
+# A shelf of apples, oranges and pears in crates.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+kjjjjjjjjjjjjjjk
+kkkkkkkkkkkkkkkk
+kohhohhkeeoeekok
+khhhhhhkeeeeekik
+kohhhhokeeeeekii
+kjjjjjjjjjjjjjjk
+kollokokokollokk
+kkkkkkkkkkkkkkkk
+kiiyiiikhhohhkek
+kiiiiiikhhhhhkee
+kyiiiiykhhhhhkee
+kjjjjjjjjjjjjjjk
+kollokokokollokk
+kkkkkkkkkkkkkkkk
+kjjjjjjjjjjjjjjk

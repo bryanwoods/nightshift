@@ -1,0 +1,17 @@
+# price_tag 10x13
+# A stolen price tag on its string, painted cream with a red dollar mark.
+
+@sprite
+....kk....
+...k..k...
+....kk....
+...kmmk...
+..kmxxmk..
+.kmxmkmmk.
+kmmmmmmmyk
+kmmhhhmmyk
+kmhmmmmmyk
+kmmhhhmmyk
+kmmmmhmmyk
+kmhhhmmyok
+.kkkkkkkk.

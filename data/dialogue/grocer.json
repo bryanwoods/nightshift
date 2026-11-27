@@ -1,0 +1,78 @@
+{
+  "id": "grocer",
+  "todo": "TODO(Tadzio): every line here is a first try. Rewrite anything.",
+  "dialogues": {
+    "grocer_approach": {
+      "lines": [
+        { "text": "A man in a paper hat is peeling a price tag off a shelf. He stuffs it in his apron." },
+        { "speaker": "grocer", "text": "We're CLOSED. No customers. Especially no small customers.", "unless_flag": "many_gone" },
+        { "speaker": "grocer", "text": "If nobody knows the prices, nobody can buy anything. And if nobody buys anything, nobody messes up my shelves!", "unless_flag": "many_gone" },
+        { "speaker": "grocer", "text": "You. I heard about you. Get out of my store.", "if_flag": "many_gone" }
+      ]
+    },
+    "grocer_approach_angry": {
+      "lines": [ { "speaker": "grocer", "text": "YOU. You knocked over my cans last time!" } ]
+    },
+    "grocer_battle_intro": {
+      "lines": [ { "speaker": "grocer", "text": "Hands off my price tags!" } ]
+    },
+    "grocer_help_1": {
+      "lines": [
+        { "speaker": "tadzio", "text": "Your pocket is full of price tags." },
+        { "speaker": "grocer", "text": "...It might be." }
+      ]
+    },
+    "grocer_help_2": {
+      "lines": [ { "text": "You stick the price tags back on the shelves, one by one. Beans: 2 dollars." } ]
+    },
+    "grocer_help_3": {
+      "lines": [
+        { "text": "You line up the cans so every label faces front." },
+        { "speaker": "grocer", "text": "...That's actually very neat." }
+      ]
+    },
+    "grocer_hustle": {
+      "lines": [ { "speaker": "grocer", "text": "Don't touch the pyramid of cans!" } ]
+    },
+    "grocer_hustle_2": {
+      "lines": [ { "speaker": "grocer", "text": "No running in the aisles!" } ]
+    },
+    "grocer_hustle_3": {
+      "lines": [ { "speaker": "grocer", "text": "Clean up on aisle EVERYWHERE!" } ]
+    },
+    "grocer_hustle_4": {
+      "lines": [ { "speaker": "grocer", "text": "My shelves! My beautiful shelves!" } ]
+    },
+    "grocer_satisfied": {
+      "lines": [
+        { "speaker": "grocer", "text": "Prices on. Shelves neat. Fine. FINE. You can be a customer." },
+        { "speaker": "grocer", "text": "Here. The shiniest apple in the store. No charge. Don't tell anyone." },
+        { "text": "You got a shiny apple." }
+      ]
+    },
+    "grocer_spared": {
+      "lines": [
+        { "speaker": "grocer", "text": "Hmph! I'm closing early." },
+        { "text": "The Grocer flips the sign to CLOSED and stomps into the back room." }
+      ]
+    },
+    "grocer_chat": {
+      "lines": [ { "speaker": "grocer", "text": "Every price is on. I checked twice. Don't touch anything." } ]
+    },
+    "grocery_cans": {
+      "lines": [ { "text": "A shelf of cans. Beans, soup, more beans. There isn't a single price tag." } ]
+    },
+    "grocery_fruit": {
+      "lines": [ { "text": "Apples, oranges and pears in little crates. The price signs are blank." } ]
+    },
+    "grocery_freezer": {
+      "lines": [ { "text": "A freezer full of ice cream. It hums. Somebody wrote NO in the frost." } ]
+    },
+    "grocery_counter": {
+      "lines": [ { "text": "The checkout counter. The cash register says CLOSED in green letters." } ]
+    },
+    "grocery_sign": {
+      "lines": [ { "text": "A glowing sign of a carrot and an apple. It buzzes a little." } ]
+    }
+  }
+}

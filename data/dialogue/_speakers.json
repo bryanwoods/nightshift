@@ -11,6 +11,7 @@
     "window_washer": { "name": "The Window Washer", "pitch": 1.1 },
     "puddle_keeper": { "name": "The Puddle Keeper", "pitch": 0.9 },
     "lava_blob": { "name": "Kyle", "pitch": 0.7 },
+    "grocer": { "name": "The Grocer", "pitch": 0.8 },
     "jar_keeper": { "name": "The Jar Keeper", "pitch": 0.65 },
     "no_job": { "name": "", "pitch": 0.3 },
     "fridge": { "name": "", "pitch": 0.5 }

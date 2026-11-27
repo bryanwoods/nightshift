@@ -1,0 +1,21 @@
+# door 16x16
+# The store's glass doors. Street light comes in.
+# rules: viewpoint, walls, doors, warm
+
+@tile
+kkkkkkkkkkkkkkkk
+kssssssssssssssk
+ksnnnnnskkkkkksk
+ksnffnnsknnnnksk
+ksnfnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnlsllnnnksk
+ksnnnnlsllnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+ksnnnnnsknnnnksk
+kssssssssssssssk
+kxxxxxxxxxxxxxxk
+kkkkkkkkkkkkkkkk

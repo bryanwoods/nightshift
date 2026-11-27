@@ -1,0 +1,45 @@
+{
+  "id": "grocery",
+  "todo": "TODO(Tadzio): what does the store sell? Who shops here at night?",
+  "tileset": "grocery_night",
+  "legend": {
+    "#": "wall", "=": "wall_face", "S": "sign", ".": "floor", "A": "shelf_cans", "B": "shelf_fruit",
+    "F": "freezer", "K": "counter", "D": "door"
+  },
+  "layout": [
+    "################",
+    "#==S=====S=====#",
+    "#..........FF..#",
+    "#.AA.BB.AA.....#",
+    "#..............#",
+    "#.BB.AA.BB.....#",
+    "#..............#",
+    "#.........KKK..#",
+    "#..............#",
+    "#######D########"
+  ],
+  "spawns": { "default": [7, 8, "up"], "street": [7, 8, "up"] },
+  "companion": true,
+  "entities": [
+    { "type": "door", "x": 7, "y": 9, "to": "street_main", "spawn": "grocery", "minutes": 1 },
+    { "type": "encounter", "worker": "grocer", "x": 12, "y": 5, "facing": "left", "respawn": "nightly", "radius": 2,
+      "approach": "grocer_approach", "approach_enemy": "grocer_approach_angry", "chat": "grocer_chat" },
+    { "type": "inspect", "x": 2, "y": 3, "w": 2, "dialogue": "grocery_cans" },
+    { "type": "inspect", "x": 8, "y": 3, "w": 2, "dialogue": "grocery_cans" },
+    { "type": "inspect", "x": 5, "y": 5, "w": 2, "dialogue": "grocery_cans" },
+    { "type": "inspect", "x": 5, "y": 3, "w": 2, "dialogue": "grocery_fruit" },
+    { "type": "inspect", "x": 2, "y": 5, "w": 2, "dialogue": "grocery_fruit" },
+    { "type": "inspect", "x": 8, "y": 5, "w": 2, "dialogue": "grocery_fruit" },
+    { "type": "inspect", "x": 11, "y": 2, "w": 2, "dialogue": "grocery_freezer" },
+    { "type": "inspect", "x": 10, "y": 7, "w": 3, "dialogue": "grocery_counter" },
+    { "type": "inspect", "x": 3, "y": 1, "dialogue": "grocery_sign" },
+    { "type": "inspect", "x": 9, "y": 1, "dialogue": "grocery_sign" }
+  ],
+  "lights": [
+    { "id": "grocery_main", "x": 6, "y": 4, "radius": 70, "color": "moon", "energy": 0.5, "on": true },
+    { "id": "grocery_freezer", "x": 11, "y": 2, "radius": 36, "color": "aqua", "energy": 0.7, "on": true },
+    { "id": "grocery_counter", "x": 11, "y": 7, "radius": 34, "color": "lamp", "energy": 0.7, "on": true }
+  ],
+  "ambient": 0.9,
+  "music": "street_lantern"
+}

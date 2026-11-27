@@ -135,6 +135,18 @@ func _draw_layer() -> void:
 
 func _draw_bullet(b: Pattern.Bullet, half: Vector2, col: Color) -> void:
 	match b.kind:
+		Pattern.Kind.BAR when pattern.params.get("laser", false):
+			var top := b.gap_center - b.gap / 2.0
+			var bottom := b.gap_center + b.gap / 2.0
+			var flick := 0.8 + 0.2 * sin(pattern.t * 30.0 + b.pos.x)
+			for part: Vector2 in [Vector2(-half.y, top), Vector2(bottom, half.y)]:
+				var h := part.y - part.x
+				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 - 3.0, part.x, b.width + 6.0, h), Color(col, 0.18 * flick))
+				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 - 1.0, part.x, b.width + 2.0, h), Color(col, 0.4 * flick))
+				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0, part.x, b.width, h), col)
+				_layer.draw_rect(Rect2(b.pos.x - 0.5, part.x, 1.0, h), Color(_c["moon"], 0.8))
+			for y: float in [top, bottom]:
+				_layer.draw_rect(Rect2(b.pos.x - b.width / 2.0 - 1.0, y - 1.0, b.width + 2.0, 2.0), _c["moon"])
 		Pattern.Kind.BAR:
 			var x := b.pos.x - b.width / 2.0
 			var top := b.gap_center - b.gap / 2.0

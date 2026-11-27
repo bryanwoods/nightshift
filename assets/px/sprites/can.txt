@@ -1,0 +1,14 @@
+# can 8x10
+# A can of beans, rolling. A red label with a yellow bean on it.
+
+@sprite
+.kkkkkk.
+kfxxxxfk
+kffffffk
+khmhhhhk
+kmmlmmhk
+kmlllmhk
+kmmlmmhk
+khhhhhDk
+kffffsdk
+.kkkkkk.

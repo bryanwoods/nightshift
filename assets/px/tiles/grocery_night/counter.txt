@@ -1,0 +1,21 @@
+# counter 16x16
+# The checkout counter with a cash register and a lamp.
+# rules: viewpoint, walls, warm
+
+@tile
+xxxxxxxxuuuuuuuu
+xxxxxxkkkkkuuuuu
+xxxxxksssssskuuu
+xxxxxkslmlsskuuu
+xxxxxksssssskkuu
+kkkkkkkkkkkkkkkk
+kjjjjjjjjjjjjjjk
+kooooooooooooook
+kkkkkkkkkkkkkkkk
+kvvvvvvvvvvvvvvk
+kvwvvvvvvvvvvwvk
+kvvvvvvvvvvvvvvk
+kvvvvvvvvvvvvvvk
+kvvvvvvvvvvvvvvk
+kkkkkkkkkkkkkkkk
+kddddddddddddddk

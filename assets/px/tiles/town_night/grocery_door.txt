@@ -1,0 +1,21 @@
+# grocery_door 16x16
+# The grocery store's door under a striped awning. The window glows.
+# rules: viewpoint, walls, doors, warm
+
+@tile
+ffffffffffffffff
+hhmmhhmmhhmmhhmm
+hhmmhhmmhhmmhhmm
+hmmhhmmhhmmhhmmh
+kkkkkkkkkkkkkkkk
+nnkkkkkkkkkkkknn
+nnkssssssssssskn
+nnkslmlmsiiiiskn
+nnksmllmsiiiiskn
+nnksiiiislliiskn
+nnksiiiislliiskn
+nnksiiiisiiiiskn
+nnksiiiisiiiiskn
+nnksiiiisiiiiskn
+nnkssssssssssskn
+nnkkkkkkkkkkkkkn

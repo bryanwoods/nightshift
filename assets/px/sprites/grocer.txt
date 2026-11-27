@@ -1,0 +1,87 @@
+# grocer 16x32
+# The town sheet: grocer_battle at half size, with the face drawn again by hand.
+# Painted: lit from the top left, rounded forms, a cool rim on the shadow side, cast shadows under heads and brims.
+# rules: viewpoint, outline, characters
+
+@down_0
+................
+....kkkkkkkk....
+...kxxxxxxxxk...
+...kxxxxuuuukk..
+..kxxxuuuxffxfk.
+..kxxxxxxuuuufk.
+..kFFFhhhhhhhDk.
+.kkmmmmmmmmmBkk.
+kmommmmmmmjAAjmk
+kmojmjjmmjjAojmm
+kmjjmmkmmAkAjjAB
+kAjjmFmjAjjFjjBu
+.kjmjjjjjjjjjxuu
+..kjjAjkkkjBjuuf
+...kkAAAABBkkuff
+.kkxxwmAABiwxufs
+kxxuxwxuuuwuuufk
+kxxuuwuuuuwvufsk
+kxuuiiymmywwfssk
+kuuuiioymyowskk.
+kuufiiyywyyvsfk.
+kuffsiwvvvvvffk.
+fhmmswwvvvvvffk.
+sssdwwvvvvvvfk..
+sdsswwwwvvvvsk..
+kksdwwwvvvvvk...
+.kdnwwvvvvnnk...
+..kkwvvvvnnnk...
+....kssdssdk....
+....ksdnsdnk....
+....kojjojjjk...
+...kdjjddjjddk..
+
+@down_1
+................
+....kkkkkkkk....
+...kxxxxxxxxk...
+...kxxxxuuuukk..
+..kxxxuuuxffxfk.
+..kxxxxxxuuuufk.
+..kFFFhhhhhhhDkk
+.kkmmmmmmmmmBmmm
+kmommmmmmmjAAmmA
+kmojmjjmmjjAojmB
+kmjjmmkmmAkAjjAu
+kAjjmFmjAjjFjjuu
+.kjmjjjjjjjjjuuf
+..kjjAjkkkjBjuuf
+...kkAAAABBkkufs
+.kkxxwmAABiwxufs
+kxxuxwxuuuwuuufk
+kxxuuwuuuuwvufsk
+kxuuiiymmywwfssk
+kuuuiioymyowskk.
+kuufiiyywyyvsfk.
+kuffsiwvvvvvffk.
+fhmmswwvvvvvffk.
+sssdwwvvvvvvfk..
+sdsswwwwvvvvsk..
+kksdwwwvvvvvk...
+.kdnwwvvvvnnk...
+..kkwvvvvnnnk...
+....kssdssdk....
+....ksdnsdnk....
+....kojjojjjk...
+...kdjjddjjddk..
+
+@down_2 = down_0
+@down_3 = down_1
+@up_0 = down_0
+@up_1 = down_1
+@up_2 = down_0
+@up_3 = down_1
+@left_0 = down_0
+@left_1 = down_1
+@left_2 = down_0
+@left_3 = down_1
+@right_0 = down_0
+@right_1 = down_1
+@right_2 = down_0
+@right_3 = down_1

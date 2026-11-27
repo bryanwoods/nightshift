@@ -1,0 +1,36 @@
+{
+  "id": "grocer",
+  "todo": "TODO(Tadzio): name the Grocer! His look and lines are a first try.",
+  "name": "The Grocer",
+  "music": "battle_loop",
+  "job": "Guards the shelves till morning",
+  "sprite": "grocer",
+  "idle_frames": 4,
+  "patience": 45,
+  "hours": 14,
+  "hit_damage": 3,
+  "patterns": [
+    { "type": "flutter", "duration": 7, "count": 16, "speed": 26, "sway": 34, "swoop": 0.3, "sprite": "price_tag" },
+    { "type": "carts", "duration": 7, "lanes": 4, "count": 14, "speed": 55, "sprite": "cart" },
+    { "type": "barcode", "duration": 7, "stripes": 13, "speed": 48, "gap": 22, "color": "hush", "laser": true },
+    { "type": "cans", "duration": 7, "count": 10, "roll": 60, "gravity": 180, "sprite": "can" },
+    { "type": "stickers", "duration": 7, "volleys": 6, "spread": 40, "speed": 60, "sprite": "sticker" }
+  ],
+  "task": {
+    "title": "Put the prices back",
+    "steps": [
+      { "label": "Find the price tags", "line": "grocer_help_1" },
+      { "label": "Stick them on the shelves", "line": "grocer_help_2" },
+      { "label": "Tidy the cans", "line": "grocer_help_3" }
+    ]
+  },
+  "hustle_lines": ["grocer_hustle", "grocer_hustle_2", "grocer_hustle_3", "grocer_hustle_4"],
+  "dialogue": {
+    "intro": "grocer_battle_intro",
+    "satisfied": "grocer_satisfied",
+    "spared": "grocer_spared"
+  },
+  "rewards": {
+    "satisfied": { "item": "shiny_apple" }
+  }
+}

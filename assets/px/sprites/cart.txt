@@ -1,0 +1,16 @@
+# cart 14x12
+# A runaway shopping cart full of groceries: bread, apples and lettuce.
+
+@sprite
+hh............
+.hk.yy.hh.ww..
+..kkyykhhkwwkk
+..kxmxmxmxmxmk
+..kmfmfmfmfmfk
+...kxmxmxmxmk.
+...kmfmfmfmfk.
+....kkkkkkkk..
+....k......k..
+...kfk....kfk.
+...kkk....kkk.
+..............

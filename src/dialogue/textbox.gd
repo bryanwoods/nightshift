@@ -31,6 +31,8 @@ var _auto: float = -1.0
 var _auto_t: float = 0.0
 var _last_press: int = -1
 var _blink: float = 0.0
+var _faces: Array[Texture2D] = []
+var _face_t: float = 0.0
 ## Pixels kept clear on the left of the box. A fight sets it, so the worker stays in view.
 var inset: float = 0.0
 
@@ -83,6 +85,10 @@ func show_line(speaker_name: String, portrait: Texture2D, text: String, pitch: f
 	_since_blip = 0
 	_portrait.texture = portrait
 	_portrait.visible = portrait != null
+	_faces.clear()
+	var flicker := portrait.resource_path.replace(".png", "_b.png") if portrait else ""
+	if flicker != "" and ResourceLoader.exists(flicker):
+		_faces.assign([portrait, load(flicker)])
 	_name.text = speaker_name
 	_name.visible = speaker_name != ""
 	_name_panel.visible = _name.visible
@@ -132,6 +138,9 @@ func _layout() -> void:
 func _process(delta: float) -> void:
 	if not _waiting:
 		return
+	if _faces.size() > 1:
+		_face_t += delta
+		_portrait.texture = _faces[int(_face_t / 0.16) % _faces.size()]
 	var autoplay := DialogueRunner.autoplay
 	var frame := Engine.get_process_frames()
 	var pressed := Input.is_action_just_pressed("confirm") and frame != _last_press

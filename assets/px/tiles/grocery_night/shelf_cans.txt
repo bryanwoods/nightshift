@@ -1,0 +1,21 @@
+# shelf_cans 16x16
+# A shelf of cans. Every price tag is missing.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+kjjjjjjjjjjjjjjk
+kkkkkkkkkkkkkkkk
+khhfkqqfkwwfkhhk
+khmfkqmfkwmfkhmk
+khhfkqqfkwwfkhhk
+kjjjjjjjjjjjjjjk
+kollokokokollokk
+kkkkkkkkkkkkkkkk
+kwwfkeefkhhfkqqk
+kwmfkemfkhmfkqmk
+kwwfkeefkhhfkqqk
+kjjjjjjjjjjjjjjk
+kollokokokollokk
+kkkkkkkkkkkkkkkk
+kjjjjjjjjjjjjjjk

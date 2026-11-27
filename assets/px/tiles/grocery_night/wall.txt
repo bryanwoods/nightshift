@@ -1,0 +1,21 @@
+# wall 16x16
+# The grocery store's ceiling edge.
+# rules: viewpoint, walls
+
+@tile
+kkkkkkkkkkkkkkkk
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnn
+vvvvvvvvvvvvvvvv
+wwwwwwwwwwwwwwww
+kkkkkkkkkkkkkkkk

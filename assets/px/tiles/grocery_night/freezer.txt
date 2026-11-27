@@ -1,0 +1,21 @@
+# freezer 16x16
+# A humming freezer full of ice cream. Its light glows cold.
+# rules: viewpoint, walls, warm
+
+@tile
+kkkkkkkkkkkkkkkk
+kssssssssssssssk
+ksuuuuuuuuuuuusk
+ksummxxuFFuqqusk
+ksumxxuuFFuqqusk
+ksuuuuuuuuuuuusk
+ksuFFuxxuuqquusk
+ksuFFuxxmmqquusk
+ksuuuuuuuuuuuusk
+kssssssssssssssk
+ksfffffffffffffk
+ksffllfffffffffk
+ksffmmfffffffffk
+kssssssssssssssk
+kkkkkkkkkkkkkkkk
+kdddddddddddddkk
